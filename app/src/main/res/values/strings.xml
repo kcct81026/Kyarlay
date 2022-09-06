@@ -1,0 +1,850 @@
+<resources>
+    <string name="app_name">Kyarlay</string>
+    <string name="facebook_app_id">184815485301878</string>
+   <!-- <string name="admob_app_id">ca-app-pub-3224883732172669~7242335081</string>
+    <string name="admob_unit_id">ca-app-pub-3224883732172669/4181235087</string>
+    <string name="admob_interstitial_id">ca-app-pub-3224883732172669/5516288743</string>
+    <string name="admob_give_name_id">ca-app-pub-3224883732172669/3144505763</string>
+    <string name="admob_calendar_id">ca-app-pub-3224883732172669/6272521548</string>
+    <string name="admob_due_date_id">ca-app-pub-3224883732172669/6552557299</string>
+    <string name="admob_pregnancy_id">ca-app-pub-3224883732172669/6137678220</string>
+    <string name="admob_competition_id">ca-app-pub-3224883732172669/7271354317</string>-->
+
+    <string name="friend_feedback">How likely are you to recommend Kyarlay to a friend or colleague?</string>
+    <string name="order_feedback">Share feedback</string>
+    <string name="rewards">Your rewards</string>
+    <string name="calendar">Date of birth horoscope</string>
+    <string name="point_switch_text">Use Point</string>
+    <string name="point_current_text">Current Point</string>
+    <string name="point_left"> M Left</string>
+    <string name="point_limit_text">Points you can use</string>
+    <string name="point_text">You have %s points.</string>
+    <string name="point_history_title">Points History</string>
+    <string name="your_ponint">Your Points  </string>
+    <string name="share_app">Share App </string>
+    <string name="rate_app">Rate Us </string>
+    <string name="ask_product">Your questions about product</string>
+    <string name="how_to_use_point">How to use your points</string>
+    <string name="how_to_get_point">How to get your points</string>
+    <string name="get_point_text_one">For your registraion, you can get</string>
+    <string name="get_point_text_two">Kyarlay <![CDATA[<b><font color=#000>Points</font></b>]]> </string>
+    <string name="get_point_text_three">and <![CDATA[<b><font color=#000>Member Disount</font></b>]]>.</string>
+    <string name="point_redeem">Redeem points for Shopping</string>
+    <string name="point_register">Register လုပ္ပီး Point (1000) ရယူပါ</string>
+    <string name="point_post">Post တင္ပီး ပြိဳင့္(၁၀၀၀) ရယူပါ</string>
+    <string name="point_friend_invite">Friend Invite လုပ္ပီး ပြိဳင့္(၅၀၀၀) ရယူပါ</string>
+    <string name="point_order">က်ားေလးမွာ ေစ်းဝယ္ပီး ပြိဳင့္ ရယူမယ္</string>
+    <string name="point_give_feedbck">Share your feedback and get Points (%s)</string>
+    <string name="point_history">Watch Point History</string>
+    <string name="your_point_dsecription">Your Point</string>
+    <string name="your_point_text"><![CDATA[<b><font color=#ff0000> (Points %s) </font></b>]]> expired at <![CDATA[<b><font color=#ff0000> %s </font></b>]]></string>
+    <string name="your_point_text_empty"><![CDATA[<b><font color=#ff0000> (Points %s) </font></b>]]> </string>
+
+    <string name="point_get">Get</string>
+    <string name="point_done">Done</string>
+    <string name="point"> Points</string>
+
+    <string name="nine_am"> Between 9 am to 12 pm</string>
+    <string name="twelve_am"> Between 12 pm to 3 pm</string>
+    <string name="three_pm"> Between 3 pm to 6 pm</string>
+    <string name="six_pm"> Between 6 pm to 9 pm</string>
+    <string name="nine_am_html_long"> Between <![CDATA[<b><font color=#007BFF>\t9\t</font></b>]]>  am \t\tto <![CDATA[<b><font color=#007BFF>\t12\t</font></b>]]>  pm</string>
+    <string name="twelve_am_html_long"> Between <![CDATA[<b><font color=#007BFF>\t12\t</font></b>]]>  pm \t\tto <![CDATA[<b><font color=#007BFF>\t3\t</font></b>]]>  pm</string>
+    <string name="three_pm_html_long"> Between <![CDATA[<b><font color=#007BFF>\t3\t</font></b>]]>  pm \t\tto <![CDATA[<b><font color=#007BFF>\t6\t</font></b>]]>  pm</string>
+    <string name="six_pm_html_long"> Between <![CDATA[<b><font color=#007BFF>\t6\t</font></b>]]>  pm \t\tto <![CDATA[<b><font color=#007BFF>\t9\t</font></b>]]>  pm</string>
+    <string name="nine_am_html"> <![CDATA[<b><font color=#000000> 9 </font></b>]]> to <![CDATA[<b><font color=#000000> 12 </font></b>]]> </string>
+    <string name="twelve_am_html"><![CDATA[<b><font color=#000000> 12 </font></b>]]> to <![CDATA[<b><font color=#000000> 3 </font></b>]]></string>
+    <string name="three_pm_html"><![CDATA[<b><font color=#000000> 3 </font></b>]]> to <![CDATA[<b><font color=#000000> 6 </font></b>]]></string>
+    <string name="six_pm_html"><![CDATA[<b><font color=#000000> 6 </font></b>]]> to <![CDATA[<b><font color=#000000> 9 </font></b>]]></string>
+    <string name="delivery_full_today">Delivery slot is <![CDATA[<b><font color=#000000>  fully booked today </font></b>]]> for your township. Please choose  <![CDATA[<b><font color=#000000>  tomorrow </font></b>]]> for your delivery.</string>
+    <string name="delivery_full_tomorrow">Delivery slot is <![CDATA[<b><font color=#000000>  fully booked tomorrow </font></b>]]> for your township. Please choose  <![CDATA[<b><font color=#000000> the day after tomorrow </font></b>]]> for your delivery.</string>
+    <string name="delivery_now">Now</string>
+    <string name="title_morning">Morning</string>
+    <string name="title_afternoon">Afternon</string>
+    <string name="title_evening">Evening</string>
+    <string name="title_night">Night</string>
+
+    <string name="deli_time">Choose delivery date from calendar</string>
+    <string name="deli_time_must_choose">Please choose delivery date and time .</string>
+    <string name="today_date">Today Date </string>
+    <string name="time_choose"> time can\'t choose</string>
+    <string name="tomorrow_order">Your order will be sent tomorrow!</string>
+    <string name="order_send">Your order will be sent Date -  %s and Time %s .</string>
+    <string name="order_pickup">Your order will be picked up Date -  %s and Time %s .</string>
+    <string name="order_count">orders in total</string>
+
+
+
+    <string name="order_ordered">Your order had been ordered. Kyarlay\'s customer service will contact you soon.</string>
+    <string name="order_confirmed">Your order had been confrimed. We will delivery your order on %s </string>
+    <string name="order_ready_for_delivery">Your order is ready for delivery. We will deliver your order on %s</string>
+    <string name="order_on_route">Your order is on route. We will deliver your order on %s</string>
+
+
+    <string name="point_for_shopping">Order at Kyarlay with points</string>
+
+    <string name="due_date_title">First day of last period:</string>
+    <string name="due_date_title_hint">Please choose your first day of last period.</string>
+    <string name="due_date_life_cycle">Length of Menstrual Cycle:</string>
+    <string name="due_date_life_cycle_hint">Please choose your length of Menstrual Cycle.</string>
+
+    <string name="get_pregnant1">Most Fertile</string>
+    <string name="get_peroid">Expect Peroid</string>
+    <string name="get_pregnant">Fertile</string>
+    <string name="start_period">Period</string>
+    <string name="get_pregnant_calculate">Calculate your days</string>
+    <string name="get_pregnant_numofday">Total day of Menstrual</string>
+    <string name="get_pregnant_numofday_hint">Please choose total day of Menstrual</string><!--
+    <string name="length_cycle_error">The cycle length you entered is %s days, it is not the typical (23-35 days).
+    There are many reasons cause irregular cycles, and you can consult your doctor for more information.</string>-->
+
+    <string name="due_date_cat">Calculate Due Date</string>
+    <string name="get_pargnant_cat">Calculate Ovulation Date</string>
+    <string name="horoscope_cat">Date of Birth Horoscope</string>
+
+
+    <string name="invite_title">Invite your friend to get 5,000 kyarlay points.</string>
+    <string name="invite_name">Friend\'s name</string>
+    <string name="invite_phone">Friend\'s phone</string>
+    <string name="invite_text">You will earn 5,000 kyarlay points when your invited friend makes a purchase through Kyarlay app.</string>
+    <string name="invite_button">Invite Now</string>
+    <string name="invite">Invite Friend</string>
+    <string name="invite_status">Invite Status</string>
+
+    <string name="due_date_button">Calculate Due Date</string>
+    <string name="re_due_date_button">Recalculate Due Date</string>
+    <string name="due_date_result"><![CDATA[<b><font color=\"#000\">Congratulation!</font></b> <br/><br/> Your baby\'s due date is <b><font color=\"#B71C1C\">\" %s %s %s  \"</font></b>.<br/><br/>You are  <b><font color=\"#B71C1C\">\" %s \"</font></b> pregnant.]]> </string>
+
+    <string name="more_shopping">Add New Product to Shopping Cart</string>
+    <string name="point_use_text">Your Point</string>
+    <string name="point_to_use_text">Points to use</string>
+    <string name="point_button">Use</string>
+    <string name="point_grather_current">Please check the amount of points that you want to use.</string>
+
+    <string name="reload">Try again</string>
+    <string name="gift_title">Your Gifts</string>
+    <string name="title_mall">Mall</string>
+    <string name="title_video">Media</string>
+    <string name="title_feed">Feed</string>
+    <string name="title_none"></string>
+    <string name="title_notifications">Help</string>
+    <string name="title_for_you">For You</string>
+    <string name="title_profile">Me</string>
+    <string name="to_continue">Continue</string>
+    <string name="continue_watch">Continue</string>
+    <string name="warning">Warning!</string>
+    <string name="amount_warning_greater">Your order amount is greater than %s Ks. So you can\'t use <![CDATA[<b><font color=#FF0000>%s</font></b>]]>.</string>
+    <string name="amount_warning_less">Your order amount is greater than %s Ks. So you can\'t use <![CDATA[<b><font color=#FF0000>%s</font></b>]]> .</string>
+    <string name="baby_birth_date">Please choose baby\'s birth month and year</string>
+    <string name="edit_baby_birth_info">Edit Baby Age</string>
+    <string name="edit_due_date_info">Edit Due Date</string>
+    <string name="baby_birth_age">Fill up Baby Age</string>
+    <string name="baby_birth_due_date">Fill up Due Date</string>
+    <string name="watch_baby_progress">View Baby Development >></string>
+    <string name="baby_age_info">You are %s .</string>
+    <string name="no_baby_age_info">Please fill up your baby age to read all the related articles.</string>
+    <string name="no_due_date_info">Please fill up your baby due_date to read all the related articles. </string>
+    <string name="to_contact">Call Center</string>
+
+    <string name="no_youtube_title">Install Youtube</string>
+    <string name="no_youtube_text">Please install Youtube application to view the video.</string>
+    <string name="no_youtube_button">Install</string>
+
+    <string name="question_about">Questions about this product</string>
+    <string name="no_question">There is no question about this product!</string>
+    <string name="ask_question_product">Ask Question  </string>
+
+    <string name="addtocart_buy">Add to Cart</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="member_activate">Member Activate</string>
+    <string name="connect_with_memberid">Get Points From Gift Card</string>
+    <string name="member_activate_title">Please Enter Member Card ID Number</string>
+    <string name="connect_with_memberid_title">Please Enter Number From Kyarlay\'s Gift Card</string>
+    <string name="claim_title">Use Kyarlay app daily to earn points.</string>
+    <string name="claim_text">You may use kyarlay points to pay for up to (%s) percents of the purchased amount.</string>
+    <string name="got_point">You got %s points.</string>
+    <string name="play_wheel">Play</string>
+
+<!--
+    <string name="point_product_can">ဒီပစ္စည်းတန်ဖိုးရဲ့ (%s) ရာခိုင်နှုန်းကို ကျားလေးပွိုင့်ကို အသုံးပြုပြီး ပေးချေနိုင်ပါတယ်။</string>
+-->
+    <string name="point_product_can">ဒီပစ္စည်းအတွက် ကျားလေးပွိုင့်ကို အသုံးပြုပြီး ပေးချေနိုင်ပါတယ်။</string>
+    <string name="point_product_cannot">ဒီပစ္စည်းအတွက် ကျားလေးပွိုင့်ကို အသုံးပြုလို့မရနိုင်ပါ။</string>
+    <string name="memeber_product_cannot">ဒီပစ္စည်းအတွက် ကျားလေးအဖွဲ့၀င် လျော့စျေးကို အသုံးပြုလို့မရနိုင်ပါ။</string>
+    <string name="point_product_title">ဒီပစ္စည်းအတွက် သင်ရယူနိုင်သော လျော့စျေးများ</string>
+    <string name="claim_button">Earn points!</string>
+    <string  name="pin_tilte">ဝယ္ယူမည့္ဆိုင္မွ တာဝန္ရွိသူကုိ Pin နံပါတ္ ရိုက္ထည့္ခိုင္းပါ။</string>
+    <string  name="allow_permission">You need to allow \"Read Phone State\" permission to vote</string>
+    <string name="current_point">Your Current Point </string>
+    <string name="point_desc">You may use kyarlay points to pay for up to (%s) percents of the purchased amount.</string>
+
+    <string name="shop_location">Kyarlay Shops\' addresses</string>
+    <string name="show_location_map">Show location on Map</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="choose_address">Choose Your Address</string>
+    <string name="choose_township">Choose Township</string>
+    <string name="fill_address">Enter Your Address</string>
+    <string name="must_choose_township">Please Choose Township</string>
+    <string name="delete_address_text">Are you sure to delete this address?</string>
+    <string name="check_delivery_amount">Check Delivery Prices</string>
+    <string name="address_list">Your Address List</string>
+    <string name="add_address">Add New Address</string>
+    <string name="add_edit_address">Add / Edit Address</string>
+    <string name="save_yes">Save</string>
+    <string name="remark_title">Remark</string>
+    <string name="choose_payment">Choose Payment</string>
+
+
+    <string name="video_program">Programs</string>
+    <string name="competition">Mama and Baby Photo Competition</string>
+    <string name="write_competition">Write Post</string>
+    <string name="recent_competition">Recent Photos</string>
+    <string name="top_ten_competition">Top Ten Photos</string>
+    <string name="term_condition_competition">Terms and Conditions</string>
+    <string name="competition_vote">Give a vote</string>
+    <string name="competition_share">Share this post</string>
+    <string name="competition_number">Competition Number ( %s )</string>
+    <string name="competition_post">Post competition photo</string>
+    <string name="competition_search_title">Please enter to search competition photo number</string>
+    <string name="competition_delete_title">Delete Competition Photo</string>
+    <string name="competition_delete_body">Your photo have (%s Voting) now. Are you sure you want to delete? </string>
+    <string name="competition_voting">Voting...</string>
+
+    <string name="video_play">Click here to watch video</string>
+    <string name="video_latest">Latest</string>
+    <string name="video_news">News</string>
+    <string name="news_categories">Choose Categories</string>
+    <string name="video_list">Videos</string>
+    <string name="video_tools">Others</string>
+    <string name="video_tools_more">Tools</string>
+    <string name="popular">Popular </string>
+    <string name="related">Related </string>
+    <string name="view_post">Click here to view post >>  </string>
+    <string name="view_question_all">View All Questions >> </string>
+    <string name="watch_related">Click here to watch more videos of <![CDATA[<b><font color=#000>\"%s\"</font></b>]]> </string>
+    <string name="watch_details">Watch details > </string>
+   <!-- <string name="watch_related">Click here to watch more videos of \"%s\"</string>-->
+
+    <string name="chat_mesage_toast">Please write your inquiry</string>
+
+    <string name="error_phone_number">Please fill your phone number...</string>
+    <string name="error_name">Please fill your name...</string>
+    <string name="error_photo">Please upload your profile photo...</string>
+    <string name="error_password">Please fill your password...</string>
+    <string name="password_not_thesame">Password and Confirm password didn\'t match</string>
+    <string name="wrong_password">Wrong Password..</string>
+    <string name="error_password_name">Please fill all field...</string>
+    <string name="fill_promo">Please Fill Promo Code </string>
+    <string name="must_fill_address">Please fill your address....</string>
+    <string name="fill_all_feild">Fill all field </string>
+    <string name="fill_update">Fill your comment</string>
+    <string name="fill_feedback">Rate your feedback!</string>
+    <string name="choose_num_feedback">Choose number </string>
+    <string name="error_correct_password">Please type correct password and try again.</string>
+    <string name="password_length_wrong">Password length is less than 6.</string>
+    <string name="contact">Call Center</string>
+
+    <string name="app_slogan">ေမေမနွင့္ ေဖေဖတို္င္း အတြက္</string>
+    <string name="app_slogan1">က်ားေလး လာပါျပီ</string>
+    <string name="more_order_noti"> You may add more than one item in an order.</string>
+
+    <string name="upload_profile">Upload Profile Image</string>
+    <string name="group_chat">Community</string>
+    <string name="group_chat_detail">Please fill in the information below to aid the discussion</string>
+    <string name="group_chat_title">You may ask, discuss and share your parenting experience.</string>
+
+    <string name="group_chat_name_edit">Edit</string>
+    <string name="group_chat_name_update">Correct</string>
+
+    <string name="group_chat_detail_momordad">Are you MOM or DAD?</string>
+    <string name="notification">Notifications</string>
+    <string name="comment_noti">There are new discussions.</string>
+    <string name="comment_product_noti">There is an answer from Kyarlay.</string>
+    <string name="comment_hint">Write a comment..</string>
+
+    <string name="group_chat_detail_boyorgirl">Baby Boy or Girl?</string>
+    <string name="gender">Choose gender:</string>
+    <string name="boy">Boy</string>
+    <string name="girl">Girl</string>
+    <string name="lenght">Name\'s length : </string>
+    <string name="startOne">Choose day of first word</string>
+    <string name="startTwo">Choose day of second word </string>
+    <string name="startThree">Choose day of third word </string>
+    <string name="endwith">Choose day of fourth word </string>
+    <string name="save_names">Save Names</string>
+    <string name="search_name">Search Name</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="unsubscribe">Please unfollow this post.</string>
+    <string name="post_liked">View Likes</string>
+    <string name="post_delete">Please delete the post.</string>
+    <string name="post_delete_toast">Your post has been deleted.</string>
+
+    <string name="status_title">Please choose the following to show all the related things, articles and videos.</string>
+    <string name="status_title_click">Click here to fill up your information to show all the related things, articles and videos.</string>
+    <string name="single">Single</string>
+    <string name="pregnancy">Pregnancy</string>
+    <string name="parent">Dad / Mom</string>
+    <string name="single_title">Boy / Girl Health</string>
+    <string name="parent_title">Baby Health</string>
+    <string name="pregnancy_title">Pregnancy Health</string>
+    <string name="single_coming_period">First Expect Period</string>
+    <string name="single_oval_day">First Fertile Day</string>
+
+
+    <string name="subscribe">Please follow this post.</string>
+    <string name="follow">Please follow this post.</string>
+
+    <string name="copy_text">Copy Text</string>
+    <string name="copy">Copy</string>
+    <string name="acc_name">Acc Name</string>
+    <string name="acc_num">Acc Num</string>
+    <string name="payment_info">%s Account Information</string>
+    <string name ="comment_text">View comments</string>
+    <string name="group_chat_detail_momordad_error"> You need to enter your information.</string>
+    <string name="group_chat_detail_boyorgirl_error"> You need to enter kid information.</string>
+    <string name="kid_age_error"> Please choose baby\'s age again. </string>
+    <string name="kid_due_date_error">Please choose due date again. </string>
+    <string name="group_chat_detail_name_error">You need to enteer your name.</string>
+
+    <string name="verification_code">One Time Password</string>
+    <string name="enter_verify_code">Please type one time password code\n sent to your phone</string>
+    <string name="submit">Submit</string>
+    <string name="otp_code">Please fill all verification codes</string>
+    <string name="otp_error">Kyarlay One Time Password Code Error</string>
+    <string name="otp_time">Please wait a moment!\nTry again!</string>
+    <string name="otp_waiting_time">Please wait %s seconds and try again!</string>
+    <string name="check_number">Please check phone number and try again!</string>
+
+    <string name ="more_items">To watch</string>
+
+    <string name="group_chat_detail_boy">Son</string>
+    <string name="group_chat_detail_girl">Daughter</string>
+    <string name="group_chat_detail_baby">Baby</string>
+
+    <string name="group_chat_detail_mom">Mom</string>
+    <string name="expecting_mom">Expecting Mom</string>
+    <string name="expecting_dad">Expecting Dad</string>
+    <string name="group_chat_detail_dad">Dad</string>
+    <string name="group_chat_detail_other">Others</string>
+    <string name="family_member">Family Member</string>
+
+    <string name="group_chat_detail_other_show">Family member</string>
+
+    <string name="group_chat_detail_month">Child\'s birth month</string>
+    <string name="group_chat_detail_month_error">Please choose the child\'s birth month.</string>
+
+    <string name="customer_post_kid_detail_year"> %s of %s year and %s month %s </string>
+    <string name="customer_post_kid_detail_noyear"> %s of %s month %s </string>
+    <string name="kid_month">months </string>
+    <string name="kid_week">weeks </string>
+
+    <string name="app_splash_screen">Online shopping for mum and baby products</string>
+    <string name="brand_view_more">View more products of %s >> </string>
+    <string name="brand_more"> View All Brands >> </string>
+    <string name="more_images"> View All Images >> </string>
+    <string name="see_more">See More</string>
+    <string name="recommend_brand"> Recommended Brands </string>
+    <string name="view_all"> View All Details >> </string>
+    <string name="all"> All Discounts </string>
+    <string name="choose_category">Choose item categories</string>
+    <string name="search_noti">Type the item name and press Enter.</string>
+
+    <string name="progress_dialog_title">Loading</string>
+    <string name="progerss_dialog_text">Downloading from internet, please wait..</string>
+
+    <string name="card_detail_title">Your Shopping Cart</string>
+    <string name="search_hint">Type To Search..</string>
+    <string name="search_mian_hint">To Search..</string>
+    <string name="search_text">To Search..</string>
+
+    <string name="toolbar_cart">Shopping Cart</string>
+    <string name="like">Like</string>
+    <string name="share">Share</string>
+    <string name="message">Message</string>
+    <string name="online_order_only">SOLD OUT. In-Stock will be back up to 5 days </string>
+    <string name="pre_order">PRE ORDER</string>
+
+    <string name="added_to_cart_title">Shopping Cart</string>
+    <string name="added_to_cart_text">Added product to shopping cart. Do you want to go to shopping cart?</string>
+    <string name="added_to_cart_confirm">Go to Shopping Cart</string>
+    <string name="go_to_basket">Go to Shopping Cart</string>
+    <string name="added_to_cart_cancel">Continue Shopping</string>
+    <string name="add_promo">Add Promo Code</string>
+    <string name="enter_promo">Enter Promo Code</string>
+    <string name="used_promo">Promo code you used  </string>
+    <string name="remove_promo">Use promo code later</string>
+    <string name="promo_confirm">Promo Confirm</string>
+    <string name="promo_code_error">Wrong Promo Code</string>
+    <string name="promo_minimum">Minimum amount can\'t reach</string>
+
+    <string name="order_dialog_title">Please fill all field</string>
+
+    <string name="like_read">Like</string>
+    <string name="share_read">Share</string>
+    <string name="comment_read">Comment</string>
+
+    <string name="menu_shopping">Go Shopping</string>
+    <string name="menu_orders">Your Orders</string>
+    <string name="menu_wishlist">Your liked products</string>
+    <string name="liked_video">Your liked videos</string>
+
+    <string name="post_wishlist">Your liked posts</string>
+    <string name="post_liked_person">Likes</string>
+
+    <string name="menu_reading">Parenting</string>
+    <string name="menu_setting">Profile</string>
+    <string name="menu_momolay">Momolay</string>
+
+    <string name="reading">Reading</string>
+    <string name="other">Other</string>
+    <string name="choose">To choose</string>
+    <string name="view">To View</string>
+    <string name="read">To Read</string>
+    <string name="call">To Call</string>
+    <string name="search_error">Something was wrong, Please try again.</string>
+    <string name="search_result_not_found"> is not found. </string>
+
+
+    <string name="facebook_app_privider">com.facebook.app.FacebookContentProvider184815485301878</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="no_internet_error">Please connect to internet connection</string>
+
+
+    <string name="price_tag">Price - </string>
+    <string name="action_settings">Setting</string>
+    <string name="quantity">Quantity</string>
+    <string name="call_phone">Call</string>
+    <string name="call_phone_dialog">Choose phone number</string>
+    <string name="save_to_cart">Add to Shopping cart</string>
+    <string name="pending_waiting_text">Please wait.........</string>
+    <string name="dialog_cart_yes">Confirm</string>
+    <string name="dialog_cart_no">Later</string>
+    <string name="dialog_cart_multipy">*</string>
+    <string name="dialog_cart_equal">=</string>
+    <string name="currency">Ks</string>
+    <string name="currency_red"><![CDATA[<b><font color=#B71C1C> %s </font></b>]]> Ks</string>
+    <string name="more">More..</string>
+    <string name="price">Total  </string>
+    <string name="total_product_price">Total Product Price </string>
+    <string name="search_product_filter">Search Products By Min, Max Price</string>
+    <string name="search">To Search</string>
+    <string name="min_max_price">Maximum product price must be greater than minimum product price.</string>
+    <string name="max_min_filter">Price - <![CDATA[<b><font color=#000000>Max</font></b>]]>  From <![CDATA[<b><font color=#000000>Min</font></b>]]></string>
+    <string name="min_max_filter">Price - <![CDATA[<b><font color=#000000>Min</font></b>]]>  From <![CDATA[<b><font color=#000000>Max</font></b>]]> </string>
+    <string name="min_max_product"> Products of between Min %s and Max %s</string>
+    <string name="max_product"> Products of Maximum %s</string>
+    <string name="min_product"> Products of Minimum %s</string>
+    <string name="total_price">Total Price  </string>
+    <string name="discount">Discount : </string>
+    <string name="precentage"> % OFF</string>
+    <string name="no_order">You have no order.</string>
+    <string name="empty_order">Your Shopping Cart is empty</string>
+    <string name="solution_order">Fortunately there is an easy solution</string>
+    <string name="your_order">Your order list..</string>
+    <string name="current_order">Current Order</string>
+    <string name="previous_order">Previous Orders</string>
+    <string name="delivery_person">Delivery person -</string>
+    <string name="order_name">Name</string>
+    <string name="order_phone_no">Phone Number</string>
+    <string name="order_address">Address</string>
+    <string name="order_dialog_yes">Order</string>
+
+    <string name ="customer_rating">Order Rating</string>
+    <string name ="feedback_title">Your Feedback for this order #%s</string>
+
+    <string name="order_total_No">No</string>
+    <string name="order_total_totalPrice">Total Price</string>
+    <string name="order_total_date">Date</string>
+    <string name="order_total_status">Status</string>
+
+    <string name="order_date">Date </string>
+    <string name="order_totalPrice">Total Price  </string>
+
+    <string name="order_actionbar_title">Order Number - </string>
+
+    <string name="ordering">Ordering ! Please wait ...</string>
+    <string name="order_dialog_no">Cancel</string>
+    <string name="cancel">Cancel</string>
+    <string name="order_dialog_phone_no_error">Please check phone number..</string>
+    <string name="cart_number">Please check quantity.</string>
+    <string name="cart_number_zero">Please check qyantity and  it shouldn\'t be 0.</string>
+    <string name="order_dialog_no_fill">Please fill in</string>
+
+    <string name="member_dialog_fill_toast">Please fill name and phone number to check member.</string>
+    <string name="extend_membership">Extend Membership</string>
+    <string name="change_vip">Let\'s change to Kyarlay VIP</string>
+    <string name="within_s_months">Within %s months</string>
+    <string name="no_vip_title">Within %s months, buy %s Kyats  and get special promotions from Kyarlay</string>
+    <string name="vip_title">Within %s months, buy %s Kyats again  to renew as Kyarlay VIP member</string>
+
+    <string name="dialog_cart_title">Add to Shopping Cart</string>
+    <string name="save_to_cart_error">is added to the shopping cart</string>
+    <string name="dialog_product_gotocart">Shopping cart</string>
+    <string name="add_to_cart">Save to cart</string>
+    <string name="save_to_cart_error_button">Cancel</string>
+    <string name="close_button">Close</string>
+
+    <string name="splash_screen_no_title">Please fill in the name.</string>
+
+
+    <string name="dialog_call_title">Choose phone number</string>
+
+    <string name="validate_phone_number_error">PhoneNumberError</string>
+    <string name="validate_phone_number_success">PhoneNumberSuccess</string>
+    <string name="validate_phone_number_invalid">Please Re-Enter Phone Number</string>
+    <string name="validate_phone_number_too_long">PhoneNumberTooLong</string>
+
+    // youtube
+    <string name="player_error">Error initializing YouTube player</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
+
+    <string name="product_options">Option</string>
+    <string name="product_itemcode">Code No</string>
+    <string name="product_price">Price</string>
+    <string name="product_supplier">Supplier</string>
+    <!--<string name="dialog_delete_title">မွာယူထားေသာ ေအာ္ဒါကို ဖ်က္မွာ ေသခ်ာပါလား။</string>-->
+    <string name="dialog_delivery_title">Delivery Fee</string>
+    <string name="dialog_express_title">Express Delivery Fee</string>
+    <string name="dialog_normal_title">Normal Delivery Fee</string>
+    <string name="express_title">%s Township Delivery Fee %s Ks</string>
+    <string name="express_sub_title">%sကျပ် သာပေးရသော %s ကြာသည့် ပုံမှန်ပိုဆောင်မှုလဲ ရှိပါသည်</string>
+    <string name="normal_sub_title">%s မြို့နယ်အတွက် <![CDATA[<b><font color=#FF0000> %s </font></b>]]> ကျပ်သာ ပေးရသော %s ကြာသည့် ပုံမှန်လမ်းကြောင်း Delivery ၀န်ဆောင်မှု ရှိပါသည်</string>
+    <string name="normal_choose">Choose</string>
+    <string name="normal_no_choose">Not Choose</string>
+    <string name="dialog_delete_title"> Delete</string>
+    <string name="dialog_delete_text">Do you want to remove product from the shopping cart?</string>
+    <string name="dialog_delete_cancel">Cancel</string>
+    <string name="dialog_delete_confirm">Confirm</string>
+    <string name="dialog_delete_title_product">There is a prouduct ( %s ) in the shopping cart.</string>
+    <string name="dialog_delete_title_confirm">Are you sure to remove?</string>
+    <string name="dialog_delete_title_confirm_yes"> Remove </string>
+    <!--<string name="exit_from_app">Press one more time to exit Kyarlay</string>-->
+    <string name="exit_from_app">Do you want to Exit?</string>
+    <string name="exit_confrim">Are you sure you want to Exit?</string>
+    <string name="order_before_exit">There is an order in the shooping cart. If you want to order, Click here \" %s \" </string>
+
+    <string name="qr_scan_not_found">No product found</string>
+    <string name="need_to_choose_order">Place a product to the shopping cart to order</string>
+
+    <string name="new_version">Version</string>
+    <string name="new_version_and_update">Your version is out of date. Please download new version.</string>
+    <string name="current_version">Later</string>
+    <string name="update_newversion">Use the latest version</string>
+    <string name="version_out_of_date">Your version is out of date. Please download new version.</string>
+
+    <string name="number">quantity</string>
+    <string name="send">Send</string>
+    <string name="send_post">Send Post</string>
+    <string name="upload_post">Uploading</string>
+    <string name="post_without_question">Can\'t upload without question</string>
+    <string name="post_without_photo">Can\'t upload without photo</string>
+    <string name="comment_without_text">Can\'t send without text or photo</string>
+
+    <string name="least_like">0 Not Likely </string>
+    <string name="most_like">10 Extremely Likely</string>
+
+    <string name="least_feedback">1 Bad Service</string>
+    <string name="most_feedback">10 Good Service</string>
+
+    <string name="search_photo_id">Search photo by competition number</string>
+    <string name="wirte_post">Post to discuss.. </string>
+    <string name="choose_month_year">Please choose month and year..</string>
+    <string name="choose_month_year_msg">Please choose the month..</string>
+    <string name="discount_title">Current Promotions</string>
+    <string name="safe_title">Is it safe?</string>
+    <string name="danger">Danger</string>
+    <string name="caution">Caution</string>
+    <string name="safe">Safe</string>
+    <string name="collection_title">Current Collections</string>
+    <string name="flash_sale_title">Flash Sale Promotions</string>
+    <string name="send_message">Message To Ask About This Product</string>
+    <string name="chat_message_button">Send Message</string>
+
+    <string name="image_long">Image is very Long.</string>
+    <string name="image_short">Image is very Short.</string>
+    <string name="gallery_text">Press upload Image</string>
+    <string name="view_more">View Post</string>
+
+    <string name="decrease">You have to order at least one.</string>
+    <string name="increase">You can order 5 item for a product. </string>
+    <string name="materials">Product</string>
+    <string name="product">All Brands</string>
+    <string name="order">Order</string>
+    <string name="order_status">Your Order Status</string>
+
+    <string name="order_old">Your Old Order</string>
+    <string name="order_placed">Order Placed</string>
+    <string name="order_confirm">Order Confirmed</string>
+    <string name="order_Ready">Order Ready</string>
+    <string name="order_Delivery">Order Delivery</string>
+    <string name="order_Title">Order</string>
+    <string name="confirm_Title">Confrim</string>
+    <string name="ready_Title">Ready</string>
+    <string name="deliver_Title">Deliver</string>
+    <string name="order_date_text">We have received your order on %s</string>
+    <string name="confrim_date_text">We have confirmed your order on %s</string>
+    <string name="ready_date_text">We are ready to deliver your order on %s</string>
+    <string name="deliver_date_text">We will deliver your order on %s</string>
+
+
+    <string name="wishlist_success">Success!</string>
+    <string name="wishlist_success_text">Added to Wishlist. </string>
+    <string name="wishlist_fail">Remove!</string>
+    <string name="wishlist_fail_text">Deleted from the Wishlist.</string>
+
+
+    <string name="free_delivery">Free delivery for your first time order</string>
+    <string name="free_delivery_one_time">You can use one time free delivery per month as one of your member benefits.</string>
+    <string name="free_delivery_use_now">Use now</string>
+    <string name="free_delivery_use_later">Use later</string>
+    <string name="cart_detail_payable_text">Total Price</string>
+    <string name="cart_detail_delivery_fees">Delivery Fees </string>
+    <string name="delivery_date">Delivery Date..... </string>
+    <string name="delivery_time">Delivery Time...</string>
+    <string name="free_deliver_amt">If order amount is greater than %s , then delviery fee will be 0 Ks.</string>
+    <string name="cart_detail_show_order">To order</string>
+    <string name="delivery_take_time">You have to wait one day delivery for this product.</string>
+    <string name="delivery_take_time_option">You have to wait four days delivery for this product.</string>
+    <string name="one_day_delivery"><![CDATA[<b><font color=#B71C1C>1</font></b>]]>  Day Delivery</string>
+    <string name="option_day_delivery"><![CDATA[<b><font color=#B71C1C>4</font></b>]]>  Day Delivery</string>
+    <string name="immediate_delivery">Today immidiately</string>
+
+    <string name="wishlist_text">wishlist</string>
+    <string name="setting_myanmar">မြန်မာ</string>
+    <string name="setting_english">English</string>
+    <string name="language">Language</string>
+    <string name="qr_code">Find QR-Code</string>
+    <string name="help">Help</string>
+    <string name="about_us">About Kyarlay</string>
+    <string name="promotion">Promotions</string>
+    <string name="knowledge">Knowledge</string>
+    <string name="bottom_cart">Cart</string>
+    <string name="call_center">Call Center</string>
+    <string name="category">Category</string>
+    <string name="text_empty"> </string>
+
+
+    <string name="city_title">Please Wait</string>
+    <string name="city_wait_text">You need to wait to view user information. </string>
+
+    <string name="news_articl">New Article</string>
+    <string name="news">New Arrivals</string>
+    <string name="brand_store">Brand Store</string>
+    <string name="brand_partner">Partnered Shops</string>
+    <string name="top_seller">Top Seller</string>
+    <string name="prices">Price (Low to High)</string>
+    <string name="discounts">Discount</string>
+    <string name="populars">Popular Products</string>
+    <string name="populars_items">Popular Products</string>
+    <string name="hot_categories">Hot Categories</string>
+    <string name="you_may_like">You May Like </string>
+
+    <string name="from_text"> of </string>
+    <string name="gift">Gift</string>
+    <string name="gift_exchange">Gift Exchange</string>
+    <string name="purchase">Purchase</string>
+    <string name = "enter_code">Please enter pin code</string>
+    <string name="fail_purchase">It\'s only for VIP Member.</string>
+    <string name="fully_reddem">Sorry, this gift is fully redeemed</string>
+    <string name="details">Details</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="valid">Valid from %s to %s</string>
+    <string name="titles">Choose sorting type</string>
+    <string name="address">Address </string>
+
+    <string name="phone_number_hint">Enter Phone Number</string>
+    <string name="login_title">Login/Register</string>
+    <string name="login_register_title">Enter phone number to Login or Register</string>
+    <string name="phone_number_continue">Continue</string>
+    <string name="name_hint">Name</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="choose_month_hint">Choose Baby\'s Birth Month</string>
+    <string name="child_bd">Your Baby\'s Birth Month And Year</string>
+    <string name="child_bd_due_date">Due Date</string>
+    <string name="new_born">New Born</string>
+
+
+    <string name="login">Login</string>
+    <string name="signup">Register</string>
+    <string name="new_account">No account yet? Register Here</string>
+    <string name="fill_name">What\'s your name?</string>
+    <string name="fill_photo">Upload your profile photo</string>
+    <string name="complete_percent">Complete Profile</string>
+    <string name="to_continue_text">Continue?</string>
+    <string name="user_detail_title">Please enter the following information to enrich the discussion.</string>
+
+
+    <string name="no_list">You have no Likes.</string>
+
+    <string name="noitem">There is no to display.</string>
+
+    <string name="user_information">User Information</string>
+    <string name="user_information_update">Update</string>
+    <string name="city_text">City</string>
+    <string name="township_text">Township</string>
+    <string name="township">Township</string>
+
+
+    <string name="city_text_select">Select City</string>
+    <string name="township_text_select">Select Township</string>
+
+
+    <string name="next_button">Next</string>
+    <string name="delete_dialog_title">Delete</string>
+    <string name="recycler_view_footer">Please wait....</string>
+
+    <!--member-->
+    <string name="add_member_title">Are you Kyarlay member?</string>
+    <string name="add_member_member_id">Kyarlay member ID</string>
+    <string name="add_member_member_checking">Confirm</string>
+    <string name="add_member_cancel">No</string>
+    <string name="add_member_confirm">Yes</string>
+    <string name="confirm_member_title">You are Kyarlay member</string>
+    <string name="member_discount">Kyarlay Member discount   </string>
+    <string name="flash_sale_discount">Kyarlay Flash Sale Dscount   </string>
+    <string name="flash_sale_avail">Available - %s   </string>
+    <string name="product_discount">Product Discount</string>
+
+    <string name="feedback">Customer Feedback</string>
+    <string name="your_feedback">Your Feedback</string>
+    <string name="write_feedback">Share your feedback</string>
+    <string name="feedback_button">Send</string>
+    <string name="member_no">Member No</string>
+    <string name="member_logout_title">Logout</string>
+    <string name="member_logout_cancel">Cancel</string>
+    <string name="member_logout">Are you logout?</string>
+
+    <string name="logout">Logout</string>
+    <string name="logout_text">Are you sure you want to logout?</string>
+    <string name="logout_confirm">Sure</string>
+    <string name="logout_cancel">Cancel</string>
+    <string name="member_sign_in">Click Here To Login</string>
+
+
+    <string name="delete">Delete Post</string>
+    <string name="delete_text">Are you sure you delete this post?</string>
+    <string name="delete_confirm">Sure</string>
+    <string name="delete_cancel">Cancel</string>
+
+
+
+    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
+
+    <string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
+
+    <string name="label_twitter_login">Firebase + Twitter Login</string>
+    <string name="desc_twitter_login">Use a Twitter Login credential to authenticate with Firebase.</string>
+
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="label_anonymous_auth">Anonymous Authentication</string>
+    <string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+
+    <string name="label_custom_auth">Custom Authentication</string>
+    <string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
+
+    <string name="label_firebase_ui">FirebaseUI Auth</string>
+    <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
+
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="facebook_title_text">Facebook Login</string>
+
+    <string name="emailpassword_status_fmt">Email User: %s</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+
+    <string name="twitter_status_fmt">Twitter User: %s</string>
+    <string name="twitter_title_text">Twitter Login</string>
+
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
+
+    <string name="id_fmt">User ID: %s</string>
+    <string name="email_fmt">Email: %s</string>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_name">Name</string>
+    <string name="prompt_email">Phone</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This Phone address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <!--FreshChat-->
+    <string name="freshchat_file_provider_authority">com.kyarlay.ayesunaing.provider</string>
+
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="zero">0</string>
+
+    <string name="aphwar_one">အဓိပတိ</string>
+    <string name="aphwar_two">အထွန်း</string>
+    <string name="aphwar_three">သိုက်</string>
+    <string name="aphwar_four">ရာဇာ</string>
+    <string name="aphwar_five">မရဏ</string>
+    <string name="aphwar_six">ဘင်္ဂ</string>
+    <string name="aphwar_seven">ပုတိ</string>
+    <string name="baydin_titleZero">မြန်မာ့ရိုးရာ</string>
+    <string name="baydin_titleOne">မဟာဘုတ်ပညာရပ်အရ</string>
+    <string name="baydin_titleTwo">အမည်ပေးနည်း</string>
+    <string name="baydin_titleThree">သင်သည်</string>
+    <string name="baydin_Moudulus">(%s) ကြွင်းမဟာဘုတ်တိုင်</string>
+    <string name="baydin_good_title">ကောင်းသော သဘောရှိသည့် နေ့နံများ</string>
+    <string name="baydin_bad_title">မကောင်းသော သဘောရှိသည့် နေ့နံများ</string>
+    <string name="name_good_one">အဓိပတိ (မြင့်မားသော) %s </string>
+    <string name="name_good_two">အထွန်း (အောင်မြင်သော) %s</string>
+    <string name="name_good_three">သိုက် (လုံခြုံအေးချမ်းသော) %s</string>
+    <string name="name_good_four">ရာဇာ (ထက်မြက်သော) %s</string>
+    <string name="name_bad_one">မရဏ (သေကြေတတ်သော) %s</string>
+    <string name="name_bad_two">ဘင်္ဂ (ပျက်စီးတတ်သော) %s</string>
+    <string name="name_bad_three">ပုတိ (ငြိုငြင်တတ်သော) %s</string>
+    <string name="name_choose_title">ကလေး၏ မွေးသက္ကရာဇ်ကို ရွေးရန် နှိပ်ပါ။</string>
+    <string name="name_remind_title">မြန်မာ့ရိုးရာ မဟာဘုတ်ပညာရပ်အရ (%s) ကြွင်းသော နှစ်များတွင် မွေးဖွားသော သားသမီးရတနာများအား<![CDATA[<br/>\u0009\u0009\u0009\u0009\u0009\u0009<b><font color=#000000> %s (ပုတိ)၊<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (ဘင်္ဂ)၊<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (မရဏ) </font></b>]]>နေ့နံ အက္ခရာများဖြင့် အမည်မပေးသင့်ပါ။<br/>‌ကောင်းသောဌာနများဖြစ်သည့်<![CDATA[<br/>\u0009\u0009\u0009\u0009\u0009\u0009 <b><font color=#000000>%s (အဓိပတိ)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (အထွန်း)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (သိုက်)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (ရာဇာ)</font></b>]]>နေ့နံက္ခရာများဖြင့် အမည်ပေးရပါမည်။</string>
+
+  <!--  <string name="day_one">Sunday</string>
+    <string name="day_two">Monday</string>
+    <string name="day_three">Tuesday</string>
+    <string name="day_four">Wednesday</string>
+    <string name="day_five">Thursday</string>
+    <string name="day_six">Friday</string>
+    <string name="day_zero">Saturday</string>-->
+
+</resources>

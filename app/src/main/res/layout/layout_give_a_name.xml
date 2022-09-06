@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:padding="@dimen/size_8dp"
+            android:weightSum="1"
+            android:id="@+id/layout"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/app_bar_color"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar">
+
+            <LinearLayout
+                android:layout_gravity="center|right"
+                android:id="@+id/back_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/arrowleft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="5dp"
+                    android:src="@drawable/kyarlaybanner"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center|left"
+                android:id="@+id/like_layot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/wishlist"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/like_count"
+                    app:srcCompat="@drawable/wishlist_clicked" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                    android:id="@+id/wishlist_count"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center"
+                    android:maxEms="10"
+                    android:singleLine="false"
+                    android:text="3"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:background="@color/background"
+            android:layout_marginTop="@dimen/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+
+                <include
+                    layout="@layout/layout_ads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:background="@color/background"
+                    android:id="@+id/txtGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Gender"
+                    android:textColor="@color/text" />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:padding="@dimen/layout_padding"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar"
+                    android:orientation="horizontal"
+                    >
+
+                    <RadioButton
+                        android:buttonTint="@color/colorSplashScreen"
+                        android:id="@+id/rdBoy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/txtBoy"
+                        android:layout_width="wrap_content"
+                        android:text="Boy"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:buttonTint="@color/colorSplashScreen"
+                        android:id="@+id/rdGirl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                        />
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/txtGirl"
+                        android:layout_width="wrap_content"
+                        android:text="Girl"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtLength"
+                    android:background="@color/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Length"
+                    android:textColor="@color/text" />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:padding="@dimen/layout_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar"
+                    android:orientation="horizontal">
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:id="@+id/one"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:text="2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text"
+                        android:id="@+id/two"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:text="3"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text"
+                        android:id="@+id/three"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_margin="3dp"
+                        android:text="4"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text"
+                        android:id="@+id/four"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtStartOne"
+                    android:background="@color/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Start With:"
+                    android:textColor="@color/text" />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:id="@+id/linearOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar">
+                    <Spinner
+                        android:paddingLeft="5dp"
+                        android:id="@+id/spOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/layout_padding"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtStartTwo"
+                    android:background="@color/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Start With:"
+                    android:textColor="@color/text" />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:id="@+id/linearTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar">
+                    <Spinner
+                        android:paddingLeft="5dp"
+                        android:id="@+id/spTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/layout_padding"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtStartThree"
+                    android:background="@color/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Start With:"
+                    android:textColor="@color/text" />
+                <LinearLayout
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:id="@+id/linearThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar">
+                    <Spinner
+                        android:paddingLeft="5dp"
+                        android:id="@+id/spThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/layout_padding"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtStartFour"
+                    android:background="@color/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:gravity="center|left"
+                    android:text="Start With:"
+                    android:textColor="@color/text" />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:id="@+id/linearFour"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/due_tool_bar">
+                    <Spinner
+                        android:paddingLeft="5dp"
+                        android:id="@+id/spFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/layout_padding"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_gravity="center"
+                    android:text="Search"
+                    android:textColor="@color/white"
+                    android:background="@drawable/checked_bg"
+                    android:layout_margin="@dimen/layout_margin_reading_post"
+                    android:padding="@dimen/size_8dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

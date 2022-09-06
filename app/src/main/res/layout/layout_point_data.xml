@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    >
+
+    <LinearLayout
+        android:background="@drawable/dotted_border"
+        android:padding="@dimen/size_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_padding"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:id="@+id/layoutPoint"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_yellow_light">
+                <ImageView
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:layout_marginRight="@dimen/size_8dp"
+                    android:layout_gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/user_point"/>
+                <TextView
+                    android:id="@+id/txtPoint"
+                    android:layout_margin="@dimen/padding_4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="190000"
+                    android:textSize="@dimen/small_text_14"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtUserPointTitle"
+                android:layout_margin="@dimen/padding_4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="190000"
+                android:textSize="@dimen/small_text_14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtExpireDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_4dp"
+                android:paddingTop="@dimen/layout_margin_reading_post"
+                android:text="190000"
+                android:textSize="@dimen/small_text" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/confetti"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background"/>
+
+    <LinearLayout
+        android:id="@+id/layoutPointHistory"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:paddingLeft="@dimen/layout_padding"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/txtHistoryTitle"
+            android:layout_margin="@dimen/padding_4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watch Point History"
+            android:textSize="@dimen/small_text_14"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/right_arrow" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/fragment_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation"
+   >
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:background="@color/background"
+            android:id="@+id/txtHidden"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin_reading_post" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recycler_view"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"/>
+
+        <LinearLayout
+            android:id="@+id/linearMore"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:padding="@dimen/size_8dp"
+                android:text="dkkdfkdkfkd"
+                android:id="@+id/title"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/more"
+                style="@style/BoldItalic"
+                android:background="@drawable/checked_bg"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="dfdfd"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+               />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,859 @@
+<resources>
+    <string name="app_name">Kyarlay</string>
+    <string name="facebook_app_id">184815485301878</string>
+<!--    <string name="admob_app_id">ca-app-pub-3224883732172669~7242335081</string>
+    <string name="admob_unit_id">ca-app-pub-3224883732172669/4181235087</string>
+    <string name="admob_interstitial_id">ca-app-pub-3224883732172669/5516288743</string>
+    <string name="admob_give_name_id">ca-app-pub-3224883732172669/3144505763</string>
+    <string name="admob_calendar_id">ca-app-pub-3224883732172669/6272521548</string>
+    <string name="admob_due_date_id">ca-app-pub-3224883732172669/6552557299</string>
+    <string name="admob_pregnancy_id">ca-app-pub-3224883732172669/6137678220</string>
+    <string name="admob_competition_id">ca-app-pub-3224883732172669/7271354317</string>-->
+
+    <string name="friend_feedback">ကျားလေး ဝန်ဆောင်မှုကို အသုံးပြုဖို့ သင့်သူငယ်ချင်းကို တိုက်တွန်းမလား။</string>
+    <string name="order_feedback"> Feedback ပေးမယ်</string>
+    <string name="app_slogan">မေမေနှင့် ဖေဖေတိုင်း အတွက်</string>
+
+    <string name="due_date_title">နောက်ဆုံး ဓမ္မတာလာသော ပထမရက်ရွေးပါ</string>
+    <string name="due_date_title_hint">သင်၏ နောက်ဆုံး ဓမ္မတာလာခဲ့သော အကြိမ်၏ ပထမဆုံးရက်ကို ရွေးရန် လိုအပ်ပါသည်။</string>
+    <string name="due_date_button">ကလေးမွေးမဲ့ရက်ကိုတွက်မယ်</string>
+    <string name="re_due_date_button">နောက်တစ်ကြိမ် ကလေးမွေးမဲ့ရက်ကိုတွက်မယ်</string>
+
+    <string name="due_date_life_cycle">ဘယ်နှစ်ရက်တစ်ခါ ရာသီလာသလဲ</string>
+    <string name="due_date_life_cycle_hint">ဘယ်နှစ်ရက်တစ်ခါ ရာသီလာသလဲကို ရွေးရန်လိုအပ်ပါသည်။</string>
+    <!--<string name="due_date_result">ဂုဏ်ယူပါတယ်။ ကလေးမွေးရက်မှာ %s ရက် %s လ %s ပတ်ဝန်းကျင် ဖြစ်ပါတယ်</string>-->
+    <string name="due_date_result"><![CDATA[<b><font color=\"#000\">\"ဂုဏ်ယူပါတယ်\"</font></b><br/> <br/> ကလေးမွေးရက်မှာ  <b><font color=\"#B71C1C\">\"  %s ရက် %s လ %s \"</font></b> ပတ်ဝန်းကျင် ဖြစ်ပါတယ်။<br/> <br/>ကိုယ်ဝန်ဆောင်ကာလမှာ <b><font color=\"#B71C1C\">\" %s  \"</font></b> ရှိပါပြီ။ ]]> </string>
+
+    <string name="start_period">ရာသီလာပြီး ရက်များ</string>
+    <string name="get_peroid">ရာသီလာနိုင်သော ရက်များ</string>
+    <string name="get_pregnant1">ကိုယ်ဝန်အရနိုင်ဆုံး ရက်များ </string>
+    <string name="get_pregnant">ကိုယ်ဝန်ရှိနိုင်သော ရက်များ </string>
+    <string name="get_pregnant_calculate">ရက်များကို ကြည့်မယ်</string>
+    <string name="get_pregnant_numofday">ဓမ္မတာလာသောရက် စုစုပေါင်း </string>
+    <string name="get_pregnant_numofday_hint">သင်၏ ဓမ္မတာလာသောရက် စုစုပေါင်းကို ရွေးရန်လိုအပ်ပါသည်။</string>
+
+    <string name="invite_title">သူငယ်ချင်းကို ကျားလေး app အသုံးပြုဖို့ ဖိတ်ခေါ်ပြီး ပွိုင့် 5,000 ရယူလိုက်ပါ။</string>
+    <string name="invite_name">သူငယ်ချင်း နာမည်</string>
+    <string name="invite_phone">သူငယ်ချင်း ဖုန်းနံပါတ်</string>
+    <string name="invite_text">သင်ဖိတ်ခေါ်ထားသော သူငယ်ချင်းမှ ကျားလေး app ကို အသုံးပြုပြီး ပထမအကြိမ် အော်ဒါမှာလျှင် သင်လဲ ပွိုင့် 5,000 ရရှိမည် ဖြစ်ပါတယ် ။</string>
+    <string name="invite_button">ဖိတ်ခေါ်မယ်</string>
+    <string name="invite">သူငယ်ချင်းကို ဖိတ်ခေါ်မယ်</string>
+    <string name="invite_status">Invite Status</string>
+
+
+    <string name="rewards">သင်ရရှိသော ဆုများ</string>
+
+    <string name="due_date_cat">Due Date     တွက်ရန်</string>
+    <string name="get_pargnant_cat">သားဥကြွေရက် တွက်ရန်</string>
+    <string name="horoscope_cat">မွေးရက်      ဗေဒင်</string>
+
+    <string name="calendar">မွေးဖွားရန် နေ့ကောင်းရက်သာများ</string>
+    <string name="point_switch_text">Points အသုံးပြုမည်</string>
+    <string name="point_current_text">သင်၏ ပွိုင့်</string>
+    <string name="point_left">လကျန်</string>
+    <string name="point_limit_text">သင်သုံးနိုင်သော ပွိုင့်</string>
+    <string name="more_shopping">ပစ္စည်း အသစ်ထပ်ထည့်ရန်</string>
+    <string name="point_use_text">သင်သုံးသော ပွိုင့်</string>
+    <string name="point_button">သုံးမယ်</string>
+    <string name="point_grather_current">သင်သုံးလိုသော ပွိုင့်ကို ပြန်စစ်ဆေးပါ။</string>
+    <string name="edit_profile">ပရိုဖိုင်ကို ပြင်မယ်</string>
+    <string name="member_activate">Member ID နဲ့ ချိတ်ဆက်မယ်</string>
+    <string name="connect_with_memberid">Gift Card မှ ကျားလေးပွိုင့်ယူမယ် </string>
+    <string name="member_activate_title">Member ID နံပါတ် ရိုက်ထည့်ပါ။</string>
+    <string name="connect_with_memberid_title">ကျားလေး Gift Card မှ နံပါတ် ရိုက်ထည့်ပါ။</string>
+    <string  name="pin_tilte">ဝယ်ယူမည့်ဆိုင်မှ တာဝန်ရှိသူကို Pin နံပါတ် ရိုက်ထည့်ခိုင်းပါ။</string>
+    <string  name="allow_permission">မဲပေးရန် \"Read Phone State\" ကို \'Allow\' လုပ်ရန် လိုအပ်ပါသည်။ </string>
+
+    <string name="point_to_use_text">သင်သုံးလိုသော ပွိုင့်</string>
+
+    <string name="gift_title"> သင်၏ လက်ဆောင်များ </string>
+    <string name="app_slogan1">ကျားလေး လာပါပြီ</string>
+    <string name="more_order_noti">အော်ဒါတစ်ခု လျှင် ပစ္စည်းအမျိုးအစား တစ်ခုထပ် ပို၍ တင်နိုင်ပါသည်။</string>
+
+    <string name="no_youtube_title">Youtube App မရှိပါ</string>
+    <string name="no_youtube_text">ဗွီဒီယို များကြည့်ရန် Youtube အပ်ပလီကေးရှင်း သွင်းထားရန် လိုအပ်ပါသည်။ </string>
+    <string name="no_youtube_button">Youtube သွင်းမယ်</string>
+
+    <string name="question_about">ဒီပစ္စည်းနဲ့သက်ဆိုင်သော မေးခွန်းများ</string>
+    <string name="no_question">ဒီပစ္စည်းအကြောင်း မေးထားသော မေးခွန်းများ မရှိသေးပါ။ </string>
+    <string name="ask_question_product">ဒီပစ္စည်းအကြောင်း မေးမယ်  </string>
+
+
+    <string name="addtocart_buy">ခြင်းထဲထည့်ရန်</string>
+
+    <string name="claim_title">ကျားလေး app ကို နေ့စဉ်အသုံးပြုပြီး ပွိုင့်များ ရယူနိုင်ပါပြီး။</string>
+    <string name="claim_text">Kyarlay ပွိုင့်ကို အသုံးပြုပြီး ဝယ်ယူသော ပစ္စည်း တန်ဖိုးရဲ့ (%s) ရာခိုင်နှုန်း အထိ ပေးချေနိုင်ပါတယ်။</string>
+    <string name="got_point">ပွိုင့် %s ရရှိပါသည်။</string>
+    <string name="play_wheel">လှည့်မယ်</string>
+    <string name="claim_button">Point ယူမယ်</string>
+    <string name="current_point">သင်၏ Point များ </string>
+    <string name="point_desc">ကျားလေးပွိုင့်ကို အသုံးပြုပြီး ဝယ်ယူသော ပစ္စည်းတန်ဖိုးရဲ့ (%s) ရာခိုင်နှုန်း အထိ ပေးချေနိုင်ပါပြီ။</string>
+<!--
+    <string name="point_product_can">ဒီပစ္စည်းတန်ဖိုးရဲ့ (%s) ရာခိုင်နှုန်းကို ကျားလေးပွိုင့်ကို အသုံးပြုပြီး ပေးချေနိုင်ပါတယ်။</string>
+-->
+    <string name="point_product_can">ဒီပစ္စည်းအတွက် ကျားလေးပွိုင့်ကို အသုံးပြုပြီး ပေးချေနိုင်ပါတယ်။</string>
+    <string name="point_product_cannot">ဒီပစ္စည်းအတွက် ကျားလေးပွိုင့်ကို အသုံးပြုလို့မရနိုင်ပါ။</string>
+    <string name="memeber_product_cannot">ဒီပစ္စည်းအတွက် ကျားလေးအဖွဲ့၀င် လျော့စျေးကို အသုံးပြုလို့မရနိုင်ပါ။</string>
+    <string name="point_product_title">ဒီပစ္စည်းအတွက် သင်ရယူနိုင်သော လျော့စျေးများ</string>
+
+
+    <string name="point_history_title">နောက်ဆုံးရရှိသော ပွိုင့်စာရင်း</string>
+    <string name="point_text">သင့်မှာ ကျားလေးပွိုင့်  %s ရှိပါတယ်။</string>
+    <string name="your_ponint">သင်၏ ပွိုင့်  </string>
+    <string name="share_app">App ကို Share မယ်</string>
+    <string name="rate_app">Rate Us </string>
+    <string name="ask_product">သင်မေးခဲ့သော ကျားလေးပစ္စည်းများအကြောင်း</string>
+    <string name="how_to_use_point">ပွိုင့်အသုံးပြုနည်း</string>
+    <string name="how_to_get_point">ပွိုင့် ယူနည်း</string>
+    <string name="get_point_text_one">KyarLay app မှာ Register လုပ်ခြင်းကြောင့်</string>
+    <string name="get_point_text_two"> <![CDATA[<b><font color=#000>Points</font></b>]]>  </string>
+    <string name="get_point_text_three">နှင့် <![CDATA[<b><font color=#000>Member discount</font></b>]]> များရယူနိုင်ပါပြီ</string>
+    <string name="point_redeem">ကျားလေးနဲ့ချိတ်ဆက်ထားတဲ့နေရာတွေမှာ ပွိုင့် နဲ့စျေးဝယ်မယ်</string>
+    <string name="point_register">ကျားလေး အကောင့်ဖွင့်ပီး ပွိုင့်(၁၀၀၀) ရယူပါ</string>
+    <string name="point_post">Post တင်ပီး ပွိုင့်(၁၀၀၀) ရယူပါ</string>
+    <string name="point_friend_invite">Friend Invite လုပ်ပီး ပွိုင့်(၅၀၀၀) ရယူပါ</string>
+    <string name="point_give_feedbck">Feedback ပေးပီး ပွိုင့် (%s) ရယူပါ</string>
+    <string name="point_order">ကျားလေးမှာ စျေးဝယ်ပီး ပွိုင့် ရယူမယ်</string>
+    <string name="point_history">Point မှတ်တမ်းကြည့်မယ်</string>
+    <string name="your_point_dsecription">သင့်မှာရှိသော Kyarlay points</string>
+    <string name="your_point_text"><![CDATA[<b><font color=#ff0000> (Points %s) </font></b>]]> ကုန်ဆုံးရက် <![CDATA[<b><font color=#ff0000> %s </font></b>]]></string>
+    <string name="your_point_text_empty"><![CDATA[<b><font color=#ff0000> (Points %s) </font></b>]]> </string>
+
+    <string name="point_for_shopping">ကျားလေးမှာ အော်ဒါတင်ပြီး သုံးမယ်</string>
+    <string name="point_get">ရယူမယ်</string>
+    <string name="point_done">ရယူပြီး</string>
+    <string name="point"> ပွိုင့်</string>
+
+    <string name="nine_am">မနက် ၉ နာရီမှ မနက် ၁၂ နာရီ အတွင်း</string>
+    <string name="twelve_am"> နေ့လည် ၁၂ နာရီမှ နေ့လည် ၃ နာရီ အတွင်း</string>
+    <string name="three_pm"> ညနေ ၃ နာရီမှ ည ၆ နာရီ အတွင်း</string>
+    <string name="six_pm">ည ၆ နာရီမှ ည ၉ နာရီ အတွင်း</string>
+    <string name="nine_am_html_long">မနက် <![CDATA[<b><font color=#007BFF>\t၉\t</font></b>]]>  နာရီမှ \t\tနေ့လည် <![CDATA[<b><font color=#007BFF>\t၁၂\t</font></b>]]>  နာရီ အတွင်း</string>
+    <string name="twelve_am_html_long"> နေ့လည် <![CDATA[<b><font color=#007BFF>\t၁၂\t</font></b>]]>  နာရီမှ \t\tနေ့လည် <![CDATA[<b><font color=#007BFF>\t၃\t</font></b>]]>  နာရီ အတွင်း</string>
+    <string name="three_pm_html_long"> ညနေ <![CDATA[<b><font color=#007BFF>\t၃\t</font></b>]]>  နာရီမှ \t\tည <![CDATA[<b><font color=#007BFF>\t၆\t</font></b>]]>  နာရီ အတွင်း</string>
+    <string name="six_pm_html_long">ည <![CDATA[<b><font color=#007BFF>\t၆\t</font></b>]]>  နာရီမှ \t\tည <![CDATA[<b><font color=#007BFF>\t၉\t</font></b>]]>  နာရီ အတွင်း</string>
+    <string name="nine_am_html"><![CDATA[<b><font color=#000000> ၉ </font></b>]]> မှ <![CDATA[<b><font color=#000000>၁၂</font></b>]]></string>
+    <string name="twelve_am_html"><![CDATA[<b><font color=#000000>၁၂</font></b>]]> မှ <![CDATA[<b><font color=#000000> ၃ </font></b>]]></string>
+    <string name="three_pm_html"><![CDATA[<b><font color=#000000> ၃ </font></b>]]> မှ <![CDATA[<b><font color=#000000> ၆ </font></b>]]></string>
+    <string name="six_pm_html"><![CDATA[<b><font color=#000000> ၆ </font></b>]]>  မှ <![CDATA[<b><font color=#000000> ၉ </font></b>]]></string>
+    <string name="delivery_full_today">ဤမြို့နယ်အတွက် <![CDATA[<b><font color=#000000> ဒီနေ့ Delivery </font></b>]]>ပြည့်သွားပါပြီ။\nကျေးဇူးပြု၍<![CDATA[<b><font color=#000000> မနက်ဖြန် </font></b>]]>မှစ၍ ရွေးပေးပါ။</string>
+    <string name="delivery_full_tomorrow">ဤမြို့နယ်အတွက် <![CDATA[<b><font color=#000000> မနက်ဖြန် Delivery </font></b>]]>ပြည့်သွားပါပြီ။\nကျေးဇူးပြု၍<![CDATA[<b><font color=#000000> သဘက်ခါ </font></b>]]>မှစ၍ ရွေးပေးပါ။</string>
+    <string name="delivery_now">ချက်ခြင်း</string>
+
+    <string name="title_morning">မနက်</string>
+    <string name="title_afternoon">နေ့လည်</string>
+    <string name="title_evening">ညနေ</string>
+    <string name="title_night">ည</string>
+
+
+    <string name="deli_time">ပစ္စည်းပို့ရမည့် ရက်ကို ရွေးပါ။</string>
+    <string name="deli_time_must_choose">ပစ္စည်းပို့ရမည့် ရက်နှင့်အချိန်ကို ရွေးရန် လိုအပ်ပါသည်။</string>
+    <string name="today_date">ယနေ့အတွက် </string>
+    <string name="time_choose"> အချိန် ရွေးချယ်လို့ မရတော့ပါ။</string>
+    <string name="tomorrow_order">သင်၏ အော်ဒါကို မနက်ဖြန်မှသာ ပို့ပေးနိုင်မည် ဖြစ်ပါသည်။</string>
+    <string name="order_send">သင်၏ အော်ဒါကို  %s  ရက် %s ပို့ပေးမည် ဖြစ်ပါသည်။</string>
+    <string name="order_pickup">သင်၏ အော်ဒါကို  %s  ရက် %s Showroom တွင် ယူနိုင်မည် ဖြစ်သည်။</string>
+    <string name="order_count">ခု မှာထားပါသည်။</string>
+
+
+    <string name="order_ordered">အော်ဒါတင်ပြီးသွားပါပြီ။ ကျားလေး Customer Service မှ မကြာမှီဆက်သွယ်ပေးပါမယ်။</string>
+    <string name="order_confirmed">အော်ဒါ အတည်ပြုပြီးပါပြီ။ %s ပို့ပေးပါမယ်။</string>
+    <string name="order_ready_for_delivery">အော်ဒါပို့ရန် အဆင်သင့်ဖြစ်နေပါပြီ။  %s ပို့ပေးပါမယ်။</string>
+    <string name="order_on_route">အော်ဒါ လာပို့နေပါပြီ။   %s ပို့ပေးပါမယ်။</string>
+    <!--
+        <string name="tuto1">မေမေဖေဖေတို့အတွက် မီဒီယာ</string>
+        <string name="tuto2">စျေးနှုန်းချိုသာပြီး စုံလင်တဲ့ Online Supermarket</string>
+        <string name="tuto3">ကောင်းမွန်တဲ့ ဝန်ဆောင်မှု</string>-->
+
+    <string name="group_chat">စကားဝိုင်း</string>
+    <string name="group_chat_detail">စကားဝိုင်းမှာ ဆွေးနွေးရာမှာ အထောက်အကူဖြစ်စေရန် အောက်ပါ အကြောင်းအရာများ ဖြည့်ပါ။</string>
+    <string name="group_chat_title">စကားဝိုင်းမှာ မေမေ၊ ဖေဖေတို့ သိလိုရာ ၊ ဆွေးနွေးလိုရာ၊ မျှဝေလိုရာ တွေကို မေးမြန်းတိုင်ပင်လို့ရပါတယ်။</string>
+    <string name="group_chat_name_edit">ပြင်မယ်</string>
+
+    <string name="group_chat_name_update">မှန်ပါတယ်</string>
+    <string name="notification">အသိပေးချက်များ</string>
+    <string name="comment_noti">ဆွေးနွေးချက် အသစ်များရှိပါသည်</string>
+    <string name="comment_product_noti">ကျားလေးပစ္စည်းအကြောင်း ဖြေထားတာ ရှိပါသည်။</string>
+    <string name="comment_hint">ဆွေးနွေးမယ်</string>
+    <!--
+        <string name="un">မှန်ပါတယ်</string>-->
+    <string name="unsubscribe">ယခုပို့စ်နဲ့  ပတ်သက်သော အသိပေးချက်များကို မယူတာ့ပါ။</string>
+    <string name="post_liked">ယခုပို့စ်ကို ကြိုက်နှစ်သက်သော သူများကို ကြည့်မယ်။</string>
+    <string name="post_delete">ယခုပို့စ်ကို အပြီးဖျက်လိုက်ပါ့မယ်။</string>
+    <string name="post_delete_toast">ယခုပို့စ်ကို အပြီးဖျက်လိုက်ပြီးပါပြီး။</string>
+    <string name="subscribe">ယခုပို့စ်နဲ့ ပတ်သက်သော အသိပေးချက်များကို ရယူမည်။</string>
+    <string name="follow">ယခုပို့စ်နဲ့ ပတ်သက်သော အသိပေးချက်များကို ရယူမည်။</string>
+
+    <string name="copy_text">စာသား ကူးယူမယ်။</string>
+    <string name="copy">ကူးယူမယ်</string>
+    <string name="acc_name">အကောင့်အမည်</string>
+    <string name="acc_num">အကောင့်နံပါတ်</string>
+    <string name="payment_info">ငွေလွှဲရမည့် %s အကောင့်၏ အချက်အလက်များ</string>
+    <string name ="comment_text">ဆွေးနွေးမှုများ ကြည်မယ် </string>
+    <string name="group_chat_detail_momordad">သင်ဟာ မေမေလား၊ ဖေဖေလား</string>
+    <string name="group_chat_detail_boyorgirl">သားသားလား၊ မီးမီးလား</string>
+    <string name="gender">ကျား/မ ရွေးပါ။</string>
+    <string name="boy">ယောက်ျားလေး</string>
+    <string name="girl">မိန်းကလေး</string>
+    <string name="startOne">နာမည် ပထမဆုံးအလုံး၏ နေ့နံကိုရွေးပါ။ </string>
+    <string name="startTwo">နာမည် ဒုတိယအလုံး၏ နေ့နံကိုရွေးပါ။ </string>
+    <string name="startThree">နာမည် တတိယအလုံး၏ နေ့နံကိုရွေးပါ။ </string>
+    <string name="endwith">နာမည် စတုတ္ထအလုံး၏ နေ့နံကိုရွေးပါ။ </string>
+    <string name="save_names">Save ထားသော နာမည်များကို ကြည့်မယ်</string>
+    <string name="search_name">နာမည် ရှာရန်..</string>
+    <string name="lenght">နာမည် အလုံးအရေအတွက်  </string>
+    <string name="one">၁</string>
+    <string name="two">၂</string>
+    <string name="three">၃</string>
+    <string name="four">၄</string>
+    <string name="group_chat_detail_momordad_error">သင်ဟာ မေမေလား၊ ဖေဖေလား ဆိုတာ ရွေးရန်လိုအပ်ပါသည်။</string>
+    <string name="group_chat_detail_boyorgirl_error">သားသားလား၊ မီးမီးလား ဆိုတာ ရွေးရန်လိုအပ်ပါသည်။</string>
+    <string name="kid_age_error">ကလေး၏ အသက်ကို ပြန်ရွေးပါ </string>
+    <string name="kid_due_date_error">Due Date ပြန်ရွေးပါ </string>
+    <string name="group_chat_detail_name_error">နာမည်ရိုက်ထည့်ရန် လိုအပ်ပါသည်။</string>
+
+    <string name="status_title">သင်နှင့် သက်ဆိုင်သော အကြာင်းအရာများကို ပြသနိုင်ရန် အောက်ပါတို့ကို ရွေးပါ။</string>
+    <string name="status_title_click">သင်နှင့် သက်ဆိုင်သော အကြာင်းအရာများကို ပြသနိုင်ရန် အချက်အလက်များ ဖြည့်ရန် နှိပ်ပါ။</string>
+    <string name="single">အပျို / လူပျို</string>
+    <string name="pregnancy">ကိုယ်ဝန်ဆောင်</string>
+    <string name="parent">ဖေဖေ / မေမေ</string>
+    <string name="single_title">အမျိုးသား / အမျိုးသမီး ကျန်းမာရေး</string>
+    <string name="parent_title">ကလေး ကျန်းမာရေး</string>
+    <string name="pregnancy_title">ကိုယ်ဝန်ဆောင် ကျန်းမာရေး</string>
+    <string name="single_coming_period">ရာသီ ကျန်းမာရေး</string>
+    <string name="single_oval_day">မျိုးဥ စကြွေမည့်ရက်</string>
+
+    <string name="more_items">ကြည့်ရန်</string>
+
+    <string name="group_chat_detail_boy">သားသား</string>
+    <string name="group_chat_detail_girl">မီးမီး</string>
+    <string name="group_chat_detail_baby">ကလေး</string>
+
+    <string name="group_chat_detail_mom">မေမေ</string>
+    <string name="expecting_mom">မိခင်လောင်း</string>
+    <string name="expecting_dad">ဖခင်လောင်း</string>
+    <string name="group_chat_detail_dad">ဖေဖေ</string>
+    <string name="group_chat_detail_other">အခြား</string>
+    <string name="group_chat_detail_other_show">မိသားစုဝင်</string>
+    <string name="family_member">မိသားစုဝင်</string>
+
+    <string name="group_chat_detail_month">ကလေး မွေးလ</string>
+    <string name="group_chat_detail_month_error">ကလေး မွေးလ ရွေးရန်လိုအပ်ပါသည်။</string>
+
+    <string name="app_splash_screen">မိခင်နှင့် ကလေး ပစ္စည်းမျိုးစုံ စျေးဝယ် ဝန်ဆောင်မှု</string>
+    <string name="brand_view_more"> %s မှ အခြားပစ္စည်းများ ကြည့်ရန် > </string>
+
+
+    <string name="customer_post_kid_detail_year"> %s နှစ် နှင့် %s လ အရွယ် %sရဲ့ %s </string>
+    <string name="customer_post_kid_detail_noyear"> %s လ အရွယ် %sရဲ့ %s </string>
+    <string name="kid_month">လ အရွယ် </string>
+    <string name="kid_week"> ပတ် အရွယ် </string>
+    <string name="choose_num_feedback">နံပါတ်ကို ရွေးပါ</string>
+    <string name="must_fill_address">လိပ်စာ ဖြည့်ရန် လိုအပ်ပါသည်.....</string>
+    <string name="fill_all_feild">အားလုံးဖြည့်ပါ</string>
+    <string name="fill_promo">Promo Code ဖြည့်ရန်လိုအပ်ပါသည် ..  </string>
+    <string name="fill_update">Comment ဖြည့်ရန်လိုအပ်ပါသည် ..  </string>
+    <string name="fill_feedback">Rating ပေးရန်လိုအပ်ပါသည် .. </string>
+    <string name="reload">ပြန်လုပ်ကြည့်မယ်</string>
+    <string name="title_mall">စျေး</string>
+    <string name="title_video">မီဒီယာ</string>
+    <string name="title_feed">စကားဝိုင်း</string>
+    <string name="title_none"></string>
+    <string name="title_notifications">အကူအညီ</string>
+    <string name="title_for_you">သင့်အတွက်</string>
+    <string name="title_profile">ပရိုဖိုင်</string>
+    <string name="to_continue">အသုံးပြုမယ်</string>
+    <string name="continue_watch">ဆက်ကြည့်ရန်</string>
+    <string name="warning">သတိပေးချက်</string>
+    <string name="amount_warning_greater">သင့် order amount သည် %s ကျပ် - ကျော်နေပါသဖြင့် <![CDATA[<b><font color=#FF0000>%s</font></b>]]> အသုံးပြုမရပါ။ .</string>
+    <string name="amount_warning_less">သင့် order amount သည် %s ကျပ် - ထပ်နည်းနေပါသဖြင့် <![CDATA[<b><font color=#FF0000>%s</font></b>]]> အသုံးပြုမရပါ။ .</string>
+    <string name="baby_birth_date">ကလေး၏ မွေးလ မွေးနှစ်ကိုရွေးပါ</string>
+    <string name="edit_baby_birth_info">ကလေး၏ အသက်ကို ပြင်ရန်</string>
+    <string name="edit_due_date_info">ကိုယ်ဝန်ဆောင် ကာလ ပြင်ရန်</string>
+    <string name="baby_birth_age">ကလေးအသက် ဖြည့်ရန်</string>
+    <string name="baby_birth_due_date">Due Dateကို ဖြည့်ရန်</string>
+    <string name="watch_baby_progress">သားသား/မီးမီး ဖွံ့ဖြိုးမှုကို ကြည့်ရန် နှိပ်ပါ။ >></string>
+    <string name="baby_age_info">သင်သည် %s တစ်ယောက်ဖြစ်ပါသည်။</string>
+    <string name="no_baby_age_info">ကလေးနှင့် ပက်သက်သော ကျန်းမာရေး ဗဟုသုတ ဆောင်းပါများဖတ်ရန် ကလေးအသက်ဖြည့်ရန် လိုအပ်ပါသည်။ </string>
+    <string name="no_due_date_info">ကိုယ်ဝန်ဆောင်ချိန်နှင့် ပတ်သက်သော ကျန်းမာရေး ဗဟုသုတ ဆောင်းပါများဖတ်ရန် သင်၏ Due Date ဖြည့်ရန် လိုအပ်ပါသည်။ </string>
+    <string name="to_contact">ဆက်သွယ်ရန်</string>
+
+    <string name="competition">Mama and Baby Photo Competition</string>
+    <string name="write_competition">စာရေးမယ်. . . </string>
+    <string name="recent_competition">ပုံအသစ်များ</string>
+    <string name="top_ten_competition">ထိပ်ဆုံး (၁၀)ပုံ</string>
+    <string name="term_condition_competition">ပြိုင်ပွဲအကြောင်း</string>
+    <string name="competition_number">ပြိုင်ပွဲဝင် နံပါတ် ( %s )</string>
+    <string name="competition_vote">Vote ပေးမယ်</string>
+    <string name="competition_share">Share မယ်</string>
+    <string name="competition_post">ပြိုင်ပွဲဝင် ဓါတ်ပုံတင်ရန် နှိပ်ပါ။</string>
+    <string name="competition_search_title">ဓါတ်ပုံရှာရန် ပြိုင်ပွဲဝင် နံပါတ်ကို ရိုက်ထည့်ပါ။</string>
+    <string name="competition_delete_title">ပြိုင်ပွဲဝင် ဓါတ်ပုံကို ဖျက်မယ်။</string>
+    <string name="competition_delete_body">ပြိုင်ပွဲဝင် ဓါတ်ပုံမှာ Voting အရေအတွက်  (%s) ရှိနေပါသည်။ ဖျက်မှာ သေချာပါသလား။</string>
+    <string name="competition_voting">Voting လုပ်နေသည်...</string>
+
+    <string name="shop_location">ကျားလေးဆိုင်လိပ်စာများ</string>
+    <string name="show_location_map">ဆိုင်လမ်းညွှန်ကို မြေပုံတွင် ကြည့်ရန််</string>
+    <string name="edit_address">လိပ်စာကို ပြင်ရန်</string>
+    <string name="choose_address">သင်၏ လိပ်စာကို ရွေးပါ။</string>
+    <string name="choose_township">မြို့နယ်ရွေးပါ</string>
+    <string name="fill_address">လိပ်စာရိုက်ထည့်ပါ။ နယ်ဆိုလျှင် ကားဂိတ်ရိုက်ထည့်ပါ။</string>
+    <string name="must_choose_township">မြို့နယ်ရွေးပေးရပါမည်။</string>
+    <string name="check_delivery_amount">ပို့ဆောင်ခများကြည့်ရန်</string>
+    <string name="delete_address_text">ဒီလိပ်စာကို ပယ်မှာ သေချာပါလား။</string>
+    <string name="address_list">သင်၏လိပ်စာများ</string>
+    <string name="add_address">လိပ်စာအသစ် ထည့်ရန်</string>
+    <string name="add_edit_address">လိပ်စာအသစ် ထည့်ရန် / ပြင်ရန်</string>
+    <string name="save_yes">ထည့်မယ်</string>
+    <string name="remark_title">အထူးမှာကြားချက်</string>
+    <string name="choose_payment">Payment ရွေးမယ်။</string>
+
+    <string name="video_program">အစီအစဉ်များ</string>
+    <string name="video_play">ဗွီဒီယို ကြည့်ရန် နှိပ်ပါ။</string>
+    <string name="video_latest">နောက်ဆုံး</string>
+    <string name="video_news">ဖတ်စရာများ</string>
+    <string name="news_categories">ကဏ္ဍ ရွေးမယ်</string>
+    <string name="video_list">ဗွီဒီယိုများ</string>
+    <string name="video_tools">အခြား</string>
+    <string name="video_tools_more">အသုံးဝင်သော Tools များ</string>
+    <string name="popular">လူကြိုက်များသော </string>
+    <string name="related">ဆက်နွယ်သော </string>
+    <string name="view_post">Post ကိုကြည့်ရန် နှိပ်ပါ >> </string>
+    <string name="view_question_all">မေးခွန်းအားလုံးကြည့်မယ် >> </string>
+    <string name="watch_related"><![CDATA[<b><font color=#000>\"%s\"</font></b>]]> နှင့် ဆက်နွယ်သော ဗွီဒီယိုများကို ကြည့်ရန် နှိပ်ပါ </string>
+    <string name="watch_details">အသေးစိတ်ကြည့်ရန် > </string>
+    <!--<string name="watch_related">\"%s\" နှင့် ဆက်နွယ်သော ဗွီဒီယိုများကို ကြည့်ရန် နှိပ်ပါ </string>-->
+
+    <string name="upload_profile">ပရိုဖိုင်ပုံကို ရွေးပါ။</string>
+    <string name="error_phone_number">ဖုန်းနံပါတ်ကို ဖြည့်ပါ...</string>
+    <string name="error_name">နာမည်ကို ဖြည့်ပါ...</string>
+    <string name="error_photo">Profile Photo ကို ထည့်ရန်...</string>
+    <string name="error_password">လျို့ဝှက်နံပါတ်ကို ဖြည့်ပါ...</string>
+    <string name="wrong_password">လျို့ဝှက်နံပါတ် မှားနေပါတယ်</string>
+    <string name="password_not_thesame">လျို့ဝှက်နံပါတ် မတူညီပါ</string>
+    <string name="error_password_name">အားလုံး ဖြည့်ရန်လိုအပ်ပါသည် ...</string>
+    <string name="error_correct_password">လျို့ဝှက်နံပါတ် မှားနေပါသည်။ နောက်တစ်ခါ ပြန် ​ကြိုးစားကြည့်ပါ.</string>
+    <string name="contact">ဆက်သွယ်ရန်</string>
+
+    <string name="password_length_wrong">လျို့ဝှက်နံပါတ်အနည်းဆုံး ခြောက်လုံးရေးရန်လိုအပ်ပါတယ်</string>
+    <string name="view_all">အသေးစိတ် ကြည့်မယ် >> </string>
+    <string name="all"> ပရိုမိုးရှင်း အားလုံး</string>
+    <string name="recommend_brand"> လူကြိုက်များသော Brand များ </string>
+    <string name="brand_more"> အားလုံး ကြည့်မယ် >>  </string>
+    <string name="see_more">ထပ်ကြည့်ရန်</string>
+    <string name="more_images"> ပုံအားလုံး ကြည့်မယ် >> </string>
+    <string name="choose_category">ဝယ်ချင်တဲ့ကဏ္ဍ ရွေးမယ်</string>
+
+    <string name="search_noti">ရှာလိုသော ပစ္စည်းနာမည်ကို ရိုက်ထည့်၍ Enter နှိပ်ပါ။</string>
+    <string name="search_mian_hint">ပစ္စည်းရှာရန်..</string>
+    <string name="search_text">ရှာရန်..</string>
+
+
+    <string name="progress_dialog_title">ခေတ္တစောင့်ပါ</string>
+    <string name="progerss_dialog_text">အင်တာနက်မှ ကူးယူနေ....</string>
+
+    <string name="card_detail_title">သင့်စျေးခြင်းတောင်း</string>
+    <string name="like">ကြိုက်တယ်</string>
+    <string name="share">မျှဝေမယ်</string>
+
+    <string name="toolbar_cart">အော်ဒါတင်မယ်</string>
+    <string name="menu_shopping">စျေး၀ယ်ထွက်မယ်</string>
+    <string name="menu_orders">သင့်အော်ဒါများ</string>
+    <string name="menu_wishlist">Like လုပ်ထားသော ပစ္စည်းများ</string>
+    <string name="liked_video">Like လုပ်ထားသော ဗွီဒီယိုများ</string>
+
+
+    <string name="post_wishlist">Like လုပ်ထားသော စာပုဒ်များ</string>
+    <string name="post_liked_person">Like လုပ်ထားသော လူများ</string>
+
+
+    <string name="menu_reading">စကားဝိုင်း</string>
+    <string name="menu_setting">ပရိုဖိုင်</string>
+    <string name="menu_momolay">မိုမိုလေး</string>
+
+
+    <string name="reading">အခြား</string>
+    <string name="other">စိတ်ဝင်စားဖွယ် အပ်ပလီကေးရှင်းများ</string>
+    <string name="choose">ရွေးမယ်</string>
+    <string name="view">ကြည့်မယ်</string>
+    <string name="read">ဖတ်မယ်</string>
+    <string name="call">ခေါ်မယ်</string>
+
+
+    <string name="like_read">Like</string>
+    <string name="share_read">Share</string>
+    <string name="comment_read">Comment</string>
+
+    <string name="message">စာပို့မယ်</string>
+    <string name="online_order_only">SOLD OUT ဖြစ်နေပါသည်။ ၅ ရက်အတွင်း In-stock ပြန်ရပါမည်။ </string>
+    <string name="pre_order">PRE ORDER</string>
+
+    <string name="search_error">တစ်ခုခု မှားသွားပါသည်။ ပြန်​ကြိုးစားကြည့်ပါ။ </string>
+    <string name="search_result_not_found"> ကို ရှာလို့မတွေ့ပါ။ </string>
+
+
+    <string name="phone_number_hint">အသုံးပြုရန် ဖုန်းနံပါတ်ထည့်ပါ</string>
+    <string name="login_title">Login/Register လုပ်ရန်</string>
+    <string name="login_register_title">Register or Login လုပ်ရန် ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="phone_number_continue">ဆက်ရန်</string>
+    <string name="name_hint">နာမည်</string>
+    <string name="complete_percent">ပရိုဖိုင် အချက်အလက် ဖြည့်ပီးပါပီ။ </string>
+    <string name="to_continue_text">ဆက်ဖြည့်ရန်</string>
+    <string name="upload_photo">ဓါတ်ပုံ တင်ရန်</string>
+    <string name="password_hint">လျို့ဝှက်နံပါတ်</string>
+    <string name="confirm_password_hint">လျို့ဝှက်နံပါတ် အတည်ပြုပါ</string>
+    <string name="choose_month_hint">ကလေးမွေးလ ရွေးပါ</string>
+    <string name="child_bd">သင့် ကလေးမွေးလ နှင့် ခုနှစ်</string>
+    <string name="new_born">မွေးခါစ </string>
+    <string name="child_bd_due_date">Due Date</string>
+    <string name="login">Login ဝင်ရန်</string>
+    <string name="signup">Register လုပ်ရန်</string>
+    <string name="new_account">အကောင့်အသစ်ဖွင့်ရန်</string>
+    <string name="fill_name">နာမည် ရိုက်ထည့်ရန်</string>
+    <string name="fill_photo">Profile ဓါတ်ပုံထည့်ရန်</string>
+    <string name="user_detail_title">စကားဝိုင်း၌ ဆွေးနွေးရာတွင် အထောက်အကူပြုစေရန် အောက်ပါ အချက်အလက်များကိုဖြည့်ပါ။</string>
+
+    <string name="added_to_cart_title">စျေးခြင်းတောင်းထဲ သွားမလား</string>
+    <string name="added_to_cart_text">သင်ရွေးချယ်လိုက်သော ပစ္စည်းကို စျေးခြင်းတောင်းထဲထည့်ပြီးပါပြီ။ စျေးခြင်းတောင်းထဲ သွားကြည်​့မယ်။</string>
+    <!--<string name="added_to_cart_confirm">အော်ဒါတင်ရန် စျေးခြင်းထဲ သွားမယ်</string>-->
+    <string name="added_to_cart_confirm">အော်ဒါတင်တော့မည်</string>
+    <string name="go_to_basket">စျေးခြင်းထဲ သွားမယ်</string>
+    <string name="added_to_cart_cancel">စျေးဆက်ဝယ်မယ်</string>
+    <string name="add_promo">ပရိုမိုထည့်ရန်</string>
+    <string name="enter_promo">ပရိုမို Code ရိုက်ထည့်ရန်</string>
+    <string name="used_promo">သင်သုံးထားသော ပရိုမို Code  </string>
+    <string name="remove_promo">ပရိုမို Code နောက်မှသုံးမည်</string>
+    <string name="promo_confirm">ပရိုမို Code အတည်ပြုမည်</string>
+    <string name="promo_code_error">ပရိုမိုကုဒ်နံပါတ် မှားနေပါသည်။</string>
+    <string name="promo_minimum">သတ်မှတ်ထားသော စုစုပေါင်းတန်ဖိုး မရောက်ရှိသေးပါ</string>
+
+    <string name="verification_code">One Time Password</string>
+    <string name="enter_verify_code">သင့်ဖုန်းထဲသို့ ပေးပို့လိုက်သော \nကုဒ်နံပါတ်ကို ရိုက်ထည့်ပါ။</string>
+    <string name="submit">အတည်ပြုရန်</string>
+    <string name="otp_code">ကုဒ်နံပါတ် အားလုံးကို ရိုက်ထည့်ပါ။</string>
+    <string name="otp_error">ကျားလေး Opt ကုဒ်နံပါတ် မှားနေပါသည်။</string>
+    <string name="otp_time">တမိနစ်ခန့်စောင့်ပါ...</string>
+    <string name="otp_waiting_time"> %s စက္ကန့်စောင့်ပြီး ပြန်စမ်းပေးပါ။ </string>
+    <string name="check_number">ဖုန်းနံပါတ် မှားယွင်းနေပါသည်။ ပြန်​ကြိုးစားကြည့်ပါ။</string>
+
+    <string name="facebook_app_privider">com.facebook.app.FacebookContentProvider184815485301878</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="no_internet_error">အင်တာနက်ဖြင့် ချိတ်ဆက်ထားခြင်းမရှိပါ။</string>
+
+    <string name="search_hint">ရှာလိုသော ပစ္စည်းနာမည်ကို ရိုက်ပါ..</string>
+    <string name="action_settings">ပြင်ဆင်ချက်</string>
+    <string name="quantity">အရေအတွက်</string>
+    <string name="call_phone">ဖုန်းခေါ်မယ်</string>
+    <string name="call_phone_dialog">ဖုန်းနံပါတ်ရွေးချယ်ပါ</string>
+    <string name="save_to_cart">စျေးခြင်းတောင်းထဲထည့်မယ်</string>
+    <string name="pending_waiting_text">ခေတ္တ စောင့်ပါ .........</string>
+    <string name="dialog_cart_yes">စျေးခြင်းတောင်းထဲထည့်မယ်</string>
+    <string name="dialog_cart_no">နောက်မှ</string>
+    <string name="dialog_cart_multipy">*</string>
+    <string name="dialog_cart_equal">=</string>
+    <string name="currency">ကျပ်</string>
+    <string name="currency_red"><![CDATA[<b><font color=#B71C1C> %s </font></b>]]> ကျပ်</string>
+    <string name="more">ထပ်ဖတ်ရန်..</string>
+    <string name="price">စုစုပေါင်း  </string>
+    <string name="total_product_price">ပစ္စည်းတန်ဖိုး စုစုပေါင်း</string>
+    <string name="search_product_filter">တန်ဖိုး အနည်း/အများဖြင့် ပစ္စည်းရှာမယ် </string>
+    <string name="search">ပစ္စည်းရှာရန်</string>
+    <string name="min_max_price">အများဆုံးပစ္စည်းတန်ဖိုးသည် အနည်းဆုံးပစ္စည်းတန်ဖိုးထက် ပိုများရပါမည်။</string>
+    <string name="max_min_filter">စျေးနှုန်း - <![CDATA[<b><font color=#000000>အများ</font></b>]]>  မှ <![CDATA[<b><font color=#000000>အနည်း</font></b>]]></string>
+    <string name="min_max_filter">စျေးနှုန်း - <![CDATA[<b><font color=#000000>အနည်း</font></b>]]>  မှ <![CDATA[<b><font color=#000000>အများ</font></b>]]> </string>
+    <string name="min_max_product">  %s နှှင့်  %s အတွင်း ပစ္စည်းများ</string>
+    <string name="max_product"> တန်ဖိုးအများဆုံး %s ထိ ပစ္စည်းများ</string>
+    <string name="min_product"> တန်ဖိုးအနည်းဆုံး  %s မှ ပစ္စည်းများ</string>
+    <string name="total_price">စုစုပေါင်းကျသင့်ငွေ  </string>
+    <string name="discount">Discount : </string>
+    <string name="precentage"> % OFF</string>
+    <string name="no_order">အော်ဒါမှာထားတာ မရှိပါဘူး။</string>
+    <string name="empty_order">စျေးခြင်းတောင်းထဲတွင် ပစ္စည်းမရှိသေးပါ။</string>
+    <string name="solution_order"></string>
+    <string name="your_order">သင်မှာထားသော အော်ဒါများ ...</string>
+    <string name="current_order">လက်ရှိ အော်ဒါ</string>
+    <string name="previous_order">ဝယ်ယူခဲ့ပြီးသော အော်ဒါများ</string>
+    <string name="delivery_person">ပစ္စည်းပို့သူအမည် -</string>
+    <string name="order_name">နာမည်</string>
+    <string name="order_phone_no">ဖုန်းနံပါတ်</string>
+    <string name="order_address">လိပ်စာ</string>
+    <string name="order_dialog_yes">အော်ဒါမှာမယ်</string>
+
+    <string name ="customer_rating">အော်ဒါ အဆင့်သတ်မှတ်ချက် </string>
+    <string name ="feedback_title">အော်ဒါ နံပါတ် #%s အတွက် သင်၏ အကြံပြုချက်</string>
+
+    <string name="order_total_No">နံပါတ်</string>
+    <string name="order_total_totalPrice">စုစုပေါင်းတန်ဖိုး</string>
+    <string name="order_total_date">ရက်စွဲ</string>
+
+    <string name="order_total_status">အခြေအနေ</string>
+
+    <string name="order_date">ရက်စွဲ </string>
+    <string name="order_totalPrice">စုစုပေါင်းတန်ဖိုး  </string>
+
+    <string name="order_actionbar_title">အော်ဒါနံပါတ် - </string>
+
+    <string name="ordering">အော်ဒါမှာနေပါသည်။ ခဏစောင့်ပါ...</string>
+    <string name="order_dialog_no">မမှာသေးဘူး</string>
+    <string name="cancel">မလုပ်သေးဘူး</string>
+    <string name="order_dialog_phone_no_error">ဖုန်းနံပါတ်ကို ပြန်စစ်ဆေးပါ။</string>
+    <string name="cart_number">ပစ္စည်း အရေအတွက်ကို ပြန်စစ်ဆေးပါ။</string>
+    <string name="cart_number_zero">ပစ္စည်း အရေအတွက်ကို ပြန်စစ်ဆေးပါ။ (0)ထားလို့မရပါ။</string>
+    <string name="order_dialog_no_fill">အချက်အလက်များ ဖြည့်ရန် လိုအပ်ပါသည်။</string>
+    <string name="order_dialog_title">အော်ဒါမှာယူရန် နာမည်၊ ဖုန်းနံပါတ်၊ လိပ်စာ ဖြည့်ရန်လိုအပ်ပါတယ်</string>
+
+    <string name="member_dialog_fill_toast">အဖွဲ့ဝင်ဖြစ်ကြောင်း စစ်ဆေးရန် နာမည်၊ ဖုန်းနံပါတ် ဖြည့်ရန်လိုအပ်ပါတယ်</string>
+    <string name="extend_membership">သက်တမ်းတိုးခြင်း</string>
+    <string name="change_vip">Kyarlay VIP member လုပ်ကြမယ်</string>
+    <string name="within_s_months">%sလ အတွင်း</string>
+    <string name="no_vip_title">%sလ အတွင်း %s ဖိုး ကျားလေးတွင် ၀ယ်ယူပြီး ကျားလေးမှ အထူးအခွင့်အရေးများ ရယူလိုက်ပါ</string>
+    <string name="vip_title">%sလ အတွင်း %s ဖိုး ကျားလေးတွင် ထပ်မံ၀ယ်ယူပြီး ကျားလေး VIP member အဖြစ် သက်တမ်းတိုးလိုက်ပါ</string>
+
+    <string name="splash_screen_no_title">နာမည် ဖြည့်ရန်လိုအပ်ပါတယ်</string>
+
+    <string name="dialog_cart_title">အော်ဒါတင်ရန် စျေးခြင်းတောင်းထဲ ထည့်မယ်</string>
+    <string name="save_to_cart_error">ကို စျေးခြင်းတောင်းထဲ ထည့်လိုက်ပါပြီ။</string>
+    <string name="dialog_product_gotocart">ကြည့်မယ် </string>
+    <string name="add_to_cart">ထည့်မယ်</string>
+    <string name="save_to_cart_error_button">ပိတ်မယ်</string>
+    <string name="close_button">ပိတ်မယ်</string>
+
+    <string name="dialog_call_title">ဖုန်းနံပါတ် ရွေးပါ</string>
+
+    <string name="validate_phone_number_error">PhoneNumberError</string>
+    <string name="validate_phone_number_success">PhoneNumberSuccess</string>
+    <string name="validate_phone_number_invalid">Please Re-Enter Phone Number</string>
+    <string name="validate_phone_number_too_long">PhoneNumberTooLong</string>
+
+    // youtube
+    <string name="player_error">Error initializing YouTube player</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
+
+    <string name="product_options">ရွေးချယ်ရန်</string>
+    <string name="product_itemcode">ကုဒ်နံပါတ်</string>
+    <string name="product_price">စျေးနှုန်း</string>
+    <string name="product_supplier">ဖြန့်ချီသူ</string>
+
+    <string name="dialog_delivery_title">ပို့ဆောင်ခ နှုန်းများ </string>
+    <string name="dialog_express_title">အထူးအမြန် ပို့ဆောင်ခ နှုန်းများ </string>
+    <string name="dialog_normal_title">ပုံမှန် ပို့ဆောင်ခ နှုန်းများ </string>
+    <string name="express_title">%s မြို့နယ်အတွက် ပို့ဆောင်ခ <![CDATA[<b><font color=#FF0000> %s </font></b>]]> ကျပ်</string>
+    <string name="express_sub_title">( %s ကျပ် ) သာပေးရသော %s ကြာသည့် ပုံမှန်ပို့ဆောင်မှုလဲ ရှိပါသည်</string>
+    <string name="normal_sub_title">%s မြို့နယ်အတွက် <![CDATA[<b><font color=#FF0000> %s </font></b>]]> ကျပ်သာ ပေးရသော %s ကြာသည့် ပုံမှန်လမ်းကြောင်း Delivery ၀န်ဆောင်မှု ရှိပါသည်</string>
+    <string name="normal_choose">ရွေးမယ်</string>
+    <string name="normal_no_choose">မရွေးတော့ပါ</string>
+    <string name="dialog_delete_title"> ပယ်မှာလား</string>
+    <string name="dialog_delete_text">သင်​ရွေးချယ်ထားသော ပစ္စည်းကို ပယ်မှာ သေချာပါလား။</string>
+    <string name="dialog_delete_cancel">မဖယ်ထုတ်ပါ</string>
+    <string name="dialog_delete_confirm">သေချာပါသည်</string>
+    <string name="dialog_delete_title_product">စျေးခြင်းတောင်းထဲတွင် %s ရှိနေပါသည်။</string>
+    <string name="dialog_delete_title_confirm">ဖယ်ထုတ်ချင်ပါသလား?</string>
+    <string name="dialog_delete_title_confirm_yes"> ဖယ်ထုတ်မည် </string>
+    <!--<string name="exit_from_app">ထွက်ရန် နောက်တစ်ချက် ထပ်နှိပ်ပါ။</string>-->
+    <string name="exit_from_app">ထွက်မှာ သေချာပါသလား၊</string>
+    <string name="exit_confrim">ကျားလေးမှ ထွက်မှာ သေချာပါသလား၊</string>
+    <string name="order_before_exit">စျေးခြင်းတောင်းထဲတွင် ပစ္စည်းများရှိပါတယ်။ အော်ဒါမှာယူလိုပါက \" %s \" ကို နှိပ်ပါ။</string>
+
+    <string name="qr_scan_not_found">ပစ္စည်း ရှာမတွေ့ပါ။</string>
+    <string name="need_to_choose_order">အော်ဒါမှာရန် ပစ္စည်းကို စျေးခြင်းတောင်းထဲ အရင်ထည့်ပါ။</string>
+
+    <string name="new_version">ဗားရှင်း</string>
+    <string name="new_version_and_update">ဗားရှင်းအသစ်ထွက်နေပါပြီး။ ယခု ဗားရှင်းမှ ဗားရှင်းအသစ်ကို ပြောင်းသုံးမည်။</string>
+    <string name="current_version">ယခု ဗားရှင်းကိုပဲသုံးမယ်</string>
+    <string name="update_newversion">ဗားရှင်းအသစ်သုံးမယ်</string>
+    <string name="version_out_of_date">ဗားရှင်းအသစ် ထွက်နေပါပြီ။ ဗားရှင်းအသစ်သို့ အဆင်မြှင့်သုံးရန် လိုအပ်ပါသည်။</string>
+
+
+    <string name="number">အရေအတွက်</string>
+    <string name="send">ပို့မယ်</string>
+    <string name="send_post">ပို့စ်တင်မယ်</string>
+    <string name="upload_post">ပို့စ်တင်နေသည်</string>
+
+    <string name="post_without_question">မေးခွန်းမပါပဲ ပို့စ်တင်လို့ မရပါ။</string>
+    <string name="post_without_photo">ပုံ မပါပဲ ပို့စ်တင်လို့ မရပါ။</string>
+    <string name="comment_without_text">စာသား/ပုံ မပါပဲ ပို့လို့ မရပါ။</string>
+
+
+    <string name="least_like">0 မတိုက်တွန်းဘူး</string>
+    <string name="most_like">10 တိုက်တွန်းမယ်</string>
+
+    <string name="least_feedback">1 အဆင်မပြေဘူး</string>
+    <string name="most_feedback">10 အဆင်ပြေတယ်</string>
+
+    <string name="search_photo_id">ပြိုင်ပွဲဝင် နံပါတ်ဖြင့် ပုံရှာရန်</string>
+    <string name="wirte_post">ဆွေးနွေးရန် နှိပ်ပါ..</string>
+    <string name="choose_month_year">လ နှင့် နှစ်ကို ရွေးမယ်..</string>
+    <string name="choose_month_year_msg">လကို ရွေးပါ ။</string>
+
+    <string name="image_long">ဓါတ်ပုံ ရှည်နေပါသည်</string>
+    <string name="image_short">ဓါတ်ပုံ တိုနေပါသည်</string>
+    <string name="gallery_text">ဓါတ်ပုံ တင်ရန်နှိပ်ပါ</string>
+    <string name="view_more">ပို့စ်ကို သွားကြည့်မယ်</string>
+
+    <string name="discount_title">လက်ရှိ ပရိုမိုးရှင်းများ </string>
+    <string name="safe_title">Is it safe?</string>
+    <string name="danger">မလုပ်သင့်</string>
+    <string name="caution">သတိထားရန်</string>
+    <string name="safe">သင့်</string>
+    <string name="collection_title">Current Collections</string>
+    <string name="flash_sale_title">Flash Sale ပရိုမိုးရှင်းများ</string>
+    <string name="send_message">ဒီပစ္စည်းအကြောင်း စာပို့ပြီးလှမ်းမေးမယ် ... </string>
+    <string name="chat_message_button">မေးမယ်</string>
+    <string name="chat_mesage_toast">မေးလိုသော စာကို ဖြည့်ရန်လိုအပ်ပါတယ်</string>
+
+    <string name="decrease"> အနည်းဆုံးတစ်ခု မှာရပါမည်။  </string>
+    <string name="increase"> အများဆုံး ၅ ခုပဲ လက်ခံပါသည်။ </string>
+    <string name="materials">ပစ္စည်းများ</string>
+    <string name="product">အမှတ်တံဆိပ်များ</string>
+    <string name="order">အော်ဒါမှာမယ်</string>
+    <string name="order_status">သင့်အော်ဒါ အခြေအနေ</string>
+
+    <string name="order_old">သင့်အော်ဒါများ</string>
+    <string name="order_placed">အော်ဒါ တင်ပြီးပြီ</string>
+    <string name="order_confirm">အော်ဒါ အတည်ပြုပြီး</string>
+    <string name="order_Ready">အော်ဒါ ပေးပို့ရန် အဆင်သင့်</string>
+    <string name="order_Delivery">အော်ဒါ ပို့ပြီးပြီ</string>
+    <!--<string name="order_Title">အော်ဒါတင်ပြီး</string>
+    <string name="confirm_Title">အော်ဒါအတည်ပြုပြီး</string>
+    <string name="ready_Title">အော်ဒါအဆင်သင့်</string>
+    <string name="deliver_Title">အော်ဒါပို့ပြီးပြီ</string>-->
+    <string name="order_Title">တင်ပြီး</string>
+    <string name="confirm_Title">အတည်ပြုပြီး</string>
+    <string name="ready_Title">အဆင်သင့်</string>
+    <string name="deliver_Title">ပို့ပြီးပြီ</string>
+    <string name="order_date_text">သင့်အော်ဒါကို ( %s )နေ့တွင် လက်ခံရရှိပါသည်</string>
+    <string name="confrim_date_text">သင့်အော်ဒါကို ( %s )နေ့တွင် အတည်ပြုလိုက်ပါပြီ</string>
+    <string name="ready_date_text">သင့်အော်ဒါကို ( %s )နေ့တွင် ပေးပို့ရန် အဆင်သင့်ဖြစ်ပါပြီ</string>
+    <string name="deliver_date_text">သင့်အော်ဒါကို ( %s )နေ့တွင် ပေးပို့ပြီးပါပြီ</string>
+
+    <string name="wishlist_success">မှတ်လိုက်ပါပြီး</string>
+    <string name="wishlist_success_text">Wishlist ထဲ ထည့်လိုက်ပါပြီ။</string>
+    <string name="wishlist_fail">ဖယ်လိုက်ပါပြီး</string>
+    <string name="wishlist_fail_text">မှတ်ထားသော စာရင်းထဲမှ ဖယ်လိုက်ပါပြီ။</string>
+
+    <string name="price_tag">စျေးနှုန်း - </string>
+    <string name="wishlist_text">wishlist</string>
+    <string name="setting_myanmar">မြန်မာ</string>
+    <string name="setting_english">English</string>
+    <string name="language">ဘာသာစကား</string>
+    <string name="qr_code">QR-Code ရှာမယ်</string>
+    <string name="help">အကူအညီ</string>
+    <string name="about_us">ကျားလေးအ​ကြောင်း</string>
+    <string name="promotion">ပရိုမိုးရှင်းများ</string>
+    <string name="knowledge">ဗဟုသုတ</string>
+    <string name="bottom_cart">စျေးခြင်း</string>
+    <string name="call_center">Call Center</string>
+    <string name="category">အမျိုးအစား</string>
+    <string name="text_empty"> </string>
+
+
+    <string name="city_title">ခဏ စောင့်ပါ</string>
+    <string name="city_wait_text">သုံးစွဲသူ အချက်အလက်များ ကြည့်ရန် ခဏစောင့်ရန် လိုအပ်ပါသည်။ </string>
+
+    <string name="news_articl">ပို့စ် အသစ်များ</string>
+    <string name="news">ပစ္စည်း အသစ်များ</string>
+    <string name="brand_store">အမှတ်တံဆိပ်များ</string>
+    <string name="brand_partner">မိတ်ဖက်ဆိုင်များ</string>
+    <string name="top_seller">ရောင်းအားကောင်းသောပစ္စည်းများ</string>
+    <string name="prices">စျေးနှုန်း ( အနည်း မှ အများ )</string>
+    <string name="discounts">လျှော့စျေး</string>
+    <string name="populars">လူကြိုက်များသော ပစ္စည်းများ</string>
+    <string name="populars_items">လူကြိုက်များသောအမျိုးအစားများ</string>
+    <string name="hot_categories">လူကြိုက်များသော ပစ္စည်းများ</string>
+    <string name="you_may_like">သင့်အတွက်</string>
+
+    <string name="from_text"> ထဲမှ </string>
+    <string name="gift">လက်ဆောင်</string>
+    <string name="gift_exchange">ကျားလေး ပွိုင့်နဲ့လဲလှယ်မယ်</string>
+    <string name = "enter_code">Pin နံပါတ် ရိုက်ထည့်ပါရန်</string>
+    <string name="purchase">လဲလှယ်မယ်</string>
+    <string name="fail_purchase">VIP Member များသာ လဲလှယ်နိုင်ပါသည်။</string>
+    <string name="fully_reddem">လဲလှယ်နိုင်သည့် အရေအတွက် ပြည့်နေပီ ဖြစ်ပါသည်။</string>
+    <string name="details">အသေးစိတ် အချက်အလက်</string>
+    <string name="contact_info">ဆက်သွယ်ရန် </string>
+    <string name="valid">ကုန်ဆုံးရက် -  %s မှ %s အထိ</string>
+    <string name="titles">အမျိုးအစား ရွေးချယ်ပါ</string>
+    <string name="logout">အကောင့်မှ ထွက်မယ်</string>
+    <string name="logout_text">အကောင့်မှ ထွက်မှာ သေချာပါသလား။</string>
+    <string name="logout_confirm">ထွက်မယ်</string>
+    <string name="logout_cancel">မထွက်ဘူး</string>
+    <string name="address">လိပ်စာ</string>
+
+
+    <string name="delete">ယခုပို့စ်ကို ဖျက်မယ်</string>
+    <string name="delete_text">ယခုပို့စ်ကို အပြီးဖျက်မှာ သေချာပါသလား။</string>
+    <string name="delete_confirm">ဖျက်မယ်</string>
+    <string name="delete_cancel">မဖျက်ဘူး</string>
+
+
+
+    <string name="member_sign_in">ကျားလေးအကောင့်ဝင်ရန် နှိပ်ပါ</string>
+    <string name="free_delivery">ပထမဆုံးအော်ဒါ အတွက် Delivery ခ free ဖြစ်ပါတယ်။</string>
+    <string name="free_delivery_one_time">ကျားလေး Vip Member များသည် တစ်လလျှင် တစ်ကြိမ်  ပို့ဆောင်ခ အခမဲ့ ရရှိပါသည်။ ယခုလ အတွက် သုံးနိုင်ပါသည်။</string>
+    <string name="free_delivery_use_now">အခု သုံးမယ်</string>
+    <string name="free_delivery_use_later">နောက်မှ သုံးမယ်</string>.
+    <string name="cart_detail_payable_text">စုစုပေါင်းတန်ဖိုး</string>
+    <string name="cart_detail_delivery_fees">ပို့ဆောင်ခ </string>
+    <string name="delivery_date">ပစ္စည်း ပို့ရမည့်ရက်...... </string>
+    <string name="delivery_time">ပစ္စည်း ပို့ရမည့်အချိန်....</string>
+    <string name="free_deliver_amt"> %s နှင့် အထက်ဝယ်ယူပါက ပို့ဆောင်ခ ၀ ကျပ်သာ ကျသင့်မည် ဖြစ်ပါသည်။</string>
+    <string name="cart_detail_show_order">အော်ဒါမှာရန်</string>
+    <string name="delivery_take_time">Delivery ၁ ရက် ကြာပါမည်။</string>
+    <string name="delivery_take_time_option">Delivery ၄ ရက် ကြာပါမည်။</string>
+    <string name="one_day_delivery">ကြာချိန် <![CDATA[<b><font color=#B71C1C>၁</font></b>]]>  ရက်</string>
+    <string name="option_day_delivery">ကြာချိန် <![CDATA[<b><font color=#B71C1C>၄</font></b>]]>  ရက်</string>
+    <string name="immediate_delivery">နေ့ချင်းရောက်</string>
+
+    <string name="no_list">Like  မရှိသေးပါ။</string>
+    <string name="noitem">ပြသရန် မရှိသေးပါ။</string>
+    <string name="user_information">သုံးစွဲသူ အချက်အလက်များ</string>
+    <string name="user_information_update">ပြင်ဆင်မယ်</string>
+
+    <string name="city_text">မြို့အမည် </string>
+    <string name="township_text">မြို့နယ် အမည် </string>
+    <string name="township">မြို့နယ်  </string>
+
+
+    <string name="city_text_select">မြို့အမည် ရွေးပါ</string>
+    <string name="township_text_select">မြို့နယ် အမည် ရွေးပါ</string>
+
+    <string name="next_button">နောက်သို့</string>
+    <string name="delete_dialog_title">ဖျက်မှာလား</string>
+    <string name="recycler_view_footer">အင်တာနက်မှ ကူးယူနေ....</string>
+
+
+    <!--member-->
+    <string name="add_member_title">ကျားလေး အဖွဲ့ဝင်ထားပါသလား</string>
+    <string name="add_member_member_id">ကျားလေး အဖွဲ့ဝင်နံပါတ်</string>
+    <string name="add_member_member_checking">ဝင်ထားပါတယ်</string>
+    <string name="add_member_cancel">မဟုတ်ပါဘူး</string>
+    <string name="add_member_confirm">ဟုတ်ပါတယ်</string>
+    <string name="confirm_member_title">ကျားလေး အဖွဲ့ဝင် ဟုတ်ပါတယ် </string>
+    <string name="member_discount">ကျားလေး အဖွဲ့ဝင် လျော့စျေး </string>
+    <string name="flash_sale_discount">ကျားလေး Flash Sale လျှော့စျေး </string>
+    <string name="flash_sale_avail">လက်ကျန် - %s ခု </string>
+    <string name="product_discount">ပစ္စည်း လျှော့စျေး </string>
+
+
+    <string name="feedback_button">ပို့မယ်</string>
+    <string name="feedback">အကြံပြုမယ်</string>
+    <string name="write_feedback">အကြံပြုချက် ရေးမယ်</string>
+    <string name="your_feedback">သင်၏ အကြံပြုချက်</string>
+    <string name="member_no">အဖွဲ့ဝင် နံပါတ်</string>
+    <string name="member_logout_title">ထွက်မယ်</string>
+    <string name="member_logout_cancel">မထွက်တော့ဘူး</string>
+    <string name="member_logout">အကောင့်မှ ထွက်မှာ သေချာပါသလား။</string>
+
+
+
+
+    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
+
+    <string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
+
+    <string name="label_twitter_login">Firebase + Twitter Login</string>
+    <string name="desc_twitter_login">Use a Twitter Login credential to authenticate with Firebase.</string>
+
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="label_anonymous_auth">Anonymous Authentication</string>
+    <string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+
+    <string name="label_custom_auth">Custom Authentication</string>
+    <string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
+
+    <string name="label_firebase_ui">FirebaseUI Auth</string>
+    <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
+
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="facebook_title_text">Facebook Login</string>
+
+    <string name="emailpassword_status_fmt">Email User: %s</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+
+    <string name="twitter_status_fmt">Twitter User: %s</string>
+    <string name="twitter_title_text">Twitter Login</string>
+
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
+
+    <string name="id_fmt">User ID: %s</string>
+    <string name="email_fmt">Email: %s</string>
+
+
+
+    <!-- Strings related to login -->
+
+    <string name="prompt_name">Name</string>
+    <string name="prompt_email">Phone</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This Phone address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="freshchat_file_provider_authority">com.kyarlay.ayesunaing.provider</string>
+
+    <string name="five">၅</string>
+    <string name="six">၆</string>
+    <string name="zero">၀</string>
+
+    <string name="aphwar_one">အဓိပတိ</string>
+    <string name="aphwar_two">အထွန်း</string>
+    <string name="aphwar_three">သိုက်</string>
+    <string name="aphwar_four">ရာဇာ</string>
+    <string name="aphwar_five">မရဏ</string>
+    <string name="aphwar_six">ဘင်္ဂ</string>
+    <string name="aphwar_seven">ပုတိ</string>
+    <string name="baydin_titleZero">မြန်မာ့ရိုးရာ</string>
+    <string name="baydin_titleOne">မဟာဘုတ်ပညာရပ်အရ</string>
+    <string name="baydin_titleTwo">အမည်ပေးနည်း</string>
+    <string name="baydin_titleThree">သင်သည်</string>
+    <string name="baydin_Moudulus">(%s) ကြွင်းမဟာဘုတ်တိုင်</string>
+    <string name="baydin_good_title">ကောင်းသော သဘောရှိသည့် နေ့နံများ</string>
+    <string name="baydin_bad_title">မကောင်းသော သဘောရှိသည့် နေ့နံများ</string>
+    <string name="name_good_one">အဓိပတိ (မြင့်မားသော) %s </string>
+    <string name="name_good_two">အထွန်း (အောင်မြင်သော) %s</string>
+    <string name="name_good_three">သိုက် (လုံခြုံအေးချမ်းသော) %s</string>
+    <string name="name_good_four">ရာဇာ (ထက်မြက်သော) %s</string>
+    <string name="name_bad_one">မရဏ (သေကြေတတ်သော) %s</string>
+    <string name="name_bad_two">ဘင်္ဂ (ပျက်စီးတတ်သော) %s</string>
+    <string name="name_bad_three">ပုတိ (ငြိုငြင်တတ်သော) %s</string>
+    <string name="name_choose_title">ကလေး၏ မွေးသက္ကရာဇ်ကို ရွေးရန် နှိပ်ပါ။</string>
+    <string name="name_remind_title">မြန်မာ့ရိုးရာ မဟာဘုတ်ပညာရပ်အရ (%s) ကြွင်းသော နှစ်များတွင် မွေးဖွားသော သားသမီးရတနာများအား<![CDATA[<br/>\u0009\u0009\u0009\u0009\u0009\u0009<b><font color=#000000> %s (ပုတိ)၊<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (ဘင်္ဂ)၊<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (မရဏ) </font></b>]]>နေ့နံ အက္ခရာများဖြင့် အမည်မပေးသင့်ပါ။<br/>‌ကောင်းသောဌာနများဖြစ်သည့်<![CDATA[<br/>\u0009\u0009\u0009\u0009\u0009\u0009 <b><font color=#000000>%s (အဓိပတိ)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (အထွန်း)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (သိုက်)<br/>\u0009\u0009\u0009\u0009\u0009\u0009 %s (ရာဇာ)</font></b>]]>နေ့နံက္ခရာများဖြင့် အမည်ပေးရပါမည်။</string>
+
+
+</resources>

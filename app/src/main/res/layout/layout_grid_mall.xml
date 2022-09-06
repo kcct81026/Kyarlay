@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    android:paddingTop="@dimen/layout_margin_reading_post"
+    >
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:background="@drawable/corner_transperant_backgound"
+            android:layout_gravity="center"
+            android:id="@+id/imgOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+
+            />
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/layoutForTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:background="@drawable/corner_transperant_backgound"
+                android:id="@+id/imgTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                />
+            <com.android.volley.toolbox.NetworkImageView
+                android:background="@drawable/corner_transperant_backgound"
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:id="@+id/imgThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutForFour"
+        android:layout_marginTop="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:background="@drawable/corner_transperant_backgound"
+            android:layout_gravity="center"
+            android:id="@+id/imgFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+
+            />
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:background="@drawable/corner_transperant_backgound"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:id="@+id/imgFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+
+            />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

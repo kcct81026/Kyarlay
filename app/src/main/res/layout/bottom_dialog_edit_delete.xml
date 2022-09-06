@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_white"
+    >
+
+    <TextView
+        android:id="@+id/txtEdit"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text=" Edit "
+        android:textColor="@color/custome_blue"
+        android:background="@drawable/background_transparent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/txtCopy"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text=" Copy "
+        android:textColor="@color/custome_blue"
+        android:background="@drawable/background_transparent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/txtDelete"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text=" Delete "
+        android:textColor="@color/coloredInactive"
+        android:background="@drawable/background_transparent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:id="@+id/txtCancel"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text=" Cancel "
+        android:textColor="@color/custome_blue"
+        android:background="@drawable/blue_square"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

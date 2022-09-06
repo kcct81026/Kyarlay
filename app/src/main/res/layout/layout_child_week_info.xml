@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/fragment_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation"
+    android:paddingTop="@dimen/layout_margin_reading_post">
+
+    <LinearLayout
+        android:id="@+id/linearMain"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:paddingLeft="@dimen/layout_margin_reading_post"
+            android:id="@+id/linearWeight"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imgLength"
+                app:srcCompat="@drawable/cm"
+                android:layout_width="30dp"
+                android:layout_height="25dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtLength"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:gravity="center"
+                android:text="48.0-51.8cm"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imgWeight"
+                app:srcCompat="@drawable/kg"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtWeight"
+                android:gravity="center"
+                android:text="48.0-51.8cm"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtQuestion"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="ကေလးငယ္ေလးမ်ား  စကားျမန္ျမန္စေျပာေစရန္ ဘာေတြလုပ္ေပးႏိုင္မလဲ"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginBottom="@dimen/layout_margin_reading_post"
+            android:paddingBottom="@dimen/size_8dp"
+            android:id="@+id/txtAnswer"
+            android:paddingLeft="@dimen/layout_margin_reading_post"
+            android:paddingRight="@dimen/layout_margin_reading_post"
+            android:textColor="@color/black"
+            android:text="ကေလးငယ္ေလးမ်ား  စကားျမန္ျမန္စေျပာေစရန္ ဘာေတြလုပ္ေပးႏိုင္မလဲ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/more"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:layout_gravity="right"
+            android:text=" Next "
+            android:background="@drawable/checked_bg"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

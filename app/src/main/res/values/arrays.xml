@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="daysNumber">
+        <item>၁</item>
+        <item>၂</item>
+        <item>၃</item>
+        <item>၄</item>
+        <item>၅</item>
+        <item>၆</item>
+        <item>၀</item>
+    </string-array>
+
+
+    <string-array name="days_long_number">
+        <item id="one">= တနင်္ဂနွေနံ (၁) <![CDATA[<b><font color=#000000><br/>အ ၊ ဥ ၊ ဧ</font></b>]]></item>
+        <item id="two">= တနင်္လာနံ (၂) <![CDATA[<b><font color=#000000><br/>က ၊ ခ ၊ ဂ ၊ ဃ ၊ င </font></b>]]></item>
+        <item id="three">= အင်္ဂါနံ (၃) <![CDATA[<b><font color=#000000><br/>စ ၊ ဆ ၊ ဇ ၊ စျ ၊ ည</font></b>]]></item>
+        <item id="four">= ဗုဒ္ဓဟူး(ရာဟု)နံ (၄) <![CDATA[<b><font color=#000000><br/>ယ ၊ ရ ၊ လ ၊ ၀ ၊ ဠ</font></b>]]></item>
+        <item id="five">= ကြာသပတေးနံ (၅) <![CDATA[<b><font color=#000000><br/>ပ ၊ ဖ ၊ ဗ ၊ ဘ ၊ မ</font></b>]]></item>
+        <item id="six"> = သောကြာနံ (၆) <![CDATA[<b><font color=#000000><br/>သ ၊ ဟ </font></b>]]></item>
+        <item id="seven">= စနေနံ (၀) <![CDATA[<b><font color=#000000><br/>တ ၊ ထ ၊ ဌ ၊ ဒ ၊ ဓ ၊ န ၊ ဏ</font></b>]]></item>
+    </string-array>
+
+
+    <string-array name="days">
+        <item id="one">တနင်္ဂနွေ</item>
+        <item id="two">တနင်္လာ</item>
+        <item id="three">အင်္ဂါ</item>
+        <item id="four">ဗုဒ္ဓဟူး</item>
+        <item id="five">ကြာသပတေး</item>
+        <item id="six">သောကြာ</item>
+        <item id="seven">စနေ</item>
+    </string-array>
+
+    <string-array name="steps">
+        <item>Address</item>
+        <item>Payment</item>
+        <item>Order Summary</item>
+    </string-array>
+
+    <string-array name="colors_list">
+        <item>@color/primary</item>
+        <item>@color/background</item>
+        <item>@color/custome_blue</item>
+    </string-array>
+</resources>

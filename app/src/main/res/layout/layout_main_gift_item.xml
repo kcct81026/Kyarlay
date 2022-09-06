@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_point_item"
+    android:background="@color/white"
+    android:layout_width="200dp"
+    android:layout_height="190dp"
+    android:gravity="center"
+    >
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:id="@+id/linearOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            >
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/imgGift"
+                android:src="@mipmap/ic_kyarlay_shape"
+                android:layout_marginBottom="1dp"
+                android:layout_width="200dp"
+                android:layout_height="110dp" />
+
+
+
+        </LinearLayout>
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_below="@+id/linearOne"
+            android:paddingLeft="8dp"
+            android:layout_marginTop="@dimen/size_8dp"
+            android:id="@+id/txtGiftTitile"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kyarlay Voucher - 1000 Kyats"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearThree"
+            android:layout_below="@+id/txtGiftTitile"
+            android:padding="@dimen/size_8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtGiftPoint"
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtGiftAcces"
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linearTwo"
+            android:layout_below="@id/linearThree"
+            android:layout_margin="@dimen/size_8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <include
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/layout_progress_bar" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtGiftPurchase"
+                android:gravity="right"
+                android:layout_gravity="center"
+                android:background="@drawable/border_grey"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purchase"
+                android:textStyle="bold"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

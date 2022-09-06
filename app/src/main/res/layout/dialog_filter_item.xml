@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearChild"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:orientation="horizontal">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txt"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_margin_reading_post"
+            />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img"
+            android:layout_width="@dimen/diment_30"
+            android:layout_height="@dimen/diment_30"
+            android:src="@drawable/check_green"
+            android:layout_marginRight="@dimen/layout_margin_reading_post" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/background" />
+
+
+
+
+</LinearLayout>

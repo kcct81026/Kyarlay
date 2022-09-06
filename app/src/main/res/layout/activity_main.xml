@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent"
+    tools:context="com.kyarlay.ayesunaing.activity.MainActivity">
+
+    <!-- The first child in the layout is for the main Activity UI-->
+    <FrameLayout android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/border_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@drawable/drawer_item_color"
+        app:menu="@menu/navigation"/>
+
+    <RelativeLayout
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/bg_center_nav_option"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/bottom_sheet_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/iv_add"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/mall_shopping_cart"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/size_8dp"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+            android:id="@+id/text_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="2dp"
+            android:text="2"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:textSize="@dimen/small_text"
+            android:background="@drawable/solid_blue_white_border"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

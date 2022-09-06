@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/title"
+                android:text="dkkdkd"
+                android:layout_gravity="center"
+                android:textSize="@dimen/title"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/layout_margin_reading_post"
+                android:paddingRight="@dimen/layout_margin_reading_post"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_gravity="top"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/warning"
+                    android:id="@+id/imgSafe"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/titleAlert"
+                    android:text="dkkdkd"
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/small_text"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/linearQuestion"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/size_8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/letter_q"
+                android:layout_width="15dp"
+                android:layout_height="15dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:id="@+id/txtQuestion"
+                android:textColor="@color/text"
+                android:text="Questions about this Product(0)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearAnswer"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/size_8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/letter_a"
+                android:layout_width="15dp"
+                android:layout_height="15dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.FadingEdgeLayout
+                android:id="@+id/fadeEdge"
+                app:fel_edge="bottom"
+                app:fel_size_bottom="@dimen/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtAnswerShort"
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="@dimen/size_8dp"
+                    android:text="Questions about this Product(0)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.kyarlay.ayesunaing.custom_widget.FadingEdgeLayout>
+
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtAnswerLong"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:textColor="@color/text"
+                android:text="Questions about this Product(0)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_height="@dimen/layout_margin_reading_post" />
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

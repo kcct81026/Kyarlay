@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:indeterminateTint="@color/black"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtProgressStatus"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:text="dkdkfkdkfkdkf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

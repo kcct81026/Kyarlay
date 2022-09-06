@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white"
+        android:layout_marginLeft="@dimen/layout_padding"
+        android:layout_marginRight="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/size_8dp"
+        android:padding="@dimen/layout_margin_reading_post"
+        >
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_gravity="center"
+            android:src="@drawable/unlock"
+            android:layout_width="@dimen/diment_30"
+            android:layout_height="@dimen/diment_30" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txt"
+            android:layout_gravity="center"
+            android:text="kdkdkkd"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

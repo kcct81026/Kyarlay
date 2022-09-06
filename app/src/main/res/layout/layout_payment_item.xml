@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearMain"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/size_8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CircleBorderImageView
+            android:id="@+id/img"
+            app:civ_border_width="3dp"
+            app:civ_border_color="@color/custome_blue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:id="@+id/imgCheck"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/check_green"
+            android:layout_width="@dimen/diment_30"
+            android:layout_height="@dimen/diment_30" />
+
+    </RelativeLayout>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txt"
+        android:textColor="@color/custome_blue"
+        android:text="Cash on Delivery"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtPercent"
+        android:textColor="@color/custome_blue"
+        android:text="0 %"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="@dimen/header_text_size"
+        android:layout_marginTop="@dimen/layout_margin_reading_post"
+        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

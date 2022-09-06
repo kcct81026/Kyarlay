@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/gridItemImageView_Cart"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="left"
+        android:id="@+id/linearMain"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/gridItemImageView"
+            android:scaleType="fitXY"
+            android:background="@drawable/border_grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:padding="@dimen/size_8dp"
+            android:layout_height="wrap_content">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:lines="2"
+                android:layout_marginBottom="5dp"
+                android:textSize="@dimen/text"
+                android:id="@+id/gridItemTitleView" />
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="1dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:textSize="@dimen/text"
+                android:id="@+id/gridItemPriceView" />
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:gravity="left"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="5dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/small_text"
+                android:id="@+id/gridItemPriceStrikeView" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

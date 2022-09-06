@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/spinner_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="1"
+        android:id="@+id/delivey_fee_spinner_layout_text"
+        style="?android:attr/spinnerDropDownItemStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:singleLine="true"
+        android:textColor="@color/text"
+        android:textSize="@dimen/title_small"
+        />
+
+</LinearLayout>

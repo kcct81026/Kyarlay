@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "899988391533",
+    "firebase_url": "https://kyarlay-142707.firebaseio.com",
+    "project_id": "kyarlay-142707",
+    "storage_bucket": "kyarlay-142707.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899988391533:android:836e536848893f2d",
+        "android_client_info": {
+          "package_name": "com.kyarlay.ayesunaing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899988391533-ldopacbvs2m2jrg2856nfj4eq0kb2llu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGUS-u-w6M3HizQydLVAEFpT2W3mFlK9M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

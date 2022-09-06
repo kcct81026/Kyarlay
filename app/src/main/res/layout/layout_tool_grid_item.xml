@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center|top"
+        android:layout_height="wrap_content">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_gravity="center|top"
+            android:layout_marginTop="8dp"
+            android:src="@mipmap/ic_kyarlay_shape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gridItemImageView" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:textSize="@dimen/text"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:gravity="center|top"
+            android:id="@+id/gridItemTitleView" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:textSize="@dimen/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/gridItemSubs" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:textSize="@dimen/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/coloredInactive"
+            android:id="@+id/gridItemWatch" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

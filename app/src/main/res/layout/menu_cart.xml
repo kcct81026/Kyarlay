@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:srcCompat="@drawable/cart_empty"
+            android:id="@+id/menu_cart_imageview"
+            android:layout_alignTop="@+id/menu_cart_idenfier"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="7dp" />
+
+     <!--   <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/menu_cart_imageview"
+            android:layout_toEndOf="@+id/menu_cart_imageview"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="6dp"
+            android:text="@string/toolbar_cart" />
+-->
+        <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+             android:id="@+id/menu_cart_idenfier"
+             android:layout_width="20dp"
+             android:layout_height="20dp"
+             android:gravity="center"
+             android:textSize="13sp"
+             android:textStyle="bold"
+             android:textColor="@color/black"
+             android:text="3"
+             android:maxEms="10"
+             android:singleLine="false"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+</LinearLayout>

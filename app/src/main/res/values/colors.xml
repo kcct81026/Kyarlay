@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="freshchat_notification_accent_color">@color/white</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+
+    <!--ui ux color code-->
+    <color name="colorSplashScreen">#F1CC23</color>
+    <color name="button_yellow">#FFCC00</color>
+    <color name="text_custom_yellow">#AE7900</color>
+    <color name="custome_blue">#007BFF</color>
+    <color name="colorSplashLight">#F7F7F7</color>
+    <color name="light_orange">#EE8546</color>
+    <color name="custom_grey_btn_color">#E3E3E3</color>
+<!--
+    <color name="yellow_one">#F7DF98</color>
+-->
+    <color name="yellow_one">#FFF4D6</color>
+
+    <color name="custom_purple">#CE93D8</color>
+    <color name="custom_purple_deep">#8040E5</color>
+    <color name="custom_background">#FFFFFF</color>
+    <color name="custom_grey">#F9F9F9</color>
+    <color name="dim_color">#AA000000</color>
+
+
+    <!--<color name="text">#000000</color>-->
+    <color name="text">#434343</color>
+
+
+
+    <color name="custom_green">#85B547</color>
+    <color name="green">#27AD2C</color>
+
+
+    <color name="user_post_background">#CE93D8</color>
+    <color name="user_post_background1">#F48FB1</color>
+    <color name="user_post_background2">#90CAF9</color>
+    <color name="user_post_background3">#FFE082</color>
+    <color name="user_post_background4">#A5D6A7</color>
+    <color name="user_post_background5">#EF9A9A</color>
+    <color name="user_post_background6">#BCAAA4</color>
+
+    <!--<color name="bg_blue_light">#c5e2fa</color>-->
+    <color name="bg_blue_light">#e7e9ef</color>
+
+    <color name="accentColor">#000000</color>
+    <color name="coloredActive">#FFFFFF</color>
+    <color name="colored">#000000</color>
+    <color name="coloredInactive">#B71C1C</color>
+
+    <color name="checked_bg">#bdbdbd</color>
+    <color name="noti">#d95f3d</color>
+    <color name="normal_bg">#ffffffff</color>
+    <color name="discount_text_color">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="line_gray">#bdbdbd</color>
+    <color name="purple">#E897F8</color>
+
+    <color name="text_comment">#B1B1B1</color>
+    <!--<color name="background">#DBDFE2</color>-->
+
+    <!--<color name="background">#e5e7ec</color>-->
+    <color name="background">#F0F0F0</color>
+
+    <color name="bg_reading">#e5e7ec</color>
+    <color name="reading_post_title">#F2F3F5</color>
+    <color name="comment_background">#56f5f0d1</color>
+    <color name="text_title">#c1000000</color>
+    <color name="black">#000000</color>
+    <!--<color name="blue">#e4a810</color>-->
+    <color name="blue">#009de0</color>
+    <color name="circlar_textview_background">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey">#F1F1ED</color>
+    <color name="background_hidden">#e7e6e6</color>
+    <color name="tool_bar_text_color">#000000</color>
+
+    <!--Dialog TEsting -->
+    <color name="primary">#EF5350</color>
+    <color name="secondary">#B71C1C</color>
+    <color name="overlay_light">#F8F8F8</color>
+
+
+    <color name="quiz_press_wrong">#C5A4A4</color>
+    <color name="bg_red_light">#ECCBCB</color>
+    <color name="tag">#E62A1C</color>
+    <color name="quiz_press_true">#e0e0e0</color>
+
+    <!--Slider-->
+    <color name="slider_selected">#000000</color>
+    <color name="slider_default">#918989</color>
+    <color name="text_grey">#646262</color>
+
+
+
+</resources>

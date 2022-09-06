@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin"
+    android:paddingRight="@dimen/margin"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_marginTop="@dimen/layout_margin_reading_post">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:background="@drawable/user_post_border"
+        android:id="@+id/layout"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:paddingLeft="@dimen/margin"
+            app:srcCompat="@drawable/user_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/textview"
+            android:paddingLeft="@dimen/margin"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

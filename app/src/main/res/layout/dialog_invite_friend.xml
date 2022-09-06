@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:visibility="gone"
+        android:layout_margin="@dimen/layout_padding"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/invite_title"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+        android:layout_margin="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:hint="@string/invite_name"
+        android:id="@+id/invite_name"
+        android:textSize="@dimen/text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar" />
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+        android:layout_margin="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:hint="@string/invite_phone"
+        android:id="@+id/invite_phone"
+        android:inputType="phone"
+        android:textSize="@dimen/text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar" />
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:visibility="gone"
+        android:layout_margin="@dimen/layout_padding"
+        android:id="@+id/text"
+        android:text="@string/invite_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="20dp"
+        android:textSize="@dimen/small_text" />
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_padding"
+        android:gravity="right"
+        android:id="@+id/dialog_product_yes"
+        android:orientation="horizontal"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:background="@drawable/checked_bg"
+            android:id="@+id/invite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

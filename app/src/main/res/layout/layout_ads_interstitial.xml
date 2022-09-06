@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text"
+    android:padding="@dimen/layout_margin_reading_post"
+    android:id="@+id/main_ads_layout"
+    >
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="@dimen/diment_30"
+        android:layout_height="@dimen/diment_30"
+        app:srcCompat="@drawable/ic_close_white_24dp" />
+
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/ads_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imgAds"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:background="@drawable/right_side_grey_solid"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:paddingRight="@dimen/size_8dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:id="@+id/txtSponsor"
+                android:text="Sponsored"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:id="@+id/info_layout"
+            android:background="@color/dim_color"
+            android:padding="4dp"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

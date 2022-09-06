@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_marginTop="@dimen/layout_margin_reading_post">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:paddingRight="@dimen/layout_padding"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingTop="@dimen/layout_padding"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_gravity="right"
+                android:id="@+id/title"
+                android:gravity="center|left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_gravity="right"
+                android:id="@+id/more"
+                app:srcCompat="@drawable/more_feature"
+                android:layout_height="25dp"
+                android:layout_width="25dp"/>
+
+
+        </LinearLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:paddingBottom="2dp"
+            android:paddingRight="@dimen/layout_padding"
+            android:paddingLeft="@dimen/layout_padding"
+            android:textSize="@dimen/small_text"
+            android:id="@+id/date"
+            android:gravity="center|left"
+            android:textColor="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:background="@color/white"
+            android:padding="@dimen/layout_padding"
+            android:id="@+id/question"
+            android:gravity="center|left"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/image"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:weightSum="1"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center|left"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:id="@+id/likes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center|right"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="1"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/like_layout"
+                    android:gravity="center|left"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/wishlist"
+                        app:srcCompat="@drawable/wishlist"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"/>
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:text="Like"
+                        android:textColor="@color/text_comment"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/comment_layout"
+                    android:gravity="center"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/comment"
+                        app:srcCompat="@drawable/comments"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"/>
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:textColor="@color/text_comment"
+                        android:text="Comment"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/share_layout"
+                    android:gravity="center|right"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/share"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"
+                        app:srcCompat="@drawable/share_icon"/>
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:text="Share"
+                        android:textColor="@color/text_comment"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

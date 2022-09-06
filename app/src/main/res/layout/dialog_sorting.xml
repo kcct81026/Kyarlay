@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/news"
+            android:gravity="left|center"
+            android:textSize="@dimen/title_small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radionews" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/prices"
+            android:gravity="left|center"
+            android:textSize="@dimen/title_small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radioprices" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/discounts"
+            android:gravity="left|center"
+            android:textSize="@dimen/title_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radiodiscounts" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/populars"
+            android:gravity="left|center"
+            android:textSize="@dimen/title_small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radiopopulars" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

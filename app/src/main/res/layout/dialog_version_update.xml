@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_version"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/dialog_save_cart_product"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="@dimen/title_small"
+        android:text="@string/new_version_and_update" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:gravity="right"
+            android:id="@+id/dialog_product_yes"
+            android:orientation="horizontal"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.50">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:background="@drawable/edit_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/current_version"
+                android:textColor="@color/text" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="right"
+            android:id="@+id/dialog_product_gotocart"
+            android:orientation="horizontal"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:background="@drawable/linear_border"
+            android:layout_weight="0.50">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/update_newversion"
+                android:textColor="@color/text" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

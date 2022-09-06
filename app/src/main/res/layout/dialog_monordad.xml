@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/group_chat_detail_boyorgirl"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/boy_layout"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/category_detail_footer"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/boy"
+            android:gravity="left|center"
+            android:textSize="@dimen/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.86"
+            android:text="@string/group_chat_detail_boy"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radioboy" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/girl_layout"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/category_detail_footer"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/girl"
+            android:gravity="left|center"
+            android:textSize="@dimen/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/group_chat_detail_girl"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radiogirl" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/other_layout"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/category_detail_footer"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/other"
+            android:gravity="left|center"
+            android:textSize="@dimen/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/group_chat_detail_girl"
+            android:layout_weight="0.86"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_weight="0.15"
+            android:id="@+id/radioother" />
+    </LinearLayout>
+
+</LinearLayout>

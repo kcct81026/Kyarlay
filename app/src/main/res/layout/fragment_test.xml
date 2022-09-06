@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:id="@+id/relative_category_detail"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:background="@drawable/app_bar_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/app_bar_color"
+                    app:tabIndicatorHeight="5dp"
+                    app:tabPaddingStart="25dp"
+                    app:tabPaddingEnd="25dp"
+                    app:tabIndicatorGravity="center"
+                    app:tabGravity="center"
+                    app:tabMode="fixed"
+                    android:layout_gravity="center"
+                    app:tabTextColor="@color/text_grey"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabIndicatorColor="@android:color/transparent"
+                    android:minHeight="@dimen/view_pager_size"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:paddingTop="@dimen/tool_bar"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

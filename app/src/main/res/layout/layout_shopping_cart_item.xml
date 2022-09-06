@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    android:layout_marginLeft="@dimen/layout_margin_reading_post"
+    android:layout_marginRight="@dimen/layout_margin_reading_post"
+    app:cardCornerRadius="@dimen/size_8dp"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="@dimen/size_8dp"
+        android:paddingBottom="@dimen/size_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+
+            android:id="@+id/relativeOne"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/img"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtAllMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/transparent_corner"
+                android:gravity="center"
+                android:paddingLeft="@dimen/layout_margin_reading_post"
+                android:paddingTop="4dp"
+                android:paddingRight="@dimen/layout_margin_reading_post"
+                android:paddingBottom="4dp"
+                android:text="5%"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_alignParentTop="true"
+                android:paddingLeft="@dimen/size_8dp"
+                android:layout_weight="1"
+                android:id="@+id/relativeTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/title"
+                    android:gravity="left"
+                    android:layout_weight="1"
+                    android:maxLines="3"
+                    android:layout_marginRight="25dp"
+                    android:text="Mammy Poko Pants Extra Soft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <ImageView
+                    android:id="@+id/imgDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    app:srcCompat="@drawable/ic_close_grey_24dp"
+                    android:gravity="center" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/relativeThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:visibility="gone"
+                    android:paddingTop="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/coloredInactive"
+                    android:textSize="@dimen/s_small_text_10sp"
+                    android:id="@+id/product_warning" />
+
+                <LinearLayout
+
+                    android:layout_below="@id/product_warning"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/price"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/text"
+                        android:text="Mammy Poko Pants Extra Soft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/price_strike"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_below="@id/product_warning"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/imgCar"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/car_one"
+                        android:layout_below="@id/product_warning"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
+
+                    <ImageView
+                        android:id="@+id/imgMinus"
+                        app:srcCompat="@drawable/ic_remove_blue_24dp"
+                        android:background="@drawable/border_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/diment_30" />
+
+                    <TextView
+                        android:background="@drawable/border_grey"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="156"
+                        android:textSize="@dimen/small_text"
+                        android:id="@+id/quantity"
+                        android:textColor="@color/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/diment_30" />
+
+
+                    <ImageView
+                        android:id="@+id/imgPlus"
+                        app:srcCompat="@drawable/ic_add_blue_24dp"
+                        android:background="@drawable/border_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/diment_30" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+  <!--  <LinearLayout
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+
+
+    </LinearLayout>-->
+
+</androidx.cardview.widget.CardView>

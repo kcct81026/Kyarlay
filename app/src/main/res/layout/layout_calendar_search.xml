@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/dialogToday"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnMinusMonth"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="-"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/dialogMonth"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:textColor="@color/text"
+            android:text="dldfldlf"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btnPlusMonth"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="+"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnMinusDay"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="-"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/dialogDay"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:textColor="@color/text"
+            android:text="dldfldlf"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btnPlusDay"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="+"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnMinusYear"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="-"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/dialogYear"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:textColor="@color/text"
+            android:text="dldfldlf"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btnPlusYear"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/black"
+            android:text="+"
+            android:textSize="@dimen/huge_big_title"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/dialogSearch"
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:background="@drawable/checked_bg"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text="Search By Date"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

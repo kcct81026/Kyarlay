@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:id="@+id/dialog">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/call_phone_dialog"
+        android:textColor="@color/black"/>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/dialog_save_cart_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title_small" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:text="@string/quantity"
+            android:layout_weight="0.5"
+            android:textSize="@dimen/text"
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:layout_weight="0.5"
+            android:layout_gravity="center"
+            android:spinnerMode="dropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/footer"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_height="40dp">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:id="@+id/dialog_product_yes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_border"
+            android:text="@string/save_to_cart_error_button"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginRight="3dp"
+            android:layout_weight="0.50"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:id="@+id/dialog_product_gotocart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/add_to_cart"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_weight="0.50" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

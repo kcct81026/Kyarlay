@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1"
+        android:background="@color/checked_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_weight="0.90"
+            android:id="@+id/text"
+            android:padding="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:textColor="@color/black"
+            android:text="Are you Kyarlay member?"
+            android:textStyle="bold"/>
+
+
+        <Switch
+            android:text="   "
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="0.10"
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

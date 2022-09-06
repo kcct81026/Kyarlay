@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/name_text"
+            android:textSize="@dimen/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:id="@+id/name"
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:gravity="top|left"
+            android:background="@drawable/edit_border" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/phone_text"
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:textSize="@dimen/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:padding="3dp"
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="phone"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:gravity="top|left"
+            android:id="@+id/phone"
+            android:background="@drawable/edit_border" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/city_text"
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:textSize="@dimen/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center"
+            android:spinnerMode="dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/city"/>
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/township_text"
+            android:textSize="@dimen/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center"
+            android:spinnerMode="dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/township"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/address_text"
+            android:textSize="@dimen/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:padding="3dp"
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="textMultiLine"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:gravity="top|left"
+            android:id="@+id/address"
+            android:background="@drawable/edit_border" />
+
+        <LinearLayout
+            android:layout_marginTop ="3dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/footer"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/user_information_update"
+                android:id="@+id/update"
+                android:textColor="@color/black"
+                android:background="@color/colorPrimary" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/app_bar_color"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar">
+
+            <LinearLayout
+                android:layout_gravity="center|right"
+                android:id="@+id/back_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/arrowleft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:layout_gravity="center"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="@dimen/tool_bar"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/title"
+                android:textSize="@dimen/title"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/layout_padding"/>
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:paddingLeft="15dp"
+                android:id="@+id/titlePhone"
+                android:text="Please Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:padding="15dp"
+                android:id="@+id/txtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/line_gray"
+                android:inputType="phone"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginTop="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:paddingLeft="15dp"
+                android:id="@+id/titleName"
+                android:text="Please Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:padding="15dp"
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/line_gray"
+                android:inputType="text"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginTop="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:paddingLeft="15dp"
+                android:id="@+id/titlePassword"
+                android:text="Please Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:padding="15dp"
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/line_gray"
+                android:inputType="textPassword"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginTop="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:paddingLeft="15dp"
+                android:id="@+id/titleConfirm"
+                android:text="Please Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:padding="15dp"
+                android:id="@+id/txtConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/line_gray"
+                android:inputType="textPassword"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomSwitchView
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:id="@+id/switch_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:paddingTop="20dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomButton
+                android:gravity="center"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/title"
+                android:id="@+id/button"
+                android:textColor="@color/white"
+                android:background="@drawable/checked_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

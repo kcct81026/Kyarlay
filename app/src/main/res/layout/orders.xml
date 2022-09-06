@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation"
+    >
+
+    <LinearLayout
+        android:id="@+id/all"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:id="@+id/order_layout"
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_no_string" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_no" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_total_price_string" />
+
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_total_price" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_date_string" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_date" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_status_string" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/title_small"
+                    android:textColor="@color/black"
+                    android:id="@+id/order_status" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

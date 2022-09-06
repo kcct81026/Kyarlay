@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/completed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/layout_margin_reading_post"
+        android:id="@+id/back_layout"
+        android:layout_width="@dimen/tool_bar"
+        android:layout_height="@dimen/tool_bar">
+        <ImageView
+            android:visibility="gone"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/arrowleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+
+    <ImageView
+        app:srcCompat="@drawable/kyarlaybanner"
+        android:layout_marginTop="@dimen/mall_tool_bar"
+        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tool_bar" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginBottom="-20dp"
+            android:id="@+id/img"
+            android:layout_width="@dimen/tool_bar"
+            android:layout_height="@dimen/tool_bar"
+            android:src="@drawable/profile_verified" />
+
+
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginLeft="27dp"
+                android:id="@+id/txt"
+                android:textColor="@color/text"
+                android:textStyle="bold"
+                android:text="Complete! "
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/mall_tool_bar" />
+
+            <ImageView
+                android:layout_toRightOf="@+id/layout"
+                android:src="@drawable/profile_completed"
+                android:layout_width="@dimen/tool_bar"
+                android:layout_height="@dimen/mall_tool_bar" />
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtTitle"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_gravity="center"
+        android:text="Register or Login "
+        android:textSize="@dimen/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtText2"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            android:layout_gravity="center"
+            android:text="Register or Login "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_margin="@dimen/size_8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user_point"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtText3"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            android:layout_gravity="center"
+            android:text="Register or Login "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:background="@drawable/checked_bg_yellow"
+        android:id="@+id/txtContinue"
+        android:layout_marginTop="@dimen/tool_bar"
+        android:layout_margin="25dp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/title_text_size"
+        android:text="Continue"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar" />
+
+
+
+
+
+
+
+</LinearLayout>

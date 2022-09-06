@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_margin="8dp"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/order_status"
+        android:textColor="@color/black"/>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:id="@+id/dialog_save_cart_product"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:paddingTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="@dimen/text"
+        android:text="@string/save_to_cart_error" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:id="@+id/yes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/close_button"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    android:layout_marginLeft="@dimen/padding_4dp"
+    android:layout_marginRight="@dimen/padding_4dp"
+    android:layout_gravity="right"
+    >
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:visibility="gone"
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You May Like"
+        android:textSize="@dimen/text"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:padding="@dimen/layout_margin_reading_post"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants"
+        />
+
+
+
+
+
+
+</LinearLayout>

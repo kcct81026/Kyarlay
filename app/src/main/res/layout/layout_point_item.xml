@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_point_item"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    android:layout_marginLeft="@dimen/layout_margin_reading_post"
+    android:layout_marginRight="@dimen/layout_margin_reading_post"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imgCover"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:padding="@dimen/size_8dp"
+            android:background="@drawable/border_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/imgIcon"
+                app:srcCompat="@drawable/ic_member"
+                android:padding="@dimen/size_8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imgMember"
+                app:srcCompat="@drawable/ic_member"
+                android:padding="@dimen/size_8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_weight="1"
+                android:text="@string/login_title"
+                android:id="@+id/txtPointTitle"
+                android:paddingLeft="@dimen/size_8dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:drawablePadding="4dp"
+                android:textSize="@dimen/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/linearGetDone"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/imgGet"
+                    android:background="@color/colorSplashScreen"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_arrow_downward_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/imgDone"
+                    android:background="@color/colorSplashScreen"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_done_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtDone"
+                    android:text="@string/button_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+

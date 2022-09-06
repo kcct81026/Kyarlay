@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/card_detail_image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation"
+
+   >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:background="@color/background"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:text="PRODUCT DETAILS"
+            android:textSize="@dimen/title"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+      <!--  <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/linearMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+
+-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.kyarlay.ayesunaing.custom_widget.FadingEdgeLayout
+                android:id="@+id/fadeEdge"
+                android:outlineSpotShadowColor="@color/background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:id="@+id/linearMain"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:textColor="@color/text"
+                        android:text="oldlfldfldl"
+                        android:padding="@dimen/layout_margin_reading_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/product_detail_description"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/option_layout"
+                        android:weightSum="1"
+                        android:paddingRight="@dimen/layout_padding"
+                        android:paddingLeft="@dimen/layout_padding"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                            android:layout_weight="0.5"
+                            android:textColor="@color/text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/product_detail_option_text" />
+
+                        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                            android:layout_weight="0.5"
+                            android:textColor="@color/text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/product_detail_option" />
+
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants"/>
+
+                </LinearLayout>
+
+            </com.kyarlay.ayesunaing.custom_widget.FadingEdgeLayout>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/more"
+                android:text="dfdfd"
+                android:gravity="center"
+                android:paddingRight="@dimen/size_8dp"
+                android:paddingLeft="20dp"
+                android:layout_gravity="right"
+                android:textColor="@color/custome_blue"
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+      <!--  <TextView
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin" />-->
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:layout_gravity="right"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    app:srcCompat="@drawable/ic_add_blue_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtAskQA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:text="View All"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:id="@+id/txtNoQA"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:textSize="@dimen/small_text"
+                android:text="Questions about this Product(0)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:id="@+id/linearQuestion"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/letter_q"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_gravity="center"
+                    android:id="@+id/txtQuestion"
+                    android:textColor="@color/text"
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:text="Questions about this Product(0)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearAnswer"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/letter_a"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_gravity="center"
+                    android:id="@+id/txtAnswer"
+                    android:textColor="@color/text"
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:text="Questions about this Product(0)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtViewAllQA"
+                android:text="Ask Question"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/checked_bg"
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:background="@color/background"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_margin" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_marginRight="@dimen/size_8dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/ic_shop"
+                    />
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/brandTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Kyarlay born box"
+                    />
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:layout_gravity="center"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:src="@mipmap/ic_shop"
+                    />
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:weightSum="1"
+                android:background="@color/white"
+                android:id="@+id/brand_layout"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/imgBrand"
+                    android:visibility="gone"
+                    android:padding="@dimen/size_8dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher"
+                    android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                    android:layout_width="@dimen/tool_bar"
+                    android:layout_height="@dimen/tool_bar" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/brand"
+                    android:layout_gravity="center|left"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/layout_margin_reading_post"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/custome_blue"
+                    android:paddingBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.90"
+                    />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

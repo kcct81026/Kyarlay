@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/richtext_main_cardView"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_marginTop="@dimen/layout_margin_reading_post">
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/newui_adapter_layout">
+
+        <LinearLayout
+            android:id="@+id/linearTop"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/page_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:visibility="gone"
+                    android:background="@drawable/ic_launcher"
+                    android:layout_gravity="left"
+                    android:id="@+id/page_image_url"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:paddingLeft="10dp"
+                        android:visibility="gone"
+                        android:textSize="@dimen/title_small"
+                        android:textColor="@color/black"
+                        android:layout_gravity="left|center"
+                        android:id="@+id/page_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:paddingLeft="10dp"
+                        android:textSize="@dimen/small_text"
+                        android:layout_gravity="left|center"
+                        android:id="@+id/page_time"
+                        android:textColor="@color/text_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_gravity="right"
+                android:id="@+id/more"
+                app:srcCompat="@drawable/more_feature"
+                android:layout_height="25dp"
+                android:layout_width="25dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/reading_detail"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:paddingTop="@dimen/margin"
+                android:paddingBottom="@dimen/margin"
+                android:paddingLeft="@dimen/layout_padding"
+                android:paddingRight="@dimen/layout_padding"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+<!--
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/title_small"
+                    android:gravity="center|left"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/title"/>
+-->
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:paddingTop="@dimen/margin"
+                    android:visibility="gone"
+                    android:textSize="@dimen/small_text"
+                    android:gravity="center|left"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/body"/>
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/image"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:background="@color/bg_reading"
+                android:paddingTop="@dimen/layout_padding"
+                android:paddingBottom="@dimen/layout_padding"
+                android:paddingLeft="@dimen/layout_margin_reading_post"
+                android:paddingRight="@dimen/layout_margin_reading_post"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:textSize="@dimen/text"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/title"/>
+
+                <!--<com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:paddingTop="@dimen/margin"
+                    android:visibility="gone"
+                    android:textSize="@dimen/small_text"
+                    android:gravity="center|left"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/body"/>-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/layoutComment"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:weightSum="1"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center|left"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:id="@+id/likes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center|right"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:background="@color/background"
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp" />
+
+            <LinearLayout
+                android:weightSum="1"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/layout_padding"
+                android:layout_marginRight="@dimen/layout_padding"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/like_layout"
+                    android:gravity="center|left"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/like"
+                        app:srcCompat="@drawable/wishlist"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"/>
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:layout_marginLeft="3dp"
+                        android:textColor="@color/text_comment"
+                        android:text="Like"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/comment_layout"
+                    android:gravity="center"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/wishlist"
+                        app:srcCompat="@drawable/comments"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"/>
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:textColor="@color/text_comment"
+                        android:layout_marginLeft="3dp"
+                        android:text="Comment"
+                        android:textSize="@dimen/small_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/share_layout"
+                    android:gravity="center|right"
+                    android:layout_weight="0.33"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/share"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"
+                        app:srcCompat="@drawable/share_icon"/>
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:textColor="@color/text_comment"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="@dimen/small_text"
+                        android:text="Share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/layout_padding"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:id="@+id/share_layoutMomo"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                app:srcCompat="@drawable/share_icon"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:textColor="@color/text_comment"
+                android:layout_marginLeft="3dp"
+                android:textSize="@dimen/small_text"
+                android:text="Share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

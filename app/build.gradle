@@ -1,0 +1,174 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+
+    dexOptions{
+       preDexLibraries false
+    }
+
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
+        compile.exclude group: 'com.google.zxing'
+    }
+    defaultConfig {
+        applicationId "com.kyarlay.ayesunaing"
+        minSdkVersion 17
+        targetSdkVersion 30
+        versionCode 93
+        versionName '7.6.1'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+
+    }
+
+    applicationVariants.all { variant ->
+        // Return compile configuration objects of a variant.
+        variant.getCompileConfiguration().resolutionStrategy {
+            // Use Gradle's ResolutionStrategy API
+            // to customize how this variant resolves dependencies.
+
+        }
+        // Return runtime configuration objects of a variant.
+        variant.getRuntimeConfiguration().resolutionStrategy {
+
+        }
+        // Return annotation processor configuration of a variant.
+        variant.getAnnotationProcessorConfiguration().resolutionStrategy {
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    buildscript {
+        dependencies {
+            //classpath 'com.google.gms:google-services:4.1.0'
+            //classpath 'com.google.gms:google-services:3.3.0'
+            //classpath 'com.google.gms:google-services:3.1.0'
+            //classpath 'com.android.tools.build:gradle:3.1.0'
+
+        }
+
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+
+        exclude 'META-INF/DEPENDENCIES'
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    /*compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
+
+
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.zhy:flowlayout-lib:1.0.3'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.slider:library:1.1.5@aar'
+    implementation 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.firebaseui:firebase-ui:0.6.0'
+    implementation 'com.google.firebase:firebase-core:17.4.2'
+    implementation ("com.google.firebase:firebase-messaging:20.1.6"){
+        exclude group: 'com.google.firebase', module: 'firebase-iid'
+    }
+
+    implementation 'com.google.firebase:firebase-iid:20.2.0'
+
+
+/*
+    implementation 'androidx.multidex:multidex-instrumentation:2.0.0'
+*/
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation project(':libzxing')
+    //implementation 'com.github.freshdesk:freshchat-android:1.4.0'
+    implementation 'com.github.freshdesk:freshchat-android:4.1.1'
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation('com.amazonaws:aws-android-sdk-mobile-client:2.6.15@aar') { transitive = true }
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.6.+'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.+'
+/*
+    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+*/
+    implementation 'com.applandeo:material-calendar-view:1.4.0'
+
+
+    implementation 'com.google.firebase:firebase-perf:16.2.5'
+    implementation files('libs/myanmar-calendar-1.0.6.RC3.jar')
+
+    // Required for Flurry Analytics integration
+    implementation 'com.flurry.android:analytics:12.1.0'
+    implementation 'com.android.installreferrer:installreferrer:1.1'
+
+    implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+
+
+    implementation 'com.google.android.play:core:1.10.0'
+
+   // implementation 'com.appsflyer:af-android-sdk:5.0.0'
+
+    implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
+
+ /*   implementation 'eu.dkaratzas:android-inapp-update:1.0.5'
+    annotationProcessor 'eu.dkaratzas:android-inapp-update:1.0.5'*/
+
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+
+    // step indicator
+    implementation 'com.github.rakshakhegde:stepper-indicator:2.0.0-alpha'
+
+    // Android-Image-Cropper
+    def android_image_cropper_version = "2.8.+"
+    api "com.theartofdev.edmodo:android-image-cropper:$android_image_cropper_version"
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
+

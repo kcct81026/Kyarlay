@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:padding="@dimen/layout_margin_reading_post"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/border_yellow_light"
+        android:padding="@dimen/padding_4dp">
+
+        <ImageView
+            android:id="@+id/img"
+            android:padding="@dimen/padding_4dp"
+            android:layout_width="@dimen/diment_40"
+            android:layout_height="@dimen/diment_30"
+            android:src="@drawable/kyarlaybanner"
+            android:layout_gravity="center"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/diment_30"
+            android:layout_marginLeft="@dimen/padding_4dp"
+            android:layout_marginRight="@dimen/padding_4dp"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/textTitleLeft"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="right"/>
+
+
+</LinearLayout>

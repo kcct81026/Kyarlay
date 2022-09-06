@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:id="@+id/relative_category_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:paddingBottom="@dimen/tool_bar"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+         <!--   <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="bottom|center"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="60dp"
+                android:padding="@dimen/layout_padding"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:background="@drawable/checked_bg"
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>-->
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_button"
+                android:padding="@dimen/size_8dp"
+                app:backgroundTint="@color/button_yellow"
+                app:srcCompat="@drawable/ic_add_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginBottom="70dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:elevation="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/navigation"
+                app:layout_constraintEnd_toStartOf="parent" />
+
+
+            <!-- <com.kyarlay.ayesunaing.custom_widget.CustomFloatingTextButton
+                 android:layout_gravity="bottom|center"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentEnd="true"
+                 android:layout_marginBottom="55dp"
+                 android:padding="@dimen/size_8dp"
+                 android:textColor="@color/white"
+                 android:background="@drawable/checked_bg"
+                 android:id="@+id/action_button"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 />
+ -->
+
+            <ProgressBar
+                android:layout_below="@+id/recycler_view"
+                android:id="@+id/progressBar1"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:indeterminateTint="@color/black"/>
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

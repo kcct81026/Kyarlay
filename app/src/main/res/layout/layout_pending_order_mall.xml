@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/border_yellow_12_radius"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    android:id="@+id/linearOrderStatus"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linearOrder"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order - "
+            android:textColor="@color/text" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/coloredInactive"
+            android:text="3"
+            android:id="@+id/txtCount"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/countTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/text"
+            android:layout_weight="1"
+            android:paddingLeft="4dp"
+            android:text="dfdfd"/>
+
+        <TextView
+            android:id="@+id/txtViewAll"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All"
+            android:textColor="@color/custome_blue"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="4dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearOrderPlaced"
+            android:layout_weight="0.30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/img_order_place"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/order_placed"/>
+
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toRightOf="@+id/img_order_place"
+                    android:background="@color/black"/>
+
+            </RelativeLayout>
+
+            <TextView
+
+                android:id="@+id/orderTitle"
+                android:textStyle="bold"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:id="@+id/hide_order_place"
+                android:background="@drawable/border_top_left_right_corner_yello"
+                android:layout_width="25dp"
+                android:layout_height="3dp"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOrderConfirmed"
+            android:layout_weight="0.30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                >
+
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/img_confirm"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/order_confrimed"/>
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toLeftOf="@+id/img_confirm"
+                    android:background="@color/black"/>
+
+
+                <TextView
+
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toRightOf="@+id/img_confirm"
+                    android:background="@color/black"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/confirmTitle"
+                android:textStyle="bold"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:id="@+id/hide_order_confirm"
+                android:background="@drawable/border_top_left_right_corner_yello"
+                android:layout_width="25dp"
+                android:layout_height="3dp"
+
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOrderReady"
+            android:layout_weight="0.30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/img_ready"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/order_ready" />
+                <TextView
+
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toLeftOf="@+id/img_ready"
+                    android:background="@color/black"/>
+
+                <TextView
+
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toRightOf="@+id/img_ready"
+                    android:background="@color/black"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/readyTitle"
+                android:textStyle="bold"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Ready"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:id="@+id/hide_order_ready"
+                android:background="@drawable/border_top_left_right_corner_yello"
+                android:layout_width="25dp"
+                android:layout_height="3dp"
+
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOrderDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/img_deliver"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/order_delivery"/>
+                <TextView
+
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_toLeftOf="@+id/img_deliver"
+                    android:background="@color/black"/>
+
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/deliverTitle"
+                android:textStyle="bold"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deliver"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:id="@+id/hide_order_deliver"
+                android:background="@drawable/border_top_left_right_corner_yello"
+                android:layout_width="25dp"
+                android:layout_height="3dp"
+
+                />
+
+
+
+        </LinearLayout>
+
+
+        <ImageView
+
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom"
+            app:srcCompat="@drawable/ic_baseline_signal_cellular_4_bar_24"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linear_payment"
+        android:layout_margin="4dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_gravity="center"
+            android:id="@+id/imgPayment"
+            android:src="@drawable/ic_launcher"
+            android:layout_width="@dimen/diment_40"
+            android:layout_height="@dimen/diment_40" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtPayName"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            android:layout_marginLeft="@dimen/size_8dp"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/coloredInactive"
+            android:layout_marginLeft="@dimen/size_8dp"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/size_8dp"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

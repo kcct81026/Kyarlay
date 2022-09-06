@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:id="@+id/linearMain">
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txtSelect"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorSplashScreen"/>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:padding="4dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/txtHidden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:gravity="center|top"
+            android:layout_height="match_parent">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_gravity="center|top"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/gridItemImageView" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:textSize="@dimen/text"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:gravity="center|top"
+                android:id="@+id/gridItemTitleView" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

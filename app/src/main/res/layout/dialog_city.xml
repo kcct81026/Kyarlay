@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/language"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/city_layout"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/category_detail_footer"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_gravity="center"
+            android:id="@+id/city_text"
+            android:layout_weight="0.40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="@string/order_phone_no"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:layout_gravity="center"
+            android:layout_weight="0.60"
+            android:spinnerMode="dropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/city" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/township_layout"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/category_detail_footer"
+        android:layout_width="match_parent"
+        android:weightSum="1">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_gravity="center"
+            android:id="@+id/township_text"
+            android:layout_weight="0.40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="@string/order_phone_no"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:layout_gravity="center"
+            android:layout_weight="0.60"
+            android:spinnerMode="dropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/township" />
+    </LinearLayout>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomButton
+        android:layout_marginTop="5dp"
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="Next"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_gravity="center" />
+
+</LinearLayout>

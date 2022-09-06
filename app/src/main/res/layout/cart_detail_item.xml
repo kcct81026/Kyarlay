@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation">
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.android.volley.toolbox.NetworkImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/image"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:paddingLeft="3dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/middle"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="right"
+                    android:id="@+id/remove"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    app:srcCompat="@drawable/product_delete" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:paddingLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text"
+                    android:textColor="@color/black"
+                    android:id="@+id/title" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:paddingLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_text"
+                    android:textColor="@color/black"
+                    android:id="@+id/option" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/margin"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/decrease"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:padding="2dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/decrease_count" />
+
+            </LinearLayout>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:text="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/huge_title"
+                android:id="@+id/product_count" />
+            <LinearLayout
+                android:id="@+id/increase"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:padding="2dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/increase_count" />
+
+
+            </LinearLayout>
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:paddingRight="5dp"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/huge_title"
+                android:text="15000 Kyats"
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:id="@+id/total_price" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

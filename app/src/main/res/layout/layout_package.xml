@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/gridItemImageView_Cart"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtClinicTitle"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:text="dkkdkfdkfkdkfkd"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_text_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imgClicnic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginTop="@dimen/size_8dp"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:id="@+id/txtClinicPhone"
+            android:textColor="@color/coloredInactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Kyarlay Voucher - 1000 Kyats"
+            android:textStyle="bold"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:id="@+id/txtShowLess"
+            android:textColor="@color/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Kyarlay Voucher - 1000 Kyats"
+            android:textStyle="bold"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:id="@+id/txtClinicAddress"
+            android:textColor="@color/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Kyarlay Voucher - 1000 Kyats"
+            android:textStyle="bold"
+            />
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

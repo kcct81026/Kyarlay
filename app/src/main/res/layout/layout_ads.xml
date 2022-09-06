@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    android:layout_marginLeft="@dimen/layout_padding"
+    android:layout_marginRight="@dimen/layout_padding"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:id="@+id/main_ads_layout"
+    >
+
+
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/ads_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imgAds"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:background="@drawable/right_side_grey_solid"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:paddingRight="@dimen/size_8dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:id="@+id/txtSponsor"
+                android:text="Sponsored"
+                android:textSize="@dimen/s_small_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:id="@+id/info_layout"
+            android:background="@color/dim_color"
+            android:padding="4dp"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

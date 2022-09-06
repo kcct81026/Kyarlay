@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:id="@+id/dialog"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/bottomTitle"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:text="ddkk"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/minTitle"
+            android:padding="@dimen/size_8dp"
+            android:text="Min price :"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:padding="@dimen/size_8dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/minSpinner" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:id="@+id/edMin"
+            android:padding="@dimen/size_8dp"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/maxTitle"
+            android:padding="@dimen/size_8dp"
+            android:text="Max price :"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:padding="@dimen/size_8dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/maxSpinner" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:id="@+id/edMax"
+            android:padding="@dimen/size_8dp"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/cancel"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:background="@color/background"
+            android:text="Cancel"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/set"
+            android:paddingTop="@dimen/layout_margin_reading_post"
+            android:paddingBottom="@dimen/layout_margin_reading_post"
+            android:paddingLeft="@dimen/icon_top_margin"
+            android:paddingRight="@dimen/icon_top_margin"
+            android:text="Set"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/background"
+            android:textColor="@color/text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

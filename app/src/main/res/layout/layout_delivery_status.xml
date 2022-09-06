@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_user_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/layoutBasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/imgBasket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/shopping_cart_grey"
+                />
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:paddingTop="@dimen/size_8dp"
+                android:text="dfd]d]"
+                android:gravity="center|top"
+                android:id="@+id/txtBasket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/layoutPending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/imgPending"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/truck_grey"
+                />
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtPending"
+                android:paddingTop="@dimen/size_8dp"
+                android:text="dfd]d]"
+                android:gravity="center|top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/layoutComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/imgComplete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/customer_rate_grey"
+                />
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtComplete"
+                android:paddingTop="@dimen/size_8dp"
+                android:text="dfd]d]"
+                android:gravity="center|top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

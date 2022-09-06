@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/colorSplashScreen"/>
+    <corners android:topRightRadius="@dimen/layout_margin_reading_post"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="@dimen/layout_margin_reading_post"
+        android:bottomLeftRadius="0dp"/>
+
+</shape>

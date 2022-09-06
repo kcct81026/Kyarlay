@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:id="@+id/relative_category_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:paddingLeft="@dimen/size_8dp"
+            android:background="@drawable/app_bar_color"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginLeft="3dp"
+                android:paddingLeft="15dp"
+                android:id="@+id/title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_gravity="center"
+                    android:textColor="@color/text"
+                    android:id="@+id/title"
+                    android:textSize="@dimen/title_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center|left"
+                android:id="@+id/like_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/wishlist"
+                    android:layout_width="@dimen/diment_30"
+                    android:layout_height="@dimen/diment_30"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/like_count"
+                    app:srcCompat="@drawable/wishlist_clicked" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                    android:id="@+id/like_count"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center"
+                    android:maxEms="10"
+                    android:singleLine="false"
+                    android:text="3"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_gravity="center|left"
+                android:id="@+id/noti_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/notifications"
+                    android:layout_width="@dimen/diment_30"
+                    android:layout_height="@dimen/diment_30"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/noti_count"
+                    app:srcCompat="@drawable/notification" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                    android:id="@+id/noti_count"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:maxEms="10"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginRight="5dp">
+
+                <com.kyarlay.ayesunaing.custom_widget.CircularNetworkImageView
+                    android:id="@+id/profileIcon"
+                    android:layout_width="@dimen/diment_30"
+                    android:layout_height="@dimen/diment_30"
+                    android:layout_alignTop="@+id/chatCount"
+                    android:layout_alignParentStart="true"
+                    />
+
+                <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                    android:id="@+id/chatCount"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center"
+                    android:maxEms="10"
+                    android:singleLine="false"
+                    android:text="3"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:paddingTop="@dimen/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:paddingBottom="@dimen/tool_bar"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="bottom|center"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="60dp"
+                android:padding="@dimen/layout_padding"
+                android:textColor="@color/white"
+                android:background="@drawable/checked_bg"
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+           <!-- <com.kyarlay.ayesunaing.custom_widget.CustomFloatingTextButton
+                android:layout_gravity="bottom|center"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="55dp"
+                android:padding="@dimen/size_8dp"
+                android:textColor="@color/white"
+                android:background="@drawable/checked_bg"
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+-->
+
+            <ProgressBar
+                android:layout_below="@+id/recycler_view"
+                android:id="@+id/progressBar1"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:indeterminateTint="@color/black"/>
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

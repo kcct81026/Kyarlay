@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/without_bar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/layout_margin_reading_post"
+        android:id="@+id/back_layout"
+        android:layout_width="@dimen/tool_bar"
+        android:layout_height="@dimen/tool_bar">
+        <ImageView
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/arrowleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ImageView
+        app:srcCompat="@drawable/kyarlaybanner"
+        android:layout_marginTop="@dimen/diment_40"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tool_bar" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtShopTitle"
+        android:layout_marginTop="@dimen/diment_30"
+        android:layout_gravity="center"
+        android:textSize="@dimen/title_text_size"
+        android:textColor="@color/text"
+        android:text="Shop with KyarLay App"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:textSize="@dimen/text" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/layout_margin_reading_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:color="@color/text">
+        <com.kyarlay.ayesunaing.custom_widget.PrefixEditText
+            android:id="@+id/editPhone"
+            android:paddingLeft="@dimen/layout_padding"
+            android:cursorVisible="true"
+            android:tag="09"
+            android:inputType="phone"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/due_tool_bar"
+            android:background="@drawable/border_grey"
+            android:layout_margin="25dp"
+            />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtPhoneTitle"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/diment_40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:text="Phone Number"
+                android:background="@color/custom_grey"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:background="@drawable/grey_solid_button"
+        android:id="@+id/txtContinue"
+        android:layout_marginTop="@dimen/diment_30"
+        android:layout_margin="25dp"
+        android:layout_gravity="center"
+        android:text="Continue"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar" />
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:gravity="right|center"
+        android:layout_gravity="right|center"
+        android:id="@+id/callLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center|right"
+            app:srcCompat="@drawable/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_gravity="center|right"
+            android:textColor="@color/black"
+            android:id="@+id/to_contact"
+            android:text="Contact"
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

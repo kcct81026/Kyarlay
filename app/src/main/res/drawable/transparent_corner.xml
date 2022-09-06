@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/custom_purple"/>
+    <corners
+        android:topRightRadius="@dimen/layout_margin_reading_post"
+        android:bottomLeftRadius="@dimen/layout_margin_reading_post"
+
+        />
+
+
+</shape>

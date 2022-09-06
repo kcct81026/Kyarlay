@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt_tab_sticky"
+    android:layout_margin="@dimen/size_8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Helloworld"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_centerInParent="true"
+    android:singleLine="true"
+    android:textColor="@color/text">
+
+</TextView>

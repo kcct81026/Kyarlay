@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="daysNumber">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="days_long_number">
+        <item id="one">= တနဂၤေႏြနံ (၁) =  အ ၊ ဥ ၊ ဧ</item>
+        <item id="two">= တနလၤာနံ (၂) = က ၊ ခ ၊ ဂ ၊ ဃ ၊ င </item>
+        <item id="three">= အဂၤါနံ (၃) = စ ၊ ဆ ၊ ဇ ၊ စ် ၊ ည</item>
+        <item id="four">= ဗုဒၶဟူး(ရာဟု)နံ (၄) = ယ ၊ ရ ၊ လ ၊ ၀ ၊ ဠ</item>
+        <item id="five">= ၾကာသပေတးနံ (၅) = ပ ၊ ဖ ၊ ဗ ၊ ဘ ၊ မ</item>
+        <item id="six"> = ေသာၾကာနံ (၆) = သ ၊ ဟ </item>
+        <item id="seven">= စေနနံ (၀) = တ ၊ ထ ၊ ဌ ၊ ဒ ၊ ဓ ၊ န ၊ ဏ</item>
+    </string-array>
+
+    <string-array name="days">
+        <item id="one">တနဂၤေႏြ</item>
+        <item id="two">တနလၤာ</item>
+        <item id="three">အဂၤါ</item>
+        <item id="four">ဗုဒၶဟူး</item>
+        <item id="five">ၾကာသပေတး</item>
+        <item id="six">ေသာၾကာ</item>
+        <item id="seven">စေန</item>
+    </string-array>
+
+    <string-array name="steps">
+        <item>Address</item>
+        <item>Payment</item>
+        <item>Order Summary</item>
+    </string-array>
+
+    <string-array name="colors_list">
+        <item>@color/primary</item>
+        <item>@color/background</item>
+        <item>@color/custome_blue</item>
+    </string-array>
+
+</resources>

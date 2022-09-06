@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    app:cardCornerRadius="@dimen/size_8dp"
+    android:layout_margin="@dimen/padding_4dp"
+    >
+
+
+    <LinearLayout
+        android:background="#F8F8F8"
+        android:id="@+id/linear"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/size_8dp"
+            android:layout_marginBottom="@dimen/size_8dp"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/title"
+            android:layout_weight="1"
+            android:background="#F0F0F0"
+            android:paddingLeft="@dimen/padding_4dp"
+            android:paddingRight="@dimen/padding_4dp"
+            android:paddingTop="@dimen/layout_margin_reading_post"
+            android:paddingBottom="@dimen/layout_margin_reading_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

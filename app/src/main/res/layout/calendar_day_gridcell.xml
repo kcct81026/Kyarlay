@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="0.1dp"
+    >
+
+    <LinearLayout
+
+        android:id="@+id/liear"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/calendarDay"
+            android:visibility="gone"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/calendarEnglish"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/s_small_text_10sp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/calendarMyanmar"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:background="@mipmap/ic_fullmoon"
+            android:gravity="center"
+            android:padding="2dp"
+            android:layout_gravity="center"
+            android:text="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/calendarYatyarzar"
+            android:gravity="center"
+            android:textSize="@dimen/s_small_text_10sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RatingBar
+            android:visibility="gone"
+            android:outlineAmbientShadowColor="@color/colorSplashScreen"
+            android:paddingTop="@dimen/layout_margin_reading_post"
+            android:id="@+id/rating"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:numStars="3"
+            android:progressTint="@color/colorSplashScreen"
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
+
+    </LinearLayout>
+
+</LinearLayout>

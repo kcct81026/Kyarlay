@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:paddingLeft="@dimen/layout_margin_reading_post"
+        android:paddingRight="@dimen/size_8dp"
+        android:paddingTop="@dimen/layout_padding"
+        android:paddingBottom="@dimen/layout_padding"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:gravity="center|left"
+                android:layout_weight="1"
+                android:id="@+id/usage_type"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="dkdkkfdkfkdkfkdf dkdkfdkfdfdkfkdkkd "
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:gravity="center|right"
+                android:id="@+id/point"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:text="100"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textSize="@dimen/text"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/date"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="dfdfdfdfdfdfdfd"
+            android:textColor="@color/text_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

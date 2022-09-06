@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/without_bar"
+    >
+
+   <!-- <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+-->
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:id="@+id/back_layout"
+                android:layout_width="@dimen/tool_bar"
+                android:layout_height="@dimen/tool_bar">
+                <ImageView
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/arrowleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:gravity="center"
+                android:id="@+id/toolTitle"
+                android:text="Profile Name"
+                android:textColor="@color/text"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar" />
+        </RelativeLayout>
+
+
+
+
+        <ImageView
+            app:srcCompat="@drawable/kyarlaybanner"
+            android:layout_marginTop="@dimen/diment_40"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/tool_bar" />
+
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/layout_margin_reading_post"
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:layout_width="180dp"
+            android:layout_height="180dp">
+
+            <com.kyarlay.ayesunaing.custom_widget.CircleImageView
+
+                android:layout_centerInParent="true"
+                android:id="@+id/img"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/field_width_standard"
+                android:layout_height="@dimen/field_width_standard" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imgCamera"
+                android:src="@mipmap/camera_image_profile"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/diment_30"
+                android:layout_height="@dimen/diment_30" />
+
+
+        </RelativeLayout>
+
+
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtTitle"
+            android:layout_marginTop="@dimen/layout_padding"
+            android:layout_gravity="center"
+            android:textSize="@dimen/title"
+            android:text="Register or Login "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:background="@drawable/grey_solid_button"
+            android:id="@+id/txtContinue"
+            android:layout_marginTop="@dimen/diment_30"
+            android:layout_margin="25dp"
+            android:layout_gravity="center"
+            android:text="Continue"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:gravity="right|center"
+            android:layout_gravity="right|center"
+            android:id="@+id/callLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:layout_gravity="center|right"
+                app:srcCompat="@drawable/call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="center|right"
+                android:textColor="@color/black"
+                android:id="@+id/to_contact"
+                android:text="Contact"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

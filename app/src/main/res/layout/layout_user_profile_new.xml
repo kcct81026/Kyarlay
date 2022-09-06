@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_user_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:background="@drawable/kyarlay_laucher_bg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/layout_margin_reading_post"
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:layout_width="110dp"
+            android:layout_height="110dp">
+
+            <com.kyarlay.ayesunaing.custom_widget.CircularNetworkImageView
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:layout_centerInParent="true"
+                android:id="@+id/imgProfile"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:id="@+id/txtHidden"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/diment_30"
+                android:layout_height="@dimen/diment_30"/>
+
+            <ImageView
+                android:layout_below="@+id/txtHidden"
+                android:id="@+id/imgEdit"
+                android:src="@drawable/edit_blue_img"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/diment_30"
+                android:layout_height="@dimen/diment_30" />
+
+
+        </RelativeLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="kdkfdkfkd"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="o55148484484"
+            android:layout_marginTop="@dimen/size_8dp"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtMemberStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Kyarlay VIP"
+            android:layout_marginTop="@dimen/size_8dp"
+            />
+
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:id="@+id/linearWishList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                >
+
+                <TextView
+                    android:id="@+id/txtWishListCount"
+                    android:textStyle="bold"
+                    android:textColor="@color/text"
+                    android:text="12"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:text="Wishlist"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                android:background="@color/background"
+                android:layout_width="2dp"
+                android:layout_height="@dimen/tool_bar"/>
+
+            <LinearLayout
+                android:id="@+id/linearPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                >
+
+                <TextView
+                    android:id="@+id/txtPoint"
+                    android:textStyle="bold"
+                    android:textColor="@color/text"
+                    android:text="12"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:text="Points"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                android:background="@color/background"
+                android:layout_width="2dp"
+                android:layout_height="@dimen/tool_bar"/>
+
+            <LinearLayout
+                android:id="@+id/linearPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                >
+
+                <TextView
+                    android:id="@+id/txtPostCount"
+                    android:textStyle="bold"
+                    android:textColor="@color/text"
+                    android:text="12"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:text="My Posts"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

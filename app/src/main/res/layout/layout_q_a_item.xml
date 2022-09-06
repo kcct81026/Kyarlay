@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:id="@+id/linearMain"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtTwelveDp"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+
+        <LinearLayout
+            android:id="@+id/linearQuestion"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/letter_q"
+                android:layout_width="15dp"
+                android:layout_height="15dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="center"
+                android:id="@+id/txtQuestion"
+                android:text="kkdkdkfkdk"
+                android:textColor="@color/text"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                android:id="@+id/noti_show"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:maxEms="10"
+                android:singleLine="false"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearAnswer"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/letter_a"
+                android:layout_width="15dp"
+                android:layout_height="15dp" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="center"
+                android:id="@+id/txtAnswer"
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/text"
+                android:text="Questions about this Product(0)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/read"
+            android:layout_marginBottom="@dimen/layout_margin_reading_post"
+            android:layout_marginRight="@dimen/layout_margin_reading_post"
+            android:gravity="center|right"
+            android:textColor="@color/text_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text"/>
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/txtOneDp"
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/fragment_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:paddingLeft="@dimen/layout_margin_reading_post"
+            android:paddingRight="@dimen/layout_margin_reading_post"
+            android:paddingBottom="@dimen/layout_margin_reading_post"
+            android:paddingTop="17dp"
+            android:gravity="center"
+            android:id="@+id/title"
+            android:text="title"
+            android:textColor="@color/black"
+            android:background="@color/colorSplashScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:id="@+id/main_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"/>
+
+
+
+            <!--     <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                     android:id="@+id/more"
+                     android:gravity="center"
+                     android:textColor="@color/white"
+                     android:text="dfdfd"
+                     android:background="@drawable/checked_bg"
+                     style="@style/BoldItalic"
+                     android:paddingLeft="20dp"
+                     android:paddingRight="20dp"
+                     android:layout_marginRight="@dimen/layout_margin_reading_post"
+                     android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                     android:layout_gravity="right"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />-->
+
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/more"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:layout_gravity="center"
+                android:background="@drawable/checked_bg_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="dfdfd"
+                android:layout_margin="@dimen/layout_margin_reading_post"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

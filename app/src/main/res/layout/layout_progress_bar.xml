@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:progressDrawable="@drawable/progress_bg"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:progress="0"
+        android:textAlignment="center"
+        android:id="@+id/barFull" />
+
+    <ProgressBar
+        android:progressDrawable="@drawable/progress_bg"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:progress="100"
+        android:textAlignment="center"
+        android:id="@+id/barFill" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/barText"
+        android:gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:paddingLeft="@dimen/size_8dp"
+        android:text="2 sold"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/small_text" />
+
+</FrameLayout>
+
+

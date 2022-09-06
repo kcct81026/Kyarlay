@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/gridItemImageView_Cart"
+    android:gravity="center"
+    app:cardElevation="@dimen/cardElevation"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    app:cardCornerRadius="@dimen/padding_4dp"
+    >
+    <LinearLayout
+        android:padding="@dimen/padding_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:padding="@dimen/padding_4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <CheckBox
+                android:id="@+id/chk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Diaper"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_gravity="center"
+                />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 x"
+                android:layout_marginRight="@dimen/size_8dp"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:id="@+id/imgInfoSelf"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="@dimen/size_8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/info"
+                />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="@dimen/diment_40"
+                android:background="@color/background"/>
+
+            <ImageView
+                android:id="@+id/imgInfoKyarlay"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="@dimen/size_8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/info"
+                />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imgDelete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="@dimen/size_8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/product_delete"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearShopping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="@dimen/layout_padding">
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtShopTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Shop at Kyarlay" />
+
+            <ImageView
+                android:layout_margin="@dimen/size_8dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/right_arrow"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

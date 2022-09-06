@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+    android:id="@+id/videoCard"
+    app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imgLogo"
+            android:src="@mipmap/ic_kyarlay_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:padding="@dimen/size_8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:id="@+id/txtClinicTitle"
+                android:text="dkkdkfdkfkdkfkd"
+                android:textSize="@dimen/title_small"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:id="@+id/txtAddressTitle"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:id="@+id/txtClinicAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:visibility="gone"
+                android:id="@+id/txtPhoneTitle"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:gravity="center"
+                android:id="@+id/txtClinicPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Kyarlay Voucher - 1000 Kyats"
+                android:textStyle="bold"
+                />
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:id="@+id/txtWatch"
+                android:textColor="@color/coloredInactive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="@string/brand_more"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

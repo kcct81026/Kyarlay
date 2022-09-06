@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:CircleProgressView="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/fragment_category"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/cardElevation"
+>
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:paddingBottom="@dimen/layout_margin_reading_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:visibility="gone"
+                android:id="@+id/txtNoInfo"
+                android:text="Edidfdfdt"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/img"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <LinearLayout
+                android:id="@+id/linearAll"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="@dimen/diment_40"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtPrev"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/layout_margin_reading_post"
+                    android:text=" Prev "
+                    android:background="#feafb3"
+                    android:padding="@dimen/size_8dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/circularProgressbar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/circular"
+                        android:secondaryProgress="100" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/babyAge"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:paddingLeft="@dimen/layout_margin_reading_post"
+                        android:paddingRight="@dimen/layout_margin_reading_post"
+                        android:gravity="center"
+                        android:text="25%"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </RelativeLayout>
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:id="@+id/txtNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/layout_margin_reading_post"
+                    android:background="#feafb3"
+                    android:padding="@dimen/size_8dp"
+                    android:text=" Next "
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:CircleProgressView="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:id="@+id/fragment_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/cardElevation"
+        android:layout_marginTop="@dimen/layout_margin_reading_post">
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:visibility="gone"
+                    android:id="@+id/txtNoInfo"
+                    android:text="Edidfdfdt"
+                    android:padding="@dimen/layout_margin_reading_post"
+                    android:layout_gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="@color/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/img"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="fitCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linearAll"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="@dimen/tool_bar"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/txtPrev"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="@dimen/layout_margin_reading_post"
+                        android:layout_gravity="center"
+                        android:text=" Prev "
+                        android:padding="@dimen/size_8dp"
+                        android:background="#feafb3"
+                        android:textSize="@dimen/smallText"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+                            android:id="@+id/circularProgressbar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="50"
+                            android:progressDrawable="@drawable/circular"
+                            android:secondaryProgress="100" />
+
+                        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                            android:id="@+id/babyAge"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:paddingLeft="@dimen/layout_margin_reading_post"
+                            android:paddingRight="@dimen/layout_margin_reading_post"
+                            android:gravity="center"
+                            android:text="25%"
+                            android:textSize="@dimen/smallText"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                    </RelativeLayout>
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/txtNext"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                        android:text=" Next "
+                        android:padding="@dimen/size_8dp"
+                        android:textSize="@dimen/smallText"
+                        android:background="#feafb3"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>-->

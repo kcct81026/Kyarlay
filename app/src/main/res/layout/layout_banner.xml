@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/cardView"
+    app:cardElevation="@dimen/cardElevation"
+    app:cardCornerRadius="@dimen/cardElevation"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+   >
+
+
+    <LinearLayout
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/txtHidden"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin_reading_post" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/textTitle"
+            android:textColor="@color/black"
+            android:background="@drawable/border_top_left_right_corner_yello"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/size_8dp"
+            android:layout_gravity="center"
+            android:text="dkfdkfkdk"
+            android:textSize="@dimen/title_small"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:id="@+id/textTitleLeft"
+            android:layout_marginLeft="@dimen/size_8dp"
+            android:textColor="@color/black"
+            android:background="@drawable/border_top_left_right_corner_yello"
+            android:gravity="center"
+            android:textSize="@dimen/title_small"
+            android:layout_gravity="left"
+            android:text="dkfdkfkdk"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.SelectableRoundedImageView
+            android:id="@+id/img"
+            android:scaleType="fitXY"
+            app:sriv_left_top_corner_radius="30dp"
+            app:sriv_right_top_corner_radius="30dp"
+            app:sriv_left_bottom_corner_radius="0dp"
+            app:sriv_right_bottom_corner_radius="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

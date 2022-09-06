@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/layout_margin_reading_post"
+     app:cardElevation="@dimen/cardElevation">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/cart_detail_foooter"
+            android:gravity="center|top"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/cart_detail_backgorund"
+            android:textColor="@color/text"
+            android:background="@color/background"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_padding_14dp" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_first_time"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:layout_marginTop="@dimen/layout_margin_reading_post"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar"
+                android:background="@drawable/first_time_bg"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/layout_margin_reading_post"
+                android:paddingRight="@dimen/layout_margin_reading_post"
+
+                >
+
+                <ImageView
+                    android:layout_marginTop="@dimen/layout_margin_reading_post"
+                    android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/product_detail_footer_edittext"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/first_time_icon"
+                    android:scaleType="fitXY"
+                    />
+
+                <TextView
+                    android:id="@+id/txtFirstTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delivery_date"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/s_small_text_10sp"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="@dimen/padding_4dp"
+                    android:layout_marginLeft="@dimen/padding_4dp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

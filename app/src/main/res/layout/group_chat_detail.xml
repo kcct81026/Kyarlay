@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:background="@drawable/app_bar_color"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_gravity="center|right"
+                android:id="@+id/back_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/arrowleft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:id="@+id/title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_gravity="center"
+                    android:textColor="@color/tool_bar_text_color"
+                    android:id="@+id/title"
+                    android:textSize="@dimen/title_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:paddingTop="@dimen/tool_bar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:background="@color/background"
+            android:padding="@dimen/layout_padding"
+            android:id="@+id/question_detail_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:id="@+id/phone_layout"
+            android:gravity="center|top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:textColor="@color/line_gray"
+                android:cursorVisible="false"
+                android:padding="15dp"
+                android:background="@drawable/edit_border"
+                android:id="@+id/momordad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:id="@+id/name_layout"
+            android:gravity="center|top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:textColor="@color/line_gray"
+                android:cursorVisible="false"
+                android:padding="15dp"
+                android:background="@drawable/edit_border"
+                android:id="@+id/boyorgirl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:paddingTop="10dp"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:id="@+id/date_layout"
+            android:gravity="center"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:textColor="@color/line_gray"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:layout_weight="0.6"
+                android:padding="15dp"
+                android:background="@drawable/edit_border"
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:ems="10"
+                android:inputType="textPersonName"/>
+
+
+        </LinearLayout>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:gravity="center"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title"
+            android:id="@+id/button"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

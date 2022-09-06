@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/dialog">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linearloading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/dialog_loading_title"
+            android:textColor="@color/black"
+            android:text="This is title"
+            android:textSize="@dimen/text"
+            android:padding="@dimen/layout_padding"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="@dimen/layout_margin_reading_post"
+            android:layout_marginBottom="@dimen/layout_margin_reading_post"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+
+
+
+
+    <ProgressBar
+        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+        android:id="@+id/progressBar1"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:indeterminateTint="@color/black"/>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginBottom="@dimen/layout_margin_reading_post"
+        android:id="@+id/dialog_loading_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text"
+        android:padding="@dimen/layout_padding"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

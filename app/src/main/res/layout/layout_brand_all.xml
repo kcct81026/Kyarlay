@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/app_bar_color"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar">
+
+                <LinearLayout
+                    android:layout_gravity="center|right"
+                    android:id="@+id/back_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center|right"
+                        app:srcCompat="@drawable/arrowleft"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/title_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textColor="@color/tool_bar_text_color"
+                        android:id="@+id/title"
+                        android:textSize="@dimen/title_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentStart="true"
+                        app:srcCompat="@drawable/down_arrow_black" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center|left"
+                    android:id="@+id/like_layot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/wishlist"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignTop="@+id/like_count"
+                        app:srcCompat="@drawable/wishlist_clicked" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:id="@+id/wishlist_count"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center"
+                        android:maxEms="10"
+                        android:singleLine="false"
+                        android:text="3"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/cart_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginRight="5dp">
+
+                    <ImageView
+                        android:id="@+id/menu_cart_imageview"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignTop="@+id/menu_cart_idenfier"
+                        app:srcCompat="@drawable/cart_empty" />
+
+                    <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                        android:id="@+id/menu_cart_idenfier"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center"
+                        android:maxEms="10"
+                        android:singleLine="false"
+                        android:text="3"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
+            android:id="@+id/header"
+            android:gravity="center"
+            android:layout_gravity="center|top"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:id="@+id/linearHeader"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:layout_marginBottom="@dimen/size_8dp"
+                    android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                    android:layout_marginRight="@dimen/layout_margin_reading_post"
+                    android:background="@drawable/border_grey_no_corner"
+                    android:padding="@dimen/size_8dp"
+                    >
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:srcCompat="@drawable/search"/>
+
+                    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                        android:id="@+id/txtSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Search"
+                        android:textColor="@color/text"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/recyclerHeader"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants" />
+
+
+            </LinearLayout>
+
+
+        </com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/layout"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

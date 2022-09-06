@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/dialog">
+
+    <LinearLayout
+        android:weightSum="1"
+        android:layout_margin="@dimen/layout_padding"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomSwitchView
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:id="@+id/subscribe"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/subscribe_text"
+            android:text="@string/unsubscribe"
+            android:gravity="center|left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/like_layout"
+        android:layout_margin="@dimen/layout_padding"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|left"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                app:srcCompat="@drawable/wishlist" />
+        </LinearLayout>
+
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:paddingLeft="@dimen/layout_margin_reading"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/like_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/copy_layout"
+        android:layout_margin="@dimen/layout_padding"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|left"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                app:srcCompat="@drawable/ic_baseline_file_copy_24" />
+        </LinearLayout>
+
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:paddingLeft="@dimen/layout_margin_reading"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/txtCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/delete_layout"
+        android:layout_margin="@dimen/layout_padding"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:layout_gravity="center|left"
+                app:srcCompat="@drawable/product_delete"
+                android:layout_height="30dp"
+                android:layout_width="30dp"/>
+        </LinearLayout>
+
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:paddingLeft="@dimen/layout_margin_reading"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/delete_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+</LinearLayout>

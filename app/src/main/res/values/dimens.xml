@@ -1,0 +1,89 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="nav_header_vertical_spacing">15dp</dimen>
+    <dimen name="nav_header_vertical_spacing_title">15dp</dimen>
+    <dimen name="nav_header_height">180dp</dimen>
+
+    <!--ui ux text size-->
+    <dimen name="normal_pixel">14px</dimen>
+    <dimen name="title_pixel">16px</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="image_width">120dp</dimen>
+    <dimen name="image_final_width">32dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_delete">3dp</dimen>
+    <dimen name="tab_indicator">3dp</dimen>
+
+    <dimen name="title">17sp</dimen>
+    <dimen name="huge_title">19sp</dimen>
+
+    <dimen name="huge_big_title">25sp</dimen>
+    <dimen name="title_small">16sp</dimen>
+    <dimen name="text">15sp</dimen>
+    <dimen name="small_text">13sp</dimen>
+    <dimen name="s_small_text">9sp</dimen>
+    <dimen name="small_text_14">14sp</dimen>
+
+    <dimen name="design_fab_image_size" tools:override="true">36dp</dimen>
+
+    <dimen name="s_small_text_10sp">11sp</dimen>
+    <dimen name="text_category">13sp</dimen>
+
+    <dimen name="tool_bar">55dp</dimen>
+    <dimen name="mall_tool_bar">100dp</dimen>
+    <dimen name="due_tool_bar">70dp</dimen>
+    <dimen name="view_pager_size">50dp</dimen>
+
+    <dimen name="diment_40">40dp</dimen>
+    <dimen name="diment_30">30dp</dimen>
+    <dimen name="category_detail_footer">50dp</dimen>
+    <dimen name="product_detail_footer">100dp</dimen>
+    <dimen name="product_detail_footer_edittext">90dp</dimen>
+    <dimen name="product_detail_footer_button">45dp</dimen>
+    <dimen name="cart_detail_footer">160dp</dimen>
+    <dimen name="cart_detail_footer_hide">20dp</dimen>
+
+    <!--firebase-->
+    <dimen name="icon_top_margin">24dp</dimen>
+    <dimen name="icon_bottom_margin">24dp</dimen>
+    <dimen name="title_bottom_margin">16dp</dimen>
+    <dimen name="field_width_standard">160dp</dimen>
+    <dimen name="layout_margin">12dp</dimen>
+
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="layout_margin_reading_post">12dp</dimen>
+    <dimen name="layout_margin_reading">4dp</dimen>
+
+    <dimen name="layout_padding">15dp</dimen>
+    <dimen name="layout_padding_14dp">14dp</dimen>
+    <dimen name="cardElevation">0dp</dimen>
+    <dimen name="padding_4dp">4dp</dimen>
+    <dimen name="margin">8dp</dimen>
+
+    <dimen name="header_text_size">20sp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="sample_text_size">12sp</dimen>
+    <dimen name="splash_screen">35sp</dimen>
+
+    <dimen name="footer_margin_bottom">10dp</dimen>
+    <dimen name="footer_margin_top">10dp</dimen>
+    <dimen name="margin_left">20dp</dimen>
+    <dimen name="margin_right">20dp</dimen>
+    <dimen name="normalText">14sp</dimen>
+    <dimen name="largeText">16sp</dimen>
+    <dimen name="smallText">10sp</dimen>
+    <dimen name="sidebarIconMarginTop">10dp</dimen>
+    <dimen name="sidebarIconWidth">40dp</dimen>
+    <dimen name="sidebarIconHeight">40dp</dimen>
+    <dimen name="balanceSectionHeight">100dp</dimen>
+    <dimen name="progressBarWidth">200dp</dimen>
+    <dimen name="progressBarHeight">200dp</dimen>
+    <dimen name="circularTextWidth">50dp</dimen>
+    <dimen name="circularTextHeight">50dp</dimen>
+
+</resources>

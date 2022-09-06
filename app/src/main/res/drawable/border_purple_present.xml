@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/custom_purple_deep"/>
+    <corners android:topRightRadius="0dp"
+        android:bottomRightRadius="@dimen/tool_bar"
+        android:topLeftRadius="@dimen/diment_30"
+        android:bottomLeftRadius="@dimen/diment_30"/>
+
+
+
+</shape>

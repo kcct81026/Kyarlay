@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:id="@+id/dialog"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/huge_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/category_detail_footer"
+        android:text="TEsting"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:inputType="textMultiLine"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:gravity="top|left"
+        android:id="@+id/edittext"
+        android:background="@drawable/edit_border" />
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomButton
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/feedback_button"
+        android:id="@+id/feedback"
+        android:textSize="@dimen/title_small"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary" />
+
+</LinearLayout>

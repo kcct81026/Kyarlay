@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
+        android:id="@+id/header"
+        android:gravity="center"
+        android:layout_gravity="center|top"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearHeader"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                    android:id="@+id/txtAllCategories"
+                    android:text="All Categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:paddingLeft="@dimen/layout_margin_reading_post"
+                    android:paddingRight="@dimen/layout_margin_reading_post"
+                    android:id="@+id/txtAllViewAll"
+                    android:text="View all"
+                    android:textSize="@dimen/text"
+                    android:textColor="@color/custome_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/size_8dp"
+                    android:id="@+id/imgViewAll"
+                    android:src="@drawable/bi_grid"
+                    android:layout_width="@dimen/diment_30"
+                    android:layout_height="@dimen/diment_30" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerHeader"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader>
+</LinearLayout>

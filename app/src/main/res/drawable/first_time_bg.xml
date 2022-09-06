@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="@dimen/padding_4dp"/>
+    <stroke android:color="@color/colorSplashScreen"  android:width="1dp"/>
+    <gradient
+        android:type="linear"
+        android:startColor="@color/colorSplashScreen"
+        android:endColor="@color/white"
+        android:angle="180" />
+
+</shape>

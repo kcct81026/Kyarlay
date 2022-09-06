@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    >
+
+
+    <LinearLayout
+        android:background="@drawable/firework"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/linearWheel"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+        <com.kyarlay.ayesunaing.lucky_wheel.LuckyWheelView
+            app:lkwBackgroundColor="#ffFFE0B2"
+            app:lkwTopTextColor="@color/blue"
+            android:id="@+id/luckyWheel"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:gravity="center"
+            android:id="@+id/play"
+            android:text="PLAY"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/layout_margin_reading_post"
+            android:paddingRight="@dimen/layout_margin_reading_post"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@drawable/firework_coin"
+        android:gravity="center"
+        android:padding="@dimen/layout_padding"
+        android:id="@+id/linearResult"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:text="Congratulations!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#395dc2"
+            android:textSize="30sp"
+            android:textStyle="italic|bold"
+            android:typeface="serif"
+            android:includeFontPadding="true" />
+
+
+
+
+        <TextView
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:layout_gravity="center"
+            android:id="@+id/txtResult"
+            android:textStyle="bold"
+            android:textSize="@dimen/huge_big_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#7f3636"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:id="@+id/txtResultText"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:textSize="@dimen/small_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin_reading_post" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:id="@+id/txtClose"
+            android:text="Close"
+            android:textColor="@color/white"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

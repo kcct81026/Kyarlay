@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:visibility="gone"
+            android:id="@+id/detailNetworkImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:background="@drawable/background_transparent"
+            android:layout_weight="1"
+            android:id="@+id/youtube_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:id="@+id/title"
+            android:text="@string/video_latest"
+            android:textSize="@dimen/title_small"
+            android:background="@drawable/checked_bg_color"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:padding="@dimen/layout_margin_reading_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

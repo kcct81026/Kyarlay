@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/layout_margin_reading_post"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/freshchat_background_light"
+    >
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_margin="@dimen/layout_padding"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textColor="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:layout_margin="@dimen/layout_margin_reading_post"
+        android:id="@+id/titleRemove"
+        android:gravity="center"
+        android:textSize="@dimen/title"
+        android:textColor="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/layout_margin_reading_post"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="@dimen/layout_margin_reading_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:layout_marginTop="@dimen/size_8dp"
+            android:layout_marginBottom="@dimen/size_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's read"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:id="@+id/dialog_delete_cancel"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:textColor="@color/text"
+            android:background="@drawable/checked_border_yellow"
+            />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:layout_marginTop="@dimen/size_8dp"
+            android:layout_marginBottom="@dimen/size_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's read"
+            android:id="@+id/dialog_delete_confirm"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:textColor="@color/text"
+            android:background="@drawable/checked_bg_yellow"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

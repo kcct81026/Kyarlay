@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/app_bar_color"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar">
+
+            <LinearLayout
+                android:layout_gravity="center|right"
+                android:id="@+id/back_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/arrowleft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="@dimen/layout_padding"
+                android:paddingRight="@dimen/layout_padding"
+                android:gravity="right|center"
+                android:layout_gravity="right|center"
+                android:id="@+id/callLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center|right"
+                    app:srcCompat="@drawable/call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                    android:layout_gravity="center|right"
+                    android:textColor="@color/black"
+                    android:id="@+id/to_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginBottom="@dimen/layout_padding"
+        android:layout_gravity="center"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/tool_bar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:id="@+id/title"
+            android:textSize="@dimen/title"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/layout_padding"/>
+
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:paddingLeft="15dp"
+            android:id="@+id/txt_enter"
+            android:text="Please Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.kyarlay.ayesunaing.custom_widget.PrefixEditText
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:padding="15dp"
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:tag="09"
+            android:backgroundTint="@color/line_gray"
+            android:inputType="phone"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:padding="15dp"
+            android:id="@+id/phone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/line_gray"
+            android:inputType="phone"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/layout_padding"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:paddingLeft="15dp"
+            android:id="@+id/txt_enterpassword"
+            android:text="Please Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomEditText
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:padding="15dp"
+            android:id="@+id/phonePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/line_gray"
+            android:inputType="textPassword"/>
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomButton
+            android:gravity="center"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="@dimen/layout_padding"
+            android:layout_marginLeft="@dimen/layout_padding"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/title"
+            android:id="@+id/button"
+            android:textColor="@color/white"
+            android:background="@drawable/checked_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_gravity="center"
+            android:id="@+id/timer"
+            android:text=""
+            android:textSize="@dimen/title_text_size"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:textColor="@color/coloredInactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_gravity="center"
+            android:id="@+id/txtNewAcc"
+            android:text=""
+            android:textSize="@dimen/title_text_size"
+            android:layout_margin="@dimen/layout_margin_reading_post"
+            android:textColor="@color/coloredInactive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

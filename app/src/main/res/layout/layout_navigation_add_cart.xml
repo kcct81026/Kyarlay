@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cart_layout"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:background="@drawable/border_circle_yellow"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center">
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/tool_bar"
+            android:layout_height="@dimen/tool_bar">
+
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/menu_cart_imageview"
+                android:layout_width="@dimen/diment_40"
+                android:layout_height="@dimen/diment_40"
+                app:srcCompat="@drawable/cart_empty" />
+
+            <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+                android:id="@+id/menu_cart_idenfier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:maxEms="10"
+                android:background="@drawable/border_circle_blue"
+                android:singleLine="false"
+                android:text="40"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                />
+
+
+
+        </RelativeLayout>
+
+</LinearLayout>
+

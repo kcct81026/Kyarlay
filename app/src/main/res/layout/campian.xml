@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="@dimen/layout_margin_reading_post"
+    android:layout_margin="@dimen/size_8dp">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:visibility="gone"
+            android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/layout_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_small"
+            android:textStyle="bold"
+            android:layout_gravity="center|left"
+            android:gravity="center|left"
+            android:id="@+id/title" />
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:id="@+id/image" />
+
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/text"
+            android:gravity="left"
+            android:id="@+id/time" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

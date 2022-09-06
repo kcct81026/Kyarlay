@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+
+    >
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:textSize="@dimen/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_version"
+        android:textColor="@color/black"/>
+
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/text"
+        android:paddingLeft="@dimen/size_8dp"
+        android:paddingRight="@dimen/size_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="20dp"
+        android:textSize="@dimen/small_text" />
+
+    <LinearLayout
+        android:gravity="right"
+        android:id="@+id/dialog_product_yes"
+        android:orientation="horizontal"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:background="@drawable/linear_border">
+        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+            android:id="@+id/update_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

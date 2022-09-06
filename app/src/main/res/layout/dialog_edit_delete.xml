@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="@dimen/layout_margin_reading_post"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content">
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:padding="@dimen/layout_padding"
+        android:id="@+id/txtDelete"
+        android:text="Delete"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtEdit"
+        android:padding="@dimen/layout_padding"
+        android:text="Edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+        android:id="@+id/txtCancel"
+        android:text="Cancel"
+        android:padding="@dimen/layout_padding"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>
