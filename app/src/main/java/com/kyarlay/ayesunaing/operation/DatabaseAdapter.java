@@ -51,7 +51,7 @@ public class DatabaseAdapter implements ConstantsDB, ConstantVariable {
 
 
     private static final String DATABASE_NAME = "KYAR_LAY_DB";
-    private static final int DATABASE_VERSION = 93;
+    private static final int DATABASE_VERSION = 96;
     private Context context;
     private DBHelper dBHelper;
     private static SQLiteDatabase db=null ;

@@ -10,8 +10,8 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
-import com.kyarlay.ayesunaing.data.Config;
 
 /**
  * Created by ayesunaing on 9/7/16.
@@ -31,7 +31,7 @@ public class Youtube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
         youtubeID = intent.getStringExtra("youtubeID");
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(Config.DEVELOPER_KEY, this);
+        youTubeView.initialize(BuildConfig.DEVELOPER_KEY, this);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Youtube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(Config.DEVELOPER_KEY, this);
+            getYouTubePlayerProvider().initialize(BuildConfig.DEVELOPER_KEY, this);
         }
     }
 

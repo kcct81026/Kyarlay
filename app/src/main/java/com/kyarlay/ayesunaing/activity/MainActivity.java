@@ -49,6 +49,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
@@ -952,7 +953,7 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
                     prefs.saveIntPerferences(SP_ORDER_COUNT, response.getInt("order_count"));
 
 
-                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser()    ;

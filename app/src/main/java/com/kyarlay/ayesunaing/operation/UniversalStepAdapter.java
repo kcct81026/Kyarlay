@@ -625,7 +625,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     } else {
                         orderNowHolder1.time_layout.setVisibility(View.GONE);
                         orderNowHolder1.linearChooseDate.setVisibility(View.GONE);
-                        orderNowHolder1.layout_date_only.setVisibility(View.VISIBLE);
+                        orderNowHolder1.layout_date_only.setVisibility(View.GONE);
 
                         isTomorrow = true;
                         chooseDay = mTomorrow;
@@ -892,6 +892,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                 orderNowHolder1.layoutNormal.setVisibility(View.GONE);
+                orderNowHolder1.layoutDateForHidden.setVisibility(View.GONE);
                 final boolean[] click_choose = {false};
                 final int[] normal_price = {0};
                 final int[] temp_type = {0};
@@ -912,14 +913,17 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             orderNowHolder1.txtExpress.setText(Html.fromHtml(
                                     expressText  , Html.FROM_HTML_MODE_COMPACT));
+                            orderNowHolder1.textDeliveryRemark.setText(Html.fromHtml(
+                                    expressText  , Html.FROM_HTML_MODE_COMPACT));
                         } else {
                             orderNowHolder1.txtExpress.setText(Html.fromHtml(expressText));
+                            orderNowHolder1.textDeliveryRemark.setText(Html.fromHtml(expressText));
 
 
                         }
                         if(delList.get(i).getDelivery_type() == 1){
                             click_choose[0] = false;
-                            orderNowHolder1.layoutNormal.setVisibility(View.VISIBLE);
+                            orderNowHolder1.layoutNormal.setVisibility(View.GONE);
                             normal_price[0] = delList.get(i).getNormal_price();
                             String text = String.format(resources.getString(R.string.normal_sub_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getNormal_price() + "" , delList.get(i).getNormal_delivery_days());
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -977,55 +981,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         }
                     }
                 });
-               /* for(int i = 0; i < townShipList.size(); i++){
-                    if (townShipList.get(i).getId() == prefs.getIntPreferences(TEMP_ADDRESS_ID)) {
-                        temp_type[0] = townShipList.get(i).getDelivery_type();
-                    }
-                }
-                for (int i = 0; i < delList.size(); i++) {
-                    if (delList.get(i).getId() == prefs.getIntPreferences(DELIVERY_ID)) {
-                        String expressText = String.format(resources.getString(R.string.express_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getPrice() + "");
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            orderNowHolder1.txtExpress.setText(Html.fromHtml(
-                                    expressText, Html.FROM_HTML_MODE_COMPACT));
-                        } else {
-                            orderNowHolder1.txtExpress.setText(Html.fromHtml(expressText));
 
-
-                        }
-                        if (temp_type[0] == 1) {
-                            click_choose[0] = false;
-                            orderNowHolder1.layoutNormal.setVisibility(View.VISIBLE);
-                            normal_price[0] = delList.get(i).getNormal_price();
-                            String text = String.format(resources.getString(R.string.normal_sub_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getNormal_price() + "", delList.get(i).getNormal_delivery_days());
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                orderNowHolder1.txtFullDelivery.setText(Html.fromHtml(
-                                        text, Html.FROM_HTML_MODE_COMPACT));
-                            } else {
-                                orderNowHolder1.txtFullDelivery.setText(Html.fromHtml(text));
-
-
-                            }
-
-
-                            prefs.saveIntPerferences(TEMP_NORMAL_PRICE, delList.get(i).getNormal_price());
-                            prefs.saveStringPreferences(TEMP_NORMAL_DAY, delList.get(i).getNormal_delivery_days());
-                            orderNowHolder1.txtChoose.setText(resources.getString(R.string.normal_choose));
-                            Log.e(TAG, "onBindViewHolder: ************* " + prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP));
-                            Log.e(TAG, "onBindViewHolder: ************* " + prefs.getIntPreferences(TEMP_NORMAL_PRICE));
-
-                            Log.e(TAG, "onBindViewHolder: ************* " + delList.get(i).getDelivery_type());
-
-
-                        }
-
-
-                    }
-                }*/
-
-
-
-                //setDeliTimeUI(orderNowHolder1);
 
                 orderNowHolder1.txtOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2931,7 +2887,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     normalPrice.setGravity(Gravity.LEFT);
                     normalPrice.setText(String.format(resources.getString(R.string.express_sub_title), delivery.getNormal_price() + "" , delivery.getNormal_delivery_days()));
                     normalPrice.setTextColor(activity.getResources().getColor(R.color.coloredInactive));
-                    deliveyLayout.addView(normalPrice);
+                   // deliveyLayout.addView(normalPrice);
 
                 }
 

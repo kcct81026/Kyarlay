@@ -37,6 +37,7 @@ import com.freshchat.consumer.sdk.Freshchat;
 import com.freshchat.consumer.sdk.FreshchatConfig;
 import com.freshchat.consumer.sdk.FreshchatUser;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -547,7 +548,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                                 }*/
 
                                 try{
-                                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser();

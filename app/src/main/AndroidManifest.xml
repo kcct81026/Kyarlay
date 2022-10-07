@@ -616,6 +616,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/NoActionBar"/>
+        <activity android:name=".activity.SearchPatnerShopActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/NoActionBar"/>
         <activity android:name=".activity.BrandAllActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
@@ -725,11 +729,11 @@
             android:exported="false" />
 
 
-        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
+      <!--  <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
     </application>
 

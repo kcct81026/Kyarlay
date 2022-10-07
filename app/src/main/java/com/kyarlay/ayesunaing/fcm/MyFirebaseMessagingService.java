@@ -39,6 +39,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityAdsList;
 import com.kyarlay.ayesunaing.activity.AskProdcutAcitivity;
@@ -106,7 +107,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
                 .withCaptureUncaughtExceptions(true)
                 .withContinueSessionMillis(10000)
                 .withLogLevel(Log.VERBOSE)
-                .build(getApplicationContext(), FLURRY_API_KEY);
+                .build(getApplicationContext(), BuildConfig.FLURRY_API_KEY);
 
         NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         manager.cancel(0);
@@ -226,7 +227,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         FirebaseMessaging.getInstance().subscribeToTopic("regular");
         refreshedToken      = FirebaseInstanceId.getInstance().getToken();
 
-        FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+        FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
         Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
 
         if (refreshedToken != null && !refreshedToken.equals("")) {
@@ -1195,6 +1196,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
 
     }
 
+    @SuppressLint("WrongConstant")
     private void sendNotificationUrl(String url){
 
 

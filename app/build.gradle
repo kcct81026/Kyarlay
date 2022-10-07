@@ -15,12 +15,19 @@ android {
         applicationId "com.kyarlay.ayesunaing"
         minSdkVersion 17
         targetSdkVersion 30
-        versionCode 93
-        versionName '7.6.1'
+        versionCode 96
+        versionName '7.6.4'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "YOUTUBE_ID", "\"${properties.getProperty("YOUTUBE_ID")}\""
+        buildConfigField "String", "DEVELOPER_KEY", "\"${properties.getProperty("DEVELOPER_KEY")}\""
+        buildConfigField "String", "FRESH_CAHT_ID", "\"${properties.getProperty("FRESH_CAHT_ID")}\""
+        buildConfigField "String", "FRESH_CHAT_KEY", "\"${properties.getProperty("FRESH_CHAT_KEY")}\""
+        buildConfigField "String", "FLURRY_API_KEY", "\"${properties.getProperty("FLURRY_API_KEY")}\""
 
     }
 
@@ -138,7 +145,7 @@ dependencies {
     implementation files('libs/myanmar-calendar-1.0.6.RC3.jar')
 
     // Required for Flurry Analytics integration
-    implementation 'com.flurry.android:analytics:12.1.0'
+    implementation 'com.flurry.android:analytics:12.2.0@aar'
     implementation 'com.android.installreferrer:installreferrer:1.1'
 
     implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'

@@ -31,6 +31,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
@@ -58,7 +59,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.kyarlay.ayesunaing.data.Config.DEVELOPER_KEY;
 
 
 public class VideoProgramDetailActivity extends AppCompatActivity implements ConstantVariable, Constant, YouTubePlayer.OnInitializedListener {
@@ -77,9 +77,8 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
     Display display ;
     Resources resources;
 
+    String VIDEO_ID;
 
-
-    private static String VIDEO_ID = "rtOvBOTyX00";
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     YouTubePlayerFragment myYouTubePlayerFragment;
@@ -104,6 +103,7 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
 
         Log.e(TAG, "onCreate:  "  );
 
+        VIDEO_ID = BuildConfig.YOUTUBE_ID;
 
         display = getWindowManager().getDefaultDisplay();
         prefs           = new MyPreference(VideoProgramDetailActivity.this);
@@ -149,7 +149,7 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
             VIDEO_ID = nowPlaying;
             myYouTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager()
                     .findFragmentById(R.id.youtubeplayerfragment);
-            myYouTubePlayerFragment.initialize(DEVELOPER_KEY, VideoProgramDetailActivity.this);
+            myYouTubePlayerFragment.initialize(BuildConfig.DEVELOPER_KEY, VideoProgramDetailActivity.this);
         }
 
         mediaAdapter = new MediaAdapter(VideoProgramDetailActivity.this, videosList);
@@ -276,7 +276,7 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
 
                         myYouTubePlayerFragment = (YouTubePlayerFragment)getFragmentManager()
                                 .findFragmentById(R.id.youtubeplayerfragment);
-                        myYouTubePlayerFragment.initialize(DEVELOPER_KEY, VideoProgramDetailActivity.this);
+                        myYouTubePlayerFragment.initialize(BuildConfig.DEVELOPER_KEY, VideoProgramDetailActivity.this);
 
                     }else{
                         pro.setNowPlaying(0);
@@ -365,7 +365,7 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_DIALOG_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(DEVELOPER_KEY, this);
+            getYouTubePlayerProvider().initialize(BuildConfig.DEVELOPER_KEY, this);
         }
     }
     protected YouTubePlayer.Provider getYouTubePlayerProvider() {
@@ -410,7 +410,7 @@ public class VideoProgramDetailActivity extends AppCompatActivity implements Con
                                         VIDEO_ID = pro.getYoutube_id();
                                         myYouTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager()
                                                 .findFragmentById(R.id.youtubeplayerfragment);
-                                        myYouTubePlayerFragment.initialize(DEVELOPER_KEY, VideoProgramDetailActivity.this);
+                                        myYouTubePlayerFragment.initialize(BuildConfig.DEVELOPER_KEY, VideoProgramDetailActivity.this);
 
                                     }else {
                                         pro.setNowPlaying(0);

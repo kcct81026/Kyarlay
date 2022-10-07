@@ -14,6 +14,7 @@ public interface Constant {
     String constantDashBoard              = default_api +  "api/dashboard";
     String constantNewBonusBanner         =  default_api + "api/customers/new_bonus_banner?type=signup";
     String constantMemberInfo             = default_api +  "api/customers/member_info";
+    String searchPartnerBrand             = default_api + "api/brands/search?query=" ;
 
     String PREFERENCES_TOOL_BAR_CART      = "PREFERENCES_TOOL_BAR_CART";
     String constantCategoryDetailSublist  = default_api + "api/categories?tag=";

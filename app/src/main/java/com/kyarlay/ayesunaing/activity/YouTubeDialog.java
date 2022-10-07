@@ -27,10 +27,10 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
-import com.kyarlay.ayesunaing.data.Config;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
@@ -93,7 +93,7 @@ public class YouTubeDialog extends YouTubeBaseActivity implements YouTubePlayer.
         text = (CustomTextView) findViewById(R.id.title);
         detailNetworkImg = findViewById(R.id.detailNetworkImg);
 
-        youTubeView.initialize(Config.DEVELOPER_KEY, this);
+        youTubeView.initialize(BuildConfig.DEVELOPER_KEY, this);
         String ads_photo_url = videos.getAds_photo_url();
         if (ads_photo_url.length() != 0 && !ads_photo_url.equals("")){
 
@@ -216,7 +216,7 @@ public class YouTubeDialog extends YouTubeBaseActivity implements YouTubePlayer.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(Config.DEVELOPER_KEY, this);
+            getYouTubePlayerProvider().initialize(BuildConfig.DEVELOPER_KEY, this);
         }
     }
 

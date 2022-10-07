@@ -53,6 +53,7 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
 import com.kyarlay.ayesunaing.activity.MainActivity;
@@ -338,7 +339,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
 
                     try{
-                        FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                        FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                         Freshchat.getInstance(activity).init(freshchatConfig);
                         Freshchat.getInstance(activity).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                         FreshchatUser freshUser=Freshchat.getInstance(activity).getUser();

@@ -21,7 +21,6 @@ public interface ConstantVariable {
     public String BOY        = "boy";
     public String GIRL       = "girl";
 
-    public String FLURRY_API_KEY       = "C2DRCBMQYNS4NKRCS9CP";
 
 
 
@@ -48,6 +47,7 @@ public interface ConstantVariable {
     public String SP_PERIOD_YEAR            = "SP_PERIOD_YEAR";
     public String SP_CHANGE_UI              = "SP_CHANGE_UI";
     public String SP_LANGUAGE               = "SP_LANGUAGE";
+    public String SP_SEARCH_PAGENATION      = "SP_SEARCH_PAGENATION";
 
 
 
@@ -660,9 +660,7 @@ public interface ConstantVariable {
     public String SP_PRODUCT_NOTIFICATION      = "SP_PRODUCT_NOTIFICATION";
     public String SP_READING_LOGIN             = "SP_READING_LOGIN";
 
-    //Freshcaht id and token
-    public String SP_FRESH_CAHT_ID            = "e3313456-3122-4b65-a1fa-5c835748f1dd";
-    public String SP_FRESH_CHAT_KEY           = "f3a7c503-05ea-420e-ab97-78d46387638b";
+
 
     public String SP_CHANGE                   = "SP_CHANGE";
 

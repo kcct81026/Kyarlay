@@ -5,8 +5,6 @@ package com.kyarlay.ayesunaing.data;
  */
 public class Config {
     // Google Console APIs developer key
-    //public static final String DEVELOPER_KEY = "AIzaSyBklHf7YmJgAUPbiBgJSzY2_AJdIyIISNA";
-    public static final String DEVELOPER_KEY = "AIzaSyDhUz3RVil6n8YjR4R3PSpnPAo62N2E_bk";
 
     public static final int NOTIFICATION_ID = 100;
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;

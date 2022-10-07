@@ -30,6 +30,7 @@ import com.google.firebase.perf.metrics.Trace;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.DueDateActivity;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
@@ -55,7 +56,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.kyarlay.ayesunaing.data.Config.DEVELOPER_KEY;
 
 public class FragmentVideoList extends Fragment implements ConstantVariable, Constant , YouTubePlayer.OnInitializedListener
 {
@@ -81,7 +81,7 @@ public class FragmentVideoList extends Fragment implements ConstantVariable, Con
     String nowPlaying  = null;
 
     // video
-    private static String VIDEO_ID = "xS1nqnArb38";
+    private String VIDEO_ID ;
 
     YouTubePlayerSupportFragment myYouTubePlayerFragment;
     YouTubePlayer youTubePlayer;
@@ -95,6 +95,8 @@ public class FragmentVideoList extends Fragment implements ConstantVariable, Con
         View rootView = inflater.inflate(R.layout.fragment_video_list, container, false);
 
         activity  = (AppCompatActivity) getActivity();
+
+        VIDEO_ID = BuildConfig.YOUTUBE_ID;
 
 
         display = getActivity().getWindowManager().getDefaultDisplay();
@@ -195,7 +197,7 @@ public class FragmentVideoList extends Fragment implements ConstantVariable, Con
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_DIALOG_REQUEST) {
-            getYouTubePlayerProvider().initialize(DEVELOPER_KEY, this);
+            getYouTubePlayerProvider().initialize(BuildConfig.DEVELOPER_KEY, this);
         }
     }
     protected YouTubePlayer.Provider getYouTubePlayerProvider() {
@@ -273,7 +275,7 @@ public class FragmentVideoList extends Fragment implements ConstantVariable, Con
                                         pro.setNowPlaying(1);
                                         VIDEO_ID = pro.getYoutube_id().trim();
                                         nowPlaying = VIDEO_ID;
-                                        myYouTubePlayerFragment.initialize(DEVELOPER_KEY, FragmentVideoList.this);
+                                        myYouTubePlayerFragment.initialize(BuildConfig.DEVELOPER_KEY, FragmentVideoList.this);
 
                                     }else {
                                         pro.setNowPlaying(0);

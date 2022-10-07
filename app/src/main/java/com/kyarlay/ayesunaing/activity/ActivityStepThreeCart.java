@@ -408,7 +408,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
         if (prefs.getBooleanPreference(TEMP_CHOOSE_TIMING)){
 
-            linearDeliTime.setVisibility(View.VISIBLE);
+            linearDeliTime.setVisibility(View.GONE);
             delivery_date.setText(resources.getString(R.string.delivery_date));
             date_text.setText(prefs.getIntPreferences(TEMP_CHOOSE_DAY) + "-" + (prefs.getIntPreferences(TEMP_CHOOSE_MONTH)+1) + "-" + prefs.getIntPreferences(TEMP_CHOOSE_YEAR)  );
             delivery_time_text.setText(resources.getString(R.string.delivery_time));
