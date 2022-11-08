@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.flurry.android.FlurryAgent;
+import com.kyarlay.ayesunaing.BuildConfig;
 
 public class MyFlurry  implements ConstantVariable {
 
@@ -13,7 +14,7 @@ public class MyFlurry  implements ConstantVariable {
         .withCaptureUncaughtExceptions(true)
         .withContinueSessionMillis(10000)
         .withLogLevel(Log.VERBOSE)
-        .build(activity, FLURRY_API_KEY);
+        .build(activity, BuildConfig.FLURRY_API_KEY);
 
 
     }

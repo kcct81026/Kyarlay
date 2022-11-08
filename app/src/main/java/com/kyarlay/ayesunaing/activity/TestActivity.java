@@ -139,8 +139,8 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
         imgList =  findViewById(R.id.imgList);
         txtFilterTitle =  findViewById(R.id.txtFilterTitle);
 
-        String titleText = "title"; // 81026
-        url = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE); // 81026
+        String titleText = "title";
+        url = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE);
         txtFilterTitle.setText(titleText);
 
 
@@ -600,7 +600,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {
@@ -620,7 +620,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);

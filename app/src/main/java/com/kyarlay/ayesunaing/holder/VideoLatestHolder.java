@@ -1,3 +1,4 @@
+/*
 package com.kyarlay.ayesunaing.holder;
 
 import android.view.Display;
@@ -35,3 +36,4 @@ public class VideoLatestHolder extends RecyclerView.ViewHolder {
         img.getLayoutParams().height  = (display.getWidth() * 2/7);
     }
 }
+*/

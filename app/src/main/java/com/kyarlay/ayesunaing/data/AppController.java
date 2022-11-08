@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.text.TextUtils;
 
 import androidx.multidex.MultiDex;
@@ -23,7 +21,6 @@ import me.myatminsoe.mdetect.MDetect;
  */
 public class AppController extends Application implements ConstantVariable {
 
-    private static final String AF_DEV_KEY = "CGff92vVamrwFSfyHPjUeG";
 
 
     public static final String TAG = AppController.class.getSimpleName();
@@ -32,7 +29,6 @@ public class AppController extends Application implements ConstantVariable {
     private static AppController mInstance;
     SharedPreferences prefs;
 
-    public static Typeface pyiDaungSuTP;
     public static TypefaceManager typefaceManager;
 
     @Override
@@ -135,30 +131,8 @@ public class AppController extends Application implements ConstantVariable {
         getRequestQueue().add(req);
     }
 
-    public Bitmap getImageBitmap(String url){
-        Bitmap bitmap = null;
-        LruBitmapCache lu = new LruBitmapCache(getApplicationContext());
-        bitmap = lu.getBitmap(url);
-        return bitmap;
-    }
-    /**
-     * Starts processing requests on the {@link RequestQueue}.
-     */
-    public void startProcessingQueue() {
-        getRequestQueue().start();
-    }
-    /**
-     * Stops processing requests on the {@link RequestQueue}.
-     */
-    public void stopProcessingQueue() {
-        getRequestQueue().stop();
-    }
 
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
+
 
 
   //@Override

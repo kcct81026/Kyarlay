@@ -11,8 +11,6 @@ import java.util.Calendar;
 
 public class AgeConfig implements  ConstantVariable{
 
-    private static final String TAG = "AgeConfig";
-
     AppCompatActivity activity;
     MyPreference prefs;
     Resources resources;
@@ -29,10 +27,10 @@ public class AgeConfig implements  ConstantVariable{
 
 
         String age = "";
-        int kid_month   = 0;
-        int kid_year    = 0;
-        String kid_type = "";
-        String parent_type  = "";
+        int kid_month;
+        int kid_year;
+        String kid_type;
+        String parent_type ;
 
         int cur_month   = Calendar.getInstance().get(Calendar.MONTH)+1;
         int cur_year    = Calendar.getInstance().get(Calendar.YEAR);

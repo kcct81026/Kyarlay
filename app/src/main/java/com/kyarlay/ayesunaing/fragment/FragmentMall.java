@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,10 +43,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatConfig;
-import com.freshchat.consumer.sdk.FreshchatNotificationConfig;
-import com.freshchat.consumer.sdk.FreshchatUser;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.perf.metrics.AddTrace;
 import com.google.gson.Gson;
@@ -55,7 +50,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
-import com.kyarlay.ayesunaing.activity.MainActivity;
 import com.kyarlay.ayesunaing.activity.MainSuperActivity;
 import com.kyarlay.ayesunaing.activity.NotificationAcitivity;
 import com.kyarlay.ayesunaing.activity.PointHistoryActivity;
@@ -310,7 +304,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                try {
+               /* try {
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("item", "cs_chat");
@@ -338,7 +332,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
 
                     try{
-                        FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                        FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                         Freshchat.getInstance(activity).init(freshchatConfig);
                         Freshchat.getInstance(activity).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                         FreshchatUser freshUser=Freshchat.getInstance(activity).getUser();
@@ -355,7 +349,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                     Intent intent = new Intent(activity, ActivityLogin.class);
                     startActivity(intent);
                 }
-
+*/
 
 
 
@@ -396,7 +390,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
                 if(newState == RecyclerView.SCROLL_STATE_IDLE ) {
-                    fab.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.GONE);
 
                 }
                 else{
@@ -1812,7 +1806,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                 adapter.notifyItemInserted(universalPosts.size());
 
 
-                getCollectionList(); ///// insert 81026
+                getCollectionList();
 
 
             }
@@ -1820,7 +1814,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "onResponse: getDiscountList Exception : "  + error.getMessage() );
-                getCollectionList(); ///// insert 81026
+                getCollectionList();
 
 
             }

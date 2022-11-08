@@ -329,7 +329,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
+              /*  Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("comment", "read");
                 bundle.putInt("id", reading.getId());
@@ -339,7 +339,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                 bundle.putInt("comment_count", reading.getComment_coount());
 
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 

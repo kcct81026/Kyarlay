@@ -59,8 +59,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatMessage;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -112,8 +110,6 @@ import com.kyarlay.ayesunaing.activity.ShowAllNamesActivity;
 import com.kyarlay.ayesunaing.activity.UserPostDetailActivity;
 import com.kyarlay.ayesunaing.activity.UserPostUploadActivity;
 import com.kyarlay.ayesunaing.activity.WishListActivity;
-import com.kyarlay.ayesunaing.activity.YouTubeDialog;
-import com.kyarlay.ayesunaing.activity.Youtube;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -185,7 +181,6 @@ import com.kyarlay.ayesunaing.holder.UserPostUploadHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileNewHolder;
 import com.kyarlay.ayesunaing.holder.VideoAllHolder;
-import com.kyarlay.ayesunaing.holder.VideoLatestHolder;
 import com.kyarlay.ayesunaing.holder.VideoPostHolder;
 import com.kyarlay.ayesunaing.holder.VideoProgramHolder;
 import com.kyarlay.ayesunaing.holder.WatchMoreHolder;
@@ -487,9 +482,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return VIEW_TYPE_VIDEO_NEWS_SMALL;
         }
 
-        else if (universalList.get(position).getPostType().equals(VIDEO_LIST)) {
-            return VIEW_TYPE_VIDEO_LIST;
-        }
+
 
         else if (universalList.get(position).getPostType().equals(VIDEO_MORE)) {
             return VIEW_TYPE_VIDEO_MORE;
@@ -858,25 +851,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             viewHolder = new GiftItemHolder(viewItem);
         }
 
-        else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
+      /*  else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_video_latest, parent, false);
             viewHolder = new VideoLatestHolder(viewItem, display);
         }
-
+*/
         else if(viewType == VIEW_TYPE_TOOL_SUB_CATEGORY){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_tool_grid_item, parent, false);
             viewHolder = new ToolSubCatHolder(viewItem, display);
         }
 
-
-
-        else if(viewType == VIEW_TYPE_VIDEO_LIST){
-            View viewItem = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.layout_video_latest, parent, false);
-            viewHolder = new VideoLatestHolder(viewItem, display);
-        }
 
         else if(viewType == VIEW_TYPE_VIDEO_MORE){
             View viewItem = LayoutInflater.from(parent.getContext())
@@ -1902,7 +1888,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         orderDetailTopHolder.txtOrderStatus.setBackgroundColor(activity.getResources().getColor(R.color.white));
                     }
 
-                    Log.e(TAG, "onBindViewHolder: ********* 81026 000 "  + orderTop.getStatus() );
 
                     orderDetailTopHolder.linearOrderStatus.setVisibility(View.VISIBLE);
 
@@ -2501,9 +2486,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         productDetailsHolder.imgYouTube.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(activity, Youtube.class);
+                               /* Intent intent = new Intent(activity, Youtube.class);
                                 intent.putExtra("youtubeID", productDetail.getYoutubeId());
-                                activity.startActivity(intent);
+                                activity.startActivity(intent);*/
                             }
                         });
                     }
@@ -2631,7 +2616,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                                 FlurryAgent.logEvent("Send Product Message", mix);
 
                                             } catch (Exception e) {}
-
+/*
                                             FreshchatMessage message1  = new FreshchatMessage();
                                             message1.setTag(String.valueOf(productDetail.getId()));
                                             message1.setMessage(constantChatProduct+productDetail.getId()+"<br>"+
@@ -2642,7 +2627,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                             Freshchat.sendMessage(activity, message1);
 
                                             dialog.dismiss();
-                                            Freshchat.showConversations(activity);
+                                            Freshchat.showConversations(activity);*/
 
                                         }else{
 
@@ -2715,8 +2700,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 PaymentObject paymentItemObj = (PaymentObject) universalList.get(position);
                 itemPaymentHolder.img.setImageUrl(paymentItemObj.getImg_url(), imageLoader);
 
-
-
                 itemPaymentHolder.img.getLayoutParams().height = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
                 itemPaymentHolder.img.getLayoutParams().width = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
 
@@ -2741,15 +2724,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        Product pro = databaseAdapter.getShoppingCartFooter();
                         int amtCheckPrice = 0;
 
-                        if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                            amtCheckPrice = pro.getPrice()- prefs.getIntPreferences(CHECK_USE_POINT);
+                        if(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
                         else{
 
-                            amtCheckPrice = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL) +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
 
 
@@ -2810,18 +2792,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             }
 
-           case VIEW_TYPE_STEP_ONE_BOTTOM :{
-                final OrderNowHolder orderNowHolder = (OrderNowHolder) parentHolder;
-
-                final Product proOrder = databaseAdapter.getShoppingCartFooter();
-                int checkTotalPrice = 0;
-                int commissionPrice = 0;
-                int finalPrice = 0;
-
-
-                break;
-
-            }
 
 
 
@@ -3618,9 +3588,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
 
                         prefs.saveIntPerferences(FIRST_PLAY, 0);
-                        Intent intent = new Intent(activity, YouTubeDialog.class);
+                       /* Intent intent = new Intent(activity, YouTubeDialog.class);
                         intent.putExtra("youtube_object", videoProgram2);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -3683,49 +3653,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             case VIEW_TYPE_VIDEO_NEWS_SMALL :{
-                final VideoLatestHolder latestHolder = (VideoLatestHolder) parentHolder;
-                final Reading readingObj1 = (Reading) universalList.get(position);
-                latestHolder.thumbnailVideo.setVisibility(View.GONE);
-                if(readingObj1.getTitle() != null  && readingObj1.getTitle().trim().length() > 0) {
-                    latestHolder.title.setVisibility(View.VISIBLE);
-                    latestHolder.title.setText(readingObj1.getTitle());
-                    latestHolder.title.setLineSpacing(1.8f, 1.0f);
-                    latestHolder.title.setTypeface(latestHolder.title.getTypeface(), Typeface.BOLD);
-
-                }else
-                    latestHolder.title.setVisibility(View.GONE);
-
-
-                if(readingObj1.getPhoto_url() != null && readingObj1.getPhoto_url().trim().length() > 0){
-
-                    latestHolder.img.setImageUrl(readingObj1.getPhoto_url(), imageLoader);
-                    latestHolder.img.setVisibility(View.VISIBLE);
-                }
-
-                latestHolder.videoCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            Map<String, String> mix = new HashMap<String, String>();
-                            mix.put("source", "post_list");
-                            mix.put("post_id", String.valueOf(readingObj1.getId()));
-                            FlurryAgent.logEvent("Click Post", mix);
-                        } catch (Exception e) {
-                        }
-
-                        Intent intent = new Intent(activity, ReadingCommentDetailsActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("comment", "read");
-                        bundle.putInt("id", readingObj1.getId());
-                        bundle.putString("title", readingObj1.getTitle());
-                        bundle.putInt("like_count", readingObj1.getLikes());
-                        bundle.putInt("comment_count", readingObj1.getComment_coount());
-                        bundle.putString("page_url", readingObj1.getPage_img_url());
-                        intent.putExtras(bundle);
-                        activity.startActivity(intent);
-                    }
-                });
-
 
                 break;
 
@@ -3843,7 +3770,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
 
-            case VIEW_TYPE_VIDEO_LIST :{
+          /*  case VIEW_TYPE_VIDEO_LIST :{
                 final VideoLatestHolder latestHolder1 = (VideoLatestHolder) parentHolder;
                 final Videos videosObj = (Videos) universalList.get(position);
                 latestHolder1.img.setVisibility(View.GONE);
@@ -3878,7 +3805,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 break;
 
-            }
+            }*/
 
             case VIEW_TYPE_GIFT_OBJECT_SHOW_ITEM:{
 
@@ -6555,9 +6482,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         String str = "";
 
-                        Log.e(TAG, "onClick: 81026 memeber " + detailProduct.getMember_discount() );
-                        Log.e(TAG, "onClick: 81026 point " + detailProduct.getPoint_usage() );
-
 
                         if (detailProduct.getMember_discount() == 1 && prefs.getIntPreferences(SP_VIP_ID) != 0 ){
                             str += "- " + resources.getString(R.string.member_discount)
@@ -8517,8 +8441,8 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }else{
 
 
-                databaseAdapter.insertOrder(product, count, final_item_price, option);
-                prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+                //databaseAdapter.insertOrder(product, count, final_item_price, option);
+                prefs.saveBooleanPreference(LOGIN_SAVECART, false);
                 Intent intent   = new Intent(activity, ActivityLogin.class);
                 activity.startActivity(intent);
 
@@ -8628,6 +8552,167 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void addToCartProduct(Product product, final Activity activity, int count, int final_item_price, String option){
         prefs.saveBooleanPreference(LOGIN_SAVECART, false);
+        prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT ) + count));
+
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", count);
+            uploadMessage.put("option", option);
+            uploadMessage.put("product_id", product.getId());
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+
+                            if (response.getInt("status") == 1) {
+
+                                if(activity.getLocalClassName().contains("MainActivity")) {
+
+                                    MainActivity pro = (MainActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+
+                                    CategoryActivity pro = (CategoryActivity) activity;
+                                    pro.bounceCount();
+                                }
+                                else if(activity.getLocalClassName().contains("ProductActivity")) {
+
+                                    ProductActivity pro = (ProductActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
+
+                                    CampainDetailActivity pro = (CampainDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
+
+                                    ActivityAdsList pro = (ActivityAdsList) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
+
+                                    BrandedDetailActivity pro = (BrandedDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("WishListActivity")) {
+
+                                    WishListActivity pro = (WishListActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandActivity")) {
+
+                                    BrandActivity pro = (BrandActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
+
+                                    SearchResultActivity pro = (SearchResultActivity) activity;
+                                    pro.bounceCount();
+
+                                }
+                                else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
+
+                                    DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                final Dialog dialog = new Dialog(activity);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                dialog.setCanceledOnTouchOutside(true);
+                                Window window = dialog.getWindow();
+                                WindowManager.LayoutParams wlp = window.getAttributes();
+                                wlp.gravity = Gravity.CENTER;
+                                wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                window.setAttributes(wlp);
+
+                                CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                //title.setText(resources.getString(R.string.added_to_cart_title));
+                                text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+                                //int countBefore = databaseAdapter.getOrderCount();
+                                CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                circularTextView.setText(String.valueOf(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT)));
+
+                                confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+
+                                            Map<String, String> mix = new HashMap<String, String>();
+                                            mix.put("source", "product_detail_dialog");
+                                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                        } catch (Exception e) {
+                                        }
+
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                        activity.startActivity(intent);
+                                    }
+
+                                });
+
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:   810  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse: 810  "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+
+
+       /* prefs.saveBooleanPreference(LOGIN_SAVECART, false);
         databaseAdapter.insertOrder(product, count, final_item_price, option);
         if(activity.getLocalClassName().contains("MainActivity")) {
 
@@ -8732,7 +8817,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        dialog.show();*/
 
     }
 

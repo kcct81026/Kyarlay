@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -109,6 +110,7 @@ public class ActivityStepTwoCart extends AppCompatActivity implements Constant, 
                     Intent intent = new Intent(activity, ActivityStepThreeCart.class);
                     startActivity(intent);
 
+
                 }
 
             }
@@ -152,6 +154,8 @@ public class ActivityStepTwoCart extends AppCompatActivity implements Constant, 
 
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        Log.e(TAG, "onResponse: ---------------- 810 "  + response.toString() );
 
 
                         if(mainCatDetails.size() != 0 && mainCatDetails.get(mainCatDetails.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){

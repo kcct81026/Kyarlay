@@ -21,11 +21,11 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <queries>
+  <!--  <queries>
         <intent>
             <action android:name="com.google.android.youtube.api.service.START"/>
         </intent>
-    </queries>
+    </queries>-->
 
 
     <application
@@ -509,12 +509,6 @@
             android:theme="@style/NoActionBar"/>
 
 
-
-        <activity android:name=".activity.VideoProgramDetailActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"/>
-
         <activity android:name=".activity.PostLikedActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
@@ -540,14 +534,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"/>
 
-        <activity android:name=".activity.Youtube"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".activity.YouTubeDialog"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/NoActionBar"/>
 
         <activity android:name=".activity.RecommandBrandActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
@@ -613,6 +599,10 @@
             android:theme="@style/NoActionBar"/>
 
         <activity android:name=".activity.BrandPartnerAllActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/NoActionBar"/>
+        <activity android:name=".activity.SearchPatnerShopActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/NoActionBar"/>
@@ -709,6 +699,8 @@
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
 
+<!--
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.kyarlay.ayesunaing.provider"
@@ -718,6 +710,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/freshchat_file_provider_paths" />
         </provider>
+-->
 
         <provider
             android:authorities="com.kyarlay.ayesunaing.provider"
@@ -725,11 +718,11 @@
             android:exported="false" />
 
 
-        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
+      <!--  <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
     </application>
 

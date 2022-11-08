@@ -1,14 +1,6 @@
 <resources>
     <string name="app_name">Kyarlay</string>
     <string name="facebook_app_id">184815485301878</string>
-<!--    <string name="admob_app_id">ca-app-pub-3224883732172669~7242335081</string>
-    <string name="admob_unit_id">ca-app-pub-3224883732172669/4181235087</string>
-    <string name="admob_interstitial_id">ca-app-pub-3224883732172669/5516288743</string>
-    <string name="admob_give_name_id">ca-app-pub-3224883732172669/3144505763</string>
-    <string name="admob_calendar_id">ca-app-pub-3224883732172669/6272521548</string>
-    <string name="admob_due_date_id">ca-app-pub-3224883732172669/6552557299</string>
-    <string name="admob_pregnancy_id">ca-app-pub-3224883732172669/6137678220</string>
-    <string name="admob_competition_id">ca-app-pub-3224883732172669/7271354317</string>-->
 
     <string name="friend_feedback">ကျားလေး ဝန်ဆောင်မှုကို အသုံးပြုဖို့ သင့်သူငယ်ချင်းကို တိုက်တွန်းမလား။</string>
     <string name="order_feedback"> Feedback ပေးမယ်</string>

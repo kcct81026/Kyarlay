@@ -79,7 +79,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
     CustomTextView toolTitle, txtTitle,txtContinue,to_contact;
     CircleImageView img;
     ImageView imgCamera;
-  //  ProgressBar progressBar;
+    //  ProgressBar progressBar;
     ProgressDialog progressDialog;
 
     MyPreference prefs;
@@ -133,7 +133,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
         callLayout = findViewById(R.id.callLayout);
         to_contact = findViewById(R.id.to_contact);
         img = findViewById(R.id.img);
-     //   progressBar = findViewById(R.id.progressBar);
+        //   progressBar = findViewById(R.id.progressBar);
         imgCamera = findViewById(R.id.imgCamera);
         img.setImageDrawable(activity.getResources().getDrawable(R.mipmap.camera_image_profile));
 
@@ -156,7 +156,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
             @Override
             public void onClick(View v) {
                 changeProfile();
-               // selectImage();
+                // selectImage();
             }
         });
 
@@ -316,7 +316,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
                 }
                 else if (options[item].equals("Choose from Gallery"))
                 {
-                   changeProfile();
+                    changeProfile();
                 }
 
             }
@@ -741,5 +741,4 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
 
 
 }
-
 

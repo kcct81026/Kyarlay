@@ -4,7 +4,6 @@
     android:paddingTop="@dimen/layout_margin_reading_post"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/freshchat_background_light"
     >
 
 

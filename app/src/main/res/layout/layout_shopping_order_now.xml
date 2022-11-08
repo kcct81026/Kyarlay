@@ -29,6 +29,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/layoutNormal"
                 android:background="@drawable/border_yellow_light"
                 android:orientation="horizontal"
@@ -72,6 +73,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/layoutDateForHidden"
                 android:layout_marginTop="@dimen/layout_margin_reading_post"
                 android:paddingLeft="@dimen/layout_margin_reading_post"
@@ -513,8 +515,14 @@
 
             </LinearLayout>
 
-
-
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/layout_margin_reading_post"
+                android:id="@+id/textDeliveryRemark"
+                android:textColor="@color/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <com.kyarlay.ayesunaing.custom_widget.CustomTextView
                 android:id="@+id/txtRemarkTitle"

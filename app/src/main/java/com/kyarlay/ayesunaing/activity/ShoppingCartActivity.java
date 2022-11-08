@@ -1,25 +1,20 @@
 package com.kyarlay.ayesunaing.activity;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,38 +22,55 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
+import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
 import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
+import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Addresses;
+import com.kyarlay.ayesunaing.object.CustomerProduct;
+import com.kyarlay.ayesunaing.object.CustomerProductList;
 import com.kyarlay.ayesunaing.object.Delivery;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
 import com.kyarlay.ayesunaing.operation.UniversalStepAdapter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by ayesunaing on 9/6/16.
  */
-public class ShoppingCartActivity extends AppCompatActivity implements ConstantVariable, ConstantsDB, Constant, OnMenuItemClickListener, View.OnClickListener{
+public class ShoppingCartActivity extends AppCompatActivity implements ConstantVariable, ConstantsDB, Constant, OnMenuItemClickListener{
     private static final String TAG = "ShoppingCartActivity";
 
     RecyclerView recyclerView;
     UniversalStepAdapter adapter;
     ArrayList<UniversalPost> universalList = new ArrayList<>();
-    ArrayList<UniversalPost> cartList = new ArrayList<>();
+    List<CustomerProduct> cartList = new ArrayList<>();
     DatabaseAdapter databaseAdapter;
     CustomTextView payabelText, payableAmount, delivery_fee, to_show_order, delivery_text;
     Display display;
@@ -70,7 +82,8 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
     Animation animShow, animHide;
     Resources resources;
     ImageView delivery_image;
-    ProgressDialog progressDialog;
+
+
 
     CustomTextView title, txtCheckOut, txtEmpty, txtSolution,txtTotal, txtTotalTitle;
     LinearLayout title_layout, back_layout;
@@ -82,6 +95,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
     TextView viewHidden;
     LinearLayout linearTownship;
     CustomTextView txtTownship,txtTitle;
+    ProgressBar progressBar;
 
 
     @Override
@@ -94,7 +108,6 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
         Context context = LocaleHelper.setLocale(ShoppingCartActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
         activity = (AppCompatActivity) ShoppingCartActivity.this;
-        progressDialog = new ProgressDialog(activity);
 
         Log.e(TAG, "onCreate:   " );
 
@@ -125,6 +138,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
         relativeCart   = (RelativeLayout) findViewById(R.id.relativeCart);
         linearEmpty   =  findViewById(R.id.linearEmpty);
         linearTotal   =  findViewById(R.id.linearTotal);
+        progressBar   =  findViewById(R.id.progressBar1);
 
         viewHidden = findViewById(R.id.viewHidden);
         linearTownship = findViewById(R.id.linearTownship);
@@ -166,44 +180,11 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
         final RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(manager);
 
-       cartList = databaseAdapter.getOrder();
+        progressBar.setVisibility(View.VISIBLE);
+        linearEmpty.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
 
-        if (cartList.size() > 0){
-            Product dis = new Product();
-            dis.setPostType(DISCOUNT_TITLE);
-            dis.setTitle(resources.getString(R.string.more_order_noti));
-            universalList.add(dis);
-            universalList.addAll(cartList);
-
-            Product pro = new Product();
-            pro         = databaseAdapter.getShoppingCartFooter();
-            pro.setPostType(SHOPPING_CART_SUMMARY);
-            universalList.add(pro);
-            adapter = new UniversalStepAdapter(ShoppingCartActivity.this, universalList);
-            recyclerView.setAdapter(adapter);
-
-            linearEmpty.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            txtCheckOut.setText(resources.getString(R.string.order));
-
-
-            txtTotal.setText(formatter.format(pro.getPrice())
-                    +" "+resources.getString(R.string.currency));
-            txtTotal.setVisibility(View.VISIBLE);
-            linearTotal.setVisibility(View.VISIBLE);
-
-        }
-        else{
-
-            txtTotal.setVisibility(View.GONE);
-            linearTotal.setVisibility(View.GONE);
-
-            txtCheckOut.setText(resources.getString(R.string.added_to_cart_cancel));
-            //txtCheckOut.setText("Go Shopping");
-            linearEmpty.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-        }
-
+        getCustomerProdcutList();
 
 
 
@@ -275,7 +256,6 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
 
                     }
                     else{
-                        //progressDialog.dismiss();
                         Intent intent = new Intent(ShoppingCartActivity.this, ActivityEditAddress.class);
                         prefs.saveBooleanPreference(NO_ADDRESS, true);
                         startActivity(intent);
@@ -323,50 +303,297 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
 
     }
 
-    public void changeProduct(){
-
-        cartList.clear();
-        cartList = databaseAdapter.getOrder();
-
-        if (cartList.size() > 0){
-
-            universalList.clear();
-            Product dis = new Product();
-            dis.setPostType(DISCOUNT_TITLE);
-            dis.setTitle(resources.getString(R.string.more_order_noti));
-            universalList.add(dis);
-            universalList.addAll(cartList);
-
-            Product pro = new Product();
-            pro         = databaseAdapter.getShoppingCartFooter();
-            pro.setPostType(SHOPPING_CART_SUMMARY);
-            universalList.add(pro);
-
-            linearEmpty.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            txtCheckOut.setText(resources.getString(R.string.order));
-
-
-
-            txtTotal.setText(formatter.format(pro.getPrice() - prefs.getIntPreferences(CHECK_USE_POINT))
-                    +" "+resources.getString(R.string.currency));
-            txtTotal.setVisibility(View.VISIBLE);
-            linearTotal.setVisibility(View.VISIBLE);
-
-
-
-            adapter.notifyDataSetChanged();
-        }
-        else{
-            txtTotal.setVisibility(View.GONE);
-            linearTotal.setVisibility(View.GONE);
-
-            txtCheckOut.setText("Go Shopping");
-            linearEmpty.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
+    private void increaseProductFromServer(CustomerProduct product){
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("product_id", product.getId());
+            uploadMessage.put("quantity", product.getQuantity());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PATCH,
+                constantAddCurrentOrderFromServer , uploadMessage, new Response.Listener<JSONObject>() {
 
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                try{
+                    int returnSatatus =  response.getInt("status");
+
+                    if(returnSatatus == 1){
+                        getCustomerProdcutList();
+                    }else{
+                        ToastHelper.showToast(activity, resources.getString(R.string.search_error));
+                    }
+
+
+                }catch (Exception e){
+                    Log.e(TAG, "onResponse:  add "  + e.getMessage() );
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.e(TAG, "onErrorResponse: ------  add"   + error.getMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+
+
+    private void decreaseProductFromServer(CustomerProduct product){
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("product_id", product.getId());
+            uploadMessage.put("quantity", product.getQuantity());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PATCH,
+                constantSubCurrentOrderFromServer  , uploadMessage, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                try{
+                    int returnSatatus =  response.getInt("status");
+
+                    if(returnSatatus == 1){
+                        getCustomerProdcutList();
+                    }else{
+                        ToastHelper.showToast(activity, resources.getString(R.string.search_error));
+                    }
+
+
+                }catch (Exception e){
+                    Log.e(TAG, "onResponse:  sub "  + e.getMessage() );
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.e(TAG, "onErrorResponse: ------  sub "   + error.getMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+
+    private void removeProductFromServer(int id){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE,
+                constantRemoveCurrentOrderFromServer + id , null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try{
+                    int returnSatatus =  response.getInt("status");
+
+                    if(returnSatatus == 1){
+                      getCustomerProdcutList();
+                    }else{
+                        ToastHelper.showToast(activity, resources.getString(R.string.search_error));
+                    }
+
+
+                }catch (Exception e){
+                    Log.e(TAG, "onResponse:  "  + e.getMessage() );
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.e(TAG, "onErrorResponse: ------  "   + error.getMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+
+    private void getCustomerProdcutList()
+    {
+
+        JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
+                constantGetCurrentOrderFromServer, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setEnabled(true);
+                txtCheckOut.setEnabled(true);
+               if (response.toString() != null){
+                   universalList.clear();
+                   try {
+                        GsonBuilder builder = new GsonBuilder();
+                        Gson mGson = builder.create();
+                        Type listType = new TypeToken<CustomerProductList>() {
+                        }.getType();
+                        CustomerProductList customerProductList = mGson.fromJson(response.toString(), listType);
+
+                        cartList = customerProductList.getProuduts();
+
+                       prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_DISCOUNT, customerProductList.getProductCuromerInfo().getDisCountPrice());
+                       prefs.saveIntPerferences(SP_CUSTOMER_MEMBER_DISCOUNT, customerProductList.getProductCuromerInfo().getMemberDiscount());
+                       prefs.saveIntPerferences(SP_CUSTOMER_FLASH_DISCOUNT, customerProductList.getProductCuromerInfo().getFlashDiscount());
+                       prefs.saveIntPerferences(SP_CUSTOMER_TOTAL, customerProductList.getProductCuromerInfo().getTotalPrice());
+
+
+                       if (cartList.size() > 0){
+
+
+                           int count = 0;
+                           for (int i=0; i< cartList.size(); i++){
+                               cartList.get(i).setPostType(SHOPPING_CART_ITEM);
+                               count = count + customerProductList.getProuduts().get(i).getQuantity();
+
+                            }
+
+                           prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , count);
+
+                           Product dis = new Product();
+                           dis.setPostType(DISCOUNT_TITLE);
+                           dis.setTitle(resources.getString(R.string.more_order_noti));
+                           universalList.add(dis);
+                           universalList.addAll(cartList);
+
+
+                            customerProductList.setPostType(SHOPPING_CART_SUMMARY);
+                           universalList.add(customerProductList);
+                           adapter = new UniversalStepAdapter(ShoppingCartActivity.this, universalList);
+                           recyclerView.setAdapter(adapter);
+
+                           linearEmpty.setVisibility(View.GONE);
+                           recyclerView.setVisibility(View.VISIBLE);
+                           txtCheckOut.setText(resources.getString(R.string.order));
+
+
+                           txtTotal.setText(formatter.format(prefs.getIntPreferences(SP_CUSTOMER_TOTAL)-prefs.getIntPreferences(CHECK_USE_POINT)) +" "+resources.getString(R.string.currency));
+                           txtTotal.setVisibility(View.VISIBLE);
+                           linearTotal.setVisibility(View.VISIBLE);
+
+                       }
+                       else{
+
+                           txtTotal.setVisibility(View.GONE);
+                           linearTotal.setVisibility(View.GONE);
+
+                           txtCheckOut.setText(resources.getString(R.string.added_to_cart_cancel));
+                           //txtCheckOut.setText("Go Shopping");
+                           linearEmpty.setVisibility(View.VISIBLE);
+                           recyclerView.setVisibility(View.GONE);
+                       }
+
+                    }catch (Exception e){
+                        Log.e(TAG, "onResponse: errror       "  + e.getMessage() );
+                    }
+               }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                txtTotal.setVisibility(View.GONE);
+                linearTotal.setVisibility(View.GONE);
+
+                txtCheckOut.setText(resources.getString(R.string.added_to_cart_cancel));
+                //txtCheckOut.setText("Go Shopping");
+                linearEmpty.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(apkDownloadRequest, "update_profile");
+    }
+
+    public void addProduct(CustomerProduct product){
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setEnabled(false);
+        txtCheckOut.setEnabled(false);
+        increaseProductFromServer(product);
+
+    }
+
+    public void subProduct(CustomerProduct product){
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setEnabled(false);
+        txtCheckOut.setEnabled(false);
+        decreaseProductFromServer(product);
+    }
+
+    public void removeProdcut(int id){
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setEnabled(false);
+        txtCheckOut.setEnabled(false);
+        removeProductFromServer(id);
     }
 
 
@@ -374,6 +601,8 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
 
 
 
+
+/*
     public void updatePayment(){
 
         universalList.remove(universalList.size()-1);
@@ -410,7 +639,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
 
 
 
-    }
+    }*/
 
 
     @Override
@@ -456,95 +685,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
         return false;
     }
 
-    @Override
-    public void onClick(View view) {
-        try {
 
-
-            FlurryAgent.logEvent("View Delivery Method Dialog");
-        } catch (Exception e) {
-        }
-        final Dialog dialog = new Dialog(ShoppingCartActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_delivery);
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.CENTER;
-        wlp.width   = getWindowManager().getDefaultDisplay().getWidth();
-        window.setAttributes(wlp);
-
-        CustomTextView title    = (CustomTextView) dialog.findViewById(R.id.title);
-        LinearLayout mainlayout = (LinearLayout) dialog.findViewById(R.id.layout);
-        title.setText(resources.getString(R.string.dialog_delivery_title));
-
-        if(delList.size() > 0){
-            for(int i = 0; i < delList.size(); i++){
-
-                Delivery delivery = delList.get(i);
-
-                LinearLayout deliveyLayout = new LinearLayout(ShoppingCartActivity.this);
-                deliveyLayout.setId(delivery.getId());
-                deliveyLayout.setOrientation(LinearLayout.VERTICAL);
-                deliveyLayout.setPadding(0, 10, 0, 0);
-                if(prefs.getIntPreferences(DELIVERY_ID) ==  delivery.getId())
-                    deliveyLayout.setBackgroundResource(R.color.checked_bg);
-
-                CustomTextView price = new CustomTextView(ShoppingCartActivity.this);
-                price.setTextSize(16);
-                price.setPadding(10, 0, 10, 10);
-                price.setGravity(Gravity.LEFT);
-                price.setText(delivery.getName()+" ( "+formatter.format(delivery.getPrice())+" "+getResources().getString(R.string.currency)+" )");
-                deliveyLayout.addView(price);
-
-                CustomTextView desc = new CustomTextView(ShoppingCartActivity.this);
-                desc.setTextSize(14);
-                desc.setPadding(20, 10, 10, 10);
-                desc.setGravity(Gravity.LEFT);
-                desc.setText(delivery.getDesc());
-                deliveyLayout.addView(desc);
-
-                CustomTextView choose = new CustomTextView(ShoppingCartActivity.this);
-                choose.setBackgroundResource(R.drawable.textview_round);
-                choose.setTextSize(14);
-                choose.setText(resources.getString(R.string.choose));
-                LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                parms.gravity = Gravity.RIGHT;
-                parms.setMargins(0, 5, 5, 10);
-                choose.setLayoutParams(parms);
-                deliveyLayout.addView(choose);
-
-
-                TextView space = new TextView(ShoppingCartActivity.this);
-                space.setHeight(6);
-                space.setBackgroundResource(R.color.checked_bg);
-                deliveyLayout.addView(space);
-                mainlayout.addView(deliveyLayout);
-
-                final int finalI = i;
-                deliveyLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-
-                            Map<String, String> mix = new HashMap<String, String>();
-                            mix.put("type", String.valueOf(delList.get(finalI).getId()));
-                            FlurryAgent.logEvent("Choose Delivery Method", mix);
-
-                        } catch (Exception e) {
-                        }
-                        prefs.saveIntPerferences(DELIVERY_ID, delList.get(finalI).getId());
-                        prefs.saveIntPerferences(DELIVERY_PRICE, delList.get(finalI).getPrice());
-                        prefs.saveIntPerferences(DELIVERY_FREE_AMOUNT, delList.get(finalI).getFreeDelivery());
-                        updatePayment();
-                        dialog.dismiss();
-                    }
-                });
-
-            }
-            dialog.show();
-        }
-
-    }
 
 
 
@@ -552,11 +693,8 @@ public class ShoppingCartActivity extends AppCompatActivity implements ConstantV
 
     public void showTotalPrice(){
 
-        Log.e(TAG, "onClick: ********************* 81026 "  );
-
         if (cartList.size() > 0){
-            txtTotal.setText( formatter.format(prefs.getIntPreferences(SP_TEMP_TOTAL))
-                    +" "+resources.getString(R.string.currency));
+            txtTotal.setText(formatter.format(prefs.getIntPreferences(SP_CUSTOMER_TOTAL)-prefs.getIntPreferences(CHECK_USE_POINT)) +" "+resources.getString(R.string.currency));
             txtTotal.setVisibility(View.VISIBLE);
             linearTotal.setVisibility(View.VISIBLE);
 
