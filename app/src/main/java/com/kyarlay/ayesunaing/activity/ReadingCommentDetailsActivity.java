@@ -64,7 +64,6 @@ import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Comment;
-import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.Reading;
 import com.kyarlay.ayesunaing.object.Reading_Post;
@@ -305,7 +304,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
             header_title.setText(reading.getTitle());
             view_more.setText(resources.getString(R.string.view_more));
-            callAds();
+            getComment();
         }else{
             header.setVisibility(View.GONE);
             if(prefs.isNetworkAvailable()){
@@ -329,7 +328,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
+              /*  Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("comment", "read");
                 bundle.putInt("id", reading.getId());
@@ -339,7 +338,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                 bundle.putInt("comment_count", reading.getComment_coount());
 
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 
@@ -363,7 +362,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                     if ((lastVisibleItem + 1) == totalItemCount && loading == false) {
                         loading = true;
                         prefs.saveIntPerferences(SP_PAGE_READ_COMMENT, prefs.getIntPreferences(SP_PAGE_READ_COMMENT) + SP_DEFAULT);
-                        callAds();
+                        getComment();
                     }
 
 
@@ -974,8 +973,10 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
 
                         if (main.getPostType().equals(USER_POST)) {
+                            Log.e(TAG, "onResponse: ------------"  +  USER_POST_READING_DETAILS);
                             main.setPostType(USER_POST_READING_DETAILS);
                         } else {
+                            Log.e(TAG, "onResponse: ------------"  +  READING_DETAIL);
                             main.setPostType(READING_DETAIL);
 
                         }
@@ -1098,7 +1099,8 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                         }
 
 
-                        callAds();
+                        //callAds();
+                        getComment();
                         mediaAdapter.notifyDataSetChanged();
 
                     } catch (Exception e) {
@@ -1122,7 +1124,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
     }
 
-    private void callAds(){
+   /* private void callAds(){
 
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantKyarlayAds + "rectangular" , null, new Response.Listener<JSONObject>() {
@@ -1158,19 +1160,12 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
             }
         });
         AppController.getInstance().addToRequestQueue(apkDownloadRequest, "VersionDownload");
-    }
+    }*/
 
-    private void getComment(KyarlayAds kyarlayAds)
+    private void getComment()
     {
 
-        if(prefs.getIntPreferences(SP_PAGE_READ_COMMENT) == 1){
-            if (kyarlayAds.getId() != -810){
 
-                kyarlayAds.setPostType(ADS);
-                universalListPost.add(kyarlayAds);
-
-            }
-        }
 
         String url1 = "";
         if(post_type != null && post_type.trim().length() > 0){

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_level_low">您手机上的KBZPay版本过低，请下载最新版本</string>
+    <string name="app_not_find">您需要下载KBZPay来完成支付</string>
+</resources>

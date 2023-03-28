@@ -7,20 +7,30 @@ public interface Constant {
 
     String default_api =  "https://www.kyarlay.com/";
     //String default_api =  "http://159.223.58.13/";
+   //String default_api =  "http://192.168.1.2:3000/";
+
 
     //https://admin.kyarlay.com/api/customers/point_history?language=uni&type=received
+
+    String constantAddProductToServerCart = default_api + "api/shopping_carts/add?";
+    String constantGetCurrentOrderFromServer = default_api + "api/shopping_carts/current_cart";
+    String constantRemoveCurrentOrderFromServer = default_api + "api/shopping_carts/remove?product_id=";
+    String constantSubCurrentOrderFromServer = default_api + "api/shopping_carts/decrease";
+    String constantAddCurrentOrderFromServer = default_api + "api/shopping_carts/increase";
 
     String constantPointGetReceivedHistory = default_api + "api/customers/point_history?";
     String constantDashBoard              = default_api +  "api/dashboard";
     String constantNewBonusBanner         =  default_api + "api/customers/new_bonus_banner?type=signup";
     String constantMemberInfo             = default_api +  "api/customers/member_info";
+    String searchPartnerBrand             = default_api + "api/brands/search?query=" ;
 
     String PREFERENCES_TOOL_BAR_CART      = "PREFERENCES_TOOL_BAR_CART";
     String constantCategoryDetailSublist  = default_api + "api/categories?tag=";
     String constantProductDetailSublist   = default_api + "api/products?category_id=";
 
     String constantDeliveryList           = default_api + "api/deliveries";
-    String constantUploadOrder            = default_api + "api/shopping_carts/checkout";
+    String constantUploadOrder            = default_api + "api/shopping_carts/checkout_v3";
+    //String constantUploadOrder            = default_api + "api/shopping_carts/checkout_v2";
     //String constantUploadOrder            = default_api + "api/shopping_";
 
     String constantVersion                = default_api + "api/version";
@@ -139,7 +149,8 @@ public interface Constant {
     String constantShopLocations           = default_api + "api/store_locations?" ;
     String constantTownShipList            = default_api + "api/cities/master_list?";
     String constantAddressList             = default_api + "api/addresses";
-    String constantPaymentList             = default_api + "api/payment_methods";
+   // String constantPaymentList             = default_api + "api/payment_methods";
+    String constantPaymentList             = default_api + "api/payment_methods_v2";
     String constantCheckDelivery           = default_api + "api/shopping_carts/check_delivery";
     String constantKyarlayAds              = default_api + "api/ads/?placement=";
     String constantAdsClick                = default_api + "api/ads/%s/click";
@@ -147,6 +158,7 @@ public interface Constant {
     String constantProductNewList          = default_api + "api/products/new?";
     String constantProductTopList          = default_api + "api/products/top?";
     String constantMainNavigation          = default_api + "api/main_nav?";
+    String constantRePayment              = default_api + "api/shopping_carts/repayment/";
 
     String constantCuponCode =  default_api + "api/coupon?code=";
 

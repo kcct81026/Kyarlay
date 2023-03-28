@@ -1,19 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "com.kyarlay.ayesunaing",
-  "variantName": "release",
+  "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "properties": [],
-      "versionCode": 93,
-      "versionName": "7.6.1",
-      "enabled": true,
+      "versionCode": 103,
+      "versionName": "7.7.1",
       "outputFile": "app-release.apk"
     }
   ]

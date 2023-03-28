@@ -36,7 +36,6 @@ import com.kyarlay.ayesunaing.data.LocaleHelper;
 import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
-import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.MainObject;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.Reading;
@@ -49,10 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class FragmentNew extends Fragment implements Constant, ConstantVariable {
@@ -181,8 +177,8 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
                 if ((lastVisibleItem + 1) == totalItemCount && loading == false) {
                     loading = true;
                     prefs.saveIntPerferences(SP_PAGE_REDING_NUM, prefs.getIntPreferences(SP_PAGE_REDING_NUM) + SP_DEFAULT);
-                   // mainCategory();
-                    callAds();
+                    mainCategory();
+                    //callAds();
                 }
 
             }
@@ -233,8 +229,8 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
             noitem.setPostType(CART_DETAIL_FOOTER);
             mainCatDetails.add(noitem);
             mediaAdapter.notifyItemInserted(mainCatDetails.size());
-            //mainCategory();
-            callAds();
+            mainCategory();
+           // callAds();
         }
 
     }
@@ -388,8 +384,8 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
             @Override
             public void onResponse(JSONObject response) {
 
-                //mainCategory();
-                callAds();
+                mainCategory();
+                //callAds();
                 loading = false;
                 if(response.length() > 0){
 
@@ -414,8 +410,8 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                callAds();
-                // mainCategory();
+                //callAds();
+                mainCategory();
                 loading = false;
 
 
@@ -425,7 +421,7 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
     }
 
 
-    private void mainCategory(KyarlayAds kyarlayAds)
+    private void mainCategory( )
     {
         int page    = prefs.getIntPreferences(SP_PAGE_REDING_NUM);
 
@@ -460,7 +456,7 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
                                     mainCatDetails.add(pro);
 
 
-                                    if(mainCatDetails.size() != 0  && (mainCatDetails.size()  % 6 )== 0){
+                                 /*   if(mainCatDetails.size() != 0  && (mainCatDetails.size()  % 6 )== 0){
 
                                         if (kyarlayAds.getId() != -810){
 
@@ -471,7 +467,7 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
 
 
 
-                                    }
+                                    }*/
 
 
 
@@ -520,7 +516,7 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
-    private void callAds(){
+    /*private void callAds(){
 
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantKyarlayAds + "rectangular" , null, new Response.Listener<JSONObject>() {
@@ -556,49 +552,9 @@ public class FragmentNew extends Fragment implements Constant, ConstantVariable 
             }
         });
         AppController.getInstance().addToRequestQueue(apkDownloadRequest, "VersionDownload");
-    }
+    }*/
 
 
-    public String getDateInMillis(String srcDate) throws ParseException {
-        Calendar cal =  Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            cal.setTime(sdf.parse(srcDate));
-            Calendar calendar = Calendar.getInstance();
-            long now = calendar.getTimeInMillis();
-            long time = cal.getTimeInMillis();
-
-            long diff = now - time;
-
-            int seconds = (int) (diff / 1000) % 60 ;
-            int minutes = (int) ((diff / (1000*60)) % 60);
-            int hours   = (int) ((diff / (1000*60*60)) % 24);
-            int days = (int) (diff / (1000*60*60*24));
-
-            if(days == 0 && hours ==0 && minutes ==0 && seconds > 0){
-                return  seconds +" sec ago";
-            }else if(days == 0 && hours ==0 && minutes > 0){
-                return  minutes+" min ago";
-            }else if(days == 0 && hours > 0){
-                return hours+" hour ago";
-            }else if(days > 0 ){
-                return days+" day ago";
-            }else if(days > 7){
-                return srcDate;
-            }else {
-                return "";
-            }
-
-
-        } catch (ParseException e1) {
-            e1.printStackTrace();
-            Log.e(TAG, "getDateInMillis: "   + e1.getMessage() );
-            return "exception";
-
-        }
-
-
-    }
 
 }
 

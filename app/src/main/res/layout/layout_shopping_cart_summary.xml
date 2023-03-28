@@ -85,7 +85,6 @@
 
             </LinearLayout>
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/flesh_layout"
                 android:layout_marginTop="@dimen/size_8dp"
                 android:layout_marginBottom="@dimen/size_8dp"
@@ -117,7 +116,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/member_layout"
                 android:layout_marginTop="@dimen/size_8dp"
                 android:layout_marginBottom="@dimen/size_8dp"

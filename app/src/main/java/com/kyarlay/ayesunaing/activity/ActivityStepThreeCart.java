@@ -37,6 +37,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kbzbank.payment.sdk.callback.CallbackResultActivity;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -50,10 +51,7 @@ import com.kyarlay.ayesunaing.data.LocaleHelper;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Delivery;
-import com.kyarlay.ayesunaing.object.Discount;
-import com.kyarlay.ayesunaing.object.Order123;
 import com.kyarlay.ayesunaing.object.OrderIDs;
-import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
 import com.kyarlay.ayesunaing.operation.UniversalAdapter;
@@ -73,10 +71,9 @@ import me.myatminsoe.mdetect.MDetect;
 public class ActivityStepThreeCart extends AppCompatActivity implements Constant, ConstantVariable, ConstantsDB {
 
     private static final String TAG = "ActivityStepThreeCart";
-
+    Resources resources;
     MyPreference prefs;
     AppCompatActivity activity;
-    Resources resources;
     ArrayList<UniversalPost> mainCatDetails = new ArrayList<>();
     UniversalAdapter universalAdapter;
     RecyclerView.LayoutManager manager;
@@ -97,7 +94,6 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
     int totalPriceToServer = 0, commissionPrice, finalPrice;
     DecimalFormat formatter = new DecimalFormat("#,###,###");
-    Product pro ;
 
     String checkPromoText = "";
     int promoPrice = 0;
@@ -173,8 +169,6 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
 
 
-        pro = databaseAdapter.getShoppingCartFooter();
-
         ArrayList<Delivery> deliveryList = databaseAdapter.getDelivery();
 
 
@@ -188,7 +182,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
         for (int i=0; i < deliveryList.size();i++){
             if (deliveryList.get(i).getId() == prefs.getIntPreferences(DELIVERY_ID)) {
-                if ( deliveryList.get(i).getFirst_time_free() == 1 || pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT) )
+                if ( deliveryList.get(i).getFirst_time_free() == 1 || prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT) )
                     first_time_price = 0;
 
 
@@ -215,7 +209,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
         if (prefs.getIntPreferences(SP_ORDER_COUNT) == 0  ){
 
-            totalPriceToServer = pro.getPrice() + first_time_price;
+            totalPriceToServer = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  + first_time_price;
         }
         else{
             Log.e(TAG, "onCreate: ************** first time  $$$666" );
@@ -223,15 +217,15 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
                 totalPriceToServer = pro.getPrice();
             }
             else */
-            if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                totalPriceToServer = pro.getPrice();
+            if(prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
+                totalPriceToServer = prefs.getIntPreferences(SP_CUSTOMER_TOTAL) ;
             }
             else{
                 if(prefs.getBooleanPreference(TEMP_NORMAL)){
-                    totalPriceToServer = pro.getPrice() +prefs.getIntPreferences(TEMP_NORMAL_PRICE);
+                    totalPriceToServer = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  +prefs.getIntPreferences(TEMP_NORMAL_PRICE);
                 }
                 else{
-                    totalPriceToServer = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE);
+                    totalPriceToServer = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  +prefs.getIntPreferences(DELIVERY_PRICE);
                 }
 
             }
@@ -244,16 +238,19 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
         orders = databaseAdapter.getOrderFooter();
         int totalPrice = 0;
 
-        for(int i = 0 ; i < orders.size(); i++ ) {
 
-            Product orderedProduct = (Product) orders.get(i);
-            totalPrice += orderedProduct.getPrice() * orderedProduct.getCount();
+        item_price.setText(formatter.format((prefs.getIntPreferences(SP_CUSTOMER_TOTAL) + prefs.getIntPreferences(SP_CUSTOMER_FLASH_DISCOUNT) + prefs.getIntPreferences(SP_CUSTOMER_MEMBER_DISCOUNT) + prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_DISCOUNT)))+" "+activity.getResources().getString(R.string.currency));
+
+
+        if (prefs.getStringPreferences(TEMP_COMMISSION_TYPE).equals("percentage")){
+            commissionPrice = (int) (totalPriceToServer  * prefs.getFloatPreferences(TEMP_COMMISSION_RATE) / 100);
+
         }
-        item_price.setText(formatter.format(totalPrice)+" "+activity.getResources().getString(R.string.currency));
+        else{
+            commissionPrice = (int)prefs.getFloatPreferences(TEMP_COMMISSION_RATE);
+        }
 
 
-
-        commissionPrice = (int) (totalPriceToServer  * prefs.getFloatPreferences(TEMP_COMMISSION_RATE) / 100);
 
         prefs.saveIntPerferences(TEMP_COMMISSION_PRICE, commissionPrice );
 
@@ -330,13 +327,6 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
 
 
-        /*if (prefs.getIntPreferences(SP_VIP_ID) == 1 ){
-            if(totalPriceToServer > prefs.getIntPreferences(SP_MEMBER_DELIVERY_AMOUNT) || totalPriceToServer > prefs.getIntPreferences(DELIVERY_FREE_AMOUNT))
-                real = 0;
-        }
-        else if (totalPriceToServer > prefs.getIntPreferences(DELIVERY_FREE_AMOUNT) )
-            real = 0;*/
-
         if (prefs.getIntPreferences(SP_ORDER_COUNT) == 0 )
             real = first_time_price ;
         else if (totalPriceToServer >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT) )
@@ -347,68 +337,32 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
         checkPromo();
 
-        if(pro.getDiscounts().size() > 0){
-
-            if (pro.getFlashSalesArrayList().size() > 0){
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    flash_discount.setText(Html.fromHtml(
-                            String.format(resources.getString(R.string.currency_red),"- "+formatter.format(pro.getFlashSalesArrayList().get(0).getDiscount())+" ")  , Html.FROM_HTML_MODE_COMPACT));
-                } else {
-                    flash_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(pro.getFlashSalesArrayList().get(0).getDiscount())+" ")));
-                }
-
-
-            }else{
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    flash_discount.setText(Html.fromHtml(
-                            String.format(resources.getString(R.string.currency_red),"- "+"0 ")  , Html.FROM_HTML_MODE_COMPACT));
-                } else {
-                    flash_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+"0 "+" ")));
-                }
-
-            }
-
-            for(int i = 0; i < pro.getDiscounts().size(); i++){
-
-                Discount discount = pro.getDiscounts().get(i);
-
-                switch (discount.getDiscountType()){
-                    case DISCOUNT_TYPE_AMOUNT:
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            member_discount.setText(Html.fromHtml(
-                                    String.format(resources.getString(R.string.currency_red),"- "+formatter.format(discount.getMax_count())+" ")  , Html.FROM_HTML_MODE_COMPACT));
-                        } else {
-                            member_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(discount.getMax_count())+" ")));
-                        }
-
-                        break;
-
-                    case DISCOUNT_PERCENTAGE:
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            product_discount.setText(Html.fromHtml(
-                                    String.format(resources.getString(R.string.currency_red),"- "+formatter.format(discount.getMax_count())+" ")  , Html.FROM_HTML_MODE_COMPACT));
-                        } else {
-                            product_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(discount.getMax_count())+" ")));
-                        }
-
-
-
-                        break;
-
-
-
-                    default:
-                        break;
-                }
-            }
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            flash_discount.setText(Html.fromHtml(
+                    String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_FLASH_DISCOUNT))+" ")  , Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            flash_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_FLASH_DISCOUNT))+" ")));
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            product_discount.setText(Html.fromHtml(
+                    String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_DISCOUNT))+" ")  , Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            product_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_DISCOUNT))+" ")));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            member_discount.setText(Html.fromHtml(
+                    String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_MEMBER_DISCOUNT))+" ")  , Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            member_discount.setText(Html.fromHtml(String.format(resources.getString(R.string.currency_red),"- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_MEMBER_DISCOUNT))+" ")));
+        }
+
+
 
         if (prefs.getBooleanPreference(TEMP_CHOOSE_TIMING)){
 
-            linearDeliTime.setVisibility(View.VISIBLE);
+            linearDeliTime.setVisibility(View.GONE);
             delivery_date.setText(resources.getString(R.string.delivery_date));
             date_text.setText(prefs.getIntPreferences(TEMP_CHOOSE_DAY) + "-" + (prefs.getIntPreferences(TEMP_CHOOSE_MONTH)+1) + "-" + prefs.getIntPreferences(TEMP_CHOOSE_YEAR)  );
             delivery_time_text.setText(resources.getString(R.string.delivery_time));
@@ -702,18 +656,18 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        Order123 order1 = new Order123();
-        order1.setName(prefs.getStringPreferences(SP_USER_NAME));
-        order1.setPhoneNo(prefs.getStringPreferences(SP_USER_PHONE));
-        order1.setAddress(prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP) + " " + prefs.getStringPreferences(TEMP_ADDRESS_TEXT));
-        order1.setOrders(databaseAdapter.getOrderToServer());
+       // Order123 order1 = new Order123();
+       /// order1.setName(prefs.getStringPreferences(SP_USER_NAME));
+        //order1.setPhoneNo(prefs.getStringPreferences(SP_USER_PHONE));
+        //.setAddress(prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP) + " " + prefs.getStringPreferences(TEMP_ADDRESS_TEXT));
+        //order1.setOrders(databaseAdapter.getOrderToServer());
 
 
 
-        order1.setTotalPrice(finalPrice);
 
-        order1.setUniqueIDs(prefs.getStringPreferences(SP_UNIQUE_ID_FOR_USER));
-        order1.setDeliveryID(prefs.getIntPreferences(DELIVERY_ID));
+
+        //order1.setUniqueIDs(prefs.getStringPreferences(SP_UNIQUE_ID_FOR_USER));
+        //order1.setDeliveryID();
         //int free_delivery_amount = prefs.getIntPreferences(SP_MEMBER_DELIVERY_AMOUNT);
         int deliAmtFree = prefs.getIntPreferences(DELIVERY_FREE_AMOUNT);
         int real = prefs.getIntPreferences(DELIVERY_PRICE);
@@ -721,20 +675,24 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
             real = prefs.getIntPreferences(TEMP_NORMAL_PRICE);
         }
 
-        /*if (prefs.getIntPreferences(SP_VIP_ID) == 1 ){
-            if(totalPriceToServer > free_delivery_amount || totalPriceToServer > deliAmtFree)
-                real = 0;
-        }
-        else if (totalPriceToServer > deliAmtFree )
-            real = 0;*/
-
         if (totalPriceToServer >= deliAmtFree )
             real = 0;
 
-        order1.setDeliveryPrice(real );
+       // order1.setDeliveryPrice(real );
         prefs.saveStringPreferences(SP_USER_ADDRESS, prefs.getStringPreferences(TEMP_ADDRESS_TEXT));
         prefs.saveIntPerferences(SP_USER_ADDRESS_ID,prefs.getIntPreferences(TEMP_ADDRESS_ID));
-        uploadOrderAddress(order1, progressDialog);
+        uploadOrderAddress( progressDialog, real);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(prefs.getBooleanPreference(PAYMENTDONE)){
+            prefs.saveBooleanPreference(PAYMENTDONE, false);
+            prefs.saveBooleanPreference(PAYMENTAGAIN, false);
+            Intent intent = new Intent(activity, CallbackResultActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void checkOutAppsFlyerLib(int tPrice){
@@ -781,7 +739,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
     }
 
 
-    private void  uploadOrderAddress(final Order123 order, final ProgressDialog progerss)
+    private void  uploadOrderAddress(final ProgressDialog progerss, int deliveryPrice)
     {
         String uniqueId = "";
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -802,24 +760,19 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
         }
         JSONObject uploadOrder = new JSONObject();
         try {
-            uploadOrder.put("member_id",    prefs.getIntPreferences(SP_MEMBER_ID));
-            uploadOrder.put("name",         order.getName());
-            uploadOrder.put("address",      order.getAddress()  );
+           // uploadOrder.put("member_id",    prefs.getIntPreferences(SP_MEMBER_ID));
+            //uploadOrder.put("name",         order.getName());
+            uploadOrder.put("address",  prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP) + " " + prefs.getStringPreferences(TEMP_ADDRESS_TEXT) );
             uploadOrder.put("address_id",      prefs.getIntPreferences(SP_USER_ADDRESS_ID));
-            uploadOrder.put("phone",        order.getPhoneNo());
-            uploadOrder.put("api_log_id",        order.getPhoneNo() + "_" + uniqueId);
+           // uploadOrder.put("phone",        order.getPhoneNo());
+            uploadOrder.put("api_log_id",        prefs.getStringPreferences(SP_USER_PHONE) + "_" + uniqueId);
 
-            uploadOrder.put("delivery_id",  order.getDeliveryID());
+            uploadOrder.put("delivery_id",  prefs.getIntPreferences(DELIVERY_ID));
 
-            uploadOrder.put("point", prefs.getIntPreferences(ConstantVariable.CHECK_USE_POINT));
-            uploadOrder.put("products",     order.getOrders());
+            uploadOrder.put("point", prefs.getIntPreferences(CHECK_USE_POINT));
+            //uploadOrder.put("products",     order.getOrders());
             uploadOrder.put("payment_type_id", prefs.getIntPreferences(TEMP_CHOOSE_PAYMENT_ID));
             uploadOrder.put("payment_type_tag", prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG));
-
-           /* if (checkPromoText.trim().length() > 0){
-                uploadOrder.put("coupon_code",checkPromoText);
-
-            }*/
 
 
             int free_delivery = 0;
@@ -833,7 +786,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
 
                 }
                 else{
-                    free_delivery = order.getDeliveryPrice();
+                    free_delivery = real;
                     uploadOrder.put("delivery_fee", 0);
                     uploadOrder.put("delivery_type", 0);
 
@@ -855,7 +808,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
                     uploadOrder.put("delivery_type", 1);
                 }
                 else{
-                    uploadOrder.put("delivery_fee", order.getDeliveryPrice());
+                    uploadOrder.put("delivery_fee", deliveryPrice);
                     uploadOrder.put("delivery_type", 0);
 
                     if (prefs.getBooleanPreference(TEMP_CHOOSE_TIMING)){
@@ -869,7 +822,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
             }
 
             uploadOrder.put("free_delivery" , free_one_time);
-            uploadOrder.put("total_price",  (order.getTotalPrice() - free_delivery));
+           // uploadOrder.put("total_price",  (finalPrice - free_delivery));
             if (prefs.getBooleanPreference(TEMP_CHOOSE_PICK_UP)) {
                 uploadOrder.put("store_location_id", prefs.getIntPreferences(TEMP_PICK_UP_ID));
             }
@@ -892,7 +845,7 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e(TAG, "onResponse: "  + response.toString() );
+                        Log.e(TAG, "onResponse: ----------------------- 810 "  + response.toString() );
 
                         try {
                             int status      = response.getInt("status");
@@ -905,16 +858,26 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
                             firebaseAnalytics.logEvent(FirebaseAnalytics.Event.ECOMMERCE_PURCHASE, fbundle);
 
                             prefs.saveIntPerferences(SP_USER_POINT, point);
+                            prefs.saveBooleanPreference(PAYMENTDONE,false);
+
                             if(status == 1 ){
 
-                                checkOutAppsFlyerLib( order.getTotalPrice());
+                                checkOutAppsFlyerLib( finalPrice);
 
-                                databaseAdapter.deleteAllColumn(TABLE_SAVE_CART);
-                                int result = databaseAdapter.insertOrderTable(orderId, order);
-                                if(result != -1){
-                                    databaseAdapter.insertOrderItem(order, orderId);
-                                }
+                                //databaseAdapter.deleteAllColumn(TABLE_SAVE_CART);
+                               // int result = databaseAdapter.insertOrderTable(orderId, order);
+                                //if(result != -1){
+                                //    databaseAdapter.insertOrderItem(order, orderId);
+                               // }
                                 progerss.dismiss();
+
+                                if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("kpay")) {
+                                    prefs.saveStringPreferences(SP_ORDER_INFO, response.getString("orderinfo"));
+                                    prefs.saveStringPreferences(SP_SIGN, response.getString("sign"));
+                                    prefs.saveStringPreferences(SP_SHA, response.getString("sign_type"));
+                                }
+
+
 
 
                                 try {
@@ -925,49 +888,13 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
                                 } catch (Exception e) {
                                 }
 
+                                //{"status":1,"text":"မှာပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်။ အလုပ်ရက် ၁ ရက်အတွင်း ပြန်ဆက်သွယ်ပေးပါမယ်။","order_id":302621,"point":157}
+
                                 Intent intent = new Intent(activity, ActivityCheckOut.class);
                                 intent.putExtra("status", message);
                                 startActivity(intent);
 
-                               /* final Dialog dialog = new Dialog(activity);
-                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                dialog.setContentView(R.layout.dialog_save_cart);
-                                dialog.setCancelable(true);
 
-                                Window window = dialog.getWindow();
-                                WindowManager.LayoutParams wlp = window.getAttributes();
-                                wlp.gravity = Gravity.CENTER;
-                                wlp.width   = activity.getWindowManager().getDefaultDisplay().getWidth();
-                                window.setAttributes(wlp);
-
-                                CustomTextView textView  = (CustomTextView) dialog.findViewById(R.id.dialog_save_cart_product);
-                                CustomTextView title  = (CustomTextView) dialog.findViewById(R.id.title);
-                                title.setText(resources.getString(R.string.order_status));
-
-                                textView.setText(message);
-                                CustomButton ok = (CustomButton) dialog.findViewById(R.id.yes);
-                                ok.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        dialog.dismiss();
-                                        prefs.saveIntPerferences(SP_MAINACTIVITY_CLICK , 0);
-                                        Intent intent = new Intent(activity,MainActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        activity.startActivity(intent);
-                                        activity.finish();
-                                    }
-                                });
-
-                                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                                    @Override
-                                    public void onCancel(DialogInterface dialog) {
-                                        activity.finish();
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                                dialog.show();*/
 
 
 
@@ -1052,6 +979,8 @@ public class ActivityStepThreeCart extends AppCompatActivity implements Constant
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }

@@ -1,25 +1,19 @@
 package com.kyarlay.ayesunaing.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +36,6 @@ import com.kyarlay.ayesunaing.object.MainObject;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
 import com.kyarlay.ayesunaing.operation.UniversalAdapter;
-import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,8 +108,8 @@ public class SearchActivity extends AppCompatActivity implements ConstantVariabl
 
 
         back.getLayoutParams().width     = ( display.getWidth() * 2) / 20;
-        search_layout.getLayoutParams().width    = ( display.getWidth() * 15) / 20;
-        scanner.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
+        search_layout.getLayoutParams().width    = ( display.getWidth() * 18) / 20;
+        //scanner.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
 
 
         universalAdapter = new UniversalAdapter(SearchActivity.this, mainCatDetails);
@@ -129,6 +122,7 @@ public class SearchActivity extends AppCompatActivity implements ConstantVariabl
         scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*
 
                 try {
 
@@ -146,6 +140,7 @@ public class SearchActivity extends AppCompatActivity implements ConstantVariabl
                 }
             }
 
+*/
 
             }
         });
@@ -301,7 +296,7 @@ public class SearchActivity extends AppCompatActivity implements ConstantVariabl
     }
 
 
-    private void startScan() {
+   /* private void startScan() {
         Intent openCameraIntent = new Intent(SearchActivity.this, CaptureActivity.class);
         openCameraIntent.putExtra("SCAN_MODE", "PRODUCT_MODE");
         startActivityForResult(openCameraIntent, 0);
@@ -347,7 +342,7 @@ public class SearchActivity extends AppCompatActivity implements ConstantVariabl
 
             Toast.makeText(getApplicationContext(), "Scan Result  ERror ", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
 
 

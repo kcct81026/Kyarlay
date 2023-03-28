@@ -860,6 +860,7 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                             } catch (Exception e) {
                             }
 
+                            prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
                             Intent intent = new Intent(activity, OrderDetailActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putParcelable("order", orderTrack);
@@ -938,6 +939,7 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                             } catch (Exception e) {
                             }
 
+                            prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
                             Intent intent = new Intent(activity, OrderDetailActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putParcelable("order", orderPendingObj);
@@ -1013,8 +1015,10 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                             catDetailHolder.txt_one_dayTwo.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                         }
 
+
+                        catDetailHolder.txt_one_dayTwo.setVisibility(View.GONE);
                         catDetailHolder.img_one_dayTwo.setVisibility(View.GONE);
-                        catDetailHolder.img_one_todayTwo.setVisibility(View.VISIBLE);
+                        catDetailHolder.img_one_todayTwo.setVisibility(View.GONE);
 
                     }else{
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -1269,8 +1273,12 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     } else {
                         catDetailHolder.txt_one_day.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                     }
+
+                    Log.e(TAG, "onBindViewHolder: -------------------------dfkdfkdkfkdk"   );
+
+                    catDetailHolder.txt_one_day.setVisibility(View.GONE);
                     catDetailHolder.img_one_day.setVisibility(View.GONE);
-                    catDetailHolder.img_one_today.setVisibility(View.VISIBLE);
+                    catDetailHolder.img_one_today.setVisibility(View.GONE);
 
                 }else{
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -3787,8 +3795,8 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             }else{
 
 
-                databaseAdapter.insertOrder(product, count, final_item_price, option);
-                prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+                //databaseAdapter.insertOrder(product, count, final_item_price, option);
+                prefs.saveBooleanPreference(LOGIN_SAVECART, false);
                 Intent intent   = new Intent(activity, ActivityLogin.class);
                 activity.startActivity(intent);
 
@@ -3799,55 +3807,169 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     public void addToCartProduct(Product product, final Activity activity, int count, int final_item_price, String option){
         prefs.saveBooleanPreference(LOGIN_SAVECART, false);
-        databaseAdapter.insertOrder(product, count, final_item_price, option);
-        if(activity.getLocalClassName().contains("MainActivity")) {
 
-            MainActivity pro = (MainActivity) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", count);
+            uploadMessage.put("option", option);
+            uploadMessage.put("product_id", product.getId());
 
-            CategoryActivity pro = (CategoryActivity) activity;
-            pro.bounceCount();
-        }
-        else if(activity.getLocalClassName().contains("ProductActivity")) {
 
-            ProductActivity pro = (ProductActivity) activity;
-            pro.bounceCount();
-        }
-
-        else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
-
-            CampainDetailActivity pro = (CampainDetailActivity) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
-
-            ActivityAdsList pro = (ActivityAdsList) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
-
-            BrandedDetailActivity pro = (BrandedDetailActivity) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("WishListActivity")) {
-
-            WishListActivity pro = (WishListActivity) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("BrandActivity")) {
-
-            BrandActivity pro = (BrandActivity) activity;
-            pro.bounceCount();
-        }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
-
-            SearchResultActivity pro = (SearchResultActivity) activity;
-            pro.bounceCount();
-
-        }
-        else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
-
-            DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
-            pro.bounceCount();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
 
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            if (response.getInt("status") == 1) {
+                                prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT ) + count));
+
+                                if(activity.getLocalClassName().contains("MainActivity")) {
+
+                                    MainActivity pro = (MainActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+
+                                    CategoryActivity pro = (CategoryActivity) activity;
+                                    pro.bounceCount();
+                                }
+                                else if(activity.getLocalClassName().contains("ProductActivity")) {
+
+                                    ProductActivity pro = (ProductActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
+
+                                    CampainDetailActivity pro = (CampainDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
+
+                                    ActivityAdsList pro = (ActivityAdsList) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
+
+                                    BrandedDetailActivity pro = (BrandedDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("WishListActivity")) {
+
+                                    WishListActivity pro = (WishListActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandActivity")) {
+
+                                    BrandActivity pro = (BrandActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
+
+                                    SearchResultActivity pro = (SearchResultActivity) activity;
+                                    pro.bounceCount();
+
+                                }
+                                else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
+
+                                    DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                final Dialog dialog = new Dialog(activity);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                dialog.setCanceledOnTouchOutside(true);
+                                Window window = dialog.getWindow();
+                                WindowManager.LayoutParams wlp = window.getAttributes();
+                                wlp.gravity = Gravity.CENTER;
+                                wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                window.setAttributes(wlp);
+
+                                CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                //title.setText(resources.getString(R.string.added_to_cart_title));
+                                text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+
+                                CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                circularTextView.setText(String.valueOf(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT)));
+
+
+                                confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+
+                                            Map<String, String> mix = new HashMap<String, String>();
+                                            mix.put("source", "product_detail_dialog");
+                                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                        } catch (Exception e) {
+                                        }
+
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                        activity.startActivity(intent);
+                                    }
+
+                                });
+
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse:   "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+
+
+
+       // databaseAdapter.insertOrder(product, count, final_item_price, option);
+
+/*
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -3903,7 +4025,7 @@ public class MallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        dialog.show();*/
 
     }
 

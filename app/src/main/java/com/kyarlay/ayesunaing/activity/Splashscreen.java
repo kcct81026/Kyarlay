@@ -179,7 +179,7 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
 
                     getCustomerInfo();
                 }else {
-
+                    prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
                     checkingVersion();
                 }
 
@@ -289,14 +289,14 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
         }
 
 
-        Log.e(TAG, "onCreate: **************************** "  );
+
 
         if(prefs.isNetworkAvailable()){
             if(!prefs.getStringPreferences(SP_USER_TOKEN).equals("")) {
 
                 getCustomerInfo();
             }else {
-
+                prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
                 checkingVersion();
             }
         }else {

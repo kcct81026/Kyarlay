@@ -413,6 +413,9 @@
     <string name="fill_name">နာမည္ ရိုက္ထည့္ရန္</string>
     <string name="fill_photo">Profile ဓါတ္ပံုထည့္ရန္</string>
     <string name="user_detail_title">စကားဝိုင္း၌ ေဆြးေႏြးရာတြင္ အေထာက္အကူျပဳေစရန္ ေအာက္ပါ အခ်က္အလက္မ်ားကိုျဖည့္ပါ။</string>
+    <string name="policy">I accept and agree to the Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
+    <string name="policy_aggreed">Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
+
 
     <string name="added_to_cart_title">ေစ်းျခင္းေတာင္းထဲ သြားမလား</string>
     <string name="added_to_cart_text">သင္ေရြးခ်ယ္လိုက္ေသာ ပစၥည္းကို ေစ်းျခင္းေတာင္းထဲထည့္ျပီးပါျပီ။ ေစ်းျခင္းေတာင္းထဲ သြားၾကည္​့မယ္။</string>
@@ -611,6 +614,9 @@
     <string name="product">အမွတ္တံဆိပ္မ်ား</string>
     <string name="order">ေအာ္ဒါမွာမယ္</string>
     <string name="order_status">သင့္ေအာ္ဒါ အေျခအေန</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="kpay_success">Your payment with KBZPay was successfully paid.</string>
+    <string name="kpay_fail">Your payment with KBZPay was unsuccessful.</string>
 
     <string name="order_old">သင့္ေအာ္ဒါမ်ား</string>
     <string name="order_placed">ေအာ္ဒါ တင္ၿပီးၿပီ</string>

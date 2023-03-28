@@ -271,6 +271,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="gone"
         android:id="@+id/fab"
         android:padding="@dimen/size_8dp"
         app:backgroundTint="@color/button_yellow"

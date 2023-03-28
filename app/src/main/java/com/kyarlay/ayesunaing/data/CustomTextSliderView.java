@@ -21,8 +21,8 @@ public class CustomTextSliderView extends BaseSliderView {
     @Override
     public View getView() {
         View v = LayoutInflater.from(getContext()).inflate(R.layout.custom_render_type_text,null);
-        ImageView target = (ImageView)v.findViewById(R.id.daimajia_slider_image);
-        CustomTextView description = (CustomTextView)v.findViewById(R.id.description);
+        ImageView target = v.findViewById(R.id.daimajia_slider_image);
+        CustomTextView description = v.findViewById(R.id.description);
 
 
         description.setText(getDescription());

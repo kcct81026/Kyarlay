@@ -21,9 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatConfig;
-import com.freshchat.consumer.sdk.FreshchatUser;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -284,8 +281,8 @@ public class RegisterWithPassword extends AppCompatActivity implements Constant,
                                 } catch (Exception e) {
                                 }
 
-                                try{
-                                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                              /*  try{
+                                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser();
@@ -299,7 +296,7 @@ public class RegisterWithPassword extends AppCompatActivity implements Constant,
 
                                 }catch (Exception e){
 
-                                }
+                                }*/
                                 if (prefs.getIntPreferences(SP_CHANGE) == 1){
                                     prefs.saveIntPerferences(SP_CHANGE, 0);
                                     prefs.saveIntPerferences(ConstantVariable.COUNT_DOWN, 0);

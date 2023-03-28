@@ -40,9 +40,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatConfig;
-import com.freshchat.consumer.sdk.FreshchatUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -67,6 +64,7 @@ import com.kyarlay.ayesunaing.fragment.FragmentReadingPager;
 import com.kyarlay.ayesunaing.in_app.Constants;
 import com.kyarlay.ayesunaing.in_app.InAppUpdateManager;
 import com.kyarlay.ayesunaing.in_app.InAppUpdateStatus;
+import com.kyarlay.ayesunaing.object.CustomerProductList;
 import com.kyarlay.ayesunaing.object.Delivery;
 import com.kyarlay.ayesunaing.object.ShopLocation;
 import com.kyarlay.ayesunaing.object.UniversalPost;
@@ -87,6 +85,10 @@ import java.util.Random;
 import me.myatminsoe.mdetect.MDetect;
 
 import static com.kyarlay.ayesunaing.data.ConstantsDB.TABLE_PICKUP_SHOP;
+
+/*import com.freshchat.consumer.sdk.Freshchat;
+import com.freshchat.consumer.sdk.FreshchatConfig;
+import com.freshchat.consumer.sdk.FreshchatUser;*/
 
 
 /**
@@ -260,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
 
 
         deliveryList();
+
         if(FirebaseInstanceId.getInstance().getToken()!= null &&
                 FirebaseInstanceId.getInstance().getToken().trim().length() > 0 &&
                 !prefs.getStringPreferences(SP_USER_TOKEN).equals(""))
@@ -534,7 +537,8 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
         if(fragmentOne != null) {
             //fragmentOne.bounceCount();
 
-            int count_wish1  = databaseAdapter.getOrderCount();
+            int count_wish1  = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
+            Log.e(TAG, "bounceCount: ------------------------- 810 count "  + count_wish1  );
             text_cart.setText(count_wish1 + "");
 
             if (count_wish1 == 0)
@@ -729,13 +733,26 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
     protected void onResume() {
         super.onResume();
 
-        int count_wish1  = databaseAdapter.getOrderCount();
+        if(!prefs.getStringPreferences(SP_USER_TOKEN).equals("")) {
+
+            getCustomerProdcutList();
+        }else{
+            text_cart.setVisibility(View.GONE);
+            prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
+
+
+        }
+
+
+
+
+        /*int count_wish1  = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         text_cart.setText(count_wish1 + "");
 
         if (count_wish1 == 0)
             text_cart.setVisibility(View.GONE);
         else
-            text_cart.setVisibility(View.VISIBLE);
+            text_cart.setVisibility(View.VISIBLE);*/
 
 
     }
@@ -888,8 +905,6 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
                     public void onResponse(JSONArray response) {
                         if(response.length() > 0) {
 
-
-
                             GsonBuilder builder = new GsonBuilder();
                             Gson mGson = builder.create();
                             ArrayList<Delivery> arrayList = new ArrayList<>();
@@ -912,6 +927,79 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
         });
 
         AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    private void getCustomerProdcutList()
+    {
+
+        JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
+                constantGetCurrentOrderFromServer, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+
+                    try {
+                        GsonBuilder builder = new GsonBuilder();
+                        Gson mGson = builder.create();
+                        Type listType = new TypeToken<CustomerProductList>() {
+                        }.getType();
+                        CustomerProductList customerProductList = mGson.fromJson(response.toString(), listType);
+                        if (customerProductList.getProuduts().size() == 0){
+
+                            prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
+                        }
+                        else{
+                            int count = 0;
+                            for (int i=0; i< customerProductList.getProuduts().size() ; i++){
+                                count = count + customerProductList.getProuduts().get(i).getQuantity();
+                            }
+                            prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , count);
+                        }
+
+                        int count_wish1  = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
+                        text_cart.setText(count_wish1 + "");
+
+                        if (count_wish1 == 0)
+                            text_cart.setVisibility(View.GONE);
+                        else
+                            text_cart.setVisibility(View.VISIBLE);
+
+                        prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_DISCOUNT, customerProductList.getProductCuromerInfo().getDisCountPrice());
+                        prefs.saveIntPerferences(SP_CUSTOMER_MEMBER_DISCOUNT, customerProductList.getProductCuromerInfo().getMemberDiscount());
+                        prefs.saveFloatPerferences(SP_CUSTOMER_FLASH_DISCOUNT, customerProductList.getProductCuromerInfo().getFlashDiscount());
+                        prefs.saveFloatPerferences(SP_CUSTOMER_TOTAL, customerProductList.getProductCuromerInfo().getTotalPrice());
+
+                    }catch (Exception e){
+                        Log.e(TAG, "onResponse: errror   8102     "  + e.getMessage() );
+                    }
+
+
+                } catch (Exception e) {
+                    Log.e(TAG, "onResponse: Exception  -----  8102 "   + e.getMessage() );
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onErrorResponse: Exception  -----  8102 "   + error.getMessage() );
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(apkDownloadRequest, "update_profile");
     }
 
 
@@ -951,8 +1039,9 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
 
                     prefs.saveIntPerferences(SP_ORDER_COUNT, response.getInt("order_count"));
 
+/*
 
-                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser()    ;
@@ -965,13 +1054,9 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
                             freshUser.getRestoreId().trim().length() != 0) {
                         updateFreshChatId(freshUser.getRestoreId());
                     }
+*/
 
 
-                   /* if(prefs.getIntPreferences(SP_MEMBER_ID) == 38211){
-
-                        prefs.saveIntPerferences(SP_ORDER_COUNT,0);
-
-                    }*/
 
 
                 } catch (Exception e) {
@@ -1062,7 +1147,7 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.e(TAG, "onErrorResponse:  81026 "  + error.getMessage() );
+                Log.e(TAG, "onErrorResponse:   "  + error.getMessage() );
 
 
             }

@@ -577,6 +577,10 @@
     <string name="product">All Brands</string>
     <string name="order">Order</string>
     <string name="order_status">Your Order Status</string>
+    <string name="pay_now">Pay With KBZPay Now</string>
+    <string name="kpay_success">Your payment with KBZPay was successfully paid.</string>
+    <string name="kpay_fail">Your payment with KBZPay was unsuccessful.</string>
+
 
     <string name="order_old">Your Old Order</string>
     <string name="order_placed">Order Placed</string>
@@ -670,6 +674,8 @@
     <string name="child_bd">Your Baby\'s Birth Month And Year</string>
     <string name="child_bd_due_date">Due Date</string>
     <string name="new_born">New Born</string>
+    <string name="policy">I accept and agree to the Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
+    <string name="policy_aggreed">Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
 
 
     <string name="login">Login</string>

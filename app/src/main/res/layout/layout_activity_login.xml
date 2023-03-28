@@ -94,6 +94,37 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar" />
 
+    <LinearLayout
+        android:id="@+id/layoutPolicy"
+        android:gravity="center"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/layout_margin_reading_post" >
+
+        <CheckBox
+            android:buttonTint="@color/black"
+            android:id="@+id/chk"
+            android:layout_gravity="top"
+            android:layout_width="@dimen/diment_30"
+            android:layout_height="@dimen/tool_bar"
+            />
+        <TextView
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:text="Term\ncondition"
+            android:textColor="@color/text"
+            android:letterSpacing="0.08"
+            android:textSize="@dimen/text"
+            android:id="@+id/txtPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+
     <View
         android:layout_weight="1"
         android:layout_width="match_parent"

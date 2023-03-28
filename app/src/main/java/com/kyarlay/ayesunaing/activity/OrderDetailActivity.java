@@ -19,6 +19,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kbzbank.payment.sdk.callback.CallbackResultActivity;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
@@ -94,6 +95,7 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
 
 
         prefs.saveIntPerferences(OLD_ORDER_DIFFER , 0);
+        prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
 
         orderDetailList(order.getOrder_id());
 
@@ -259,5 +261,17 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(prefs.getBooleanPreference(PAYMENTHISTORYDONE)){
+            Log.e(TAG, "onResume: ------------------------------------------------------- "   );
+            prefs.saveBooleanPreference(PAYMENTDONE, false);
+            prefs.saveBooleanPreference(PAYMENTAGAIN, true);
+            prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
 
+            Intent intent = new Intent(OrderDetailActivity.this, CallbackResultActivity.class);
+            startActivity(intent);
+        }
+    }
 }

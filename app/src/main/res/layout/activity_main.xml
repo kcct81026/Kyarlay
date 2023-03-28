@@ -51,12 +51,12 @@
             />
 
         <com.kyarlay.ayesunaing.custom_widget.CircularTextView
+            android:visibility="gone"
             android:id="@+id/text_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:padding="2dp"
-            android:text="2"
             android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"

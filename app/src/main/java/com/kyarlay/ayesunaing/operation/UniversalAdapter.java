@@ -11,7 +11,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -59,14 +58,13 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatMessage;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kbzbank.payment.KBZPay;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityAdsList;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
@@ -112,8 +110,6 @@ import com.kyarlay.ayesunaing.activity.ShowAllNamesActivity;
 import com.kyarlay.ayesunaing.activity.UserPostDetailActivity;
 import com.kyarlay.ayesunaing.activity.UserPostUploadActivity;
 import com.kyarlay.ayesunaing.activity.WishListActivity;
-import com.kyarlay.ayesunaing.activity.YouTubeDialog;
-import com.kyarlay.ayesunaing.activity.Youtube;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -185,7 +181,6 @@ import com.kyarlay.ayesunaing.holder.UserPostUploadHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileNewHolder;
 import com.kyarlay.ayesunaing.holder.VideoAllHolder;
-import com.kyarlay.ayesunaing.holder.VideoLatestHolder;
 import com.kyarlay.ayesunaing.holder.VideoPostHolder;
 import com.kyarlay.ayesunaing.holder.VideoProgramHolder;
 import com.kyarlay.ayesunaing.holder.WatchMoreHolder;
@@ -222,7 +217,6 @@ import com.kyarlay.ayesunaing.object.ShopLocation;
 import com.kyarlay.ayesunaing.object.ToolChildObject;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.object.Videos;
-import com.xys.libzxing.zxing.encoding.EncodingUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -487,9 +481,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return VIEW_TYPE_VIDEO_NEWS_SMALL;
         }
 
-        else if (universalList.get(position).getPostType().equals(VIDEO_LIST)) {
-            return VIEW_TYPE_VIDEO_LIST;
-        }
+
 
         else if (universalList.get(position).getPostType().equals(VIDEO_MORE)) {
             return VIEW_TYPE_VIDEO_MORE;
@@ -858,25 +850,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             viewHolder = new GiftItemHolder(viewItem);
         }
 
-        else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
+      /*  else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_video_latest, parent, false);
             viewHolder = new VideoLatestHolder(viewItem, display);
         }
-
+*/
         else if(viewType == VIEW_TYPE_TOOL_SUB_CATEGORY){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_tool_grid_item, parent, false);
             viewHolder = new ToolSubCatHolder(viewItem, display);
         }
 
-
-
-        else if(viewType == VIEW_TYPE_VIDEO_LIST){
-            View viewItem = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.layout_video_latest, parent, false);
-            viewHolder = new VideoLatestHolder(viewItem, display);
-        }
 
         else if(viewType == VIEW_TYPE_VIDEO_MORE){
             View viewItem = LayoutInflater.from(parent.getContext())
@@ -1270,7 +1255,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
                 });
 
-                userProfileNewHolder.imgProfile.setOnClickListener(new View.OnClickListener() {
+               /* userProfileNewHolder.imgProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final Dialog dialog = new Dialog(activity);
@@ -1292,7 +1277,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         dialog.show();
                     }
-                });
+                });*/
 
                 break;
 
@@ -1362,6 +1347,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             catDetailHolder.txt_one_dayTwo.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                         }
 
+                        Log.e(TAG, "onBindViewHolder: -------------------------dfkdfkdkfkdk"   );
+
+                        catDetailHolder.txt_one_dayTwo.setVisibility(View.GONE);
                         catDetailHolder.img_one_dayTwo.setVisibility(View.GONE);
                         catDetailHolder.img_one_todayTwo.setVisibility(View.VISIBLE);
 
@@ -1618,6 +1606,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     } else {
                         catDetailHolder.txt_one_day.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                     }
+                    Log.e(TAG, "onBindViewHolder: -------------------------dfkdfkdkfkdk"   );
+
+                    catDetailHolder.txt_one_day.setVisibility(View.GONE);
                     catDetailHolder.img_one_day.setVisibility(View.GONE);
                     catDetailHolder.img_one_today.setVisibility(View.VISIBLE);
 
@@ -1902,7 +1893,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         orderDetailTopHolder.txtOrderStatus.setBackgroundColor(activity.getResources().getColor(R.color.white));
                     }
 
-                    Log.e(TAG, "onBindViewHolder: ********* 81026 000 "  + orderTop.getStatus() );
 
                     orderDetailTopHolder.linearOrderStatus.setVisibility(View.VISIBLE);
 
@@ -2455,10 +2445,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         // productDetailsHolder.linearProductWarning.setVisibility(View.GONE);
                         productDetailsHolder.img_car.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_one));
                         productDetailsHolder.txtProductWarning.setText(resources.getString(R.string.delivery_take_time));
+                        productDetailsHolder.img_car.setVisibility(View.GONE);
+                        productDetailsHolder.txtProductWarning.setVisibility(View.GONE);
 
 
                     }else{
                         //productDetailsHolder.linearProductWarning.setVisibility(View.VISIBLE);
+                        productDetailsHolder.img_car.setVisibility(View.VISIBLE);
+                        productDetailsHolder.txtProductWarning.setVisibility(View.VISIBLE);
                         productDetailsHolder.img_car.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_option));
                         productDetailsHolder.txtProductWarning.setText(resources.getString(R.string.delivery_take_time_option));
 
@@ -2501,9 +2495,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         productDetailsHolder.imgYouTube.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(activity, Youtube.class);
+                               /* Intent intent = new Intent(activity, Youtube.class);
                                 intent.putExtra("youtubeID", productDetail.getYoutubeId());
-                                activity.startActivity(intent);
+                                activity.startActivity(intent);*/
                             }
                         });
                     }
@@ -2631,7 +2625,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                                 FlurryAgent.logEvent("Send Product Message", mix);
 
                                             } catch (Exception e) {}
-
+/*
                                             FreshchatMessage message1  = new FreshchatMessage();
                                             message1.setTag(String.valueOf(productDetail.getId()));
                                             message1.setMessage(constantChatProduct+productDetail.getId()+"<br>"+
@@ -2642,7 +2636,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                             Freshchat.sendMessage(activity, message1);
 
                                             dialog.dismiss();
-                                            Freshchat.showConversations(activity);
+                                            Freshchat.showConversations(activity);*/
 
                                         }else{
 
@@ -2715,8 +2709,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 PaymentObject paymentItemObj = (PaymentObject) universalList.get(position);
                 itemPaymentHolder.img.setImageUrl(paymentItemObj.getImg_url(), imageLoader);
 
-
-
                 itemPaymentHolder.img.getLayoutParams().height = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
                 itemPaymentHolder.img.getLayoutParams().width = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
 
@@ -2741,15 +2733,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        Product pro = databaseAdapter.getShoppingCartFooter();
                         int amtCheckPrice = 0;
 
-                        if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                            amtCheckPrice = pro.getPrice()- prefs.getIntPreferences(CHECK_USE_POINT);
+                        if(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
                         else{
 
-                            amtCheckPrice = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL) +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
 
 
@@ -2779,6 +2770,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                         prefs.saveIntPerferences(TEMP_CHOOSE_PAYMENT_ID, paymentItemObj.getId());
                                         prefs.saveFloatPerferences(TEMP_COMMISSION_RATE,  paymentItemObj.getCommission());
                                         prefs.saveStringPreferences(TEMP_COMMISSION_IMG,  paymentItemObj.getImg_url());
+                                        prefs.saveStringPreferences(TEMP_COMMISSION_TYPE,  paymentItemObj.getCommisionType());
                                         prefs.saveStringPreferences(TEMP_COMMISSION_NAME,  paymentItemObj.getName());
                                         prefs.saveStringPreferences(TEMP_CHOOSE_PAYMENT_TAG,  paymentItemObj.getTag());
                                         prefs.saveStringPreferences(TEMP_CHOOSE_PAYMENT_ACC_NAME,  paymentItemObj.getAcc_name());
@@ -2810,18 +2802,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             }
 
-           case VIEW_TYPE_STEP_ONE_BOTTOM :{
-                final OrderNowHolder orderNowHolder = (OrderNowHolder) parentHolder;
-
-                final Product proOrder = databaseAdapter.getShoppingCartFooter();
-                int checkTotalPrice = 0;
-                int commissionPrice = 0;
-                int finalPrice = 0;
-
-
-                break;
-
-            }
 
 
 
@@ -3275,6 +3255,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         } catch (Exception e) {
                         }
 
+                        prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
                         Intent intent = new Intent(activity, OrderDetailActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putParcelable("order", histroyOrder);
@@ -3336,32 +3317,72 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     detailsHolder.linear_payment.setVisibility(View.GONE);
                     detailsHolder.payment_layout.setVisibility(View.GONE);
                 }else{
-                    detailsHolder.linear_payment.setVisibility(View.VISIBLE);
-                    detailsHolder.payment_layout.setVisibility(View.VISIBLE);
-                    detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
-                    detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
-                    detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
-                    detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
 
-                    detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
-                    detailsHolder.txtCopy.setText(resources.getString(R.string.copy));
-                    detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
-                    detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
-                    detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
+                    if (orderDetails.getStatus().equals("ordered") && orderDetails.getPayment_method().equals("kpay")){
+                        detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                        detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                        detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                        detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                        detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+                        detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
+                        detailsHolder.txtCopy.setText(resources.getString(R.string.pay_now));
+                        detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
+                        detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
+                        detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
 
 
-                    detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
-                    detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+                        detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
+                        detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
 
-                    detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText("Copied", orderDetails.getAcc_num());
-                            clipboard.setPrimaryClip(clip);
-                            Toast.makeText(activity, "Copied", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                        detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (prefs.isNetworkAvailable()){
+                                    ProgressDialog progressDialog = new ProgressDialog(activity);
+                                    progressDialog.setMessage("Loading . . . ");
+                                    progressDialog.setCanceledOnTouchOutside(false);
+                                    progressDialog.show();
+
+
+                                    payPaymentToServer(progressDialog, orderDetails.getOrder_id());
+                                }
+
+
+                            }
+                        });
+                    }
+                    else{
+                         detailsHolder.linear_payment.setVisibility(View.VISIBLE);
+                        detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                        detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                        detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                        detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                        detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+                        detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
+                        detailsHolder.txtCopy.setText(resources.getString(R.string.copy));
+                        detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
+                        detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
+                        detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
+
+
+                        detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
+                        detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+
+                        detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("Copied", orderDetails.getAcc_num());
+                                clipboard.setPrimaryClip(clip);
+                                Toast.makeText(activity, "Copied", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+
+
                 }
 
 
@@ -3618,9 +3639,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
 
                         prefs.saveIntPerferences(FIRST_PLAY, 0);
-                        Intent intent = new Intent(activity, YouTubeDialog.class);
+                       /* Intent intent = new Intent(activity, YouTubeDialog.class);
                         intent.putExtra("youtube_object", videoProgram2);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -3683,49 +3704,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             case VIEW_TYPE_VIDEO_NEWS_SMALL :{
-                final VideoLatestHolder latestHolder = (VideoLatestHolder) parentHolder;
-                final Reading readingObj1 = (Reading) universalList.get(position);
-                latestHolder.thumbnailVideo.setVisibility(View.GONE);
-                if(readingObj1.getTitle() != null  && readingObj1.getTitle().trim().length() > 0) {
-                    latestHolder.title.setVisibility(View.VISIBLE);
-                    latestHolder.title.setText(readingObj1.getTitle());
-                    latestHolder.title.setLineSpacing(1.8f, 1.0f);
-                    latestHolder.title.setTypeface(latestHolder.title.getTypeface(), Typeface.BOLD);
-
-                }else
-                    latestHolder.title.setVisibility(View.GONE);
-
-
-                if(readingObj1.getPhoto_url() != null && readingObj1.getPhoto_url().trim().length() > 0){
-
-                    latestHolder.img.setImageUrl(readingObj1.getPhoto_url(), imageLoader);
-                    latestHolder.img.setVisibility(View.VISIBLE);
-                }
-
-                latestHolder.videoCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            Map<String, String> mix = new HashMap<String, String>();
-                            mix.put("source", "post_list");
-                            mix.put("post_id", String.valueOf(readingObj1.getId()));
-                            FlurryAgent.logEvent("Click Post", mix);
-                        } catch (Exception e) {
-                        }
-
-                        Intent intent = new Intent(activity, ReadingCommentDetailsActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("comment", "read");
-                        bundle.putInt("id", readingObj1.getId());
-                        bundle.putString("title", readingObj1.getTitle());
-                        bundle.putInt("like_count", readingObj1.getLikes());
-                        bundle.putInt("comment_count", readingObj1.getComment_coount());
-                        bundle.putString("page_url", readingObj1.getPage_img_url());
-                        intent.putExtras(bundle);
-                        activity.startActivity(intent);
-                    }
-                });
-
 
                 break;
 
@@ -3843,7 +3821,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
 
-            case VIEW_TYPE_VIDEO_LIST :{
+          /*  case VIEW_TYPE_VIDEO_LIST :{
                 final VideoLatestHolder latestHolder1 = (VideoLatestHolder) parentHolder;
                 final Videos videosObj = (Videos) universalList.get(position);
                 latestHolder1.img.setVisibility(View.GONE);
@@ -3878,7 +3856,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 break;
 
-            }
+            }*/
 
             case VIEW_TYPE_GIFT_OBJECT_SHOW_ITEM:{
 
@@ -4436,7 +4414,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 profileHolder.txtRate.setPaintFlags(profileHolder.txtRate.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
                 profileHolder.txtQA.setPaintFlags(profileHolder.txtQA.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
 
-                profileHolder.profile_image.setOnClickListener(new View.OnClickListener() {
+               /* profileHolder.profile_image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -4459,7 +4437,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         dialog.show();
                     }
-                });
+                });*/
 
                 profileHolder.txtEditProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -6337,10 +6315,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     // catDetailHolder.imgCar.setVisibility(View.GONE);
                     catDetailHolder.product_warning.setText(resources.getString(R.string.delivery_take_time));
                     catDetailHolder.imgCar.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_one));
+                    catDetailHolder.imgCar.setVisibility(View.GONE);
+                    catDetailHolder.product_warning.setVisibility(View.GONE);
 
                 }else{
                     //catDetailHolder.product_warning.setVisibility(View.VISIBLE);
                     //catDetailHolder.imgCar.setVisibility(View.VISIBLE);
+                    catDetailHolder.imgCar.setVisibility(View.VISIBLE);
+                    catDetailHolder.product_warning.setVisibility(View.VISIBLE);
                     catDetailHolder.imgCar.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_option));
                     catDetailHolder.product_warning.setText(resources.getString(R.string.delivery_take_time_option));
                 }
@@ -6554,9 +6536,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
                         String str = "";
-
-                        Log.e(TAG, "onClick: 81026 memeber " + detailProduct.getMember_discount() );
-                        Log.e(TAG, "onClick: 81026 point " + detailProduct.getPoint_usage() );
 
 
                         if (detailProduct.getMember_discount() == 1 && prefs.getIntPreferences(SP_VIP_ID) != 0 ){
@@ -7252,6 +7231,10 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 List<CategoryMain> moreItems1 = obj115.getCategoryMainList();
 
+                Log.e(TAG, "onBindViewHolder: ---------------------------------- size  "  +  moreItems1.size() );
+
+
+
                 if (obj115.getShowMore() == 1){
                     for(int i = 0 ; i < moreItems1.size() ; i++){
                         CategoryMain uni = moreItems1.get(i);
@@ -7259,17 +7242,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         mainGrids115.add(uni);
 
                     }
+                    Log.e(TAG, "onBindViewHolder: ---------------------------------- getShowMore "  + moreItems1.size() );
                 }
                 else{
 
-                    if (moreItems1.size() < 8  ){
+
+                    if (moreItems1.size() <= 8  ){
                         for(int i = 0 ; i < moreItems1.size() ; i++){
                             CategoryMain uni = moreItems1.get(i);
                             uni.setPostType(SUB_CATEGORY_GRID_ITEM);
                             mainGrids115.add(uni);
 
                         }
-
                         subHolder2.layoutContinue.setVisibility(View.GONE);
 
 
@@ -7281,7 +7265,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             mainGrids115.add(uni);
 
                         }
-
                         subHolder2.layoutContinue.setVisibility(View.VISIBLE);
                     }
                 }
@@ -7786,6 +7769,72 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         dialog.show();
     }
+
+
+    private void payPaymentToServer(final ProgressDialog progressDialog, int id) {
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantRePayment + id, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        progressDialog.dismiss();
+
+                        Log.e(TAG, "onResponse: ------------------ "  + response.toString() );
+
+                        if(response.length() > 0){
+                            try{
+
+                                int status = response.getInt("status");
+
+                                prefs.saveBooleanPreference(PAYMENTDONE, false);
+
+                                if (status == 1) {
+                                    prefs.saveStringPreferences(SP_ORDER_INFO, response.getString("orderinfo"));
+                                    prefs.saveStringPreferences(SP_SIGN, response.getString("sign"));
+                                    prefs.saveStringPreferences(SP_SHA, response.getString("sign_type"));
+                                    prefs.saveBooleanPreference(PAYMENTHISTORYDONE, true);
+                                    KBZPay.startPay(activity,
+                                            prefs.getStringPreferences(SP_ORDER_INFO),
+                                            prefs.getStringPreferences(SP_SIGN),
+                                            prefs.getStringPreferences(SP_SHA));
+                                }
+                            }catch (Exception e){
+                                Log.e(TAG, "onResponse: "  + e.getMessage() );
+                            }
+                        }
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Log.e(TAG, "onErrorResponse: "  + error.getMessage() );
+                ToastHelper.showToast(activity, resources.getString(R.string.search_error));
+            }
+        }) {
+
+            /* *
+             * Passing some request headers
+             **/
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+    }
+
 
     private void sendMessageToServer(final ProgressDialog progressDialog, int id, String toString) {
 
@@ -8517,8 +8566,8 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }else{
 
 
-                databaseAdapter.insertOrder(product, count, final_item_price, option);
-                prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+                //databaseAdapter.insertOrder(product, count, final_item_price, option);
+                prefs.saveBooleanPreference(LOGIN_SAVECART, false);
                 Intent intent   = new Intent(activity, ActivityLogin.class);
                 activity.startActivity(intent);
 
@@ -8628,6 +8677,167 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void addToCartProduct(Product product, final Activity activity, int count, int final_item_price, String option){
         prefs.saveBooleanPreference(LOGIN_SAVECART, false);
+        prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT ) + count));
+
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", count);
+            uploadMessage.put("option", option);
+            uploadMessage.put("product_id", product.getId());
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+
+                            if (response.getInt("status") == 1) {
+
+                                if(activity.getLocalClassName().contains("MainActivity")) {
+
+                                    MainActivity pro = (MainActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+
+                                    CategoryActivity pro = (CategoryActivity) activity;
+                                    pro.bounceCount();
+                                }
+                                else if(activity.getLocalClassName().contains("ProductActivity")) {
+
+                                    ProductActivity pro = (ProductActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
+
+                                    CampainDetailActivity pro = (CampainDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
+
+                                    ActivityAdsList pro = (ActivityAdsList) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
+
+                                    BrandedDetailActivity pro = (BrandedDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("WishListActivity")) {
+
+                                    WishListActivity pro = (WishListActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandActivity")) {
+
+                                    BrandActivity pro = (BrandActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
+
+                                    SearchResultActivity pro = (SearchResultActivity) activity;
+                                    pro.bounceCount();
+
+                                }
+                                else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
+
+                                    DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                final Dialog dialog = new Dialog(activity);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                dialog.setCanceledOnTouchOutside(true);
+                                Window window = dialog.getWindow();
+                                WindowManager.LayoutParams wlp = window.getAttributes();
+                                wlp.gravity = Gravity.CENTER;
+                                wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                window.setAttributes(wlp);
+
+                                CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                //title.setText(resources.getString(R.string.added_to_cart_title));
+                                text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+                                //int countBefore = databaseAdapter.getOrderCount();
+                                CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                circularTextView.setText(String.valueOf(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT)));
+
+                                confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+
+                                            Map<String, String> mix = new HashMap<String, String>();
+                                            mix.put("source", "product_detail_dialog");
+                                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                        } catch (Exception e) {
+                                        }
+
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                        activity.startActivity(intent);
+                                    }
+
+                                });
+
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:   810  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse: 810  "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+
+
+       /* prefs.saveBooleanPreference(LOGIN_SAVECART, false);
         databaseAdapter.insertOrder(product, count, final_item_price, option);
         if(activity.getLocalClassName().contains("MainActivity")) {
 
@@ -8732,7 +8942,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        dialog.show();*/
 
     }
 

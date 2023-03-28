@@ -468,9 +468,30 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
                         } catch (Exception e) {
                         }
 
+                        prefs.remove("SP_ISAPPINSTALLED");
+                        prefs.remove("LANGUAGE");
+                        prefs.remove("SP_USER_TOKEN");
+                        prefs.remove("SP_CUSTOMER_PRODUCT_COUNT");
+                        prefs.remove("SP_PHONE_NUMBER");
+                        prefs.remove("SP_ADS_LOADED");
+                        prefs.remove("ADS_COUNT_DOWN_TIME");
+                        prefs.remove("PREFERENCES_TOOL_BAR_CART");
+                        prefs.remove("SP_UNIQUE_ID_FOR_USER");
+                        prefs.remove("SP_DEVICE_ID");
+                        prefs.remove("SP_FCM_TOEKN");
+                        prefs.remove("SP_DEVICE_IMEI");
+                        prefs.remove("SP_MAINACTIVITY_CLICK");
+                        prefs.remove("SP_MEMBER_ID");
+                        prefs.remove("SP_VIP_ID");
+                        prefs.remove("SP_USER_PHONE");
+                        prefs.remove("SP_USER_POINT");
+                        prefs.remove("SP_USER_PROFILEIMAGE");
+                        prefs.remove("SP_TOWNSHIP_STORE_ID");
 
 
-                        prefs.clearAll();
+
+
+                        //prefs.clearAll();
                         databaseAdapter.deleteAllColumn(TABLE_SAVE_CART);
                         databaseAdapter.deleteAllColumn(TABLE_POST_LIKE);
                         databaseAdapter.deleteAllColumn(TABLE_PRODUCT_LIKE);

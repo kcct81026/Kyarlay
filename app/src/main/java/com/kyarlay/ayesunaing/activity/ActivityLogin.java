@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -59,6 +61,7 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
     LinearLayout back_layout, callLayout;
     CustomTextView txtShopTitle, txtTitle, txtContinue, to_contact;
     PrefixEditText editPhone;
+    TextView txtPolicy;
 
     MyPreference prefs;
     AppCompatActivity activity;
@@ -66,6 +69,8 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
     Resources resources;
     CountDownTimer countDownTimer = null;
     long milliseconds;
+    CheckBox chk;
+    LinearLayout layoutPolicy;
 
 
     @Override
@@ -109,13 +114,71 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
         txtContinue = findViewById(R.id.txtContinue);
         callLayout = findViewById(R.id.callLayout);
         to_contact = findViewById(R.id.to_contact);
-
-
+        txtPolicy = findViewById(R.id.txtPolicy);
+        chk = findViewById(R.id.chk);
+        layoutPolicy = findViewById(R.id.layoutPolicy);
 
 
         txtShopTitle.setText("Shop with KyarLay App");
         txtShopTitle.setTypeface(txtShopTitle.getTypeface(), Typeface.BOLD);
         txtTitle.setText(resources.getString(R.string.login_register_title));
+
+
+
+        if(prefs != null && !prefs.isContains(KLPLPOLICY)){
+
+            chk.setChecked(false);
+            chk.setVisibility(View.VISIBLE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                txtPolicy.setText(Html.fromHtml(
+                        resources.getString(R.string.policy)  , Html.FROM_HTML_MODE_COMPACT));
+                txtPolicy.setText(Html.fromHtml(
+                        resources.getString(R.string.policy)  , Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                txtPolicy.setText(Html.fromHtml(resources.getString(R.string.policy)));
+
+            }
+        }
+        else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                txtPolicy.setText(Html.fromHtml(
+                        resources.getString(R.string.policy_aggreed)  , Html.FROM_HTML_MODE_COMPACT));
+                txtPolicy.setText(Html.fromHtml(
+                        resources.getString(R.string.policy_aggreed)  , Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                txtPolicy.setText(Html.fromHtml(resources.getString(R.string.policy_aggreed)));
+
+            }
+
+            chk.setVisibility(View.GONE);
+        }
+
+        chk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(prefs.getBooleanPreference(KLPLPOLICY) == false ){
+                    Intent intent = new Intent(activity, ActivityWebView.class );
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url","https://www.kyarlay.com/privacy/");
+                    bundle.putString("title", "");
+                    intent.putExtras(bundle);
+                    activity.startActivity(intent);
+                    chk.setChecked(true);
+                    prefs.saveBooleanPreference(KLPLPOLICY, true);
+                    Log.e(TAG, "onClick: ---------------------------------------------- false "  );
+                }
+                else{
+                    Log.e(TAG, "onClick: ---------------------------------------------- true "  );
+                    prefs.saveBooleanPreference(KLPLPOLICY, false);
+                }
+
+            }
+        });
+
+
+
+
         txtContinue.setText(resources.getString(R.string.phone_number_continue));
         to_contact.setText(resources.getString(R.string.to_contact));
 
@@ -129,6 +192,22 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
             public void onClick(View v) {
                 prefs.saveIntPerferences(SP_CHANGE, 0);
                 finish();
+            }
+        });
+
+        layoutPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(activity, ActivityWebView.class );
+                Bundle bundle = new Bundle();
+                bundle.putString("url","https://www.kyarlay.com/privacy/");
+                bundle.putString("title", "");
+                intent.putExtras(bundle);
+                activity.startActivity(intent);
+                chk.setChecked(true);
+                prefs.saveBooleanPreference(KLPLPOLICY, true);
             }
         });
 
@@ -251,12 +330,18 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
                 txtContinue.setClickable(false);
                 if(editPhone.getText().toString().trim().length() > 0) {
                     if(editPhone.getText().toString().trim().length() < 6 && editPhone.getText().toString().trim().length() > 13){
-
                         ToastHelper.showToast(ActivityLogin.this, resources.getString(R.string.order_dialog_phone_no_error));
                         txtContinue.setClickable(true);
 
 
-                    }else {
+                    }
+                    else if(!prefs.getBooleanPreference(KLPLPOLICY)){
+                        txtContinue.setClickable(true);
+                        ToastHelper.showToast(ActivityLogin.this, "You need to read Kyarlay Terms of Service and Policy!");
+
+                    }
+
+                    else {
 
                         String str = editPhone.getText().toString();
                         if (str.startsWith("09")){
@@ -271,6 +356,7 @@ public class ActivityLogin extends AppCompatActivity implements ConstantVariable
                     }
 
                 }else{
+                    txtContinue.setClickable(true);
 
                     ToastHelper.showToast(ActivityLogin.this, resources.getString(R.string.error_phone_number));
 

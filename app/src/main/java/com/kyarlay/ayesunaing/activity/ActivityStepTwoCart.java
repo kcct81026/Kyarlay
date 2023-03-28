@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -106,8 +107,11 @@ public class ActivityStepTwoCart extends AppCompatActivity implements Constant, 
                     txtContinue.setEnabled(true);
                 }else{
                     txtContinue.setEnabled(true);
+                    prefs.saveBooleanPreference(PAYMENTDONE, false);
+                    prefs.saveBooleanPreference(PAYMENTAGAIN, false);
                     Intent intent = new Intent(activity, ActivityStepThreeCart.class);
                     startActivity(intent);
+
 
                 }
 
@@ -153,6 +157,8 @@ public class ActivityStepTwoCart extends AppCompatActivity implements Constant, 
                     @Override
                     public void onResponse(JSONArray response) {
 
+                        Log.e(TAG, "onResponse: ---------------- 810 "  + response.toString() );
+
 
                         if(mainCatDetails.size() != 0 && mainCatDetails.get(mainCatDetails.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
                             mainCatDetails.remove(mainCatDetails.size() - 1);
@@ -174,6 +180,7 @@ public class ActivityStepTwoCart extends AppCompatActivity implements Constant, 
                                 if(!prefs.isContains(TEMP_CHOOSE_PAYMENT_ID)){
                                     prefs.saveIntPerferences(TEMP_CHOOSE_PAYMENT_ID, paymentObjectList.get(0).getId() );
                                     prefs.saveFloatPerferences(TEMP_COMMISSION_RATE,  paymentObjectList.get(0).getCommission());
+                                    prefs.saveStringPreferences(TEMP_COMMISSION_TYPE,  paymentObjectList.get(0).getCommisionType());
                                     prefs.saveStringPreferences(TEMP_COMMISSION_IMG,  paymentObjectList.get(0).getImg_url());
                                     prefs.saveStringPreferences(TEMP_COMMISSION_NAME,  paymentObjectList.get(0).getName());
                                     prefs.saveStringPreferences(TEMP_CHOOSE_PAYMENT_TAG,  paymentObjectList.get(0).getTag());

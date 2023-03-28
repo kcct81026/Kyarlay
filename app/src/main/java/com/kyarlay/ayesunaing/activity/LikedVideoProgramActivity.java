@@ -152,7 +152,7 @@ public class LikedVideoProgramActivity extends AppCompatActivity implements Cons
             cart_text.setStrokeWidth(1);
             cart_text.setStrokeColor("#000000");
             cart_text.setSolidColor("#ffffff");
-            int count = databaseAdapter.getOrderCount();
+            int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
             if (count == 0) {
                 cart_text.setVisibility(View.GONE);

@@ -28,6 +28,9 @@ public class PaymentObject extends UniversalPost {
     @SerializedName("acc_name")
     private String acc_name;
 
+    @SerializedName("commission_type")
+    private String commisionType;
+
     @SerializedName("acc_num")
     private String acc_num;
 
@@ -91,6 +94,14 @@ public class PaymentObject extends UniversalPost {
 
     public float getCommission() {
         return commission;
+    }
+
+    public String getCommisionType() {
+        return commisionType;
+    }
+
+    public void setCommisionType(String commisionType) {
+        this.commisionType = commisionType;
     }
 
     public void setCommission(float commission) {
