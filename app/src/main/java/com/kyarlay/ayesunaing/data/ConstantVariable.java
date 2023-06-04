@@ -216,6 +216,8 @@ package com.kyarlay.ayesunaing.data;
      int VIEW_TYPE_POINT_BENEFITS                        = 215;
      int VIEW_TYPE_POINT_RECEIVED_GET                    = 216;
      int VIEW_TYPE_NEW_COLLECTION_LIST                   = 217;
+     int VIEW_TYPE_EXPANDABLE_LIST                  = 218;
+     int VIEW_TYPE_EXPANDABLE_SUB_LIST                  = 219;
 
 
 
@@ -225,6 +227,8 @@ package com.kyarlay.ayesunaing.data;
      int DUE_DATE_COUNT                    = 35;
      int NUM_OF_DAY_COUNT                  = 15;
 
+     String EXPANDABLE_LIST = "EXPANDABLE_LIST";
+     String EXPANDABLE_SUB_LIST = "EXPANDABLE_SUB_LIST";
      String NEW_COLLECTION_LIST               = "NEW_COLLECTION_LIST";
      String PICK_UP_SHOP_ITEM                 = "PICK_UP_SHOP_ITEM";
      String ADS                               = "ADS";
@@ -569,6 +573,7 @@ package com.kyarlay.ayesunaing.data;
      String SP_SIGN = "SP_SIGN";
      String SP_SHA = "SP_SHA";
      String PAYMENTDONE = "PAYMENTDONE";
+     String PAYMENTEXT = "PAYMENTEXT";
      String PAYMENTHISTORYDONE = "PAYMENTHISTORYDONE";
      String PAYMENTAGAIN = "PAYMENTAGAIN";
 

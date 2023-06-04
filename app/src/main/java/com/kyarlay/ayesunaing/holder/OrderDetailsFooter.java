@@ -14,14 +14,14 @@ import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 public class OrderDetailsFooter extends RecyclerView.ViewHolder {
 
     public RecyclerView recycler_view;
-    public TextView txtViewAll;
+    public TextView txtViewAll,txtPaymentText;
     public CustomTextView product_discount_text,product_discount,point_use,delivery_price_text,
             delivery_price,payment_text,payment_price,total_price_text,total_price,txtPayment,
             txtRemark,txtContact,point_text,flash_discount_text,flash_discount,member_discount,
             memeber_discount_text,txtAccountNumberTittle,txtAccountNumber,txtCopy,txtAccountNameTittle,txtAccountName;
 
 
-    public LinearLayout linear_payment,payment_layout,flash_discount_layout,member_discount_layout;
+    public LinearLayout linear_payment,payment_layout,flash_discount_layout,member_discount_layout, layoutPaymentHidden,layoutPaymentHiddenTwo;
     public NetworkImageView imgPayment;
 
     public OrderDetailsFooter(@NonNull View itemView) {
@@ -56,6 +56,9 @@ public class OrderDetailsFooter extends RecyclerView.ViewHolder {
         txtCopy = itemView.findViewById(R.id.txtCopy);
         txtAccountNameTittle = itemView.findViewById(R.id.txtAccountNameTittle);
         txtAccountName = itemView.findViewById(R.id.txtAccountName);
+        layoutPaymentHidden = itemView.findViewById(R.id.layoutPaymentHidden);
+        layoutPaymentHiddenTwo = itemView.findViewById(R.id.layoutPaymentHiddenTwo);
+        txtPaymentText = itemView.findViewById(R.id.txtPaymentText);
 
 
 

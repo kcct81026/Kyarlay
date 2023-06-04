@@ -36,19 +36,43 @@
         android:text="@string/version_out_of_date" />
 
     <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp">
 
         <LinearLayout
+            android:gravity="left"
+            android:id="@+id/dialog_product_no"
+            android:orientation="horizontal"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:background="@drawable/linear_border">
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
+                android:id="@+id/update_button_no"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Later"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/layout_margin_reading_post"
             android:gravity="right"
             android:id="@+id/dialog_product_yes"
             android:orientation="horizontal"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:background="@drawable/linear_border">
             <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:layout_marginRight="@dimen/layout_margin_reading_post"
                 android:id="@+id/update_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

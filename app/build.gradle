@@ -15,8 +15,8 @@ android {
         applicationId "com.kyarlay.ayesunaing"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 103
-        versionName '7.7.1'
+        versionCode 104
+        versionName '7.7.2'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true

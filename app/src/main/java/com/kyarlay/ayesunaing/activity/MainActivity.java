@@ -57,10 +57,10 @@ import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
 import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
-import com.kyarlay.ayesunaing.fragment.FragmentCategory;
 import com.kyarlay.ayesunaing.fragment.FragmentMall;
 import com.kyarlay.ayesunaing.fragment.FragmentMedia;
 import com.kyarlay.ayesunaing.fragment.FragmentReadingPager;
+import com.kyarlay.ayesunaing.fragment.FragmentSubCategory;
 import com.kyarlay.ayesunaing.in_app.Constants;
 import com.kyarlay.ayesunaing.in_app.InAppUpdateManager;
 import com.kyarlay.ayesunaing.in_app.InAppUpdateStatus;
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
 
     FragmentMall fragmentOne;
     FragmentMedia fragmentMedia;
-    FragmentCategory fragmentCategory;
+    FragmentSubCategory fragmentCategory;
 
 
     private InAppUpdateManager inAppUpdateManager;
@@ -642,7 +642,7 @@ public class MainActivity extends AppCompatActivity implements Constant, Constan
 
                     prefs.saveIntPerferences(SP_MAINACTIVITY_CLICK, 3);
 
-                    fragmentCategory = new FragmentCategory();
+                    fragmentCategory = new FragmentSubCategory();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragmentCategory).commitAllowingStateLoss();
 
 

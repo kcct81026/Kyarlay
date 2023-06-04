@@ -358,7 +358,17 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtPaymentText"
+                android:textStyle="bold"
+                android:textSize="@dimen/normalText"
+                android:textColor="@color/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_reading_post" />
+
             <LinearLayout
+                android:id="@+id/layoutPaymentHidden"
                 android:layout_marginTop="@dimen/layout_margin_reading_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -388,6 +398,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutPaymentHiddenTwo"
                 android:layout_marginTop="@dimen/layout_margin_reading_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

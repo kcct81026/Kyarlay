@@ -22,6 +22,7 @@ public interface Constant {
     String constantDashBoard              = default_api +  "api/dashboard";
     String constantNewBonusBanner         =  default_api + "api/customers/new_bonus_banner?type=signup";
     String constantMemberInfo             = default_api +  "api/customers/member_info";
+    String constantPaymentText             = default_api +  "api/payment_method_text";
     String searchPartnerBrand             = default_api + "api/brands/search?query=" ;
 
     String PREFERENCES_TOOL_BAR_CART      = "PREFERENCES_TOOL_BAR_CART";
@@ -34,6 +35,7 @@ public interface Constant {
     //String constantUploadOrder            = default_api + "api/shopping_";
 
     String constantVersion                = default_api + "api/version";
+    String getKyarlayVersion                = default_api + "api/shopping_carts/text_ver";
     //String constantAds                    = default_api + "api/products/ads";
     String constantHelp                   = default_api + "help?mobile=1";
     String constantAboutus                = default_api + "about?mobile=1";
@@ -129,12 +131,13 @@ public interface Constant {
     String constantLikedNameList           = default_api + "api/baby_names/liked_baby_names?page=";
     String constantFlashSalesList          = default_api + "api/flash_sales?page=";
     String constantSuperCategories         = default_api + "api/super_categories";
+    String constantSuperMainCategories         = default_api + "api/main_categories";
     String constantMainBanner              = default_api + "api/main_banner";
     String constantSafeCategory            = default_api + "api/safe_categories/";
     String constantProductQuestions        = default_api + "api/product_questions";
     String constantProductQuesSearchID     = default_api + "api/product_questions/by_product?product_id=";
     String constantMainSuperCategory       = default_api + "api/super_categories/main";
-    //String constantToolSuperCategory       = default_api + "api/super_tool_categories/main";
+    String constantSubMainSuperCategory       = default_api + "api/main_categories/";
     String constantMainFlashSale           = default_api + "api/flash_sales/main";
     String constantMainDiscountList        = default_api + "api/discounts/main";
     String constantMainCollectionsList     = default_api + "api/product_collections/main";

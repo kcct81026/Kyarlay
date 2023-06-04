@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.BrandActivity;
+import com.kyarlay.ayesunaing.activity.CategoryActivity;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
@@ -26,9 +29,14 @@ import com.kyarlay.ayesunaing.data.LocaleHelper;
 import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.holder.BrandHolder;
+import com.kyarlay.ayesunaing.holder.ExpandableHolder;
 import com.kyarlay.ayesunaing.holder.FooterHoloder;
 import com.kyarlay.ayesunaing.holder.NoItemHolder;
+import com.kyarlay.ayesunaing.holder.SubExpandableHolder;
 import com.kyarlay.ayesunaing.object.Brand;
+import com.kyarlay.ayesunaing.object.CategoryMain;
+import com.kyarlay.ayesunaing.object.MainCategoryObj;
+import com.kyarlay.ayesunaing.object.MainItem;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 
 import java.util.ArrayList;
@@ -46,6 +54,9 @@ public class PatnerShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     DatabaseAdapter databaseAdapter;
     MyPreference prefs;
     Resources resources;
+
+    PatnerShopAdapter gridAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
 
     public PatnerShopAdapter(AppCompatActivity activity1, ArrayList<UniversalPost> universalList) {
@@ -77,7 +88,12 @@ public class PatnerShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         else if(universalList.get(position).getPostType().equals(BRAND)){
             return VIEW_TYPE_BRAND;
         }
-
+        else if(universalList.get(position).getPostType().equals(EXPANDABLE_LIST)){
+            return VIEW_TYPE_EXPANDABLE_LIST;
+        }
+        else if(universalList.get(position).getPostType().equals(EXPANDABLE_SUB_LIST)){
+            return VIEW_TYPE_EXPANDABLE_SUB_LIST;
+        }
         return VIEW_TYPE_DEFAULT;
 
     }
@@ -102,6 +118,18 @@ public class PatnerShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             viewHolder = new BrandHolder(viewItem, display);
         }
 
+        else if(viewType == VIEW_TYPE_EXPANDABLE_LIST){
+            View viewItem = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_expandable_list_view, parent, false);
+            viewHolder = new ExpandableHolder(viewItem);
+        }
+
+        else if(viewType == VIEW_TYPE_EXPANDABLE_SUB_LIST){
+            View viewItem = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_sub_expandable_list, parent, false);
+            viewHolder = new SubExpandableHolder(viewItem);
+        }
+
         return viewHolder;
 
     }
@@ -111,6 +139,138 @@ public class PatnerShopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         int type = getItemViewType(position);
 
         switch (type) {
+            case VIEW_TYPE_EXPANDABLE_SUB_LIST:{
+                SubExpandableHolder subExpandableHolder = (SubExpandableHolder) parentHolder;
+                CategoryMain categoryMainSub = (CategoryMain) universalList.get(position);
+
+                if (categoryMainSub.getImage() != null && !(categoryMainSub.getImage().equals(""))) {
+                    subExpandableHolder.icon.setImageUrl(categoryMainSub.getImage(), imageLoader);
+
+                }
+                subExpandableHolder.title.setText(categoryMainSub.getTitle());
+                subExpandableHolder.layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        prefs.saveStringPreferences(SP_BRAND_TAG, categoryMainSub.getTag());
+                        prefs.saveIntPerferences(SP_BRAND_ID, categoryMainSub.getId());
+
+
+                        Intent intent = new Intent(activity, CategoryActivity.class);
+                        MainItem grid = new MainItem();
+                        grid.setId(categoryMainSub.getId());
+                        grid.setPost_type(categoryMainSub.getTag());
+                        Bundle b = new Bundle();
+                        b.putParcelable("mainCat", grid);
+                        try {
+                            Map<String, String> mix = new HashMap<String, String>();
+                            mix.put("type", grid.getPost_type());
+                            FlurryAgent.logEvent("Click Main Category", mix);
+                        } catch (Exception e) {
+                        }
+                        intent.putExtras(b);
+                        activity.startActivity(intent);
+                    }
+                });
+                break;
+            }
+
+            case VIEW_TYPE_EXPANDABLE_LIST : {
+
+                ExpandableHolder expandableHolder = (ExpandableHolder) parentHolder;
+                MainCategoryObj  mainCategoryObj = (MainCategoryObj) universalList.get(position);
+                ArrayList<UniversalPost> universalCategories = new ArrayList<>();
+
+                if(mainCategoryObj.getCategoryMainList().size() > 0){
+                    expandableHolder.recyclerOne.setVisibility(View.VISIBLE);
+
+
+                    if (mainCategoryObj.getShowTitle() == 0){
+                        expandableHolder.txtHidden.setVisibility(View.GONE);
+                        expandableHolder.recyclerOne.setVisibility(View.GONE);
+                        expandableHolder.img.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_baseline_arrow_drop_down_circle_24));
+                    }
+                    else{
+                        expandableHolder.txtHidden.setVisibility(View.VISIBLE);
+                        expandableHolder.recyclerOne.setVisibility(View.VISIBLE);
+                        expandableHolder.img.setImageDrawable(activity.getResources().getDrawable(R.drawable.up_arrow_black));
+
+                    }
+
+                    for(int i = 0 ; i < mainCategoryObj.getCategoryMainList().size() ; i++){
+                        CategoryMain uni = mainCategoryObj.getCategoryMainList().get(i);
+                        uni.setPostType(EXPANDABLE_SUB_LIST);
+                        universalCategories.add(uni);
+                    }
+
+                    gridAdapter = new PatnerShopAdapter(activity, universalCategories);
+                    layoutManager = new GridLayoutManager(activity, 1, GridLayoutManager.VERTICAL, false);
+                    if (expandableHolder.recyclerOne != null) {
+                        expandableHolder.recyclerOne.setLayoutManager(layoutManager);
+                        expandableHolder.recyclerOne.setAdapter(gridAdapter);
+                    }
+
+                    if(mainCategoryObj.getImage() != null && mainCategoryObj.getImage().trim().length() > 0) {
+                        expandableHolder.icon.setImageUrl(mainCategoryObj.getImage(), imageLoader);
+                        expandableHolder.icon.setVisibility(View.VISIBLE);
+                        expandableHolder.defaultIcon.setVisibility(View.GONE);
+                    }else{
+                        expandableHolder.icon.setVisibility(View.GONE);
+                        expandableHolder.defaultIcon.setVisibility(View.VISIBLE);
+                    }
+
+                    expandableHolder.recyclerOne.getItemAnimator().setChangeDuration(0);
+                    expandableHolder.recyclerOne.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+                        @Override
+                        public void onChildViewAttachedToWindow(View view) {
+                            NetworkImageView image = (NetworkImageView) view.findViewById(R.id.gridItemImageView);
+                            if(image != null) {
+                                image.setVisibility(View.VISIBLE);
+                            }
+                        }
+
+                        @Override
+                        public void onChildViewDetachedFromWindow(View view) {
+                            NetworkImageView image = (NetworkImageView) view.findViewById(R.id.gridItemImageView);
+                            if(image != null) {
+                                image.setVisibility(View.GONE);
+                            }
+
+                        }
+                    });
+                }else{
+                    expandableHolder.recyclerOne.setVisibility(View.GONE);
+                    expandableHolder.txtHidden.setVisibility(View.GONE);
+                }
+
+
+
+
+                /*if (mainCategoryObj.get() != null && !(detailProductTwo.getPreviewImage().equals(""))) {
+                    catDetailHolder.gridItemImageViewTwo.setImageUrl(detailProductTwo.getPreviewImage(), AppController.getInstance().getImageLoader());
+
+                }*/
+
+                expandableHolder.title.setText(mainCategoryObj.getTitle());
+
+
+                expandableHolder.layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mainCategoryObj.getShowTitle() == 0){
+                            mainCategoryObj.setShowTitle(1);
+                        }
+                        else{
+                            mainCategoryObj.setShowTitle(0);
+                        }
+
+                        notifyDataSetChanged();
+                    }
+                });
+
+
+
+                break;
+            }
 
             case VIEW_TYPE_BRAND:{
                 BrandHolder itemHolder = (BrandHolder) parentHolder;

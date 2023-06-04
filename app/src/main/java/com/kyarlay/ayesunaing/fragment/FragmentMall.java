@@ -756,6 +756,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     private void setupUI(){
 
+        getPaymentText();
         if (prefs.isNetworkAvailable()){
             progressBar.setVisibility(View.GONE);
 
@@ -926,6 +927,48 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     }
 
+
+    public void getPaymentText(){
+
+
+        JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
+                constantPaymentText, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try{
+                    if(  response.toString().length()  > 0){
+                        prefs.saveStringPreferences(PAYMENTEXT, response.getString("desc"));
+                    }
+
+                }catch (Exception e){
+                    Log.e(TAG, "onResponse: getWheelList Exception : "  + e.getMessage() );
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onResponse: getWheelList Exception : "  + error.getMessage() );
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(apkDownloadRequest, "update_profile");
+    }
 
 
 
@@ -1759,7 +1802,9 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            categoryList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                categoryList.add(flashSaleListObject);
+                            }
                         }
 
                         if (categoryList.size() > 0){
@@ -1857,7 +1902,9 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            categoryList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                categoryList.add(flashSaleListObject);
+                            }
                         }
 
 

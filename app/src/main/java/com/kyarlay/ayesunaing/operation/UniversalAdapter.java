@@ -3316,8 +3316,11 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (orderDetails.getPayment_method().equals("cod")){
                     detailsHolder.linear_payment.setVisibility(View.GONE);
                     detailsHolder.payment_layout.setVisibility(View.GONE);
+                    detailsHolder.txtPaymentText.setVisibility(View.GONE);
                 }else{
 
+                    detailsHolder.txtPaymentText.setVisibility(View.VISIBLE);
+                    detailsHolder.txtPaymentText.setText(prefs.getStringPreferences(PAYMENTEXT));
                     if (orderDetails.getStatus().equals("ordered") && orderDetails.getPayment_method().equals("kpay")){
                         detailsHolder.payment_layout.setVisibility(View.VISIBLE);
                         detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
@@ -3331,9 +3334,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
                         detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
 
+                        detailsHolder.txtAccountName.setText("");
+                        detailsHolder.txtAccountNameTittle.setText("");
+                        detailsHolder.txtAccountNumberTittle.setText("");
+                        detailsHolder.txtAccountNumber.setText("");
+
+
+
 
                         detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
                         detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+                        detailsHolder.txtCopy.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+                        detailsHolder.txtCopy.setTextColor(activity.getResources().getColor(R.color.coloredInactive));
 
                         detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -3352,8 +3364,24 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             }
                         });
                     }
+
                     else{
-                         detailsHolder.linear_payment.setVisibility(View.VISIBLE);
+
+                        if(orderDetails.getPayment_method().equals("kpay")){
+                            detailsHolder.linear_payment.setVisibility(View.VISIBLE);
+                            detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                            detailsHolder.layoutPaymentHidden.setVisibility(View.GONE);
+                            detailsHolder.layoutPaymentHiddenTwo.setVisibility(View.GONE);
+                            detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                            detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                            detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                            detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+
+
+                        }
+                        else{
+                            detailsHolder.linear_payment.setVisibility(View.VISIBLE);
                         detailsHolder.payment_layout.setVisibility(View.VISIBLE);
                         detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
                         detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
@@ -3379,6 +3407,8 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 Toast.makeText(activity, "Copied", Toast.LENGTH_LONG).show();
                             }
                         });
+                        }
+
                     }
 
 
@@ -5503,7 +5533,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         prefs.saveIntPerferences(SP_BRAND_ID, grid.getId());
 
 
-                        //Intent intent = new Intent(activity, CategoryActivity.class);
                         Intent intent = new Intent(activity, CategoryActivity.class);
                         Bundle b = new Bundle();
                         b.putParcelable("mainCat", grid);

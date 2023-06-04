@@ -128,7 +128,7 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
 
 
 
-        txtStatus.setText(getIntent().getExtras().getString("status"));
+        txtStatus.setText(getIntent().getExtras().getString("status") + " " + prefs.getStringPreferences(PAYMENTEXT) );
 
         txtContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +146,9 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
             public void onClick(View v) {
                 if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("kpay")) {
                     prefs.saveBooleanPreference(PAYMENTDONE,true);
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_ORDER_INFO) );
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_SIGN) );
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_SHA) );
                     try{
                         KBZPay.startPay(ActivityCheckOut.this,
                                 prefs.getStringPreferences(SP_ORDER_INFO),

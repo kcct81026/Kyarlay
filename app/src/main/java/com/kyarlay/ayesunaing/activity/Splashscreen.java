@@ -373,7 +373,10 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                     prefs.saveIntPerferences(SP_POINT_PERCENTAGE, response.getInt("point_percentage"));
                     prefs.saveIntPerferences(SP_FEEDBACK_POINT, response.getInt("shopping_feedback_point"));
 
+
+
                     if(min_version > currentVersion){
+                        Log.e(TAG, "onResponse: -----------------------  this is min_version > currentVersion  "  + min_version + ">" + currentVersion);
                         final Dialog dialog = new Dialog(Splashscreen.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_version_outofdate);
@@ -390,6 +393,14 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                         title.setText(resources.getString(R.string.new_version));
                         des.setText(version_des);
                         LinearLayout ok = (LinearLayout) dialog.findViewById(R.id.dialog_product_yes);
+                        LinearLayout cancel = (LinearLayout) dialog.findViewById(R.id.dialog_product_no);
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastHelper.showToast(Splashscreen.this, resources.getString(R.string.update_needed));
+                                dialog.dismiss();
+                            }
+                        });
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -403,7 +414,9 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                         dialog.show();
 
                     }else if(version > currentVersion){
-                        final Dialog dialog = new Dialog(Splashscreen.this);
+                        Log.e(TAG, "onResponse: -----------------------  this is version > currentVersion  "  + version + ">" + currentVersion);
+
+                       /* final Dialog dialog = new Dialog(Splashscreen.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_version_update);
                         dialog.setCancelable(false);
@@ -435,6 +448,42 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                                 startActivity(intent);
                             }
                         });
+                        dialog.show();*/
+
+                        final Dialog dialog = new Dialog(Splashscreen.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.dialog_version_outofdate);
+                        dialog.setCancelable(false);
+
+                        Window window = dialog.getWindow();
+                        WindowManager.LayoutParams wlp = window.getAttributes();
+                        wlp.gravity = Gravity.CENTER;
+                        wlp.width   = getWindowManager().getDefaultDisplay().getWidth();
+                        window.setAttributes(wlp);
+
+                        CustomTextView des = (CustomTextView) dialog.findViewById(R.id.dialog_save_cart_product);
+                        CustomTextView title= (CustomTextView) dialog.findViewById(R.id.title);
+                        title.setText(resources.getString(R.string.new_version));
+                        des.setText(version_des);
+                        LinearLayout ok = (LinearLayout) dialog.findViewById(R.id.dialog_product_yes);
+                        LinearLayout cancel = (LinearLayout) dialog.findViewById(R.id.dialog_product_no);
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastHelper.showToast(Splashscreen.this, resources.getString(R.string.update_needed));
+                                dialog.dismiss();
+                            }
+                        });
+                        ok.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.kyarlay.ayesunaing"));
+                                startActivity(intent);
+                            }
+                        });
+
                         dialog.show();
                     }else{
                         Intent intent = new Intent(Splashscreen.this, MainActivity.class);

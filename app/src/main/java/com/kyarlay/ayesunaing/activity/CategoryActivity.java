@@ -196,105 +196,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
             public void onClick(View view) {
                finish();
 
-              /*  prefs.saveIntPerferences(SP_PAGE_BRAND_CLICK,  SP_DEFAULT);
-                universalPosts.clear();
-                universalPostsTemp.clear();
-                productTempList.clear();
-                isMore = false;
-                Product pro = new Product();
-                pro.setPostType(CART_DETAIL_FOOTER);
-                universalPosts.add(pro);
-                universalAdapter.notifyDataSetChanged();
 
-                if (categoryList.size() > 1){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-
-
-
-                    CategoryGrid categoryGrid = new CategoryGrid();
-                    categoryGrid.setShowMore(0);
-                    categoryGrid.setPostType(SUB_CATEGORY_GRID);
-                    categoryGrid.setCategoryMainList(categoryList);
-                    universalPosts.add(categoryGrid);
-
-                    try {
-
-                        Map<String, String> mix = new HashMap<String, String>();
-                        mix.put("type", categoryList.get(0).getTag());
-                        FlurryAgent.logEvent("Click Product Subcategory", mix);
-
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "onResponse: "  + e.getMessage() );
-                    }
-
-                    universalAdapter.notifyItemInserted(universalPosts.size());
-                }
-
-                if (brandList.size() > 0){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-                    for (int i = 0 ; i < brandList.size(); i ++){
-                        MainObject obj = brandList.get(i);
-
-                        if (obj.getItems().size() > 0){
-                            obj.setPostType(BRAND_BANNER);
-                            universalPosts.add(obj);
-
-                            universalAdapter.notifyItemInserted(universalPosts.size());
-                        }
-
-
-                    }
-                }
-
-                if (discountList.size() > 0){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-                    MainObject mainObject = new MainObject();
-                    mainObject.setTitle(resources.getString(R.string.discount_title));
-                    mainObject.setPostType(MAIN_DISCOUNT);
-
-
-                    List<MainItem> items = new ArrayList<>();
-                    for (int i = 0; i < discountList.size(); i++) {
-                        Campaign campaign = new Campaign();
-                        campaign = discountList.get(i);
-                        campaign.setPostType(CAMPAIGN);
-
-                        MainItem mainItem = new MainItem();
-                        mainItem.setDimen(campaign.getDimen());
-                        mainItem.setId(campaign.getId());
-                        mainItem.setTitle(campaign.getTitle());
-                        mainItem.setUrl(campaign.getUrl());
-                        mainItem.setPostType(CAMPAIGN);
-                        items.add(mainItem);
-                        mainObject.setItems(items);
-
-                    }
-                    universalPosts.add(mainObject);
-
-                    universalAdapter.notifyItemInserted(universalPosts.size());
-                }
-
-                Product proFilter = new Product();
-                if (twoColumn == 1)
-                    proFilter.setId(1);
-                else
-                    proFilter.setId(0);
-                proFilter.setPostType(FILTER_UI);
-                universalPosts.add(proFilter);
-
-                Product pro2 = new Product();
-                pro2.setPostType(CART_DETAIL_FOOTER);
-                universalPosts.add(pro2);
-                universalAdapter.notifyItemInserted(universalPosts.size());
-
-                getBrandItem(prefs.getIntPreferences(SP_PAGE_BRAND_CLICK));*/
 
             }
         });
@@ -809,6 +711,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
             @Override
             public void onResponse(JSONObject response) {
 
+                Log.e(TAG, "onResponse: ---------------------"   + response.toString() );
 
                 if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
                     universalPosts.remove(universalPosts.size() - 1);
@@ -835,7 +738,10 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            discountList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                discountList.add(flashSaleListObject);
+                            }
+
                         }
 
 

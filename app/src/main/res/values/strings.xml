@@ -413,6 +413,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="no_internet_error">Please connect to internet connection</string>
+    <string name="update_needed">You need to update Kyarlay App Latest Version to contiue.</string>
 
 
     <string name="price_tag">Price - </string>
