@@ -20,10 +20,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.freshchat.consumer.sdk.Freshchat;
 import com.freshchat.consumer.sdk.FreshchatConfig;
 import com.freshchat.consumer.sdk.FreshchatUser;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -33,7 +33,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -42,6 +41,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 
 public class RegisterWithPassword extends AppCompatActivity implements Constant, ConstantVariable {
     private static final String TAG = "RegisterWithPassword";
@@ -75,7 +76,7 @@ public class RegisterWithPassword extends AppCompatActivity implements Constant,
         Context context = LocaleHelper.setLocale(RegisterWithPassword.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
 
-        new MyFlurry(RegisterWithPassword.this);
+       // new MyFlurry(RegisterWithPassword.this);
 
         back_layout = findViewById(R.id.back_layout);
         back_layout.getLayoutParams().width = (display.getWidth() * 3 ) / 20;
@@ -172,14 +173,14 @@ public class RegisterWithPassword extends AppCompatActivity implements Constant,
 
 
                         try {
-
+/*
                             try {
 
                                 Map<String, String> mix = new HashMap<String, String>();
-                                FlurryAgent.logEvent("Complete Phone Entry Page", mix);
+                                //FlurryAgent.logEvent("Complete Phone Entry Page", mix);
 
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             int has_account = response.getInt("has_account");
 
@@ -273,19 +274,21 @@ public class RegisterWithPassword extends AppCompatActivity implements Constant,
 
 
 
+/*
 
                                 try {
 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("user_phone", prefs.getStringPreferences(SP_USER_PHONE));
                                     mix.put("name", prefs.getStringPreferences(SP_USER_NAME));
-                                    FlurryAgent.logEvent("Signup", mix);
+                                    //FlurryAgent.logEvent("Signup", mix);
 
                                 } catch (Exception e) {
                                 }
+*/
 
                                 try{
-                                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser();

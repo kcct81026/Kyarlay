@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +37,7 @@ import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.InviteHistory;
@@ -95,7 +95,7 @@ public class InviteFriendActivity extends AppCompatActivity implements ConstantV
         databaseAdapter = new DatabaseAdapter(activity);
         display = activity.getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(InviteFriendActivity.this);
+       // new MyFlurry(InviteFriendActivity.this);
         prefs.saveIntPerferences(SP_PAGE_REDING_NUM, SP_DEFAULT);
 
 
@@ -104,7 +104,7 @@ public class InviteFriendActivity extends AppCompatActivity implements ConstantV
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("type", "day_calendar");
-            FlurryAgent.logEvent("", mix);
+            //FlurryAgent.logEvent("", mix);
 
         } catch (Exception e) {
         }
@@ -141,7 +141,7 @@ public class InviteFriendActivity extends AppCompatActivity implements ConstantV
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("click", "invite_button");
-                    FlurryAgent.logEvent("InviteFriend Button Click", mix);
+                    //FlurryAgent.logEvent("InviteFriend Button Click", mix);
 
                 } catch (Exception e) {
                 }
@@ -272,7 +272,7 @@ public class InviteFriendActivity extends AppCompatActivity implements ConstantV
 
                                             Map<String, String> mix = new HashMap<String, String>();
 
-                                            FlurryAgent.logEvent("InviteFriend Click Done", mix);
+                                            //FlurryAgent.logEvent("InviteFriend Click Done", mix);
 
                                         } catch (Exception e) {
                                         }

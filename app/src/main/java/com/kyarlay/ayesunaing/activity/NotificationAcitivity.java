@@ -19,14 +19,14 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.MainItem;
 import com.kyarlay.ayesunaing.object.Product;
@@ -76,12 +76,12 @@ public class NotificationAcitivity extends AppCompatActivity implements Constant
         databaseAdapter = new DatabaseAdapter(NotificationAcitivity.this);
         display         = getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(NotificationAcitivity.this);
+       // new MyFlurry(NotificationAcitivity.this);
 
 
         try {
 
-            FlurryAgent.logEvent("View Product Wishlist");
+            //FlurryAgent.logEvent("View Product Wishlist");
         } catch (Exception e) {}
 
         prefs  = new MyPreference(NotificationAcitivity.this);

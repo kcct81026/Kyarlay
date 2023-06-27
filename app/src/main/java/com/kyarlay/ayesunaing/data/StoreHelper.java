@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class StoreHelper implements ConstantVariable{
 
-    private static final String TAG = "StoreHelper";
 
     public static int getStoreIdbyTownShipId(AppCompatActivity activity, int id){
 

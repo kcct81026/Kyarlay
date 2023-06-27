@@ -413,6 +413,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="no_internet_error">Please connect to internet connection</string>
+    <string name="update_needed">You need to update Kyarlay App Latest Version to contiue.</string>
 
 
     <string name="price_tag">Price - </string>
@@ -577,6 +578,10 @@
     <string name="product">All Brands</string>
     <string name="order">Order</string>
     <string name="order_status">Your Order Status</string>
+    <string name="pay_now">Pay With KBZPay Now</string>
+    <string name="kpay_success">Your payment with KBZPay was successfully paid.</string>
+    <string name="kpay_fail">Your payment with KBZPay was unsuccessful.</string>
+
 
     <string name="order_old">Your Old Order</string>
     <string name="order_placed">Order Placed</string>
@@ -670,6 +675,8 @@
     <string name="child_bd">Your Baby\'s Birth Month And Year</string>
     <string name="child_bd_due_date">Due Date</string>
     <string name="new_born">New Born</string>
+    <string name="policy">I accept and agree to the Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
+    <string name="policy_aggreed">Kyarlay\'s<![CDATA[<b><font color=#B71C1C>  Terms of Service</font></b>]]> and <![CDATA[<b><font color=#B71C1C>Privacy Policy</font></b>]]>. </string>
 
 
     <string name="login">Login</string>

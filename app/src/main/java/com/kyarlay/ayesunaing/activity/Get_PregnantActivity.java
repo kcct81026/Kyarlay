@@ -27,7 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
@@ -36,7 +36,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
@@ -81,7 +81,7 @@ public class Get_PregnantActivity extends AppCompatActivity implements ConstantV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.get_pragnant);
 
-        new MyFlurry(Get_PregnantActivity.this);
+       // new MyFlurry(Get_PregnantActivity.this);
 
         prefs = new MyPreference(Get_PregnantActivity.this);
         display = getWindowManager().getDefaultDisplay();
@@ -294,7 +294,7 @@ public class Get_PregnantActivity extends AppCompatActivity implements ConstantV
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "Pregnant Detail");
-                    FlurryAgent.logEvent("Calculate Pregnant", mix);
+                    //FlurryAgent.logEvent("Calculate Pregnant", mix);
 
                 } catch (Exception e) {
                 }

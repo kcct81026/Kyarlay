@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kbzbank.payment.KBZPay;
+import com.kbzbank.payment.sdk.callback.CallbackResultActivity;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
@@ -25,7 +28,7 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
     private static final String TAG = "ActivityCheckOut";
 
     CustomTextView txtTitle, txtStatus, txtContinue,txtPaymentTitle,txtAccountNumberTittle,
-            txtAccountNumber,txtCopy,txtAccountNameTittle,txtAccountName;
+            txtAccountNumber,txtCopy,txtAccountNameTittle,txtAccountName,txtPayNow;
 
     MyPreference prefs;
     AppCompatActivity activity;
@@ -43,6 +46,8 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources       = context.getResources();
 
+        Log.e(TAG, "onCreate: " );
+
         txtContinue = findViewById(R.id.txtContinue);
         txtStatus = findViewById(R.id.txtStatus);
         txtTitle = findViewById(R.id.txtTitle);
@@ -53,10 +58,13 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
         txtCopy = findViewById(R.id.txtCopy);
         txtAccountNameTittle = findViewById(R.id.txtAccountNameTittle);
         txtAccountName = findViewById(R.id.txtAccountName);
+        txtPayNow = findViewById(R.id.txtPayNow);
 
 
         txtContinue.setText(resources.getString(R.string.added_to_cart_cancel));
         txtTitle.setText(resources.getString(R.string.order_status));
+        txtPayNow.setText(resources.getString(R.string.pay_now));
+        txtStatus.setTypeface(txtStatus.getTypeface(), Typeface.BOLD);
 
 
         txtPaymentTitle.setText(String.format(resources.getString(R.string.payment_info),prefs.getStringPreferences(ConstantVariable.TEMP_COMMISSION_NAME)));
@@ -70,11 +78,34 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
         txtAccountNumber.setTypeface(txtAccountNumber.getTypeface(), Typeface.BOLD);
         txtAccountName.setTypeface(txtPaymentTitle.getTypeface(), Typeface.BOLD);
 
-
-        if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("cod"))
+        if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("cod")) {
             layoutPaymnet.setVisibility(View.GONE);
-        else
+            txtPayNow.setVisibility(View.GONE);
+            txtContinue.setVisibility(View.VISIBLE);
+
+        }
+        else if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("kpay")) {
+            txtPayNow.setVisibility(View.VISIBLE);
+            txtContinue.setVisibility(View.VISIBLE);
+            layoutPaymnet.setVisibility(View.GONE);
+
+        }
+        else {
             layoutPaymnet.setVisibility(View.VISIBLE);
+            txtPayNow.setVisibility(View.GONE);
+            txtContinue.setVisibility(View.VISIBLE);
+
+        }
+
+         /*
+        else{
+            txtPayNow.setVisibility(View.VISIBLE);
+            txtContinue.setVisibility(View.GONE);
+            layoutPaymnet.setVisibility(View.VISIBLE);
+
+
+        }*/
+
 
         if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_ACC_NAME).length() == 0){
             txtAccountName.setText("");
@@ -97,7 +128,7 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
 
 
 
-        txtStatus.setText(getIntent().getExtras().getString("status"));
+        txtStatus.setText(getIntent().getExtras().getString("status") + " " + prefs.getStringPreferences(PAYMENTEXT) );
 
         txtContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,11 +141,45 @@ public class ActivityCheckOut extends AppCompatActivity implements ConstantVaria
             }
         });
 
+        txtPayNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (prefs.getStringPreferences(TEMP_CHOOSE_PAYMENT_TAG).equals("kpay")) {
+                    prefs.saveBooleanPreference(PAYMENTDONE,true);
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_ORDER_INFO) );
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_SIGN) );
+                    Log.e(TAG, "onClick: ------------------------ "  +  prefs.getStringPreferences(SP_SHA) );
+                    try{
+                        KBZPay.startPay(ActivityCheckOut.this,
+                                prefs.getStringPreferences(SP_ORDER_INFO),
+                                prefs.getStringPreferences(SP_SIGN),
+                                prefs.getStringPreferences(SP_SHA));
+                    }catch (Exception e){
+                        Log.e(TAG, "onResume: ---------------- " + e.getMessage() );
+                    }
+
+                }
+
+            }
+        });
+
 
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(prefs.getBooleanPreference(PAYMENTDONE)){
+            prefs.saveBooleanPreference(PAYMENTDONE, false);
+            prefs.saveBooleanPreference(PAYMENTAGAIN, false);
+
+            Intent intent = new Intent(activity, CallbackResultActivity.class);
+            startActivity(intent);
+        }
+
+    }
 
     @Override
     public void onBackPressed() {

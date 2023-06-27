@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -25,7 +25,7 @@ import com.kyarlay.ayesunaing.activity.ReadingCommentDetailsActivity;
 import com.kyarlay.ayesunaing.activity.SearchPhotoActivity;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
@@ -65,7 +65,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
         setContentView(R.layout.pendinglayout);
         databaseAdapter = new DatabaseAdapter(PendingActivity.this);
         prefs  = new MyPreference(PendingActivity.this);
-        new MyFlurry(PendingActivity.this);
+       // new MyFlurry(PendingActivity.this);
 
 
         try{
@@ -99,7 +99,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "category");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
 
@@ -115,7 +115,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                  Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "product list");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             JsonArrayRequest jsonArrayRequest = product(url);
@@ -125,7 +125,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                  Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "article");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             Intent intent1 = new Intent(PendingActivity.this, ReadingCommentDetailsActivity.class);
@@ -140,7 +140,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                  Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "discount");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             Intent intent5 = new Intent(PendingActivity.this, CampainDetailActivity.class);
@@ -153,7 +153,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                  Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "brand");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             Intent intentBrand = new Intent(PendingActivity.this, BrandActivity.class);
@@ -168,7 +168,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "flash_sale");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             Intent intentBrand = new Intent(PendingActivity.this, FlashSalesActivity.class);
@@ -182,7 +182,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "article");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
             Intent intent1 = new Intent(PendingActivity.this, SearchPhotoActivity.class);
@@ -198,7 +198,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
             try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "article");
-                FlurryAgent.logEvent("DeepLinking", mix);
+                //FlurryAgent.logEvent("DeepLinking", mix);
             } catch (Exception e) {
             }
 
@@ -248,7 +248,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
                              Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "product" );
                             mix.put("product_id", String.valueOf(arrayList.get(0).getId()));
-                            FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                            //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                         } catch (Exception e) {
                         }
 
@@ -272,7 +272,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
                 mix.put("type", "product" );
                 mix.put("product_id", "-1" );
 
-                FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
             } catch (Exception e) {
             }
 
@@ -295,7 +295,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
                             mix.put("type", "product_list" );
                             mix.put("status", "success" );
 
-                            FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                            //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                         } catch (Exception e) {
                         }
                         if(response.length() > 0) {
@@ -332,7 +332,7 @@ public class PendingActivity extends AppCompatActivity implements ConstantVariab
                     mix.put("type", "product_list" );
                     mix.put("status", "error" );
 
-                    FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                    //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                 } catch (Exception e) {
                 }
 

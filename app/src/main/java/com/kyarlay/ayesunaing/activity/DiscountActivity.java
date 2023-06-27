@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +37,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Campaign;
 import com.kyarlay.ayesunaing.object.Category;
@@ -100,7 +100,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
         Context context = LocaleHelper.setLocale(DiscountActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
         display     = getWindowManager().getDefaultDisplay();
-        new MyFlurry(DiscountActivity.this);
+       // new MyFlurry(DiscountActivity.this);
 
         adapter = new UniversalAdapter(DiscountActivity.this, universalPosts);
         databaseAdapter = new DatabaseAdapter(DiscountActivity.this);
@@ -151,7 +151,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "product_list");
-                            FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                            //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
 
                         } catch (Exception e) {
                         }
@@ -162,7 +162,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "collection_list");
-                            FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                            //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
 
                         } catch (Exception e) {
                         }
@@ -191,7 +191,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "product_list");
-                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+                            //FlurryAgent.logEvent("Click Shopping Cart", mix);
                         } catch (Exception e) {
                         }
 
@@ -201,7 +201,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "collection_list");
-                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+                            //FlurryAgent.logEvent("Click Shopping Cart", mix);
 
                         } catch (Exception e) {
                         }
@@ -335,7 +335,7 @@ public class DiscountActivity extends AppCompatActivity implements ConstantVaria
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);

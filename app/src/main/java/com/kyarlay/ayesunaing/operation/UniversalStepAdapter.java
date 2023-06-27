@@ -39,7 +39,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kyarlay.ayesunaing.R;
@@ -55,7 +54,7 @@ import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.StoreHelper;
 import com.kyarlay.ayesunaing.data.ToastHelper;
@@ -69,8 +68,9 @@ import com.kyarlay.ayesunaing.holder.ShoppingCartItemHolder;
 import com.kyarlay.ayesunaing.holder.StepOneItemHolder;
 import com.kyarlay.ayesunaing.holder.StepOneTopHolder;
 import com.kyarlay.ayesunaing.object.Addresses;
+import com.kyarlay.ayesunaing.object.CustomerProduct;
+import com.kyarlay.ayesunaing.object.CustomerProductList;
 import com.kyarlay.ayesunaing.object.Delivery;
-import com.kyarlay.ayesunaing.object.Discount;
 import com.kyarlay.ayesunaing.object.MainPaymentObj;
 import com.kyarlay.ayesunaing.object.PaymentObject;
 import com.kyarlay.ayesunaing.object.Product;
@@ -139,7 +139,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
         delList = databaseAdapter.getDelivery();
         townShipList = databaseAdapter.getTownShipByList();
 
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(activity);
 
@@ -359,7 +359,6 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     }
                 });
 
-                final Product proOrderBottom = databaseAdapter.getShoppingCartFooter();
                 int checkTotalPriceBottom = 0;
                 int commissionPriceBottom = 0;
                 int finalPriceBottom = 0;
@@ -377,10 +376,10 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 }
                 else */
-                if (proOrderBottom.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)) {
+                if (prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)) {
                     orderNowHolder1.delivery_price.setText(" ( " + 0 + " " + activity.getResources().getString(R.string.currency) + " )");
 
-                    checkTotalPriceBottom = proOrderBottom.getPrice() - prefs.getIntPreferences(CHECK_USE_POINT);
+                    checkTotalPriceBottom = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)- prefs.getIntPreferences(CHECK_USE_POINT);
                     commissionPriceBottom = (int) (checkTotalPriceBottom * prefs.getFloatPreferences(TEMP_COMMISSION_RATE) / 100);
                     finalPriceBottom = checkTotalPriceBottom + commissionPriceBottom;
 
@@ -398,7 +397,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         }
                     }
 
-                    checkTotalPriceBottom = proOrderBottom.getPrice() + prefs.getIntPreferences(DELIVERY_PRICE) - prefs.getIntPreferences(CHECK_USE_POINT);
+                    checkTotalPriceBottom = prefs.getIntPreferences(SP_CUSTOMER_TOTAL) + prefs.getIntPreferences(DELIVERY_PRICE) - prefs.getIntPreferences(CHECK_USE_POINT);
                     commissionPriceBottom = (int) (checkTotalPriceBottom * prefs.getFloatPreferences(TEMP_COMMISSION_RATE) / 100);
 
                     finalPriceBottom = checkTotalPriceBottom + commissionPriceBottom;
@@ -625,7 +624,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     } else {
                         orderNowHolder1.time_layout.setVisibility(View.GONE);
                         orderNowHolder1.linearChooseDate.setVisibility(View.GONE);
-                        orderNowHolder1.layout_date_only.setVisibility(View.VISIBLE);
+                        orderNowHolder1.layout_date_only.setVisibility(View.GONE);
 
                         isTomorrow = true;
                         chooseDay = mTomorrow;
@@ -892,6 +891,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                 orderNowHolder1.layoutNormal.setVisibility(View.GONE);
+                orderNowHolder1.layoutDateForHidden.setVisibility(View.GONE);
                 final boolean[] click_choose = {false};
                 final int[] normal_price = {0};
                 final int[] temp_type = {0};
@@ -912,14 +912,17 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             orderNowHolder1.txtExpress.setText(Html.fromHtml(
                                     expressText  , Html.FROM_HTML_MODE_COMPACT));
+                            orderNowHolder1.textDeliveryRemark.setText(Html.fromHtml(
+                                    expressText  , Html.FROM_HTML_MODE_COMPACT));
                         } else {
                             orderNowHolder1.txtExpress.setText(Html.fromHtml(expressText));
+                            orderNowHolder1.textDeliveryRemark.setText(Html.fromHtml(expressText));
 
 
                         }
                         if(delList.get(i).getDelivery_type() == 1){
                             click_choose[0] = false;
-                            orderNowHolder1.layoutNormal.setVisibility(View.VISIBLE);
+                            orderNowHolder1.layoutNormal.setVisibility(View.GONE);
                             normal_price[0] = delList.get(i).getNormal_price();
                             String text = String.format(resources.getString(R.string.normal_sub_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getNormal_price() + "" , delList.get(i).getNormal_delivery_days());
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -977,55 +980,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         }
                     }
                 });
-               /* for(int i = 0; i < townShipList.size(); i++){
-                    if (townShipList.get(i).getId() == prefs.getIntPreferences(TEMP_ADDRESS_ID)) {
-                        temp_type[0] = townShipList.get(i).getDelivery_type();
-                    }
-                }
-                for (int i = 0; i < delList.size(); i++) {
-                    if (delList.get(i).getId() == prefs.getIntPreferences(DELIVERY_ID)) {
-                        String expressText = String.format(resources.getString(R.string.express_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getPrice() + "");
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            orderNowHolder1.txtExpress.setText(Html.fromHtml(
-                                    expressText, Html.FROM_HTML_MODE_COMPACT));
-                        } else {
-                            orderNowHolder1.txtExpress.setText(Html.fromHtml(expressText));
 
-
-                        }
-                        if (temp_type[0] == 1) {
-                            click_choose[0] = false;
-                            orderNowHolder1.layoutNormal.setVisibility(View.VISIBLE);
-                            normal_price[0] = delList.get(i).getNormal_price();
-                            String text = String.format(resources.getString(R.string.normal_sub_title), prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP), delList.get(i).getNormal_price() + "", delList.get(i).getNormal_delivery_days());
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                orderNowHolder1.txtFullDelivery.setText(Html.fromHtml(
-                                        text, Html.FROM_HTML_MODE_COMPACT));
-                            } else {
-                                orderNowHolder1.txtFullDelivery.setText(Html.fromHtml(text));
-
-
-                            }
-
-
-                            prefs.saveIntPerferences(TEMP_NORMAL_PRICE, delList.get(i).getNormal_price());
-                            prefs.saveStringPreferences(TEMP_NORMAL_DAY, delList.get(i).getNormal_delivery_days());
-                            orderNowHolder1.txtChoose.setText(resources.getString(R.string.normal_choose));
-                            Log.e(TAG, "onBindViewHolder: ************* " + prefs.getStringPreferences(TEMP_ADDRESS_TOWNSHIP));
-                            Log.e(TAG, "onBindViewHolder: ************* " + prefs.getIntPreferences(TEMP_NORMAL_PRICE));
-
-                            Log.e(TAG, "onBindViewHolder: ************* " + delList.get(i).getDelivery_type());
-
-
-                        }
-
-
-                    }
-                }*/
-
-
-
-                //setDeliTimeUI(orderNowHolder1);
 
                 orderNowHolder1.txtOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1084,7 +1039,209 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                 break;
 
             }
-            case VIEW_TYPE_SHOPPING_CART_ITEM:{
+            case VIEW_TYPE_SHOPPING_CART_ITEM :{
+                final CustomerProduct cartProduct1 = (CustomerProduct) universalList.get(position);
+                ShoppingCartItemHolder shoppingCartItemHolder = (ShoppingCartItemHolder) parentHolder;
+                shoppingCartItemHolder.img.setImageUrl(cartProduct1.getImage(), imageLoader);
+                shoppingCartItemHolder.title.setText(cartProduct1.getTitle());
+                shoppingCartItemHolder.product_warning.setTypeface(shoppingCartItemHolder.product_warning.getTypeface(), Typeface.BOLD);
+
+                shoppingCartItemHolder.relativeOne.getLayoutParams().width = (int) display.getWidth() * 3/11;
+                //shoppingCartItemHolder.relativeThree.getLayoutParams().width = (int) display.getWidth() * 3/11;
+                shoppingCartItemHolder.relativeOne.getLayoutParams().height = (int) display.getWidth() * 2/6;
+                shoppingCartItemHolder.relativeTwo.getLayoutParams().height = (int) display.getWidth() * 2/6;
+                // shoppingCartItemHolder.relativeThree.getLayoutParams().height = (int) display.getWidth() * 2/6;
+
+
+
+                shoppingCartItemHolder.imgPlus.getLayoutParams().height = (int) ( display.getWidth() * 3/11) / 3;
+                shoppingCartItemHolder.imgMinus.getLayoutParams().height = (int) ( display.getWidth() * 3/11) / 3;
+                shoppingCartItemHolder.quantity.getLayoutParams().height = (int) ( display.getWidth() * 3/11) / 3;
+
+
+                shoppingCartItemHolder.price.setText(formatter.format((int)( cartProduct1.getOriginalPrice()  * cartProduct1.getQuantity()))+" "+
+                        resources.getString(R.string.currency));
+                shoppingCartItemHolder.quantity.setText(cartProduct1.getQuantity()+"");
+                if(cartProduct1.getOption() != null && cartProduct1.getOption().trim().length() > 0) {
+                    shoppingCartItemHolder.title.setText(shoppingCartItemHolder.title.getText() + "\n" + cartProduct1.getOption().trim());
+                }
+
+                shoppingCartItemHolder.txtAllMark.setVisibility(View.GONE);
+                shoppingCartItemHolder.price_strike.setVisibility(View.GONE);
+
+                shoppingCartItemHolder.imgPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+/*
+
+                        try {
+                            Map<String, String> mix = new HashMap<String, String>();
+                            mix.put("product_id", String.valueOf(cartProduct1.getId()));
+                            //FlurryAgent.logEvent("Change Product Quantity", mix);
+                        } catch (Exception e) {
+                        }
+
+                        cartProduct1.setCount(cartProduct1.getCount() +1);
+                        shoppingCartItemHolder.price.setText(cartProduct1.getCount() * cartProduct1.getPrice()+" "+
+                                resources.getString(R.string.currency));
+                        shoppingCartItemHolder.quantity.setText(cartProduct1.getCount()+"");
+                        databaseAdapter.updatetOrderItem(cartProduct1.getId(), cartProduct1.getCount());
+
+                        int toShowPrice = 0;
+
+                        int percent = prefs.getIntPreferences(ConstantVariable.SP_POINT_PERCENTAGE);
+
+                        Product proPoint = databaseAdapter.getShoppingCartFooter();
+
+                        if(((proPoint.getPoint_usage() * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
+                            toShowPrice = prefs.getIntPreferences(SP_USER_POINT);
+                        }
+                        else{
+                            toShowPrice = (proPoint.getPoint_usage() * percent ) / 100  ;
+                        }
+
+                        if (!prefs.getBooleanPreference(ALREADY_USE_POINT)){
+                            prefs.saveIntPerferences(CHECK_USE_POINT, totalPointToServer);
+
+                        }
+                        else{
+                            prefs.saveIntPerferences(CHECK_USE_POINT, toShowPrice);
+                        }
+*/
+
+                        cartProduct1.setQuantity(cartProduct1.getQuantity() + 1);
+                        ShoppingCartActivity refresh = (ShoppingCartActivity) activity;
+                        refresh.addProduct(cartProduct1);
+
+                    }
+                });
+                shoppingCartItemHolder.imgMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(cartProduct1.getQuantity() > 1){
+
+                        /*    try {
+                                Map<String, String> mix = new HashMap<String, String>();
+                                mix.put("product_id", String.valueOf(cartProduct1.getId()));
+                                //FlurryAgent.logEvent("Change Product Quantity", mix);
+                            } catch (Exception e) {
+                            }*/
+                            cartProduct1.setQuantity(cartProduct1.getQuantity() - 1);
+                            ShoppingCartActivity refresh = (ShoppingCartActivity) activity;
+                            refresh.subProduct(cartProduct1);
+                        }else{
+/*
+                            try {
+                                Map<String, String> mix = new HashMap<String, String>();
+                                mix.put("product_id", String.valueOf(cartProduct1.getId()));
+                                //FlurryAgent.logEvent("Remove Product From Cart", mix);
+                            } catch (Exception e) {
+                            }*/
+
+                            ShoppingCartActivity refresh = (ShoppingCartActivity) activity;
+                            refresh.removeProdcut(cartProduct1.getId());
+                        }
+                    }
+                });
+
+
+
+                shoppingCartItemHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        final BottomSheetDialog dialog = new BottomSheetDialog(activity);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.dialog_bottom_remove);
+
+                        /*try {
+                            Map<String, String> mix = new HashMap<String, String>();
+                            mix.put("source", "cart");
+                            mix.put("product_id", String.valueOf(cartProduct1.getId()));
+                            //FlurryAgent.logEvent("Click Product Remove Icon", mix);
+                        } catch (Exception e) {
+                        }*/
+
+                        dialog.setCancelable(true);
+
+
+                        CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                        CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                        CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                        CustomTextView text = (CustomTextView) dialog.findViewById(R.id.titleRemove);
+
+                        cancel.setTypeface(cancel.getTypeface(), Typeface.BOLD);
+                        confirm.setTypeface(confirm.getTypeface(), Typeface.BOLD);
+                        title.setTypeface(title.getTypeface(), Typeface.BOLD);
+                        text.setTypeface(text.getTypeface(), Typeface.BOLD);
+
+                        title.setText(String.format(resources.getString(R.string.dialog_delete_title_product), cartProduct1.getTitle()));
+                        text.setText(resources.getString(R.string.dialog_delete_title_confirm));
+
+
+                        cancel.setText(resources.getString(R.string.dialog_delete_cancel));
+                        confirm.setText(resources.getString(R.string.dialog_delete_title_confirm_yes));
+
+                        confirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                              /*  try {
+                                    Map<String, String> mix = new HashMap<String, String>();
+                                    mix.put("product_id", String.valueOf(cartProduct1.getId()));
+                                    //FlurryAgent.logEvent("Remove Product From Cart", mix);
+                                } catch (Exception e) {
+                                }*/
+                               /* int result = databaseAdapter.deleteOrder(cartProduct1.getId());
+
+                                int toShowPrice = 0;
+
+                                int percent = prefs.getIntPreferences(ConstantVariable.SP_POINT_PERCENTAGE);
+
+                                Product proPoint = databaseAdapter.getShoppingCartFooter();
+
+                                if(((proPoint.getPoint_usage() * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
+                                    toShowPrice = prefs.getIntPreferences(SP_USER_POINT);
+                                }
+                                else{
+                                    toShowPrice = (proPoint.getPoint_usage() * percent ) / 100  ;
+                                }
+
+                                if (!prefs.getBooleanPreference(ALREADY_USE_POINT)){
+                                    prefs.saveIntPerferences(CHECK_USE_POINT, totalPointToServer);
+
+                                }
+                                else{
+                                    prefs.saveIntPerferences(CHECK_USE_POINT, toShowPrice);
+                                }*/
+
+                                ShoppingCartActivity shop = (ShoppingCartActivity) activity;
+                                shop.removeProdcut(cartProduct1.getId());
+
+                                dialog.dismiss();
+                            }
+
+                        });
+
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    }
+                });
+
+
+
+
+                break;
+            }
+           /* case VIEW_TYPE_SHOPPING_CART_ITEM:{
                 final Product cartProduct1 = (Product)universalList.get(position);
                 ShoppingCartItemHolder shoppingCartItemHolder = (ShoppingCartItemHolder) parentHolder;
                 shoppingCartItemHolder.img.setImageUrl(cartProduct1.getPreviewImage(), imageLoader);
@@ -1156,7 +1313,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(cartProduct1.getId()));
-                            FlurryAgent.logEvent("Change Product Quantity", mix);
+                            //FlurryAgent.logEvent("Change Product Quantity", mix);
                         } catch (Exception e) {
                         }
 
@@ -1201,7 +1358,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("product_id", String.valueOf(cartProduct1.getId()));
-                                FlurryAgent.logEvent("Change Product Quantity", mix);
+                                //FlurryAgent.logEvent("Change Product Quantity", mix);
                             } catch (Exception e) {
                             }
                             cartProduct1.setCount(cartProduct1.getCount() - 1);
@@ -1238,7 +1395,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("product_id", String.valueOf(cartProduct1.getId()));
-                                FlurryAgent.logEvent("Remove Product From Cart", mix);
+                                //FlurryAgent.logEvent("Remove Product From Cart", mix);
                             } catch (Exception e) {
                             }
                             int result = databaseAdapter.deleteOrder(cartProduct1.getId());
@@ -1287,7 +1444,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "cart");
                             mix.put("product_id", String.valueOf(cartProduct1.getId()));
-                            FlurryAgent.logEvent("Click Product Remove Icon", mix);
+                            //FlurryAgent.logEvent("Click Product Remove Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -1318,7 +1475,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("product_id", String.valueOf(cartProduct1.getId()));
-                                    FlurryAgent.logEvent("Remove Product From Cart", mix);
+                                    //FlurryAgent.logEvent("Remove Product From Cart", mix);
                                 } catch (Exception e) {
                                 }
                                 int result = databaseAdapter.deleteOrder(cartProduct1.getId());
@@ -1376,7 +1533,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                 break;
-            }
+            }*/
 
             case VIEW_TYPE_STEP_ONE_TOP:{
                 StepOneTopHolder stepOneTopHolder = (StepOneTopHolder) parentHolder;
@@ -1474,9 +1631,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 final FooterSummaryHolder shoppingFooter = (FooterSummaryHolder) parentHolder;
 
-
-                // fake product to hold data to show in the footer
-                final Product pro = databaseAdapter.getShoppingCartFooter();
+                final CustomerProductList pro = (CustomerProductList) universalList.get(position);
 
                 shoppingFooter.summary_title.setText(resources.getString(R.string.more_shopping));
                 shoppingFooter.point_text.setText(resources.getString(R.string.point_use_text));
@@ -1486,18 +1641,49 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 shoppingFooter.total_price_text.setText(resources.getString(R.string.total_product_price));
 
-                if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                    shoppingFooter.total_price.setText(formatter.format(pro.getPrice())+" "+resources.getString(R.string.currency));
-                    prefs.saveIntPerferences(SP_TEMP_TOTAL, pro.getPrice());
-                    totalPriceToServer = pro.getPrice();
-                }
-                else{
+                shoppingFooter.total_price.setText(formatter.format((prefs.getIntPreferences(SP_CUSTOMER_TOTAL) - prefs.getIntPreferences(CHECK_USE_POINT))) + " "
+                        + activity.getResources().getString(R.string.currency));
 
-                    shoppingFooter.total_price.setText(formatter.format(pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE)) + " "
-                            + activity.getResources().getString(R.string.currency));
-                    totalPriceToServer = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE);
-                    prefs.saveIntPerferences(SP_TEMP_TOTAL, pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE));
+
+                if (prefs.getIntPreferences(SP_CUSTOMER_FLASH_DISCOUNT) > 0){
+
+                    shoppingFooter.flesh_layout.setVisibility(View.VISIBLE);
+                    shoppingFooter.flash_discount_text.setText(resources.getString(R.string.flash_sale_discount));
+                    shoppingFooter.flash_discount.setText("- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_FLASH_DISCOUNT) )+" "+resources.getString(R.string.currency));
+
+                }else{
+
+                    shoppingFooter.flesh_layout.setVisibility(View.GONE);
+
                 }
+
+                if (prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_DISCOUNT) > 0){
+
+                    shoppingFooter.product_discount_layout.setVisibility(View.VISIBLE);
+                    shoppingFooter.product_discount.setText("- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_DISCOUNT))+" "+resources.getString(R.string.currency));
+                    shoppingFooter.product_discount_text.setText(resources.getString(R.string.product_discount));
+
+
+                }else{
+                    shoppingFooter.product_discount_layout.setVisibility(View.GONE);
+
+                }
+
+
+                if (prefs.getIntPreferences(SP_CUSTOMER_MEMBER_DISCOUNT) > 0){
+
+                    shoppingFooter.member_layout.setVisibility(View.VISIBLE);
+                    shoppingFooter.member_discount_text.setText(resources.getString(R.string.member_discount));
+                    shoppingFooter.member_discount.setText("- "+formatter.format(prefs.getIntPreferences(SP_CUSTOMER_MEMBER_DISCOUNT) )+" "+resources.getString(R.string.currency));
+
+                }else{
+
+                    shoppingFooter.member_layout.setVisibility(View.GONE);
+
+                }
+
+
+
 
                 shoppingFooter.linearShopping.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1507,7 +1693,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                 });
 
 
-                if(pro.getDiscounts().size() > 0){
+                if(pro.getGifts().length > 0){
                     shoppingFooter.gift_layout.removeAllViews();
 
                     final LinearLayout.LayoutParams parms1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -1517,89 +1703,51 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     eachLayout.setPadding(15, 15, 15, 15);
                     eachLayout.setLayoutParams(parms1);
                     eachLayout.setOrientation(LinearLayout.VERTICAL);
-                    int discount_gift = 0;
-
-                    if (pro.getFlashSalesArrayList().size() > 0){
-                        shoppingFooter.flesh_layout.setVisibility(View.VISIBLE);
-                        shoppingFooter.flash_discount_text.setText(resources.getString(R.string.flash_sale_discount));
-                        shoppingFooter.flash_discount.setText("- "+formatter.format(pro.getFlashSalesArrayList().get(0).getDiscount())+" "+resources.getString(R.string.currency));
-
-                    }else{
-                        shoppingFooter.flesh_layout.setVisibility(View.GONE);
-                        shoppingFooter.flash_discount_text.setText(resources.getString(R.string.flash_sale_discount));
-                        shoppingFooter.flash_discount.setText("- "+"0 "+resources.getString(R.string.currency));
-
-                    }
-
-                    for(int i = 0; i < pro.getDiscounts().size(); i++){
-
-                        Discount discount = pro.getDiscounts().get(i);
-
-                        switch (discount.getDiscountType()){
-                            case DISCOUNT_TYPE_AMOUNT:
-                                shoppingFooter.member_layout.setVisibility(View.VISIBLE);
-                                shoppingFooter.member_discount_text.setText(resources.getString(R.string.member_discount));
-                                shoppingFooter.member_discount.setText("- "+formatter.format(discount.getMax_count())+" "+resources.getString(R.string.currency));
-                                break;
-
-                            case DISCOUNT_PERCENTAGE:
-                                shoppingFooter.product_discount_layout.setVisibility(View.VISIBLE);
-                                shoppingFooter.product_discount.setText("- "+formatter.format(discount.getMax_count())+" "+resources.getString(R.string.currency));
-                                shoppingFooter.product_discount_text.setText(resources.getString(R.string.product_discount));
-                                break;
-
-                            case DISCOUNT_GIFT:
-
-                                if(discount.getNum_extra() >= discount.getMin_count()){
-
-                                    discount_gift = 1;
-
-
-                                    LinearLayout phoneLayout = new LinearLayout(activity);
-                                    phoneLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                                    phoneLayout.setOrientation(LinearLayout.HORIZONTAL);
-                                    phoneLayout.setPadding(0,10,0,10);
-
-                                    TextView textView1 = new TextView(activity);
-                                    textView1.setGravity(Gravity.CENTER_HORIZONTAL);
-                                    textView1.setHeight(20);
-                                    textView1.setWidth(20);
-
-                                    textView1.setBackgroundColor(activity.getResources().getColor(R.color.coloredInactive));
-
-                                    CustomTextView textView = new CustomTextView(activity);
-                                    textView.setTextSize(14);
-                                    textView.setTextColor(activity.getResources().getColor(R.color.text));
-                                    textView.setPadding(30, 30, 30, 30);
-                                    textView.setGravity(Gravity.LEFT);
-                                    textView.setText( discount.getCampaign_info());
-
-                                    phoneLayout.setBackground(activity.getResources().getDrawable(R.drawable.border_white));
-
-
-                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                    params.setMargins(10,10,10,10);
-                                    phoneLayout.setLayoutParams(params);
-
-                                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                                    params2.setMargins(20,20,0,0);
-                                    textView1.setLayoutParams(params2);
+                    int discount_gift = 1;
 
 
 
-                                    phoneLayout.addView(textView1);
-                                    phoneLayout.addView(textView);
-                                    eachLayout.addView(phoneLayout);
-                                    //shoppingFooter.summary_title.setVisibility(View.VISIBLE);
-                                    // shoppingFooter.discount_title.setText("Promotions");
-                                }
+                    for(int i = 0; i < pro.getGifts().length; i++){
 
-                                break;
+                        String info = pro.getGifts()[i];
 
-                            default:
-                                break;
-                        }
+                        LinearLayout phoneLayout = new LinearLayout(activity);
+                        phoneLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        phoneLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        phoneLayout.setPadding(0,10,0,10);
+
+                        TextView textView1 = new TextView(activity);
+                        textView1.setGravity(Gravity.CENTER_HORIZONTAL);
+                        textView1.setHeight(20);
+                        textView1.setWidth(20);
+
+                        textView1.setBackgroundColor(activity.getResources().getColor(R.color.coloredInactive));
+
+                        CustomTextView textView = new CustomTextView(activity);
+                        textView.setTextSize(14);
+                        textView.setTextColor(activity.getResources().getColor(R.color.text));
+                        textView.setPadding(30, 30, 30, 30);
+                        textView.setGravity(Gravity.LEFT);
+                        textView.setText( info);
+
+                        phoneLayout.setBackground(activity.getResources().getDrawable(R.drawable.border_white));
+
+
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(10,10,10,10);
+                        phoneLayout.setLayoutParams(params);
+
+                        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                        params2.setMargins(20,20,0,0);
+                        textView1.setLayoutParams(params2);
+
+
+
+                        phoneLayout.addView(textView1);
+                        phoneLayout.addView(textView);
+                        eachLayout.addView(phoneLayout);
+
                     }
 
                     if(discount_gift != 0){
@@ -1611,19 +1759,9 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
 
 
-                else{
-                    shoppingFooter.member_layout.setVisibility(View.GONE);
-                    shoppingFooter.product_discount_layout.setVisibility(View.GONE);
-                    //shoppingFooter.discount_title.setVisibility(View.GONE);
-                }
-
-
-
-
-
                 if (!prefs.getBooleanPreference(ALREADY_USE_POINT) ) {
                     shoppingFooter.radioPoint.setChecked(false);
-                    prefs.saveIntPerferences(CHECK_USE_POINT, totalPointToServer);
+                    prefs.saveIntPerferences(CHECK_USE_POINT, 0);
                     shoppingFooter.point_use.setText("- "+formatter.format( prefs.getIntPreferences(CHECK_USE_POINT))+ " " + resources.getString(R.string.currency));
                     shoppingFooter.point_use_layout.setVisibility(View.VISIBLE);
                 }
@@ -1631,10 +1769,10 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     shoppingFooter.radioPoint.setChecked(true);
                     shoppingFooter.point_use.setText("- "+formatter.format( prefs.getIntPreferences(CHECK_USE_POINT))+ " " + resources.getString(R.string.currency));
                     shoppingFooter.point_use_layout.setVisibility(View.VISIBLE);
-                    shoppingFooter.total_price.setText(formatter.format(totalPriceToServer - prefs.getIntPreferences(CHECK_USE_POINT))
+                    shoppingFooter.total_price.setText(formatter.format(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) - prefs.getIntPreferences(CHECK_USE_POINT))
                             +" "+resources.getString(R.string.currency));
 
-                    prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - prefs.getIntPreferences(CHECK_USE_POINT));
+                    //prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - prefs.getIntPreferences(CHECK_USE_POINT));
                 }
 
                 if (prefs.getIntPreferences(SP_USER_POINT) > 0){
@@ -1670,13 +1808,21 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                         int percent = prefs.getIntPreferences(ConstantVariable.SP_POINT_PERCENTAGE);
 
-
-                        if(((pro.getPoint_usage() * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
+                        for (int i=0; i< pro.getProuduts().size(); i++){
+                            if (pro.getProuduts().get(i).getPointUsage() == 0){
+                                toShowPrice += pro.getProuduts().get(i).getDiscountedPrice();
+                            }
+                        }
+                        if(((toShowPrice * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
                             toShowPrice = prefs.getIntPreferences(SP_USER_POINT);
                         }
                         else{
-                            toShowPrice = (pro.getPoint_usage() * percent ) / 100  ;
+                            toShowPrice = (toShowPrice * percent ) / 100  ;
                         }
+
+
+
+
                         final int finalToShowPrice = toShowPrice;
 
                         title.setText(resources.getString(R.string.point_limit_text));
@@ -1700,21 +1846,19 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                                         shoppingFooter.point_use.setText("-"+formatter.format(Integer.parseInt(editText.getText().toString()))+ " " + resources.getString(R.string.currency));
                                         pointDialog.dismiss();
-                                        shoppingFooter.total_price.setText(formatter.format(totalPriceToServer - Integer.parseInt(editText.getText().toString()))
+                                        shoppingFooter.total_price.setText(formatter.format(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) - Integer.parseInt(editText.getText().toString()))
                                                 +" "+resources.getString(R.string.currency));
 
-                                        prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - Integer.parseInt(editText.getText().toString()));
+                                        //prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - Integer.parseInt(editText.getText().toString()));
 
                                         prefs.saveIntPerferences(CHECK_USE_POINT, Integer.parseInt(editText.getText().toString()));
                                         prefs.saveBooleanPreference(ALREADY_USE_POINT, true);
                                         shoppingFooter.radioPoint.setChecked(true);
 
 
-                                        Log.e(TAG, "onClick: ********************* 81026  before "  );
 
                                         if(activity.getLocalClassName().contains("ShoppingCartActivity")) {
 
-                                            Log.e(TAG, "onClick: ********************* 81026 "  );
 
                                             ShoppingCartActivity pro = (ShoppingCartActivity) activity;
                                             pro.showTotalPrice();
@@ -1763,16 +1907,21 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                         int toShowPrice = 0;
-
                         int percent = prefs.getIntPreferences(ConstantVariable.SP_POINT_PERCENTAGE);
 
-
-                        if(((pro.getPoint_usage() * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
+                        for (int i=0; i< pro.getProuduts().size(); i++){
+                            if (pro.getProuduts().get(i).getPointUsage() == 0){
+                                toShowPrice += pro.getProuduts().get(i).getDiscountedPrice();
+                            }
+                        }
+                        if(((toShowPrice * percent ) / 100 ) > prefs.getIntPreferences(SP_USER_POINT)){
                             toShowPrice = prefs.getIntPreferences(SP_USER_POINT);
                         }
                         else{
-                            toShowPrice = (pro.getPoint_usage() * percent ) / 100  ;
+                            toShowPrice = (toShowPrice * percent ) / 100  ;
                         }
+
+
                         final int finalToShowPrice = toShowPrice;
 
                         title.setText(resources.getString(R.string.point_limit_text));
@@ -1801,17 +1950,15 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                                         shoppingFooter.point_use.setText("-"+formatter.format(Integer.parseInt(editText.getText().toString()))+ " " + resources.getString(R.string.currency));
                                         pointDialog.dismiss();
-                                        shoppingFooter.total_price.setText(formatter.format(totalPriceToServer - Integer.parseInt(editText.getText().toString()))
+                                        shoppingFooter.total_price.setText(formatter.format(prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  - Integer.parseInt(editText.getText().toString()))
                                                 +" "+resources.getString(R.string.currency));
-                                        prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - Integer.parseInt(editText.getText().toString()));
+                                       /// prefs.saveIntPerferences(SP_TEMP_TOTAL, totalPriceToServer - Integer.parseInt(editText.getText().toString()));
                                         prefs.saveIntPerferences(CHECK_USE_POINT, Integer.parseInt(editText.getText().toString()));
                                         prefs.saveBooleanPreference(ALREADY_USE_POINT, true);
 
-                                        Log.e(TAG, "onClick: ********************* 81026  before "  );
 
                                         if(activity.getLocalClassName().contains("ShoppingCartActivity")) {
 
-                                            Log.e(TAG, "onClick: ********************* 81026 "  );
 
                                             ShoppingCartActivity pro = (ShoppingCartActivity) activity;
                                             pro.showTotalPrice();
@@ -2147,9 +2294,6 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     mainPaymentHolder.title.setText("Payment methods");
                     mainPaymentHolder.title.setTypeface(mainPaymentHolder.title.getTypeface(), Typeface.BOLD);
 
-
-
-
                     for(int i = 0 ; i < mainPaymentObj.getPaymentObjectList().size() ; i++){
                         PaymentObject paymentObject = mainPaymentObj.getPaymentObjectList().get(i);
 
@@ -2158,17 +2302,14 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                             mainPaymentHolder.txtPayment.setText(paymentObject.getName() + " Service Fee");
 
 
-                            Product pro = databaseAdapter.getShoppingCartFooter();
+                            //Product pro = databaseAdapter.getShoppingCartFooter();
                             int total = 0;
-                         /*   if(prefs.getIntPreferences(SP_VIP_ID) == 1 && pro.getPrice() >= prefs.getIntPreferences(SP_MEMBER_DELIVERY_AMOUNT) ){
-                                total = pro.getPrice();
-                            }
-                            else */
-                            if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                                total = pro.getPrice();
+
+                            if(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
+                                total = prefs.getIntPreferences(SP_CUSTOMER_TOTAL);
                             }
                             else{
-                                total = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE);
+                                total = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)  +prefs.getIntPreferences(DELIVERY_PRICE);
                             }
                             total = total   - prefs.getIntPreferences(CHECK_USE_POINT);
 
@@ -2628,7 +2769,6 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e(TAG, "onResponse: AAAAA 81026 "  + response.toString() );
                         try{
                             if (response.getInt("same_day") == 1){
                                 prefs.saveBooleanPreference(TEMP_CHOOSE_TIMING, true);
@@ -2708,7 +2848,6 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
         title.setTypeface(title.getTypeface(), Typeface.BOLD);
 
         ArrayList<ShopLocation> shopLocationArrayList = databaseAdapter.getPickupShops();
-        Log.e(TAG, "onCheckedChanged: ****** 81026  "  + shopLocationArrayList.size() );
 
 
         for (int i=0; i < shopLocationArrayList.size(); i++){
@@ -2931,7 +3070,7 @@ public class UniversalStepAdapter extends RecyclerView.Adapter<RecyclerView.View
                     normalPrice.setGravity(Gravity.LEFT);
                     normalPrice.setText(String.format(resources.getString(R.string.express_sub_title), delivery.getNormal_price() + "" , delivery.getNormal_delivery_days()));
                     normalPrice.setTextColor(activity.getResources().getColor(R.color.coloredInactive));
-                    deliveyLayout.addView(normalPrice);
+                   // deliveyLayout.addView(normalPrice);
 
                 }
 

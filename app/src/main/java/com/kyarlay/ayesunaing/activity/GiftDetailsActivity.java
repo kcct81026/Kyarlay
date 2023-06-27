@@ -37,7 +37,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.GiftObject;
@@ -75,7 +75,7 @@ public class GiftDetailsActivity extends AppCompatActivity implements ConstantVa
         setContentView(R.layout.layout_gift_details);
 
         Log.e(TAG, "onCreate: " );
-        new MyFlurry(GiftDetailsActivity.this);
+        //new MyFlurry(GiftDetailsActivity.this);
 
         prefs  = new MyPreference(GiftDetailsActivity.this);
         Context context1 = LocaleHelper.setLocale(GiftDetailsActivity.this, prefs.getStringPreferences(LANGUAGE));

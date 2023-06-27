@@ -46,7 +46,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CircleImageView;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
@@ -54,7 +54,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.operation.FileUtil;
@@ -79,7 +79,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
     CustomTextView toolTitle, txtTitle,txtContinue,to_contact;
     CircleImageView img;
     ImageView imgCamera;
-  //  ProgressBar progressBar;
+    //  ProgressBar progressBar;
     ProgressDialog progressDialog;
 
     MyPreference prefs;
@@ -115,7 +115,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
         }
         Context context = LocaleHelper.setLocale(ActivityProfileForm.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(ActivityProfileForm.this);
+       // new MyFlurry(ActivityProfileForm.this);
         util = new Util();
         transferUtility = util.getTransferUtility(this);
 
@@ -133,7 +133,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
         callLayout = findViewById(R.id.callLayout);
         to_contact = findViewById(R.id.to_contact);
         img = findViewById(R.id.img);
-     //   progressBar = findViewById(R.id.progressBar);
+        //   progressBar = findViewById(R.id.progressBar);
         imgCamera = findViewById(R.id.imgCamera);
         img.setImageDrawable(activity.getResources().getDrawable(R.mipmap.camera_image_profile));
 
@@ -156,7 +156,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
             @Override
             public void onClick(View v) {
                 changeProfile();
-               // selectImage();
+                // selectImage();
             }
         });
 
@@ -267,7 +267,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "login");
                                         mix.put("call_id", phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
                                     }
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
@@ -316,7 +316,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
                 }
                 else if (options[item].equals("Choose from Gallery"))
                 {
-                   changeProfile();
+                    changeProfile();
                 }
 
             }
@@ -688,7 +688,7 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("user_phone", prefs.getStringPreferences(SP_USER_PHONE));
                                     mix.put("name", prefs.getStringPreferences(SP_USER_NAME));
-                                    FlurryAgent.logEvent("Signup", mix);
+                                    //FlurryAgent.logEvent("Signup", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -741,5 +741,4 @@ public class ActivityProfileForm extends AppCompatActivity implements Constant, 
 
 
 }
-
 

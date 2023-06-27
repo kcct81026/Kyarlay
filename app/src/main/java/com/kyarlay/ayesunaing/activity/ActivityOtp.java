@@ -30,7 +30,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
@@ -38,7 +38,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -80,11 +80,11 @@ public class ActivityOtp extends AppCompatActivity implements Constant, Constant
         resources = context.getResources();
         activity = ActivityOtp.this;
 
-        new MyFlurry(ActivityOtp.this);
+       // new MyFlurry(ActivityOtp.this);
         firebaseAnalytics   = FirebaseAnalytics.getInstance(ActivityOtp.this);
         try {
 
-            FlurryAgent.logEvent("View Otp Page");
+            //FlurryAgent.logEvent("View Otp Page");
         } catch (Exception e) {
         }
         phone = getIntent().getStringExtra("phone" );
@@ -461,7 +461,7 @@ public class ActivityOtp extends AppCompatActivity implements Constant, Constant
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "login");
                                         mix.put("call_id", phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
                                     }
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
@@ -574,7 +574,7 @@ public class ActivityOtp extends AppCompatActivity implements Constant, Constant
 
 
                                     Map<String, String> mix = new HashMap<String, String>();
-                                    FlurryAgent.logEvent("View Profile Signup Page", mix);
+                                    //FlurryAgent.logEvent("View Profile Signup Page", mix);
 
                                 } catch (Exception e) {
                                 }
@@ -756,7 +756,7 @@ public class ActivityOtp extends AppCompatActivity implements Constant, Constant
                 try {
 
                     Map<String, String> mix = new HashMap<String, String>();
-                    FlurryAgent.logEvent("Login", mix);
+                    //FlurryAgent.logEvent("Login", mix);
 
                 } catch (Exception e) {
                 }

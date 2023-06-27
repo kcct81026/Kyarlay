@@ -17,7 +17,7 @@ import com.kyarlay.ayesunaing.custom_widget.CustomTabLayout;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 
 public class FragmentTest extends Fragment implements Constant,ConstantVariable {
@@ -42,7 +42,7 @@ public class FragmentTest extends Fragment implements Constant,ConstantVariable 
 
         tabLayout = (CustomTabLayout) rootView.findViewById(R.id.tab_layout);
         activity = (AppCompatActivity) getActivity();
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
         prefs = new MyPreference(activity);
       //  tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         Context contextmyanmar = LocaleHelper.setLocale( getActivity(), prefs.getStringPreferences(LANGUAGE));
@@ -84,7 +84,7 @@ public class FragmentTest extends Fragment implements Constant,ConstantVariable 
                     mix.put("tab_click", "other click" );
                     mix.put("tab_position", String.valueOf(tab.getPosition()));
                     mix.put("tab_name", String.valueOf(tab.getText()));
-                    FlurryAgent.logEvent("Tab Click Event", mix);
+                    //FlurryAgent.logEvent("Tab Click Event", mix);
                 } catch (Exception e) {
                 }
 

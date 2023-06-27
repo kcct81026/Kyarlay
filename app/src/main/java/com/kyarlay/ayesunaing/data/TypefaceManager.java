@@ -49,11 +49,11 @@ public final class TypefaceManager {
 
     public class Companion{
         public Typeface getPYIDAUNGSU(){
-            return (Typeface) TypefaceManager.getTypeface(PYIDAUNGSU);
+            return  TypefaceManager.getTypeface(PYIDAUNGSU);
         }
 
         public Typeface getZAWGYITWO(){
-            return (Typeface) TypefaceManager.getTypeface(ZAWGYITWO);        }
+            return  TypefaceManager.getTypeface(ZAWGYITWO);        }
 
         public Companion(){}
 

@@ -28,7 +28,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -39,7 +38,6 @@ import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.UniversalPost;
@@ -98,14 +96,14 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
         display = activity.getWindowManager().getDefaultDisplay();
 
 
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
-        try {
+       /* try {
 
             Map<String, String> mix = new HashMap<String, String>();
-            FlurryAgent.logEvent("View Profile Page", mix);
+            //FlurryAgent.logEvent("View Profile Page", mix);
         } catch (Exception e) {
-        }
+        }*/
         prefs.saveIntPerferences(SP_PAGE_NUM_CARTDETAIL, SP_DEFAULT);
         title            = (CustomTextView) findViewById(R.id.title);
         title_layout            =  findViewById(R.id.title_layout);
@@ -224,14 +222,14 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
                             phoneLayout.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    try {
+                                  /*  try {
 
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source","campain");
                                         mix.put("call_id",phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
-                                    }
+                                    }*/
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
                                     startActivity(callIntent);
                                     dialog.dismiss();
@@ -387,14 +385,14 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
         activate_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+               /* try {
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "click activate dialog");
-                    FlurryAgent.logEvent("Member Activate", mix);
+                    //FlurryAgent.logEvent("Member Activate", mix);
                 } catch (Exception e) {
                 }
-
+*/
                 final Dialog dialog = new Dialog(activity);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_activate_member);
@@ -461,16 +459,37 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        try {
+                        /*try {
 
 
-                            FlurryAgent.logEvent("Click Logout");
+                            //FlurryAgent.logEvent("Click Logout");
                         } catch (Exception e) {
-                        }
+                        }*/
+
+                        prefs.remove("SP_ISAPPINSTALLED");
+                        prefs.remove("LANGUAGE");
+                        prefs.remove("SP_USER_TOKEN");
+                        prefs.remove("SP_CUSTOMER_PRODUCT_COUNT");
+                        prefs.remove("SP_PHONE_NUMBER");
+                        prefs.remove("SP_ADS_LOADED");
+                        prefs.remove("ADS_COUNT_DOWN_TIME");
+                        prefs.remove("PREFERENCES_TOOL_BAR_CART");
+                        prefs.remove("SP_UNIQUE_ID_FOR_USER");
+                        prefs.remove("SP_DEVICE_ID");
+                        prefs.remove("SP_FCM_TOEKN");
+                        prefs.remove("SP_DEVICE_IMEI");
+                        prefs.remove("SP_MAINACTIVITY_CLICK");
+                        prefs.remove("SP_MEMBER_ID");
+                        prefs.remove("SP_VIP_ID");
+                        prefs.remove("SP_USER_PHONE");
+                        prefs.remove("SP_USER_POINT");
+                        prefs.remove("SP_USER_PROFILEIMAGE");
+                        prefs.remove("SP_TOWNSHIP_STORE_ID");
 
 
 
-                        prefs.clearAll();
+
+                        //prefs.clearAll();
                         databaseAdapter.deleteAllColumn(TABLE_SAVE_CART);
                         databaseAdapter.deleteAllColumn(TABLE_POST_LIKE);
                         databaseAdapter.deleteAllColumn(TABLE_PRODUCT_LIKE);
@@ -500,11 +519,11 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
             @Override
             public void onClick(View view) {
 
-                try {
+               /* try {
 
-                    FlurryAgent.logEvent("Click Language Change");
+                    //FlurryAgent.logEvent("Click Language Change");
                 } catch (Exception e) {
-                }
+                }*/
 
                 final Dialog dialog = new Dialog(activity);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -550,11 +569,11 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
         about_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+                /*try {
 
-                    FlurryAgent.logEvent("Click About Us");
+                    //FlurryAgent.logEvent("Click About Us");
                 } catch (Exception e) {
-                }
+                }*/
 
                 Intent intent = new Intent(activity, ActivityWebView.class);
                 Bundle b = new Bundle();
@@ -568,12 +587,12 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+                /*try {
 
 
-                    FlurryAgent.logEvent("Click Help");
+                    //FlurryAgent.logEvent("Click Help");
                 } catch (Exception e) {
-                }
+                }*/
 
                 Intent intent = new Intent(activity, ActivityWebView.class);
                 Bundle b = new Bundle();
@@ -653,15 +672,15 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
             prefs.saveStringPreferences(LANGUAGE, result);
 
 
-
+/*
             try {
 
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", prefs.getStringPreferences(LANGUAGE));
-                FlurryAgent.logEvent("Change Language", mix);
+                //FlurryAgent.logEvent("Change Language", mix);
             } catch (Exception e) {
-            }
+            }*/
 
             if (!prefs.getStringPreferences(LANGUAGE).equals(LANGUAGE_ENGLISH)){
 
@@ -823,14 +842,14 @@ public class SettingActivity extends AppCompatActivity implements ConstantVariab
                         dialog.dismiss();
                         try {
 
-                            try {
+                           /* try {
 
 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "finish activate");
-                                FlurryAgent.logEvent("Member Activate", mix);
+                                //FlurryAgent.logEvent("Member Activate", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
 
 

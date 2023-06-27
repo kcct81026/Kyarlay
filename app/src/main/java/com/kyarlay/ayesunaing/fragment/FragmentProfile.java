@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,7 +39,7 @@ import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.PointInfo;
@@ -97,12 +97,12 @@ public class FragmentProfile extends Fragment implements ConstantVariable, Const
         databaseAdapter = new DatabaseAdapter(getActivity());
         display = getActivity().getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(getActivity());
+       // new MyFlurry(getActivity());
 
         try {
 
 
-            FlurryAgent.logEvent("View Profile Page");
+            //FlurryAgent.logEvent("View Profile Page");
         } catch (Exception e) {
         }
 
@@ -165,7 +165,7 @@ public class FragmentProfile extends Fragment implements ConstantVariable, Const
                         prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
                     try {
 
-                        FlurryAgent.logEvent("Click Notification");
+                        //FlurryAgent.logEvent("Click Notification");
                     } catch (Exception e) {
                     }
 

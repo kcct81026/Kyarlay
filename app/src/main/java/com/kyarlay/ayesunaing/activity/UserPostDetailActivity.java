@@ -23,7 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
@@ -31,7 +31,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -73,7 +73,7 @@ public class UserPostDetailActivity extends AppCompatActivity implements Constan
         resources       = context.getResources();
 
 
-        new MyFlurry(UserPostDetailActivity.this);
+       // new MyFlurry(UserPostDetailActivity.this);
 
 
         setContentView(R.layout.group_chat_detail);
@@ -205,7 +205,7 @@ public class UserPostDetailActivity extends AppCompatActivity implements Constan
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 try {
 
-                    FlurryAgent.logEvent("Click Boy or Girl Change");
+                    //FlurryAgent.logEvent("Click Boy or Girl Change");
                 } catch (Exception e) {
                 }
 
@@ -259,7 +259,7 @@ public class UserPostDetailActivity extends AppCompatActivity implements Constan
 
                 try {
 
-                    FlurryAgent.logEvent("Click Mom or Dad Change");
+                    //FlurryAgent.logEvent("Click Mom or Dad Change");
                 } catch (Exception e) {
                 }
 
@@ -429,7 +429,7 @@ public class UserPostDetailActivity extends AppCompatActivity implements Constan
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "edit_user_profile");
-                            FlurryAgent.logEvent("Update User Information", mix);
+                            //FlurryAgent.logEvent("Update User Information", mix);
                         } catch (Exception e) {
                         }
 

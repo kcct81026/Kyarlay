@@ -21,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -32,7 +32,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.Reading;
@@ -81,7 +81,7 @@ public class LikedVideoProgramActivity extends AppCompatActivity implements Cons
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fcm_list_layout);
 
-        new MyFlurry(LikedVideoProgramActivity.this);
+       // new MyFlurry(LikedVideoProgramActivity.this);
 
 
         Log.e(TAG, "onCreate: " );
@@ -90,7 +90,7 @@ public class LikedVideoProgramActivity extends AppCompatActivity implements Cons
 
 
             Map<String, String> mix = new HashMap<String, String>();
-            FlurryAgent.logEvent("View Product Wishlist", mix);
+            //FlurryAgent.logEvent("View Product Wishlist", mix);
         } catch (Exception e) {}
 
         prefs  = new MyPreference(LikedVideoProgramActivity.this);
@@ -118,7 +118,7 @@ public class LikedVideoProgramActivity extends AppCompatActivity implements Cons
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "wishlist");
-                    FlurryAgent.logEvent("Click Shopping Cart", mix);
+                    //FlurryAgent.logEvent("Click Shopping Cart", mix);
 
                 } catch (Exception e) {
                 }
@@ -152,7 +152,7 @@ public class LikedVideoProgramActivity extends AppCompatActivity implements Cons
             cart_text.setStrokeWidth(1);
             cart_text.setStrokeColor("#000000");
             cart_text.setSolidColor("#ffffff");
-            int count = databaseAdapter.getOrderCount();
+            int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
             if (count == 0) {
                 cart_text.setVisibility(View.GONE);

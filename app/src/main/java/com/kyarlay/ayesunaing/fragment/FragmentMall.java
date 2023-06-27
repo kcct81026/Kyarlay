@@ -43,7 +43,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.flurry.android.FlurryAgent;
 import com.freshchat.consumer.sdk.Freshchat;
 import com.freshchat.consumer.sdk.FreshchatConfig;
 import com.freshchat.consumer.sdk.FreshchatNotificationConfig;
@@ -53,6 +52,7 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
 import com.kyarlay.ayesunaing.activity.MainActivity;
@@ -68,7 +68,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.lucky_wheel.ExplosionField;
@@ -113,6 +112,9 @@ import java.util.List;
 import java.util.Map;
 
 import me.myatminsoe.mdetect.MDetect;
+
+//import com.flurry.android.FlurryAgent;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 
 /**
  * Created by ayesunaing on 8/23/16.
@@ -176,7 +178,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
         databaseAdapter = new DatabaseAdapter(activity);
         universalPosts = new ArrayList<>();
 
-        new MyFlurry(getActivity());
+       // new MyFlurry(getActivity());
         prefs            = new MyPreference(getActivity());
         Context context = LocaleHelper.setLocale(getActivity(), prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
@@ -263,7 +265,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                         prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
                     try {
 
-                        FlurryAgent.logEvent("Click Notification");
+                        //FlurryAgent.logEvent("Click Notification");
                     } catch (Exception e) {
                     }
 
@@ -288,7 +290,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("super_category_id", String.valueOf(categoryList1.get(selectedPosition).getId()));
                     mix.put("source", "product_list");
-                    FlurryAgent.logEvent("Click Super Category", mix);
+                    //FlurryAgent.logEvent("Click Super Category", mix);
                 } catch (Exception e) {
                 }
 
@@ -310,15 +312,16 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                try {
+               /* try {
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("item", "cs_chat");
-                    FlurryAgent.logEvent("Click Bottom Navigation Item", mix);
+                    //FlurryAgent.logEvent("Click Bottom Navigation Item", mix);
 
                 } catch (Exception e) {
                 }
 
+*/
 
 
                 if(prefs.getStringPreferences(SP_USER_TOKEN) != null &&
@@ -338,7 +341,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
 
                     try{
-                        FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                        FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                         Freshchat.getInstance(activity).init(freshchatConfig);
                         Freshchat.getInstance(activity).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                         FreshchatUser freshUser=Freshchat.getInstance(activity).getUser();
@@ -437,7 +440,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "main_list");
-                        FlurryAgent.logEvent("Click Point Detail", mix);
+                        //FlurryAgent.logEvent("Click Point Detail", mix);
                     } catch (Exception e) {
                         Log.e(TAG, "onClick: "  + e.getMessage() );
                     }
@@ -472,7 +475,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "main");
-                    FlurryAgent.logEvent("Click Search", mix);
+                    //FlurryAgent.logEvent("Click Search", mix);
                 } catch (Exception e) {
                     Log.e(TAG, "onClick: "  + e.getMessage() );
                 }
@@ -612,7 +615,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.e(TAG, "onErrorResponse: "  + error.getMessage() );
                 getBrands();
 
 
@@ -726,8 +728,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                         prefs.saveStringPreferences(SP_TOWNSHIP_NAME, shopLocation.getName() );
                         prefs.saveIntPerferences(SP_TOWNSHIP_STORE_ID,shopLocation.getStore_location_id() );
 
-                        Log.e(TAG, "onClick: one day "  + prefs.getIntPreferences(SP_TOWNSHIP_STORE_ID) );
-                        Log.e(TAG, "onClick: one day name "  + prefs.getStringPreferences(SP_TOWNSHIP_NAME) );
 
                         universalPosts.clear();
                         //adapter.stopHandler();
@@ -765,6 +765,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     private void setupUI(){
 
+        getPaymentText();
         if (prefs.isNetworkAvailable()){
             progressBar.setVisibility(View.GONE);
 
@@ -935,6 +936,48 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     }
 
+
+    public void getPaymentText(){
+
+
+        JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
+                constantPaymentText, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try{
+                    if(  response.toString().length()  > 0){
+                        prefs.saveStringPreferences(PAYMENTEXT, response.getString("desc"));
+                    }
+
+                }catch (Exception e){
+                    Log.e(TAG, "onResponse: getWheelList Exception : "  + e.getMessage() );
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onResponse: getWheelList Exception : "  + error.getMessage() );
+            }
+        }){
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(apkDownloadRequest, "update_profile");
+    }
 
 
 
@@ -1121,11 +1164,14 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
     private void getMainBanner()
     {
 
+
         final JsonArrayRequest jsonObjReq = new JsonArrayRequest(constantMainBanner + "?language=" + prefs.getStringPreferences(SP_LANGUAGE),
                 new Response.Listener<JSONArray>() {
 
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        Log.e(TAG, "onResponse: -----------------  81026  "  + response.toString() );
 
 
                         if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
@@ -1188,6 +1234,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     private void getGridMall()
     {
+
         final JsonArrayRequest jsonObjReq = new JsonArrayRequest(constantDashBoard +  "?" + LANG+"="+prefs.getStringPreferences(SP_LANGUAGE) ,
                 new Response.Listener<JSONArray>() {
 
@@ -1426,7 +1473,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
     public void getBrands(){
 
 
-
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantMainPopularBrand + "?language=" + prefs.getStringPreferences(SP_LANGUAGE) , null, new Response.Listener<JSONObject>() {
 
@@ -1543,7 +1589,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                 , null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.e(TAG, "onResponse: ------  "  + response.toString() );
 
 
                 if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
@@ -1736,6 +1781,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
     private void getDiscountList(){
 
+
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantMainDiscountList +  "?language=" + prefs.getStringPreferences(SP_LANGUAGE) , null, new Response.Listener<JSONObject>() {
 
@@ -1767,7 +1813,9 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            categoryList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                categoryList.add(flashSaleListObject);
+                            }
                         }
 
                         if (categoryList.size() > 0){
@@ -1812,7 +1860,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
                 adapter.notifyItemInserted(universalPosts.size());
 
 
-                getCollectionList(); ///// insert 81026
+                getCollectionList();
 
 
             }
@@ -1820,7 +1868,7 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "onResponse: getDiscountList Exception : "  + error.getMessage() );
-                getCollectionList(); ///// insert 81026
+                getCollectionList();
 
 
             }
@@ -1865,7 +1913,9 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            categoryList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                categoryList.add(flashSaleListObject);
+                            }
                         }
 
 
@@ -1943,7 +1993,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
     {
 
         String url  = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE) ;
-
 
 
         final JsonArrayRequest jsonArrayReq = new JsonArrayRequest(url,
@@ -2092,7 +2141,6 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
             url = constantPopularProduct+"page="+prefs.getIntPreferences(SP_PAGE_NUM_CARTDETAIL)+"&version="+prefs.getIntPreferences(SP_CURRENT_VERSION) + "&customer_id=" + prefs.getIntPreferences(ConstantVariable.SP_MEMBER_ID) +   "&language=" + prefs.getStringPreferences(SP_LANGUAGE) ;
         }
 
-        Log.e(TAG, "getPromoteProduct: "  + url  );
 
 
         final JsonArrayRequest jsonArrayReq = new JsonArrayRequest(url,
@@ -2375,10 +2423,15 @@ public class FragmentMall extends Fragment implements ConstantVariable, Constant
 
 
 
+
         final JsonArrayRequest jsonObjReq = new JsonArrayRequest(String.format(constantOrderedlist, SP_DEFAULT, type) +"&"+LANG+"="+prefs.getStringPreferences(SP_LANGUAGE) ,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        Log.e(TAG, "onResponse: " +  String.format(constantOrderedlist, SP_DEFAULT, type) +"&"+LANG+"="+prefs.getStringPreferences(SP_LANGUAGE) );
+
+                        Log.e(TAG, "onResponse: " + response.toString() );
 
 
                         if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){

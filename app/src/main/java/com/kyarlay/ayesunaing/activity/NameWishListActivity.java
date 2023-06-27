@@ -24,7 +24,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -33,7 +32,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.NameObject;
@@ -83,16 +81,16 @@ public class NameWishListActivity extends AppCompatActivity implements Constant,
         Log.e(TAG, "onCreate: " );
 
 
-        new MyFlurry(NameWishListActivity.this);
+        //new MyFlurry(NameWishListActivity.this);
         databaseAdapter = new DatabaseAdapter(NameWishListActivity.this);
 
-        try {
+       /* try {
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "view wishlist page");
-            FlurryAgent.logEvent("View WishList Name Page", mix);
+            //FlurryAgent.logEvent("View WishList Name Page", mix);
         } catch (Exception e) {
-        }
+        }*/
 
 
 

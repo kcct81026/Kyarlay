@@ -5,13 +5,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -19,7 +17,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcelable;
 import android.text.Html;
 import android.text.util.Linkify;
 import android.util.Log;
@@ -56,25 +53,19 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.flurry.android.FlurryAgent;
-import com.freshchat.consumer.sdk.Freshchat;
-import com.freshchat.consumer.sdk.FreshchatMessage;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kbzbank.payment.KBZPay;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityAdsList;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
 import com.kyarlay.ayesunaing.activity.ActivityStepOneCart;
 import com.kyarlay.ayesunaing.activity.ActivityStepTwoCart;
 import com.kyarlay.ayesunaing.activity.ActivityWebView;
-import com.kyarlay.ayesunaing.activity.AndroidLoadImageFromAdsUrl;
-import com.kyarlay.ayesunaing.activity.AndroidLoadImageFromURLActivity;
 import com.kyarlay.ayesunaing.activity.AskProdcutAcitivity;
 import com.kyarlay.ayesunaing.activity.BrandActivity;
 import com.kyarlay.ayesunaing.activity.BrandAllActivity;
@@ -112,8 +103,6 @@ import com.kyarlay.ayesunaing.activity.ShowAllNamesActivity;
 import com.kyarlay.ayesunaing.activity.UserPostDetailActivity;
 import com.kyarlay.ayesunaing.activity.UserPostUploadActivity;
 import com.kyarlay.ayesunaing.activity.WishListActivity;
-import com.kyarlay.ayesunaing.activity.YouTubeDialog;
-import com.kyarlay.ayesunaing.activity.Youtube;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -123,9 +112,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
-import com.kyarlay.ayesunaing.data.CustomTextSliderView;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.fcm.DeeplinkingListActivity;
@@ -185,7 +172,6 @@ import com.kyarlay.ayesunaing.holder.UserPostUploadHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileHolder;
 import com.kyarlay.ayesunaing.holder.UserProfileNewHolder;
 import com.kyarlay.ayesunaing.holder.VideoAllHolder;
-import com.kyarlay.ayesunaing.holder.VideoLatestHolder;
 import com.kyarlay.ayesunaing.holder.VideoPostHolder;
 import com.kyarlay.ayesunaing.holder.VideoProgramHolder;
 import com.kyarlay.ayesunaing.holder.WatchMoreHolder;
@@ -219,10 +205,11 @@ import com.kyarlay.ayesunaing.object.SafeItem;
 import com.kyarlay.ayesunaing.object.SafeMainObj;
 import com.kyarlay.ayesunaing.object.Settings;
 import com.kyarlay.ayesunaing.object.ShopLocation;
+import com.kyarlay.ayesunaing.object.SliderData;
 import com.kyarlay.ayesunaing.object.ToolChildObject;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.object.Videos;
-import com.xys.libzxing.zxing.encoding.EncodingUtils;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -293,7 +280,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         delList = databaseAdapter.getDelivery();
 
 
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
 
@@ -323,7 +310,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         delList = databaseAdapter.getDelivery();
 
 
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
 
@@ -487,9 +474,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return VIEW_TYPE_VIDEO_NEWS_SMALL;
         }
 
-        else if (universalList.get(position).getPostType().equals(VIDEO_LIST)) {
-            return VIEW_TYPE_VIDEO_LIST;
-        }
+
 
         else if (universalList.get(position).getPostType().equals(VIDEO_MORE)) {
             return VIEW_TYPE_VIDEO_MORE;
@@ -660,6 +645,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     .inflate(R.layout.layout_user_profile_new, parent, false);
             viewHolder = new UserProfileNewHolder(viewItem);
         }
+
 
         else if (viewType == VIEW_TYPE_MAIN) {
             View viewItem = LayoutInflater.from(parent.getContext())
@@ -858,25 +844,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             viewHolder = new GiftItemHolder(viewItem);
         }
 
-        else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
+      /*  else if(viewType == VIEW_TYPE_VIDEO_NEWS_SMALL){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_video_latest, parent, false);
             viewHolder = new VideoLatestHolder(viewItem, display);
         }
-
+*/
         else if(viewType == VIEW_TYPE_TOOL_SUB_CATEGORY){
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_tool_grid_item, parent, false);
             viewHolder = new ToolSubCatHolder(viewItem, display);
         }
 
-
-
-        else if(viewType == VIEW_TYPE_VIDEO_LIST){
-            View viewItem = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.layout_video_latest, parent, false);
-            viewHolder = new VideoLatestHolder(viewItem, display);
-        }
 
         else if(viewType == VIEW_TYPE_VIDEO_MORE){
             View viewItem = LayoutInflater.from(parent.getContext())
@@ -1230,13 +1209,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 userProfileNewHolder.linearPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
-                            FlurryAgent.logEvent("Click Liked Posts Icon", mix);
+                            //FlurryAgent.logEvent("Click Liked Posts Icon", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, ReadingWishlistActivity.class);
                         activity.startActivity(intent);
@@ -1255,22 +1234,22 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 userProfileNewHolder.linearWishList.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                        /*try {
 
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "collection_list");
-                            FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                            //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
 
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, WishListActivity.class);
                         activity.startActivity(intent);
                     }
                 });
 
-                userProfileNewHolder.imgProfile.setOnClickListener(new View.OnClickListener() {
+               /* userProfileNewHolder.imgProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final Dialog dialog = new Dialog(activity);
@@ -1292,7 +1271,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         dialog.show();
                     }
-                });
+                });*/
 
                 break;
 
@@ -1362,6 +1341,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             catDetailHolder.txt_one_dayTwo.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                         }
 
+                        Log.e(TAG, "onBindViewHolder: -------------------------dfkdfkdkfkdk"   );
+
+                        catDetailHolder.txt_one_dayTwo.setVisibility(View.GONE);
                         catDetailHolder.img_one_dayTwo.setVisibility(View.GONE);
                         catDetailHolder.img_one_todayTwo.setVisibility(View.VISIBLE);
 
@@ -1618,6 +1600,9 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     } else {
                         catDetailHolder.txt_one_day.setText(Html.fromHtml(resources.getString(R.string.one_day_delivery)));
                     }
+                    Log.e(TAG, "onBindViewHolder: -------------------------dfkdfkdkfkdk"   );
+
+                    catDetailHolder.txt_one_day.setVisibility(View.GONE);
                     catDetailHolder.img_one_day.setVisibility(View.GONE);
                     catDetailHolder.img_one_today.setVisibility(View.VISIBLE);
 
@@ -1902,7 +1887,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         orderDetailTopHolder.txtOrderStatus.setBackgroundColor(activity.getResources().getColor(R.color.white));
                     }
 
-                    Log.e(TAG, "onBindViewHolder: ********* 81026 000 "  + orderTop.getStatus() );
 
                     orderDetailTopHolder.linearOrderStatus.setVisibility(View.VISIBLE);
 
@@ -2455,10 +2439,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         // productDetailsHolder.linearProductWarning.setVisibility(View.GONE);
                         productDetailsHolder.img_car.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_one));
                         productDetailsHolder.txtProductWarning.setText(resources.getString(R.string.delivery_take_time));
+                        productDetailsHolder.img_car.setVisibility(View.GONE);
+                        productDetailsHolder.txtProductWarning.setVisibility(View.GONE);
 
 
                     }else{
                         //productDetailsHolder.linearProductWarning.setVisibility(View.VISIBLE);
+                        productDetailsHolder.img_car.setVisibility(View.VISIBLE);
+                        productDetailsHolder.txtProductWarning.setVisibility(View.VISIBLE);
                         productDetailsHolder.img_car.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_option));
                         productDetailsHolder.txtProductWarning.setText(resources.getString(R.string.delivery_take_time_option));
 
@@ -2474,13 +2462,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     productDetailsHolder.imgShare.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("product_id",String.valueOf(productDetail.getId()));
-                                FlurryAgent.logEvent("Click Product Share Icon", mix);
+                                //FlurryAgent.logEvent("Click Product Share Icon", mix);
                             } catch (Exception e) {
                             }
-
+*/
                             Bundle bundle = new Bundle();
                             bundle.putString("item_id", productDetail.getId()+"");
                             bundle.putString("content_type","product");
@@ -2501,62 +2489,33 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         productDetailsHolder.imgYouTube.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(activity, Youtube.class);
+                               /* Intent intent = new Intent(activity, Youtube.class);
                                 intent.putExtra("youtubeID", productDetail.getYoutubeId());
-                                activity.startActivity(intent);
+                                activity.startActivity(intent);*/
                             }
                         });
                     }
-
 
                     final List<Images> imagesDetail = productDetail.getImages();
 
-                    if (imagesDetail.size() > 1){
-                        productDetailsHolder.txtImgCount.setText(imagesDetail.size() + "");
-                        productDetailsHolder.linearImage.setVisibility(View.VISIBLE);
-                        productDetailsHolder.slider.startAutoCycle();
-                    }else{
-                        productDetailsHolder.slider.stopAutoCycle();
-                        productDetailsHolder.linearImage.setVisibility(View.GONE);
-                    }
-
-                    productDetailsHolder.slider.setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
-
-                    for ( int i = 0; i < imagesDetail.size(); i++) {
+                    ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+                    for(int i=0; i< imagesDetail.size(); i++){
                         final int pos = i;
                         final Images image = imagesDetail.get(i);
-                        final CustomTextSliderView textSliderView = new CustomTextSliderView(activity);
-
-                        int height = (image.getDimen() * activity.getWindowManager().getDefaultDisplay().getWidth()) / 100;
-                        productDetailsHolder.slider.getLayoutParams().height = height;
-                        productDetailsHolder.slider.getLayoutParams().width = activity.getWindowManager().getDefaultDisplay().getWidth();
-
-                        productDetailsHolder.relative_slider.setVisibility(View.VISIBLE);
-                        textSliderView.description(image.getName());
-                        textSliderView.image(image.getUrl());
-                        textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
-
-                        textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                            @Override
-                            public void onSliderClick(BaseSliderView slider) {
-
-                                Intent intent = new Intent(activity, AndroidLoadImageFromURLActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelableArrayList("list_image", (ArrayList<? extends Parcelable>) imagesDetail);
-                                bundle.putString("url", image.getUrl().toString());
-                                bundle.putInt("index", pos);
-                                intent.putExtras(bundle);
-                                activity.startActivity(intent);
-                            }
-                        });
-
-
-                        textSliderView.bundle(new Bundle());
-                        textSliderView.getBundle()
-                                .putString("extra", "Product");
-                        productDetailsHolder.slider.addSlider(textSliderView);
+                        sliderDataArrayList.add(new SliderData(image.getUrl()));
 
                     }
+                    SliderAdapter adapter = new SliderAdapter(activity, sliderDataArrayList);
+                    productDetailsHolder.sliderImageView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                    productDetailsHolder.sliderImageView.setSliderAdapter(adapter);
+
+                    productDetailsHolder.txtImgCount.setText(imagesDetail.size() + "");
+                    if (imagesDetail.size() > 1){
+                        productDetailsHolder.sliderImageView.setScrollTimeInSec(3);
+                        productDetailsHolder.sliderImageView.setAutoCycle(true);
+                        productDetailsHolder.sliderImageView.startAutoCycle();
+                    }
+
 
 
                     productDetailsHolder.imgWishList.setOnClickListener(new View.OnClickListener() {
@@ -2589,15 +2548,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     @Override
                     public void onClick(View v) {
-                        try {
+                        /*try {
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(productDetail.getId()));
                             mix.put("brand_id",String.valueOf(productDetail.getBrand_id()));
-                            FlurryAgent.logEvent("Click Message Icon", mix);
+                            //FlurryAgent.logEvent("Click Message Icon", mix);
 
                         } catch (Exception e) {}
-
+*/
                         if(prefs.getIntPreferences(ConstantVariable.SP_MEMBER_ID) != 0){
 
                             final Dialog dialog = new Dialog(activity);
@@ -2623,15 +2582,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                                     if(prefs.isNetworkAvailable()) {
                                         if (editText.getText().toString().trim().length() > 0) {
-                                            try {
+                                            /*try {
 
                                                 Map<String, String> mix = new HashMap<String, String>();
                                                 mix.put("product_id",String.valueOf(productDetail.getId()));
                                                 mix.put("brand_id",String.valueOf(productDetail.getBrand_id()));
-                                                FlurryAgent.logEvent("Send Product Message", mix);
+                                                //FlurryAgent.logEvent("Send Product Message", mix);
 
-                                            } catch (Exception e) {}
-
+                                            } catch (Exception e) {}*/
+/*
                                             FreshchatMessage message1  = new FreshchatMessage();
                                             message1.setTag(String.valueOf(productDetail.getId()));
                                             message1.setMessage(constantChatProduct+productDetail.getId()+"<br>"+
@@ -2642,7 +2601,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                             Freshchat.sendMessage(activity, message1);
 
                                             dialog.dismiss();
-                                            Freshchat.showConversations(activity);
+                                            Freshchat.showConversations(activity);*/
 
                                         }else{
 
@@ -2681,12 +2640,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
                         if (moreProductCheck.getPriId() == 1){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
 
-                                FlurryAgent.logEvent("Click All Flash Sale List Button", mix);
+                                //FlurryAgent.logEvent("Click All Flash Sale List Button", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, FlashSalesActivity.class);
                             intent.putExtra("fromClass", "fromClass");
                             activity.startActivity(intent);
@@ -2715,8 +2674,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 PaymentObject paymentItemObj = (PaymentObject) universalList.get(position);
                 itemPaymentHolder.img.setImageUrl(paymentItemObj.getImg_url(), imageLoader);
 
-
-
                 itemPaymentHolder.img.getLayoutParams().height = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
                 itemPaymentHolder.img.getLayoutParams().width = (int) (activity.getWindowManager().getDefaultDisplay().getWidth() / 4);
 
@@ -2741,15 +2698,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        Product pro = databaseAdapter.getShoppingCartFooter();
                         int amtCheckPrice = 0;
 
-                        if(pro.getPrice() >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
-                            amtCheckPrice = pro.getPrice()- prefs.getIntPreferences(CHECK_USE_POINT);
+                        if(prefs.getIntPreferences(SP_CUSTOMER_TOTAL) >= prefs.getIntPreferences(DELIVERY_FREE_AMOUNT)){
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
                         else{
 
-                            amtCheckPrice = pro.getPrice() +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
+                            amtCheckPrice = prefs.getIntPreferences(SP_CUSTOMER_TOTAL) +prefs.getIntPreferences(DELIVERY_PRICE)- prefs.getIntPreferences(CHECK_USE_POINT);
                         }
 
 
@@ -2779,6 +2735,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                         prefs.saveIntPerferences(TEMP_CHOOSE_PAYMENT_ID, paymentItemObj.getId());
                                         prefs.saveFloatPerferences(TEMP_COMMISSION_RATE,  paymentItemObj.getCommission());
                                         prefs.saveStringPreferences(TEMP_COMMISSION_IMG,  paymentItemObj.getImg_url());
+                                        prefs.saveStringPreferences(TEMP_COMMISSION_TYPE,  paymentItemObj.getCommisionType());
                                         prefs.saveStringPreferences(TEMP_COMMISSION_NAME,  paymentItemObj.getName());
                                         prefs.saveStringPreferences(TEMP_CHOOSE_PAYMENT_TAG,  paymentItemObj.getTag());
                                         prefs.saveStringPreferences(TEMP_CHOOSE_PAYMENT_ACC_NAME,  paymentItemObj.getAcc_name());
@@ -2810,18 +2767,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             }
 
-           case VIEW_TYPE_STEP_ONE_BOTTOM :{
-                final OrderNowHolder orderNowHolder = (OrderNowHolder) parentHolder;
-
-                final Product proOrder = databaseAdapter.getShoppingCartFooter();
-                int checkTotalPrice = 0;
-                int commissionPrice = 0;
-                int finalPrice = 0;
-
-
-                break;
-
-            }
 
 
 
@@ -2844,6 +2789,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 shopHolder.txtShowAddress.setTypeface(shopHolder.txtShowAddress.getTypeface(), Typeface.BOLD);
 
                 final List<Images> imageLocations = shopLocation.getPhotos();
+
                 if (imageLocations.size() > 0) {
                     shopHolder.txtHidden.setVisibility(View.VISIBLE);
                     shopHolder.txtTownship.setVisibility(View.VISIBLE);
@@ -2857,45 +2803,26 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 }
 
-                for ( int i = 0; i < imageLocations.size(); i++) {
+                final List<Images> imagesDetail = imageLocations;
+                ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+                for(int i=0; i< imagesDetail.size(); i++){
                     final int pos = i;
-                    final Images image = imageLocations.get(i);
-                    final CustomTextSliderView textSliderView = new CustomTextSliderView(activity);
-
-                    int height = (image.getDimen() * activity.getWindowManager().getDefaultDisplay().getWidth()) / 100;
-                    shopHolder.mDemoSlider.getLayoutParams().height = height;
-                    shopHolder.mDemoSlider.getLayoutParams().width = activity.getWindowManager().getDefaultDisplay().getWidth();
-
-                    shopHolder.relativeSlider.setVisibility(View.VISIBLE);
-                    textSliderView.description(image.getName());
-                    textSliderView.image(image.getUrl());
-                    textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
-
-                    textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                        @Override
-                        public void onSliderClick(BaseSliderView slider) {
-                            textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                                @Override
-                                public void onSliderClick(BaseSliderView slider) {
-                                    Intent intent = new Intent(activity, AndroidLoadImageFromURLActivity.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putParcelableArrayList("list_image", (ArrayList<? extends Parcelable>) imageLocations);
-                                    bundle.putString("url", image.getUrl().toString());
-                                    bundle.putInt("index", pos);
-                                    intent.putExtras(bundle);
-                                    activity.startActivity(intent);
-                                }
-                            });
-                        }
-                    });
-
-
-                    textSliderView.bundle(new Bundle());
-                    textSliderView.getBundle()
-                            .putString("extra", "Product");
-                    shopHolder.mDemoSlider.addSlider(textSliderView);
+                    final Images image = imagesDetail.get(i);
+                    sliderDataArrayList.add(new SliderData(image.getUrl()));
 
                 }
+                SliderAdapter adapter = new SliderAdapter(activity, sliderDataArrayList);
+                shopHolder.sliderImageView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                shopHolder.sliderImageView.setSliderAdapter(adapter);
+
+                    if (imagesDetail.size() > 1){
+                        shopHolder.sliderImageView.setScrollTimeInSec(3);
+                        shopHolder.sliderImageView.setAutoCycle(true);
+                        shopHolder.sliderImageView.startAutoCycle();
+                    }
+
+
+
 
                 shopHolder.linearShowLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -3121,12 +3048,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        try {
+                      /*  try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "profile_shopping cart");
-                            FlurryAgent.logEvent("Click Shopping Cart", mix);
+                            //FlurryAgent.logEvent("Click Shopping Cart", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         prefs.saveBooleanPreference(ALREADY_USE_POINT, false);
                         Intent intent1 = new Intent(activity, ShoppingCartActivity.class);
                         activity.startActivity(intent1);
@@ -3138,13 +3065,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        try {
+                      /*  try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "profile_pending_order");
-                            FlurryAgent.logEvent("Click Pending Orders", mix);
+                            //FlurryAgent.logEvent("Click Pending Orders", mix);
                         } catch (Exception e) {
                         }
-
+*/
                         Intent intent1 = new Intent(activity, OlderedActivity.class);
                         intent1.putExtra("type", "pending");
                         intent1.putExtra("title",resources.getString(R.string.current_order) );
@@ -3157,12 +3084,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "profile_complete_order");
-                            FlurryAgent.logEvent("Click Completed Orders", mix);
+                            //FlurryAgent.logEvent("Click Completed Orders", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent1 = new Intent(activity, OlderedActivity.class);
                         intent1.putExtra("type", "completed");
@@ -3268,13 +3195,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 historyHolder.linearView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("order_id",String.valueOf(histroyOrder.getOrder_id()));
-                            FlurryAgent.logEvent("Click Past Order", mix);
+                            //FlurryAgent.logEvent("Click Past Order", mix);
                         } catch (Exception e) {
                         }
-
+*/
+                        prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
                         Intent intent = new Intent(activity, OrderDetailActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putParcelable("order", histroyOrder);
@@ -3335,33 +3263,103 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (orderDetails.getPayment_method().equals("cod")){
                     detailsHolder.linear_payment.setVisibility(View.GONE);
                     detailsHolder.payment_layout.setVisibility(View.GONE);
+                    detailsHolder.txtPaymentText.setVisibility(View.GONE);
                 }else{
-                    detailsHolder.linear_payment.setVisibility(View.VISIBLE);
-                    detailsHolder.payment_layout.setVisibility(View.VISIBLE);
-                    detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
-                    detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
-                    detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
-                    detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
 
-                    detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
-                    detailsHolder.txtCopy.setText(resources.getString(R.string.copy));
-                    detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
-                    detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
-                    detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
+                    detailsHolder.txtPaymentText.setVisibility(View.VISIBLE);
+                    detailsHolder.txtPaymentText.setText(prefs.getStringPreferences(PAYMENTEXT));
+                    if (orderDetails.getStatus().equals("ordered") && orderDetails.getPayment_method().equals("kpay")){
+                        detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                        detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                        detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                        detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                        detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+                        detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
+                        detailsHolder.txtCopy.setText(resources.getString(R.string.pay_now));
+                        detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
+                        detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
+                        detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
+
+                        detailsHolder.txtAccountName.setText("");
+                        detailsHolder.txtAccountNameTittle.setText("");
+                        detailsHolder.txtAccountNumberTittle.setText("");
+                        detailsHolder.txtAccountNumber.setText("");
 
 
-                    detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
-                    detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
 
-                    detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText("Copied", orderDetails.getAcc_num());
-                            clipboard.setPrimaryClip(clip);
-                            Toast.makeText(activity, "Copied", Toast.LENGTH_LONG).show();
+
+                        detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
+                        detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+                        detailsHolder.txtCopy.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+                        detailsHolder.txtCopy.setTextColor(activity.getResources().getColor(R.color.coloredInactive));
+
+                        detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (prefs.isNetworkAvailable()){
+                                    ProgressDialog progressDialog = new ProgressDialog(activity);
+                                    progressDialog.setMessage("Loading . . . ");
+                                    progressDialog.setCanceledOnTouchOutside(false);
+                                    progressDialog.show();
+
+
+                                    payPaymentToServer(progressDialog, orderDetails.getOrder_id());
+                                }
+
+
+                            }
+                        });
+                    }
+
+                    else{
+
+                        if(orderDetails.getPayment_method().equals("kpay")){
+                            detailsHolder.linear_payment.setVisibility(View.VISIBLE);
+                            detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                            detailsHolder.layoutPaymentHidden.setVisibility(View.GONE);
+                            detailsHolder.layoutPaymentHiddenTwo.setVisibility(View.GONE);
+                            detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                            detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                            detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                            detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+
+
                         }
-                    });
+                        else{
+                            detailsHolder.linear_payment.setVisibility(View.VISIBLE);
+                            detailsHolder.payment_layout.setVisibility(View.VISIBLE);
+                            detailsHolder.imgPayment.setImageUrl(orderDetails.getPayment_icon(), imageLoader);
+                            detailsHolder.txtPayment.setText(orderDetails.getPayment_name());
+                            detailsHolder.payment_text.setText(orderDetails.getPayment_name() + " Service Fee");
+                            detailsHolder.payment_price.setText(formatter.format(orderDetails.getPayment_fee() )+" "+resources.getString(R.string.currency));
+
+                            detailsHolder.txtAccountNumber.setText(orderDetails.getAcc_num());
+                            detailsHolder.txtCopy.setText(resources.getString(R.string.copy));
+                            detailsHolder.txtAccountNameTittle.setText(resources.getString(R.string.acc_name));
+                            detailsHolder.txtAccountNumberTittle.setText(resources.getString(R.string.acc_num));
+                            detailsHolder.txtAccountName.setText( orderDetails.getAcc_name());
+
+
+                            detailsHolder.txtAccountNumber.setTypeface(detailsHolder.txtAccountNumber.getTypeface(), Typeface.BOLD);
+                            detailsHolder. txtAccountName.setTypeface(detailsHolder.txtAccountName.getTypeface(), Typeface.BOLD);
+
+                            detailsHolder.txtCopy.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(CLIPBOARD_SERVICE);
+                                    ClipData clip = ClipData.newPlainText("Copied", orderDetails.getAcc_num());
+                                    clipboard.setPrimaryClip(clip);
+                                    Toast.makeText(activity, "Copied", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+
+                    }
+
+
+
                 }
 
 
@@ -3521,14 +3519,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     phoneLayout.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            try {
+                                            /*try {
 
                                                 Map<String, String> mix = new HashMap<String, String>();
                                                 mix.put("source", "login");
                                                 mix.put("call_id", phoneString);
-                                                FlurryAgent.logEvent("Call Call Center", mix);
+                                                //FlurryAgent.logEvent("Call Call Center", mix);
                                             } catch (Exception e) {
-                                            }
+                                            }*/
                                             Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
                                             activity.startActivity(callIntent);
                                             dialog.dismiss();
@@ -3609,18 +3607,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 videoProgramHolder2.cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        try {
+                      /*  try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("post_id", String.valueOf(videoProgram2.getId()));
                             mix.put("source", "videos_list");
-                            FlurryAgent.logEvent("Videos List Click Item", mix);
+                            //FlurryAgent.logEvent("Videos List Click Item", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         prefs.saveIntPerferences(FIRST_PLAY, 0);
-                        Intent intent = new Intent(activity, YouTubeDialog.class);
+                       /* Intent intent = new Intent(activity, YouTubeDialog.class);
                         intent.putExtra("youtube_object", videoProgram2);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -3637,12 +3635,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 watchMoreHolder.more.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try{
+                        /*try{
                             if (watchPro.getId() == 1){
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source", "watch all reading list");
-                                    FlurryAgent.logEvent("Click Watch More Reading Posts", mix);
+                                    //FlurryAgent.logEvent("Click Watch More Reading Posts", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -3652,7 +3650,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source", "watch all videos list");
-                                    FlurryAgent.logEvent("Click Watch More Videos", mix);
+                                    //FlurryAgent.logEvent("Click Watch More Videos", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -3661,14 +3659,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source", "watch all tools");
-                                    FlurryAgent.logEvent("Click Watch More Tools", mix);
+                                    //FlurryAgent.logEvent("Click Watch More Tools", mix);
                                 } catch (Exception e) {
                                 }
 
                             }
                         }catch (Exception e){
                             Log.e(TAG, "onClick: "  + e.getMessage() );
-                        }
+                        }*/
 
 
                         Bundle bundle = new Bundle();
@@ -3683,49 +3681,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             case VIEW_TYPE_VIDEO_NEWS_SMALL :{
-                final VideoLatestHolder latestHolder = (VideoLatestHolder) parentHolder;
-                final Reading readingObj1 = (Reading) universalList.get(position);
-                latestHolder.thumbnailVideo.setVisibility(View.GONE);
-                if(readingObj1.getTitle() != null  && readingObj1.getTitle().trim().length() > 0) {
-                    latestHolder.title.setVisibility(View.VISIBLE);
-                    latestHolder.title.setText(readingObj1.getTitle());
-                    latestHolder.title.setLineSpacing(1.8f, 1.0f);
-                    latestHolder.title.setTypeface(latestHolder.title.getTypeface(), Typeface.BOLD);
-
-                }else
-                    latestHolder.title.setVisibility(View.GONE);
-
-
-                if(readingObj1.getPhoto_url() != null && readingObj1.getPhoto_url().trim().length() > 0){
-
-                    latestHolder.img.setImageUrl(readingObj1.getPhoto_url(), imageLoader);
-                    latestHolder.img.setVisibility(View.VISIBLE);
-                }
-
-                latestHolder.videoCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            Map<String, String> mix = new HashMap<String, String>();
-                            mix.put("source", "post_list");
-                            mix.put("post_id", String.valueOf(readingObj1.getId()));
-                            FlurryAgent.logEvent("Click Post", mix);
-                        } catch (Exception e) {
-                        }
-
-                        Intent intent = new Intent(activity, ReadingCommentDetailsActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("comment", "read");
-                        bundle.putInt("id", readingObj1.getId());
-                        bundle.putString("title", readingObj1.getTitle());
-                        bundle.putInt("like_count", readingObj1.getLikes());
-                        bundle.putInt("comment_count", readingObj1.getComment_coount());
-                        bundle.putString("page_url", readingObj1.getPage_img_url());
-                        intent.putExtras(bundle);
-                        activity.startActivity(intent);
-                    }
-                });
-
 
                 break;
 
@@ -3764,55 +3719,55 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
                         if (toolChildObject.getTag().equals("ovulation_calculator")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Pregnant onClick");
-                                FlurryAgent.logEvent("Pregnant onClick", mix);
+                                //FlurryAgent.logEvent("Pregnant onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, Get_PregnantActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if(toolChildObject.getTag().equals("baby_names")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("tag", toolChildObject.getTag());
-                                FlurryAgent.logEvent("Click Tools Category", mix);
+                                //FlurryAgent.logEvent("Click Tools Category", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, SafeQuesMainActivity.class);
                             activity.startActivity(intent);
                         }
                         else if (toolChildObject.getTag().equals("birthday_calendar")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Horoscope onClick");
-                                FlurryAgent.logEvent("Horoscope onClick", mix);
+                                //FlurryAgent.logEvent("Horoscope onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             Intent intent = new Intent(activity, CustomCalendarActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if (toolChildObject.getTag().equals("due_date")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Due Date onClick");
-                                FlurryAgent.logEvent("Due Date onClick", mix);
+                                //FlurryAgent.logEvent("Due Date onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, DueDateActivity.class);
                             activity.startActivity(intent);
                         }
                         else if (toolChildObject.getTag().equals("clinic_directory")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Clinic Diectory onClick");
-                                FlurryAgent.logEvent("Clinic Diectory onClick", mix);
+                                //FlurryAgent.logEvent("Clinic Diectory onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, ClinicActivity.class);
                             intent.putExtra("name", toolChildObject.getName());
                             prefs.saveStringPreferences(SP_DIRECTORY_CLICK, toolChildObject.getTag());
@@ -3820,12 +3775,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
 
                         else if (toolChildObject.getTag().equals("schools")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "School Diectory onClick");
-                                FlurryAgent.logEvent("School Diectory onClick", mix);
+                                //FlurryAgent.logEvent("School Diectory onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, ClinicActivity.class);
                             intent.putExtra("name", toolChildObject.getName());
                             prefs.saveStringPreferences(SP_DIRECTORY_CLICK, toolChildObject.getTag());
@@ -3843,7 +3798,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
 
-            case VIEW_TYPE_VIDEO_LIST :{
+          /*  case VIEW_TYPE_VIDEO_LIST :{
                 final VideoLatestHolder latestHolder1 = (VideoLatestHolder) parentHolder;
                 final Videos videosObj = (Videos) universalList.get(position);
                 latestHolder1.img.setVisibility(View.GONE);
@@ -3878,7 +3833,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 break;
 
-            }
+            }*/
 
             case VIEW_TYPE_GIFT_OBJECT_SHOW_ITEM:{
 
@@ -4212,12 +4167,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             activity.startActivity(intent);
                         }
                         else if(pointInfo.getName().equals("connect_member")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "click activate dialog");
-                                FlurryAgent.logEvent("Member Activate", mix);
+                                //FlurryAgent.logEvent("Member Activate", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             final Dialog dialog = new Dialog(activity);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -4264,26 +4219,26 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         else{
                             if (pointInfo.getName().equals("order")){
 
-                                try {
+                               /* try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Point Order Type onClick");
-                                    FlurryAgent.logEvent("Point Order Type onClick", mix);
+                                    //FlurryAgent.logEvent("Point Order Type onClick", mix);
                                 } catch (Exception e) {
                                 }
-
+*/
                                 Intent intent = new Intent(activity, ActivityWebView.class);
                                 intent.putExtra("url", pointInfo.getData());
                                 intent.putExtra("title", "help");
                                 activity.startActivity(intent);
                             }
                             else if (pointInfo.getName().equals("redeem")){
-
+/*
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Point Redeem Type onClick");
-                                    FlurryAgent.logEvent("Point Redeem Type onClick", mix);
+                                    //FlurryAgent.logEvent("Point Redeem Type onClick", mix);
                                 } catch (Exception e) {
-                                }
+                                }*/
 
                                 prefs.saveIntPerferences(SP_CHANGE, 0);
                                 Intent intent = new Intent(activity, GiftExchangeActivity.class);
@@ -4291,13 +4246,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                             }
                             else if (pointInfo.getName().equals("signup") && pointInfo.getStatus().equals("true")){
+/*
 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Point Signup Type onClick");
-                                    FlurryAgent.logEvent("Point Signup Type onClick", mix);
+                                    //FlurryAgent.logEvent("Point Signup Type onClick", mix);
                                 } catch (Exception e) {
                                 }
+*/
 
                                 prefs.saveIntPerferences(SP_CHANGE, 1);
                                 Intent intent = new Intent(activity, ActivityLogin.class);
@@ -4305,12 +4262,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             }
                             else if (pointInfo.getName().equals("posting") && pointInfo.getStatus().equals("true")){
 
-                                try {
+                               /* try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Point Posting Type onClick");
-                                    FlurryAgent.logEvent("Point Posting Type onClick", mix);
+                                    //FlurryAgent.logEvent("Point Posting Type onClick", mix);
                                 } catch (Exception e) {
-                                }
+                                }*/
                                 if(prefs.getStringPreferences(SP_USER_TOKEN) == null
                                         || prefs.getStringPreferences(SP_USER_TOKEN).trim().length() == 0){
 
@@ -4327,12 +4284,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 }
                             }
                             else if (pointInfo.getName().equals("invite") && pointInfo.getStatus().equals("true")){
-                                try {
+                               /* try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Point Inivite Type onClick");
-                                    FlurryAgent.logEvent("Point Inivite Type onClick", mix);
+                                    //FlurryAgent.logEvent("Point Inivite Type onClick", mix);
                                 } catch (Exception e) {
-                                }
+                                }*/
 
                                 if(prefs.getStringPreferences(SP_USER_TOKEN) == null
                                         || prefs.getStringPreferences(SP_USER_TOKEN).trim().length() == 0){
@@ -4436,7 +4393,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 profileHolder.txtRate.setPaintFlags(profileHolder.txtRate.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
                 profileHolder.txtQA.setPaintFlags(profileHolder.txtQA.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
 
-                profileHolder.profile_image.setOnClickListener(new View.OnClickListener() {
+               /* profileHolder.profile_image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -4459,7 +4416,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         dialog.show();
                     }
-                });
+                });*/
 
                 profileHolder.txtEditProfile.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -4481,12 +4438,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 profileHolder.txtShare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "share_app");
-                            FlurryAgent.logEvent("Click Share App Button", mix);
+                            //FlurryAgent.logEvent("Click Share App Button", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         String shareBody = "https://play.google.com/store/apps/details?id=com.kyarlay.ayesunaing";
 
@@ -4502,12 +4459,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 profileHolder.txtRate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                        /*try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "rate_us");
-                            FlurryAgent.logEvent("Click Rate Us Button", mix);
+                            //FlurryAgent.logEvent("Click Rate Us Button", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
 
                         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -4519,12 +4476,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 profileHolder.txtQA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "ask_question");
-                            FlurryAgent.logEvent("Click Q&A About Product Button", mix);
+                            //FlurryAgent.logEvent("Click Q&A About Product Button", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
 
 
@@ -5049,13 +5006,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 detailGridHolder.txtViewAllQA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                        /*try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(product1.getId()));
-                            FlurryAgent.logEvent("View All Product Questions", mix);
+                            //FlurryAgent.logEvent("View All Product Questions", mix);
                         } catch (Exception e) {
                         }
-
+*/
                         Intent intent   = new Intent(activity, AskProdcutAcitivity.class);
                         intent.putExtra("fromCalss","question");
                         intent.putExtra("product_id", product1.getId());
@@ -5071,12 +5028,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 detailGridHolder.txtAskQA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(product1.getId()));
-                            FlurryAgent.logEvent("Click Ask Question Icon", mix);
+                            //FlurryAgent.logEvent("Click Ask Question Icon", mix);
                         } catch (Exception e) {}
-
+*/
                         if(prefs.getIntPreferences(ConstantVariable.SP_MEMBER_ID) != 0){
 
                             final Dialog dialog = new Dialog(activity);
@@ -5102,13 +5059,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                                     if(prefs.isNetworkAvailable()) {
                                         if (editText.getText().toString().trim().length() > 0) {
-                                            try {
+                                           /* try {
                                                 Map<String, String> mix = new HashMap<String, String>();
                                                 mix.put("product_id",String.valueOf(product1.getId()));
-                                                FlurryAgent.logEvent("Send Product Message", mix);
+                                                //FlurryAgent.logEvent("Send Product Message", mix);
                                             } catch (Exception e) {}
 
-
+*/
 
                                             dialog.dismiss();
                                             ProgressDialog progressDialog = new ProgressDialog(activity);
@@ -5206,12 +5163,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         @Override
                         public void onClick(View view) {
 
-                            try {
+                          /*  try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("product_id", String.valueOf(product1.getId()));
                                 mix.put("brand_id", String.valueOf(product1.getBrand_id()));
-                                FlurryAgent.logEvent("Click Brand", mix);
-                            } catch (Exception e) {}
+                                //FlurryAgent.logEvent("Click Brand", mix);
+                            } catch (Exception e) {}*/
                             prefs.saveIntPerferences(SP_BRAND_ID, product1.getCategoryId());
                             Intent intent = new Intent(activity, BrandActivity.class);
                             Bundle bundle = new Bundle();
@@ -5450,14 +5407,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     public void onClick(View v) {
 
 
-                        try {
+                     /*   try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("super_category_id", String.valueOf(gridSub12.getId()));
                             mix.put("source", "product_list");
-                            FlurryAgent.logEvent("Click Super Category", mix);
+                            //FlurryAgent.logEvent("Click Super Category", mix);
                         } catch (Exception e) {
                         }
-
+*/
                         Intent intent = new Intent(activity, MainSuperActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("title", gridSub12.getTitle());
@@ -5525,16 +5482,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         prefs.saveIntPerferences(SP_BRAND_ID, grid.getId());
 
 
-                        //Intent intent = new Intent(activity, CategoryActivity.class);
                         Intent intent = new Intent(activity, CategoryActivity.class);
                         Bundle b = new Bundle();
                         b.putParcelable("mainCat", grid);
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", grid.getPost_type());
-                            FlurryAgent.logEvent("Click Main Category", mix);
+                            //FlurryAgent.logEvent("Click Main Category", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         intent.putExtras(b);
                         activity.startActivity(intent);
                     }
@@ -5579,12 +5535,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View view) {
 
-                        try {
+                      /*  try {
                             Map<String, String> mix = new HashMap<String, String>();
 
-                            FlurryAgent.logEvent("Click All Brands Button", mix);
+                            //FlurryAgent.logEvent("Click All Brands Button", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, BrandAllActivity.class);
                         activity.startActivity(intent);
@@ -5632,13 +5588,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View view) {
 
-
+/*
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "previous");
-                            FlurryAgent.logEvent("Search", mix);
+                            //FlurryAgent.logEvent("Search", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         Intent intent = new Intent(activity, SearchResultActivity.class );
                         Bundle bun = new Bundle();
                         bun.putString("url",constantSearch + prefs.getIntPreferences(SP_CURRENT_VERSION) +
@@ -5691,13 +5647,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View view) {
 
-
+/*
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "popular");
-                            FlurryAgent.logEvent("Search", mix);
+                            //FlurryAgent.logEvent("Search", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         Intent intent = new Intent(activity, SearchResultActivity.class );
                         Bundle bun = new Bundle();
                         bun.putString("url",constantSearch + prefs.getIntPreferences(SP_CURRENT_VERSION) +
@@ -5715,133 +5671,25 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case VIEW_TYPE_MAIN_ADS :{
 
                 MainAdsHolder adsHolder = (MainAdsHolder) parentHolder;
-                if(adsHolder.mDemoSlider.getId() != 1){
-                    adsHolder.mDemoSlider.setId(1);
-                    MainObject slider = (MainObject) universalList.get(position);
-                    List<MainItem> sliderAds = new ArrayList<>();
-                    sliderAds = slider.getItems();
-                    for(int i=0; i< sliderAds.size(); i++){
-
-                        final MainItem ads = sliderAds.get(i);
-                        CustomTextSliderView textSliderView = new CustomTextSliderView(activity);
+                MainObject slider = (MainObject) universalList.get(position);
+                List<MainItem> sliderAds = new ArrayList<>();
+                sliderAds = slider.getItems();
 
 
-                        // set post dimension
-                        int dimen = ads.getDimen();
-                        int width = display.getWidth();  // deprecated
-                        int height = (dimen * width) / 100;
-                        adsHolder.mDemoSlider.getLayoutParams().height = height;
-
-                        //adsHolder.mDemoSlider.getLayoutParams().width = width;
-
-                        // initialize a SliderLayout
-                        textSliderView
-                                .description(ads.getTitle())
-                                .image(ads.getPreview_url())
-                                .setScaleType(BaseSliderView.ScaleType.Fit);
-
-                        textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                            @Override
-                            public void onSliderClick(BaseSliderView slider) {
-                                try {
-                                    Map<String, String> mix = new HashMap<String, String>();
-                                    mix.put("ads_id", String.valueOf(ads.getId()));
-                                    FlurryAgent.logEvent("Click Ads Banner", mix);
-                                } catch (Exception e) {
-                                }
-
-                                if(ads.getPost_type().equals("link")){
-
-                                    if(ads.getOpen_target() != null){
-                                        if(ads.getOpen_target() != null && ads.getOpen_target().equals("outside_app")){
 
 
-                                            try {
-                                                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ads.getUrl()));
-                                                activity.startActivity(myIntent);
-                                            }catch(ActivityNotFoundException e){
-                                                Log.e(TAG, "onSliderClick: "  + e.getMessage() );
+                ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+                for(int i=0; i< sliderAds.size(); i++){
+                    sliderDataArrayList.add(new SliderData(sliderAds.get(i).getPreview_url()));
 
-                                            }
-                                        }else{
-
-                                            Intent intent = new Intent(activity, ActivityWebView.class );
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("url",ads.getUrl());
-                                            bundle.putString("title", "");
-                                            intent.putExtras(bundle);
-                                            activity.startActivity(intent);
-                                        }
-                                    }
-
-                                }else if(ads.getPost_type().equals("api")){
-                                    try {
-
-                                        final Dialog dialog = new Dialog(activity);
-                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                        dialog.setContentView(R.layout.dialog_progress);
-                                        dialog.setCancelable(true);
-
-                                        Window window = dialog.getWindow();
-                                        WindowManager.LayoutParams wlp = window.getAttributes();
-                                        wlp.gravity = Gravity.CENTER;
-                                        wlp.width   = activity.getWindowManager().getDefaultDisplay().getWidth();
-                                        window.setAttributes(wlp);
-                                        dialog.setCanceledOnTouchOutside(false);
-
-                                        CustomTextView title  = (CustomTextView) dialog.findViewById(R.id.title);
-                                        CustomTextView text  = (CustomTextView) dialog.findViewById(R.id.text);
-
-                                        title.setText(resources.getString(R.string.progress_dialog_title));
-                                        text.setText(resources.getString(R.string.progerss_dialog_text));
-
-                                        dialog.show();
-
-
-                                        JsonArrayRequest jsonArrayRequest = adsApi(ads.getUrl(), dialog);
-                                        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-
-                                    }
-                                }else if(ads.getPost_type().equals("image")){
-                                    try {
-
-                                        Intent intent = new Intent(activity, AndroidLoadImageFromAdsUrl.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("url", ads.getPreview_url().toString());
-                                        intent.putExtras(bundle);
-                                        activity.startActivity(intent);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-
-                                    }
-                                }else if(ads.getPost_type().equals("brand_page")){
-                                    try {
-
-                                        Intent intent = new Intent(activity, BrandActivity.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putInt("id",Integer.parseInt(ads.getUrl()));
-                                        intent.putExtras(bundle);
-                                        activity.startActivity(intent);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-                                    }
-                                }else{
-                                    // ringProgressDialog.dismiss();
-                                }
-
-                            }
-                        });
-
-                        //add your extra information
-                        textSliderView.bundle(new Bundle());
-                        textSliderView.getBundle()
-                                .putString("extra", ads.getTitle());
-                        adsHolder.mDemoSlider.addSlider(textSliderView);
-
-                    }
                 }
+                SliderAdsAdapter adapter = new SliderAdsAdapter(activity, sliderDataArrayList, sliderAds);
+                adsHolder.sliderImageView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                adsHolder.sliderImageView.setSliderAdapter(adapter);
+                adsHolder.sliderImageView.setScrollTimeInSec(3);
+                adsHolder.sliderImageView.setAutoCycle(true);
+                adsHolder.sliderImageView.startAutoCycle();
+
 
                 break;
             }
@@ -5889,15 +5737,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View v) {
 
-
+/*
                         try {
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source","brand");
                             mix.put("source_id", brand.getTag());
-                            FlurryAgent.logEvent("View Brand Detail", mix);
+                            //FlurryAgent.logEvent("View Brand Detail", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, BrandActivity.class);
                         Bundle bundle = new Bundle();
@@ -5935,13 +5783,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         bundle.putInt("id", bbitem.getId());
                         intent.putExtras(bundle);
                         activity.startActivity(intent);
+/*
 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("promotion", String.valueOf(bbitem.getId()));
-                            FlurryAgent.logEvent(" Click Promotion Banner", mix);
+                            //FlurryAgent.logEvent(" Click Promotion Banner", mix);
                         } catch (Exception e) {
                         }
+*/
 
 
                     }
@@ -6248,13 +6098,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             }
 
                             text.setText(str);
-
+/*
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("product_id", String.valueOf(productFlash1.getId()));
-                                FlurryAgent.logEvent("Click Info Tag", mix);
+                                //FlurryAgent.logEvent("Click Info Tag", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             mBottomSheetDialog.show();
                         }
                     });
@@ -6337,10 +6187,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     // catDetailHolder.imgCar.setVisibility(View.GONE);
                     catDetailHolder.product_warning.setText(resources.getString(R.string.delivery_take_time));
                     catDetailHolder.imgCar.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_one));
+                    catDetailHolder.imgCar.setVisibility(View.GONE);
+                    catDetailHolder.product_warning.setVisibility(View.GONE);
 
                 }else{
                     //catDetailHolder.product_warning.setVisibility(View.VISIBLE);
                     //catDetailHolder.imgCar.setVisibility(View.VISIBLE);
+                    catDetailHolder.imgCar.setVisibility(View.VISIBLE);
+                    catDetailHolder.product_warning.setVisibility(View.VISIBLE);
                     catDetailHolder.imgCar.setImageDrawable(activity.getResources().getDrawable(R.drawable.car_option));
                     catDetailHolder.product_warning.setText(resources.getString(R.string.delivery_take_time_option));
                 }
@@ -6555,9 +6409,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                         String str = "";
 
-                        Log.e(TAG, "onClick: 81026 memeber " + detailProduct.getMember_discount() );
-                        Log.e(TAG, "onClick: 81026 point " + detailProduct.getPoint_usage() );
-
 
                         if (detailProduct.getMember_discount() == 1 && prefs.getIntPreferences(SP_VIP_ID) != 0 ){
                             str += "- " + resources.getString(R.string.member_discount)
@@ -6573,20 +6424,22 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
 
                         if (detailProduct.getPoint_usage() == 0){
-                           // str += "- " +  String.format(resources.getString(R.string.point_product_can) , String.valueOf( prefs.getIntPreferences(SP_POINT_PERCENTAGE) ));
+                            // str += "- " +  String.format(resources.getString(R.string.point_product_can) , String.valueOf( prefs.getIntPreferences(SP_POINT_PERCENTAGE) ));
                             str +=   "- " + resources.getString(R.string.point_product_can);
                         }else{
                             str += "- " +  resources.getString(R.string.point_product_cannot) ;
                         }
 
                         text.setText(str);
+/*
 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(detailProduct.getId()));
-                            FlurryAgent.logEvent("Click Info Tag", mix);
+                            //FlurryAgent.logEvent("Click Info Tag", mix);
                         } catch (Exception e) {
                         }
+*/
 
                         mBottomSheetDialog.show();
                     }
@@ -6804,14 +6657,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 order.linearMain.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
+                       /* try {
 
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source","brand");
                             mix.put("source_id", String.valueOf(orderItem.getId()));
-                            FlurryAgent.logEvent("View Old Order Product", mix);
-                        } catch (Exception e) {}
+                            //FlurryAgent.logEvent("View Old Order Product", mix);
+                        } catch (Exception e) {}*/
 
                         getProduct(String.valueOf(orderItem.getId()));
                     }
@@ -6852,13 +6705,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 camHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+/*
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("campaign_id", String.valueOf(campaign.getId()));
-                            FlurryAgent.logEvent("Click Discount Campaign", mix);
+                            //FlurryAgent.logEvent("Click Discount Campaign", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, CampainDetailActivity.class);
                         intent.putExtra("id",campaign.getId());
@@ -6896,13 +6749,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 camHolder1.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+/*
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("campaign_id", String.valueOf(campaign1.getId()));
-                            FlurryAgent.logEvent("Click Discount Campaign", mix);
+                            //FlurryAgent.logEvent("Click Discount Campaign", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, CampainDetailActivity.class);
                         intent.putExtra("id",campaign1.getId());
@@ -6937,12 +6790,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onClick(View view) {
 
-                        try {
+                      /*  try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("collection_id", String.valueOf(collectionMore.getId()));
-                            FlurryAgent.logEvent("Click Collection List", mix);
+                            //FlurryAgent.logEvent("Click Collection List", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
 
                         Intent intent = new Intent(activity, CollectionDetailActivity.class);
                         intent.putExtra("id",collectionMore.getId());
@@ -6964,12 +6817,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     bpHolder.imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "promotion");
-                                FlurryAgent.logEvent("Click Main Category", mix);
+                                //FlurryAgent.logEvent("Click Main Category", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             Intent intent = new Intent(activity, CampainActivity.class);
                             intent.putExtra("api", object.getUrl());
@@ -7252,6 +7105,10 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 List<CategoryMain> moreItems1 = obj115.getCategoryMainList();
 
+                Log.e(TAG, "onBindViewHolder: ---------------------------------- size  "  +  moreItems1.size() );
+
+
+
                 if (obj115.getShowMore() == 1){
                     for(int i = 0 ; i < moreItems1.size() ; i++){
                         CategoryMain uni = moreItems1.get(i);
@@ -7259,17 +7116,18 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         mainGrids115.add(uni);
 
                     }
+                    Log.e(TAG, "onBindViewHolder: ---------------------------------- getShowMore "  + moreItems1.size() );
                 }
                 else{
 
-                    if (moreItems1.size() < 8  ){
+
+                    if (moreItems1.size() <= 8  ){
                         for(int i = 0 ; i < moreItems1.size() ; i++){
                             CategoryMain uni = moreItems1.get(i);
                             uni.setPostType(SUB_CATEGORY_GRID_ITEM);
                             mainGrids115.add(uni);
 
                         }
-
                         subHolder2.layoutContinue.setVisibility(View.GONE);
 
 
@@ -7281,7 +7139,6 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             mainGrids115.add(uni);
 
                         }
-
                         subHolder2.layoutContinue.setVisibility(View.VISIBLE);
                     }
                 }
@@ -7431,12 +7288,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         //  Intent intent = new Intent(activity, CategoryActivity.class);
                         Bundle b = new Bundle();
                         b.putParcelable("mainCat", grids);
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", grids.getPost_type());
-                            FlurryAgent.logEvent("Click Main Category", mix);
+                            //FlurryAgent.logEvent("Click Main Category", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         intent.putExtras(b);
                         activity.startActivity(intent);
                     }
@@ -7536,12 +7393,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         Intent intent = new Intent(activity, CategoryActivity.class);
                         Bundle b = new Bundle();
                         b.putParcelable("mainCat", grids);
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", grids.getPost_type());
-                            FlurryAgent.logEvent("Click Main Category", mix);
+                            //FlurryAgent.logEvent("Click Main Category", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         intent.putExtras(b);
                         activity.startActivity(intent);
                     }
@@ -7581,14 +7438,14 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         activity.startActivity(intent);*/
 
 
-                        try {
+                       /* try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("main_category_id", String.valueOf(prefs.getIntPreferences(BRAND_ID)));
                             mix.put("sub_category_id", String.valueOf(grid1.getId()));
                             mix.put("source", "product_list");
-                            FlurryAgent.logEvent("Click Product Subcategory", mix);
+                            //FlurryAgent.logEvent("Click Product Subcategory", mix);
                         } catch (Exception e) {
-                        }
+                        }*/
                         Intent intent = new Intent(activity, ProductListClickActivity.class);
                         intent.putExtra("title",grid1.getTitle());
                         intent.putExtra("url", constantBrand_Detail+grid1.getId()+"&brand_id="+prefs.getIntPreferences(BRAND_ID)+"&"+LANG+"="+prefs.getStringPreferences(SP_LANGUAGE));
@@ -7662,7 +7519,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             mix.put("main_category_id", String.valueOf(prefs.getIntPreferences(SP_BRAND_ID)));
                             mix.put("sub_category_id", String.valueOf(gridSub1.getId()));
                             mix.put("source", "product_list");
-                            FlurryAgent.logEvent("Click Product Subcategory", mix);
+                            //FlurryAgent.logEvent("Click Product Subcategory", mix);
                         } catch (Exception e) {
                         }
 
@@ -7688,12 +7545,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private void feedBackDialog(final Order order, final int index, final boolean checking) {
-        try {
+        /*try {
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("order_id",String.valueOf(order.getOrder_id()));
-            FlurryAgent.logEvent("Click Rating Order Button", mix);
+            //FlurryAgent.logEvent("Click Rating Order Button", mix);
         } catch (Exception e) {
-        }
+        }*/
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -7786,6 +7643,72 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         dialog.show();
     }
+
+
+    private void payPaymentToServer(final ProgressDialog progressDialog, int id) {
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantRePayment + id, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        progressDialog.dismiss();
+
+                        Log.e(TAG, "onResponse: ------------------ "  + response.toString() );
+
+                        if(response.length() > 0){
+                            try{
+
+                                int status = response.getInt("status");
+
+                                prefs.saveBooleanPreference(PAYMENTDONE, false);
+
+                                if (status == 1) {
+                                    prefs.saveStringPreferences(SP_ORDER_INFO, response.getString("orderinfo"));
+                                    prefs.saveStringPreferences(SP_SIGN, response.getString("sign"));
+                                    prefs.saveStringPreferences(SP_SHA, response.getString("sign_type"));
+                                    prefs.saveBooleanPreference(PAYMENTHISTORYDONE, true);
+                                    KBZPay.startPay(activity,
+                                            prefs.getStringPreferences(SP_ORDER_INFO),
+                                            prefs.getStringPreferences(SP_SIGN),
+                                            prefs.getStringPreferences(SP_SHA));
+                                }
+                            }catch (Exception e){
+                                Log.e(TAG, "onResponse: "  + e.getMessage() );
+                            }
+                        }
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Log.e(TAG, "onErrorResponse: "  + error.getMessage() );
+                ToastHelper.showToast(activity, resources.getString(R.string.search_error));
+            }
+        }) {
+
+            /* *
+             * Passing some request headers
+             **/
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+    }
+
 
     private void sendMessageToServer(final ProgressDialog progressDialog, int id, String toString) {
 
@@ -7935,13 +7858,15 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     int returnSatatus = response.getInt("status");
 
                     if(returnSatatus == 1){
+/*
 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("order_id", String.valueOf(order.getOrder_id()));
-                            FlurryAgent.logEvent("Rating Order Done", mix);
+                            //FlurryAgent.logEvent("Rating Order Done", mix);
                         } catch (Exception e) {
                         }
+*/
 
 
                         prefs.saveIntPerferences(SP_USER_POINT, response.getInt("points"));
@@ -8067,25 +7992,25 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         String url_end  = "/like";
 
         if(databaseAdapter.checkProductLiked(id)){
-            try {
+           /* try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("product_id", String.valueOf(id));
-                FlurryAgent.logEvent("Add To Product Wishlist", mix);
+                //FlurryAgent.logEvent("Add To Product Wishlist", mix);
             } catch (Exception e) {
-            }
+            }*/
 
             url_end = "/unlike";
             holder.imgWishList.setImageResource(R.drawable.ic_wishlist_black);
             databaseAdapter.insertProductLike(id, "unlike");
             prefs.saveIntPerferences(SP_PRODUCT_LIKED_COUNT, (prefs.getIntPreferences(SP_PRODUCT_LIKED_COUNT)-1));
         }else {
-            try {
+           /* try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("product" +
                         "_id", String.valueOf(id));
-                FlurryAgent.logEvent("Remove From Product Wishlist", mix);
+                //FlurryAgent.logEvent("Remove From Product Wishlist", mix);
             } catch (Exception e) {
-            }
+            }*/
             holder.imgWishList.setImageResource(R.drawable.wishlist_clicked);
             databaseAdapter.insertProductLike(id, "like");
             prefs.saveIntPerferences(SP_PRODUCT_LIKED_COUNT, (prefs.getIntPreferences(SP_PRODUCT_LIKED_COUNT)+1));
@@ -8131,12 +8056,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     public void memberDialogShow(final Switch aSwitch){
-        try {
+      /*  try {
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source","shopping cart");
-            FlurryAgent.logEvent("Verify Member", mix);
+            //FlurryAgent.logEvent("Verify Member", mix);
         } catch (Exception e) {
-        }
+        }*/
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_member);
@@ -8195,13 +8120,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
     private void memberCheckingDialog(final String number, final Dialog dialog, final Switch aSwitch)
     {
-        try {
+       /* try {
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source","shopping cart");
             mix.put("action","checking_member");
-            FlurryAgent.logEvent("Verify Member", mix);
+            //FlurryAgent.logEvent("Verify Member", mix);
         } catch (Exception e) {
-        }
+        }*/
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantMemberCheck+number, null, new Response.Listener<JSONObject>() {
             @Override
@@ -8237,13 +8162,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         @Override
                         public void onClick(View v) {
                             if(statusResponse == 1 ){
-                                try {
+                                /*try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source","shopping cart");
                                     mix.put("action","checking_member_confirm");
-                                    FlurryAgent.logEvent("Verify Member", mix);
+                                    //FlurryAgent.logEvent("Verify Member", mix);
                                 } catch (Exception e) {
-                                }
+                                }*/
                                 try {
                                     prefs.saveIntPerferences(SP_MEMBER_ID, member_id);
                                 }catch (Exception e){
@@ -8255,13 +8180,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                 dialog.dismiss();
                                 activity.recreate();
                             }else{
-                                try {
+                                /*try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source","shopping cart");
                                     mix.put("action","checking_member_fail");
-                                    FlurryAgent.logEvent("Verify Member", mix);
+                                    //FlurryAgent.logEvent("Verify Member", mix);
                                 } catch (Exception e) {
-                                }
+                                }*/
                                 aSwitch.setChecked(false);
                                 dialog.dismiss();
                             }
@@ -8364,22 +8289,22 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @Override
         public void onClick(View v) {
-            if (product.getFlashSalesArrayList().size() > 0){
+           /* if (product.getFlashSalesArrayList().size() > 0){
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
-                    FlurryAgent.logEvent("Click Flash Product", mix);
+                    //FlurryAgent.logEvent("Click Flash Product", mix);
                 } catch (Exception e) {
                 }
             }else{
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
-                    FlurryAgent.logEvent("Click Product", mix);
+                    //FlurryAgent.logEvent("Click Product", mix);
                 } catch (Exception e) {
                 }
             }
-
+*/
 
             Bundle fbundle = new Bundle();
             fbundle.putString("item_id", product.getId()+"");
@@ -8423,12 +8348,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             if(prefs.getIntPreferences(SP_MEMBER_ID) != 0){
 
-                try {
+               /* try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
 
-                    FlurryAgent.logEvent("Add To Cart", mix);
-                } catch (Exception e) {}
+                    //FlurryAgent.logEvent("Add To Cart", mix);
+                } catch (Exception e) {}*/
 
                 if(product.getOptions() != null && product.getOptions().trim().length() > 0){
 
@@ -8517,8 +8442,8 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }else{
 
 
-                databaseAdapter.insertOrder(product, count, final_item_price, option);
-                prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+                //databaseAdapter.insertOrder(product, count, final_item_price, option);
+                prefs.saveBooleanPreference(LOGIN_SAVECART, false);
                 Intent intent   = new Intent(activity, ActivityLogin.class);
                 activity.startActivity(intent);
 
@@ -8628,6 +8553,167 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void addToCartProduct(Product product, final Activity activity, int count, int final_item_price, String option){
         prefs.saveBooleanPreference(LOGIN_SAVECART, false);
+        prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT ) + count));
+
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", count);
+            uploadMessage.put("option", option);
+            uploadMessage.put("product_id", product.getId());
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+
+                            if (response.getInt("status") == 1) {
+
+                                if(activity.getLocalClassName().contains("MainActivity")) {
+
+                                    MainActivity pro = (MainActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+
+                                    CategoryActivity pro = (CategoryActivity) activity;
+                                    pro.bounceCount();
+                                }
+                                else if(activity.getLocalClassName().contains("ProductActivity")) {
+
+                                    ProductActivity pro = (ProductActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
+
+                                    CampainDetailActivity pro = (CampainDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
+
+                                    ActivityAdsList pro = (ActivityAdsList) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
+
+                                    BrandedDetailActivity pro = (BrandedDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("WishListActivity")) {
+
+                                    WishListActivity pro = (WishListActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandActivity")) {
+
+                                    BrandActivity pro = (BrandActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
+
+                                    SearchResultActivity pro = (SearchResultActivity) activity;
+                                    pro.bounceCount();
+
+                                }
+                                else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
+
+                                    DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                final Dialog dialog = new Dialog(activity);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                dialog.setCanceledOnTouchOutside(true);
+                                Window window = dialog.getWindow();
+                                WindowManager.LayoutParams wlp = window.getAttributes();
+                                wlp.gravity = Gravity.CENTER;
+                                wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                window.setAttributes(wlp);
+
+                                CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                //title.setText(resources.getString(R.string.added_to_cart_title));
+                                text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+                                //int countBefore = databaseAdapter.getOrderCount();
+                                CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                circularTextView.setText(String.valueOf(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT)));
+
+                                confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                       /* try {
+
+                                            Map<String, String> mix = new HashMap<String, String>();
+                                            mix.put("source", "product_detail_dialog");
+                                            //FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                        } catch (Exception e) {
+                                        }*/
+
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                        activity.startActivity(intent);
+                                    }
+
+                                });
+
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:   810  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse: 810  "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+
+
+       /* prefs.saveBooleanPreference(LOGIN_SAVECART, false);
         databaseAdapter.insertOrder(product, count, final_item_price, option);
         if(activity.getLocalClassName().contains("MainActivity")) {
 
@@ -8714,7 +8800,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "product_detail_dialog");
-                    FlurryAgent.logEvent("Click Shopping Cart", mix);
+                    //FlurryAgent.logEvent("Click Shopping Cart", mix);
                 } catch (Exception e) {
                 }
 
@@ -8732,7 +8818,7 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        dialog.show();*/
 
     }
 
@@ -8753,12 +8839,12 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         dialog.dismiss();
                         try {
 
-                            try {
+                         /*   try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "finish activate");
-                                FlurryAgent.logEvent("Member Activate", mix);
+                                //FlurryAgent.logEvent("Member Activate", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             ToastHelper.showToast(activity,response.getString("text"));
 
@@ -8874,28 +8960,28 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         String url_end  = "/like";
 
         if(databaseAdapter.checkVideoLiked(id)){
-            try {
+           /* try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "unlike");
                 mix.put("source", "video_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Video Program Like Icon", mix);
+                //FlurryAgent.logEvent("Click Video Program Like Icon", mix);
             } catch (Exception e) {
             }
-
+*/
             url_end = "/unlike";
             holder.like_image.setImageResource(R.drawable.wishlist);
             databaseAdapter.insertVideoLike(id, "unlike");
             prefs.saveIntPerferences(SP_POST_LIKED_COUNT, (prefs.getIntPreferences(SP_POST_LIKED_COUNT)-1));
         }else {
-            try {
+           /* try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "like");
                 mix.put("source", "video_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Video Program Like Icon", mix);
+                //FlurryAgent.logEvent("Click Video Program Like Icon", mix);
             } catch (Exception e) {
-            }
+            }*/
             holder.like_image.setImageResource(R.drawable.wishlist_clicked);
             databaseAdapter.insertVideoLike(id, "like");
             prefs.saveIntPerferences(SP_POST_LIKED_COUNT, (prefs.getIntPreferences(SP_POST_LIKED_COUNT)+1));
@@ -9164,13 +9250,13 @@ public class UniversalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     Product product = new Product();
                                     product   = productList.get(i);
 
-                                    try {
+                                 /*   try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("product_id", String.valueOf(product.getId()));
-                                        FlurryAgent.logEvent("Click Product", mix);
+                                        //FlurryAgent.logEvent("Click Product", mix);
                                     } catch (Exception e) {
                                     }
-
+*/
                                     i = productList.size();
                                     Intent intent = new Intent(activity, ProductActivity.class);
                                     Bundle bundle = new Bundle();

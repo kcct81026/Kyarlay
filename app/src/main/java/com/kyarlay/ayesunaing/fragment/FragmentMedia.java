@@ -35,7 +35,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -54,7 +53,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.ChildGrowthObj;
@@ -113,7 +111,6 @@ public class FragmentMedia extends Fragment implements Constant, ConstantVariabl
 
         activity = (AppCompatActivity) getActivity();
         prefs = new MyPreference(activity);
-        new MyFlurry(getActivity());
         Context context = LocaleHelper.setLocale(getActivity(), prefs.getStringPreferences(LANGUAGE));
         resources       = context.getResources();
         databaseAdapter     = new DatabaseAdapter(activity);
@@ -181,7 +178,7 @@ public class FragmentMedia extends Fragment implements Constant, ConstantVariabl
                         prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
                     try {
 
-                        FlurryAgent.logEvent("Click Notification");
+                        ////FlurryAgent.logEvent("Click Notification");
                     } catch (Exception e) {
                     }
 
@@ -208,7 +205,7 @@ public class FragmentMedia extends Fragment implements Constant, ConstantVariabl
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "post_list");
-                        FlurryAgent.logEvent("Click Liked Posts Icon", mix);
+                        ////FlurryAgent.logEvent("Click Liked Posts Icon", mix);
                     } catch (Exception e) {
                     }
 
@@ -861,7 +858,7 @@ public class FragmentMedia extends Fragment implements Constant, ConstantVariabl
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("user_type", prefs.getStringPreferences(SP_FILLUP_STATUS) );
 
-                    FlurryAgent.logEvent("User Type Change Event", mix);
+                    ////FlurryAgent.logEvent("User Type Change Event", mix);
                 } catch (Exception e) {
                 }
 

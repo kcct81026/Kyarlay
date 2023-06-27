@@ -44,7 +44,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -54,7 +54,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -123,7 +123,7 @@ public class CompetitionPostActivity extends AppCompatActivity
         ageConfig  = new AgeConfig(CompetitionPostActivity.this);
 
 
-        new MyFlurry(CompetitionPostActivity.this);
+       // new MyFlurry(CompetitionPostActivity.this);
 
         setContentView(R.layout.layout_competition_user_post);
         title               = (CustomTextView) findViewById(R.id.title);
@@ -560,7 +560,7 @@ public class CompetitionPostActivity extends AppCompatActivity
 
                         try {
 
-                            FlurryAgent.logEvent("Create User Post");
+                            //FlurryAgent.logEvent("Create User Post");
                         } catch (Exception e) {
                         }
 

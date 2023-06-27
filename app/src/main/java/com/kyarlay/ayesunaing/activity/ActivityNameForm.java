@@ -22,14 +22,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -65,7 +65,7 @@ public class ActivityNameForm extends AppCompatActivity implements ConstantVaria
         }
         Context context = LocaleHelper.setLocale(ActivityNameForm.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(ActivityNameForm.this);
+       // new MyFlurry(ActivityNameForm.this);
 
 
         hasAccount = getIntent().getIntExtra("check_phone",0);
@@ -170,7 +170,7 @@ public class ActivityNameForm extends AppCompatActivity implements ConstantVaria
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "login");
                                         mix.put("call_id", phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
                                     }
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));

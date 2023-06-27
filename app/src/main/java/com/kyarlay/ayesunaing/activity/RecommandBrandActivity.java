@@ -28,7 +28,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Brand;
 import com.kyarlay.ayesunaing.object.Product;
@@ -80,7 +80,7 @@ public class RecommandBrandActivity extends AppCompatActivity implements Constan
         resources = context.getResources();
         databaseAdapter = new DatabaseAdapter(RecommandBrandActivity.this);
 
-        new MyFlurry(RecommandBrandActivity.this);
+       // new MyFlurry(RecommandBrandActivity.this);
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(manager);
@@ -119,7 +119,7 @@ public class RecommandBrandActivity extends AppCompatActivity implements Constan
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source","brand");
                     mix.put("source_id", brand.getTag());
-                    FlurryAgent.logEvent("View Brand Detai", mix);
+                    //FlurryAgent.logEvent("View Brand Detai", mix);
 
                 } catch (Exception e) {
                 }

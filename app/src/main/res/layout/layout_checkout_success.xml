@@ -39,9 +39,13 @@
                 android:layout_margin="@dimen/layout_margin_reading_post"
                 android:id="@+id/txtStatus"
                 android:text="dkfkdfkdk"
+                android:textStyle="bold"
+                android:textSize="@dimen/text"
+                android:textColor="@color/text"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
 
             <LinearLayout
                 android:id="@+id/layoutPaymnet"
@@ -150,17 +154,42 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/due_tool_bar">
 
-        <com.kyarlay.ayesunaing.custom_widget.CustomTextView
-            android:layout_marginBottom="@dimen/size_8dp"
-            android:layout_marginTop="@dimen/size_8dp"
-            android:background="@drawable/checked_bg_yellow"
-            android:text="Order"
-            android:gravity="center"
-            android:padding="@dimen/layout_margin_reading_post"
-            android:textColor="@color/text"
-            android:id="@+id/txtContinue"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:layout_marginTop="@dimen/size_8dp"
+                android:background="@drawable/checked_bg_yellow"
+                android:layout_weight="0.5"
+                android:text="Order"
+                android:gravity="center"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:textColor="@color/text"
+                android:id="@+id/txtContinue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <com.kyarlay.ayesunaing.custom_widget.CustomTextView
+                android:layout_marginBottom="@dimen/size_8dp"
+                android:layout_marginTop="@dimen/size_8dp"
+                android:background="@drawable/checked_bg_yellow"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="@dimen/layout_margin_reading_post"
+                android:text="Order"
+                android:gravity="center"
+                android:padding="@dimen/layout_margin_reading_post"
+                android:textColor="@color/text"
+                android:id="@+id/txtPayNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
 
     </RelativeLayout>
 

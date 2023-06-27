@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.MainActivity;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,11 +38,11 @@ public class FirebaseWebView extends AppCompatActivity {
         setContentView(R.layout.web);
 
 
-        new MyFlurry(FirebaseWebView.this);
+       // new MyFlurry(FirebaseWebView.this);
         try {
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "WebView_link");
-            FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
+            //FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
         } catch (Exception e) {}
         back_layout = (LinearLayout) findViewById(R.id.back_layout);
         back_layout.setOnClickListener(new View.OnClickListener() {

@@ -26,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
@@ -36,7 +36,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
 
@@ -208,12 +208,12 @@ public class MaharboteActivity extends AppCompatActivity implements ConstantVari
         badThree = findViewById(R.id.txtBadThree);
 
 
-        new MyFlurry(MaharboteActivity.this);
+       // new MyFlurry(MaharboteActivity.this);
         try {
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "view maharbote page");
-            FlurryAgent.logEvent("View Maharbote Page", mix);
+            //FlurryAgent.logEvent("View Maharbote Page", mix);
 
         } catch (Exception e) {
         }

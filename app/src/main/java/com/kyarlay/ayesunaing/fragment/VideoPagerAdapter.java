@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class VideoPagerAdapter extends FragmentStatePagerAdapter implements Cons
         super(fm);
 
         this.activity = activity;
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
         this.mNumOfTabs = NumOfTabs;
 
@@ -53,7 +53,7 @@ public class VideoPagerAdapter extends FragmentStatePagerAdapter implements Cons
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "latest all news list ");
-                    FlurryAgent.logEvent("Latest Tab Change", mix);
+                    //FlurryAgent.logEvent("Latest Tab Change", mix);
 
                 } catch (Exception e) {
                 }
@@ -69,7 +69,7 @@ public class VideoPagerAdapter extends FragmentStatePagerAdapter implements Cons
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "others list");
-                    FlurryAgent.logEvent("Other Tab Change", mix);
+                    //FlurryAgent.logEvent("Other Tab Change", mix);
                 } catch (Exception e) {
                 }
 

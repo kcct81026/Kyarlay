@@ -47,7 +47,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
@@ -60,11 +60,10 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Comment;
-import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.Reading;
 import com.kyarlay.ayesunaing.object.Reading_Post;
@@ -197,7 +196,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
         relativeComment.setVisibility(View.GONE);
 
 
-        new MyFlurry(ReadingCommentDetailsActivity.this);
+       // new MyFlurry(ReadingCommentDetailsActivity.this);
         databaseAdapter = new DatabaseAdapter(ReadingCommentDetailsActivity.this);
 
         backpressed = false;
@@ -239,7 +238,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
             mix.put("source", "post_detail");
             mix.put("post_id", String.valueOf(reading.getId()));
             mix.put("status", status);
-            FlurryAgent.logEvent("View Post", mix);
+            //FlurryAgent.logEvent("View Post", mix);
         } catch (Exception e) {
         }
 
@@ -280,7 +279,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "Post_Detail");
-                        FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
+                        //FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
 
                     } catch (Exception e) {}
                     Intent backIntent = new Intent(ReadingCommentDetailsActivity.this, MainActivity.class);
@@ -305,7 +304,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
             header_title.setText(reading.getTitle());
             view_more.setText(resources.getString(R.string.view_more));
-            callAds();
+            getComment();
         }else{
             header.setVisibility(View.GONE);
             if(prefs.isNetworkAvailable()){
@@ -329,7 +328,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
+              /*  Intent intent = new Intent(ReadingCommentDetailsActivity.this, VideoProgramDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("comment", "read");
                 bundle.putInt("id", reading.getId());
@@ -339,7 +338,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                 bundle.putInt("comment_count", reading.getComment_coount());
 
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 
@@ -363,7 +362,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                     if ((lastVisibleItem + 1) == totalItemCount && loading == false) {
                         loading = true;
                         prefs.saveIntPerferences(SP_PAGE_READ_COMMENT, prefs.getIntPreferences(SP_PAGE_READ_COMMENT) + SP_DEFAULT);
-                        callAds();
+                        getComment();
                     }
 
 
@@ -718,7 +717,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
                                 mix.put("post_id", String.valueOf(reading.getId()));
                                 mix.put("type", finalMixType);
                                 mix.put("photo_included", finalPhoto);
-                                FlurryAgent.logEvent("Add New Comment", mix);
+                                //FlurryAgent.logEvent("Add New Comment", mix);
                             } catch (Exception e) {
                             }
                         } catch (JSONException e) {
@@ -814,7 +813,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "Post_Detail");
-                    FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
+                    //FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
                 } catch (Exception e) {}
                 Intent backIntent = new Intent(ReadingCommentDetailsActivity.this, MainActivity.class);
                 startActivity(backIntent);
@@ -974,8 +973,10 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
 
                         if (main.getPostType().equals(USER_POST)) {
+                            Log.e(TAG, "onResponse: ------------"  +  USER_POST_READING_DETAILS);
                             main.setPostType(USER_POST_READING_DETAILS);
                         } else {
+                            Log.e(TAG, "onResponse: ------------"  +  READING_DETAIL);
                             main.setPostType(READING_DETAIL);
 
                         }
@@ -1092,13 +1093,14 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("View Comment Page", mix);
+                            //FlurryAgent.logEvent("View Comment Page", mix);
 
                         } catch (Exception e) {
                         }
 
 
-                        callAds();
+                        //callAds();
+                        getComment();
                         mediaAdapter.notifyDataSetChanged();
 
                     } catch (Exception e) {
@@ -1122,7 +1124,7 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
 
     }
 
-    private void callAds(){
+   /* private void callAds(){
 
         JsonObjectRequest apkDownloadRequest = new JsonObjectRequest(Request.Method.GET,
                 constantKyarlayAds + "rectangular" , null, new Response.Listener<JSONObject>() {
@@ -1158,19 +1160,12 @@ public class ReadingCommentDetailsActivity extends AppCompatActivity implements 
             }
         });
         AppController.getInstance().addToRequestQueue(apkDownloadRequest, "VersionDownload");
-    }
+    }*/
 
-    private void getComment(KyarlayAds kyarlayAds)
+    private void getComment()
     {
 
-        if(prefs.getIntPreferences(SP_PAGE_READ_COMMENT) == 1){
-            if (kyarlayAds.getId() != -810){
 
-                kyarlayAds.setPostType(ADS);
-                universalListPost.add(kyarlayAds);
-
-            }
-        }
 
         String url1 = "";
         if(post_type != null && post_type.trim().length() > 0){

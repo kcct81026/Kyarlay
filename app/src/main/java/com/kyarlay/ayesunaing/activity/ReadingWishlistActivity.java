@@ -33,7 +33,7 @@ import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.Reading;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
-import com.kyarlay.ayesunaing.operation.UniversalAdapter;
+import com.kyarlay.ayesunaing.operation.MediaAdapter;
 
 import org.json.JSONArray;
 
@@ -61,7 +61,7 @@ public class ReadingWishlistActivity extends AppCompatActivity implements Consta
 
     ArrayList<Category> categoryList = new ArrayList<>();
     ArrayList<UniversalPost> mainCatDetails = new ArrayList<>();
-    UniversalAdapter universalAdapter;
+    MediaAdapter universalAdapter;
     DatabaseAdapter databaseAdapter;
     RecyclerView recyclerView;
     CustomTextView title;
@@ -106,7 +106,7 @@ public class ReadingWishlistActivity extends AppCompatActivity implements Consta
         manager = new LinearLayoutManager(ReadingWishlistActivity.this);
         recyclerView.setLayoutManager(manager);
 
-        universalAdapter = new UniversalAdapter(ReadingWishlistActivity.this, mainCatDetails);
+        universalAdapter = new MediaAdapter(ReadingWishlistActivity.this, mainCatDetails);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(universalAdapter);
@@ -177,6 +177,8 @@ public class ReadingWishlistActivity extends AppCompatActivity implements Consta
                     @Override
                     public void onResponse(JSONArray response) {
 
+                        Log.e(TAG, "onResponse: -------------- "  + response.toString() );
+
 
                         progressBar.setVisibility(View.GONE);
                         if(response.length() > 0) {
@@ -195,6 +197,7 @@ public class ReadingWishlistActivity extends AppCompatActivity implements Consta
                                 for (int i = 0; i < categoryList.size(); i++) {
                                     Reading pro = new Reading();
                                     pro = categoryList.get(i);
+                                    Log.e(TAG, "onResponse: ------------ "   + pro.getPostType() );
                                     mainCatDetails.add(pro);
 
 

@@ -30,7 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -41,7 +41,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Brand;
 import com.kyarlay.ayesunaing.object.Category;
@@ -100,7 +100,7 @@ public class TestingBrandAllActivity extends AppCompatActivity implements Consta
         prefs = new MyPreference(activity);
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
         prefs.saveIntPerferences(SP_PAGE_CAT_NEWS,  SP_DEFAULT);
 
@@ -162,7 +162,7 @@ public class TestingBrandAllActivity extends AppCompatActivity implements Consta
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source","brand");
                     mix.put("source_id", brand.getTag());
-                    FlurryAgent.logEvent("View Brand Detail", mix);
+                    //FlurryAgent.logEvent("View Brand Detail", mix);
                 } catch (Exception e) {
                 }
                 if(! brand.getPostType().equals(CART_DETAIL_NO_ITEM)) {

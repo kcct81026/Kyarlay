@@ -45,7 +45,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CircleBorderImageView;
@@ -265,7 +265,7 @@ public class UserPostUploadActivity extends AppCompatActivity implements Constan
 
                         try {
 
-                            FlurryAgent.logEvent("Create User Post");
+                            //FlurryAgent.logEvent("Create User Post");
                         } catch (Exception e) {
                         }
 

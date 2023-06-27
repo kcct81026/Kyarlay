@@ -18,14 +18,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Clicnic;
@@ -43,9 +42,7 @@ import com.kyarlay.ayesunaing.operation.MediaAdapter;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ClinicDetailsActivity extends AppCompatActivity implements ConstantVariable, Constant {
 
@@ -86,16 +83,16 @@ public class ClinicDetailsActivity extends AppCompatActivity implements Constant
 
         databaseAdapter = new DatabaseAdapter(activity);
         mediaAdapter = new MediaAdapter((AppCompatActivity) activity, mainCatDetails);
-        new MyFlurry(ClinicDetailsActivity.this);
+        //new MyFlurry(ClinicDetailsActivity.this);
 
         id = getIntent().getIntExtra("id",0);
 
         Log.e(TAG, "onCreate: " );
 
-        Map<String, String> mix = new HashMap<String, String>();
+      /*  Map<String, String> mix = new HashMap<String, String>();
         mix.put("view_directory", prefs.getStringPreferences(ConstantVariable.SP_DIRECTORY_CLICK));
         mix.put("id", String.valueOf(id));
-        FlurryAgent.logEvent("", mix);
+        //FlurryAgent.logEvent("", mix);*/
 
         back_layout = findViewById(R.id.back_layout);
         back_layout.getLayoutParams().width     = ( display.getWidth() * 3) / 20;

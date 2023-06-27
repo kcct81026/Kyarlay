@@ -32,11 +32,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.freshchat.consumer.sdk.Freshchat;
 import com.freshchat.consumer.sdk.FreshchatConfig;
 import com.freshchat.consumer.sdk.FreshchatUser;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -46,7 +46,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -57,6 +56,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+//import com.flurry.android.FlurryAgent;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 
 /**
  * Created by ayesu on 8/30/17.
@@ -122,12 +124,12 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
         Context context = LocaleHelper.setLocale(LoginActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
 
-        new MyFlurry(LoginActivity.this);
+       // new MyFlurry(LoginActivity.this);
         try {
 
 
             Map<String, String> mix = new HashMap<String, String>();
-            FlurryAgent.logEvent("View Phone Entry Page", mix);
+            //FlurryAgent.logEvent("View Phone Entry Page", mix);
         } catch (Exception e) {
         }
 
@@ -201,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                 try {
 
                     Map<String, String> mix = new HashMap<String, String>();
-                    FlurryAgent.logEvent("View Profile Signup Page", mix);
+                    //FlurryAgent.logEvent("View Profile Signup Page", mix);
 
                 } catch (Exception e) {
                 }
@@ -342,7 +344,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source","campain");
                                         mix.put("call_id",phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
                                     }
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
@@ -530,7 +532,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("user_phone", prefs.getStringPreferences(SP_USER_PHONE));
                                     mix.put("name", prefs.getStringPreferences(SP_USER_NAME));
-                                    FlurryAgent.logEvent("Login", mix);
+                                    //FlurryAgent.logEvent("Login", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -547,7 +549,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                                 }*/
 
                                 try{
-                                    FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+                                    FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
                                     Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
                                     Freshchat.getInstance(getApplicationContext()).identifyUser(String.valueOf(prefs.getIntPreferences(SP_MEMBER_ID)), prefs.getStringPreferences(SP_USER_FRESH_CHAT_ID));
                                     FreshchatUser freshUser=Freshchat.getInstance(getApplicationContext()).getUser();
@@ -657,7 +659,7 @@ public class LoginActivity extends AppCompatActivity implements Constant, Consta
                             try {
 
                                 Map<String, String> mix = new HashMap<String, String>();
-                                FlurryAgent.logEvent("Complete Phone Entry Page", mix);
+                                //FlurryAgent.logEvent("Complete Phone Entry Page", mix);
                             } catch (Exception e) {
                             }
 

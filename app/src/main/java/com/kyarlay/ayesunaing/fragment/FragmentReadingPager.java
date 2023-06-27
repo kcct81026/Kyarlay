@@ -29,7 +29,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 
 public class FragmentReadingPager extends Fragment implements Constant, ConstantVariable {
@@ -59,7 +58,7 @@ public class FragmentReadingPager extends Fragment implements Constant, Constant
 
         tabLayout = (CustomTabLayout) rootView.findViewById(R.id.tab_layout);
         activity = (AppCompatActivity) getActivity();
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
         prefs = new MyPreference(activity);
         Context contextmyanmar = LocaleHelper.setLocale( getActivity(), prefs.getStringPreferences(LANGUAGE));
         resources = contextmyanmar.getResources();
@@ -210,7 +209,7 @@ public class FragmentReadingPager extends Fragment implements Constant, Constant
             super(fm);
 
             this.activity = activity;
-            new MyFlurry(activity);
+            //new MyFlurry(activity);
 
             this.mNumOfTabs = NumOfTabs;
 

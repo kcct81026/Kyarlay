@@ -21,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,7 +30,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.PointInfo;
@@ -86,14 +84,14 @@ public class ProfileActivity extends AppCompatActivity implements ConstantVariab
         resources = context.getResources();
         databaseAdapter = new DatabaseAdapter(activity);
         display = activity.getWindowManager().getDefaultDisplay();
-        new MyFlurry(activity);
+       /* //new MyFlurry(activity);
 
         try {
 
-            FlurryAgent.logEvent("View Profile Page");
+            //FlurryAgent.logEvent("View Profile Page");
         } catch (Exception e) {
         }
-
+*/
         Log.e(TAG, "onCreateView: "  );
 
 
@@ -157,12 +155,12 @@ public class ProfileActivity extends AppCompatActivity implements ConstantVariab
             public void onClick(View v) {
                 if(prefs.getStringPreferences(SP_USER_TOKEN) != null &&
                         prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
-                    try {
+                   /* try {
 
-                        FlurryAgent.logEvent("Click Notification");
+                        //FlurryAgent.logEvent("Click Notification");
                     } catch (Exception e) {
                     }
-
+*/
 
                     Intent intent   = new Intent(activity, NotificationAcitivity.class);
                     intent.putExtra("post_type","");
@@ -230,14 +228,14 @@ public class ProfileActivity extends AppCompatActivity implements ConstantVariab
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                try {
+                /*try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "product_list" );
                     mix.put("status", "error" );
 
-                    FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                    //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                 } catch (Exception e) {
-                }
+                }*/
 
 
             }

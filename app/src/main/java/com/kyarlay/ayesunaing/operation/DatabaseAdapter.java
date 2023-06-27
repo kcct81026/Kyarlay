@@ -51,7 +51,7 @@ public class DatabaseAdapter implements ConstantsDB, ConstantVariable {
 
 
     private static final String DATABASE_NAME = "KYAR_LAY_DB";
-    private static final int DATABASE_VERSION = 93;
+    private static final int DATABASE_VERSION = 100;
     private Context context;
     private DBHelper dBHelper;
     private static SQLiteDatabase db=null ;
@@ -1715,7 +1715,6 @@ public class DatabaseAdapter implements ConstantsDB, ConstantVariable {
 
                 long disreturn = db.insert(TABLE_PRODUCT_STORE_LOCATION, null, contentValues);
 
-                Log.e(TAG, "insertOrder: ******************  81026 " + disreturn );
             }
 
             deleteColumn(TABLE_FLASH_SALE, productID, String.valueOf(product.getId()));
@@ -1981,7 +1980,7 @@ public class DatabaseAdapter implements ConstantsDB, ConstantVariable {
         return order;
     }
 
-    public Product getShoppingCartFooter(){
+    /*public Product getShoppingCartFooter(){
 
         // fake product to store data for footer display
         Product fakeProduct = new Product();
@@ -2102,7 +2101,7 @@ public class DatabaseAdapter implements ConstantsDB, ConstantVariable {
 
 
         return fakeProduct;
-    }
+    }*/
 
 
 

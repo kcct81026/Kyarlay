@@ -22,9 +22,8 @@ public class LruBitmapCache extends LruCache<String, Bitmap> implements
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         int memoryClass = manager.getMemoryClass();
         int memoryClassInKilobytes = memoryClass * 1024;
-        int cacheSize = memoryClassInKilobytes / DEFAULT_CACHE_SIZE_PROPORTION;
 
-        return cacheSize;
+        return memoryClassInKilobytes / DEFAULT_CACHE_SIZE_PROPORTION;
     }
 
     public LruBitmapCache(Context context) {

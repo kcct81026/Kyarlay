@@ -34,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +44,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.LuckyDay;
 
@@ -115,7 +115,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
 
         prefs = new MyPreference(CustomCalendarActivity.this);
         prefs.saveIntPerferences(SP_CHANGE_UI,  0);
-        new MyFlurry(CustomCalendarActivity.this);
+       // new MyFlurry(CustomCalendarActivity.this);
 
         Context context = LocaleHelper.setLocale(CustomCalendarActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
@@ -175,7 +175,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
         try {
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("type", "view_calendar");
-            FlurryAgent.logEvent("View Calendar", mix);
+            //FlurryAgent.logEvent("View Calendar", mix);
         } catch (Exception e) {
         }
 
@@ -259,7 +259,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("type", "view_calendar");
                         mix.put("click", "fortune calendar");
-                        FlurryAgent.logEvent("Click Calendar Event", mix);
+                        //FlurryAgent.logEvent("Click Calendar Event", mix);
 
                     } catch (Exception e) {
                     }
@@ -274,7 +274,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("type", "view_calendar");
                         mix.put("click", "myanamar calendar");
-                        FlurryAgent.logEvent("Click Calendar Event", mix);
+                        //FlurryAgent.logEvent("Click Calendar Event", mix);
                     } catch (Exception e) {
                     }
 
@@ -321,7 +321,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "search calendar");
-                    FlurryAgent.logEvent("Search Calendar", mix);
+                    //FlurryAgent.logEvent("Search Calendar", mix);
 
                 } catch (Exception e) {
                 }
@@ -453,7 +453,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "search calendar");
-                    FlurryAgent.logEvent("Search Calendar", mix);
+                    //FlurryAgent.logEvent("Search Calendar", mix);
                 } catch (Exception e) {
                 }
 
@@ -628,7 +628,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "view_calendar");
                     mix.put("click", "previous month calendar");
-                    FlurryAgent.logEvent("Click Calendar Event", mix);
+                    //FlurryAgent.logEvent("Click Calendar Event", mix);
 
                 } catch (Exception e) {
                 }
@@ -657,7 +657,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "view_calendar");
                     mix.put("click", "next month calendar");
-                    FlurryAgent.logEvent("Click Calendar Event", mix);
+                    //FlurryAgent.logEvent("Click Calendar Event", mix);
 
                 } catch (Exception e) {
                 }
@@ -1394,7 +1394,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("type", "view_calendar");
                         mix.put("click", "day calendar");
-                        FlurryAgent.logEvent("Click Day Calendar", mix);
+                        //FlurryAgent.logEvent("Click Day Calendar", mix);
 
                     } catch (Exception e) {
                     }
@@ -1453,7 +1453,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "view_calendar");
                 mix.put("click", "previous month calendar");
-                FlurryAgent.logEvent("Click Calendar Event", mix);
+                //FlurryAgent.logEvent("Click Calendar Event", mix);
             } catch (Exception e) {
             }
 
@@ -1481,7 +1481,7 @@ public class CustomCalendarActivity extends AppCompatActivity implements Constan
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", "view_calendar");
                 mix.put("click", "next month calendar");
-                FlurryAgent.logEvent("Click Calendar Event", mix);
+                //FlurryAgent.logEvent("Click Calendar Event", mix);
 
             } catch (Exception e) {
             }

@@ -34,7 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -45,7 +45,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Campaign;
@@ -122,7 +122,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_brand_click);
 
-        new MyFlurry(CategoryActivity.this);
+       // new MyFlurry(CategoryActivity.this);
         databaseAdapter = new DatabaseAdapter(CategoryActivity.this);
 
         prefs = new MyPreference(CategoryActivity.this);
@@ -159,7 +159,6 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
         txtFilterTitle =  findViewById(R.id.txtFilterTitle);
 
         String titleText = resources.getString(R.string.top_seller);
-      //  url = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE); // 81026
 
         url = constantProductDetailSublist+categoryMain.getId()+
                 "&"+LANG+"="+prefs.getStringPreferences(SP_LANGUAGE)+
@@ -197,105 +196,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
             public void onClick(View view) {
                finish();
 
-              /*  prefs.saveIntPerferences(SP_PAGE_BRAND_CLICK,  SP_DEFAULT);
-                universalPosts.clear();
-                universalPostsTemp.clear();
-                productTempList.clear();
-                isMore = false;
-                Product pro = new Product();
-                pro.setPostType(CART_DETAIL_FOOTER);
-                universalPosts.add(pro);
-                universalAdapter.notifyDataSetChanged();
 
-                if (categoryList.size() > 1){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-
-
-
-                    CategoryGrid categoryGrid = new CategoryGrid();
-                    categoryGrid.setShowMore(0);
-                    categoryGrid.setPostType(SUB_CATEGORY_GRID);
-                    categoryGrid.setCategoryMainList(categoryList);
-                    universalPosts.add(categoryGrid);
-
-                    try {
-
-                        Map<String, String> mix = new HashMap<String, String>();
-                        mix.put("type", categoryList.get(0).getTag());
-                        FlurryAgent.logEvent("Click Product Subcategory", mix);
-
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "onResponse: "  + e.getMessage() );
-                    }
-
-                    universalAdapter.notifyItemInserted(universalPosts.size());
-                }
-
-                if (brandList.size() > 0){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-                    for (int i = 0 ; i < brandList.size(); i ++){
-                        MainObject obj = brandList.get(i);
-
-                        if (obj.getItems().size() > 0){
-                            obj.setPostType(BRAND_BANNER);
-                            universalPosts.add(obj);
-
-                            universalAdapter.notifyItemInserted(universalPosts.size());
-                        }
-
-
-                    }
-                }
-
-                if (discountList.size() > 0){
-                    if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
-                        universalPosts.remove(universalPosts.size() - 1);
-                    }
-                    MainObject mainObject = new MainObject();
-                    mainObject.setTitle(resources.getString(R.string.discount_title));
-                    mainObject.setPostType(MAIN_DISCOUNT);
-
-
-                    List<MainItem> items = new ArrayList<>();
-                    for (int i = 0; i < discountList.size(); i++) {
-                        Campaign campaign = new Campaign();
-                        campaign = discountList.get(i);
-                        campaign.setPostType(CAMPAIGN);
-
-                        MainItem mainItem = new MainItem();
-                        mainItem.setDimen(campaign.getDimen());
-                        mainItem.setId(campaign.getId());
-                        mainItem.setTitle(campaign.getTitle());
-                        mainItem.setUrl(campaign.getUrl());
-                        mainItem.setPostType(CAMPAIGN);
-                        items.add(mainItem);
-                        mainObject.setItems(items);
-
-                    }
-                    universalPosts.add(mainObject);
-
-                    universalAdapter.notifyItemInserted(universalPosts.size());
-                }
-
-                Product proFilter = new Product();
-                if (twoColumn == 1)
-                    proFilter.setId(1);
-                else
-                    proFilter.setId(0);
-                proFilter.setPostType(FILTER_UI);
-                universalPosts.add(proFilter);
-
-                Product pro2 = new Product();
-                pro2.setPostType(CART_DETAIL_FOOTER);
-                universalPosts.add(pro2);
-                universalAdapter.notifyItemInserted(universalPosts.size());
-
-                getBrandItem(prefs.getIntPreferences(SP_PAGE_BRAND_CLICK));*/
 
             }
         });
@@ -310,7 +211,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "brand_page");
-                        FlurryAgent.logEvent("Click Shopping Cart", mix);
+                        //FlurryAgent.logEvent("Click Shopping Cart", mix);
                     } catch (Exception e) {
                     }
 
@@ -332,7 +233,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "main");
-                    FlurryAgent.logEvent("Click Search", mix);
+                    //FlurryAgent.logEvent("Click Search", mix);
                 } catch (Exception e) {
                     Log.e(TAG, "onClick: "  + e.getMessage() );
                 }
@@ -351,7 +252,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "brand_page");
-                    FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                    //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
                 } catch (Exception e) {
                 }
                 Intent intent = new Intent(CategoryActivity.this, WishListActivity.class);
@@ -494,7 +395,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", categoryList.get(0).getTag());
-                FlurryAgent.logEvent("Click Product Subcategory", mix);
+                //FlurryAgent.logEvent("Click Product Subcategory", mix);
 
 
             } catch (Exception e) {
@@ -607,6 +508,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
                     @Override
                     public void onResponse(JSONArray response) {
 
+
                         categoryList.clear();
 
                         if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
@@ -655,7 +557,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", categoryList.get(0).getTag());
-                                    FlurryAgent.logEvent("Click Product Subcategory", mix);
+                                    //FlurryAgent.logEvent("Click Product Subcategory", mix);
 
 
                                 } catch (Exception e) {
@@ -809,6 +711,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
             @Override
             public void onResponse(JSONObject response) {
 
+                Log.e(TAG, "onResponse: ---------------------"   + response.toString() );
 
                 if(universalPosts.size() != 0 && universalPosts.get(universalPosts.size() - 1).getPostType().equals(CART_DETAIL_FOOTER)){
                     universalPosts.remove(universalPosts.size() - 1);
@@ -835,7 +738,10 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                             JSONObject objFlash = flashList.getJSONObject(i);
                             Campaign flashSaleListObject = gson.fromJson(objFlash.toString(), Campaign.class);
-                            discountList.add(flashSaleListObject);
+                            if (flashSaleListObject.getUrl() != null && !(flashSaleListObject.getUrl().equals(""))) {
+                                discountList.add(flashSaleListObject);
+                            }
+
                         }
 
 
@@ -1172,7 +1078,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", categoryList.get(0).getTag());
-                                FlurryAgent.logEvent("Click Product Subcategory", mix);
+                                //FlurryAgent.logEvent("Click Product Subcategory", mix);
 
 
                             } catch (Exception e) {
@@ -1343,7 +1249,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", categoryList.get(0).getTag());
-                FlurryAgent.logEvent("Click Product Subcategory", mix);
+                //FlurryAgent.logEvent("Click Product Subcategory", mix);
 
 
             } catch (Exception e) {
@@ -1513,7 +1419,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {
@@ -1533,7 +1439,7 @@ public class CategoryActivity extends AppCompatActivity implements Constant, Con
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);

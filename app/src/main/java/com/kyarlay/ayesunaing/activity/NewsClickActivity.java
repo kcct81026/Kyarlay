@@ -26,7 +26,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.Product;
@@ -83,7 +83,7 @@ public class NewsClickActivity extends AppCompatActivity implements ConstantVari
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources       = context.getResources();
 
-        new MyFlurry(NewsClickActivity.this);
+       // new MyFlurry(NewsClickActivity.this);
         databaseAdapter = new DatabaseAdapter(activity);
         mediaAdapter = new MediaAdapter((AppCompatActivity) activity, mainCatDetails);
 

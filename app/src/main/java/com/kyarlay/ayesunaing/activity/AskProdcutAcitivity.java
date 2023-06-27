@@ -19,7 +19,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +29,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.QAObject;
@@ -77,12 +77,12 @@ public class AskProdcutAcitivity extends AppCompatActivity implements ConstantVa
         display         = getWindowManager().getDefaultDisplay();
 
 
-        new MyFlurry(AskProdcutAcitivity.this);
+       // new MyFlurry(AskProdcutAcitivity.this);
 
         try {
 
             Map<String, String> userParams = new HashMap<String, String>();
-            FlurryAgent.logEvent("View Q&A About Product Page", userParams);
+            //FlurryAgent.logEvent("View Q&A About Product Page", userParams);
         } catch (Exception e) {}
 
         prefs  = new MyPreference(AskProdcutAcitivity.this);

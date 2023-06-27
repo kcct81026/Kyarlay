@@ -25,7 +25,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.perf.metrics.Trace;
 import com.google.gson.Gson;
@@ -36,7 +36,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
@@ -139,7 +139,7 @@ public class MomolayDetailsActivity extends AppCompatActivity implements Constan
 
         recyclerView.setPadding(0,0,0,0);
 
-        new MyFlurry(MomolayDetailsActivity.this);
+       // new MyFlurry(MomolayDetailsActivity.this);
 
 
         cardView.setVisibility(View.GONE);
@@ -168,7 +168,7 @@ public class MomolayDetailsActivity extends AppCompatActivity implements Constan
             mix.put("source", "post_detail");
             mix.put("post_id",String.valueOf( reading.getId()));
             mix.put("status", status);
-            FlurryAgent.logEvent("View Post", mix);
+            //FlurryAgent.logEvent("View Post", mix);
         } catch (Exception e) {
         }
 
@@ -332,7 +332,7 @@ public class MomolayDetailsActivity extends AppCompatActivity implements Constan
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("post_id",String.valueOf( reading.getId()));
-                            FlurryAgent.logEvent("View Comment Page", mix);
+                            //FlurryAgent.logEvent("View Comment Page", mix);
                         } catch (Exception e) {
                         }
 

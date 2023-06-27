@@ -23,7 +23,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 
 import org.json.JSONObject;
@@ -54,7 +54,7 @@ public class ActivityProfileCompleted extends AppCompatActivity implements Const
         }
         Context context = LocaleHelper.setLocale(ActivityProfileCompleted.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(ActivityProfileCompleted.this);
+       // new MyFlurry(ActivityProfileCompleted.this);
 
         txtTitle = findViewById(R.id.txtTitle);
         txtText2 = findViewById(R.id.txtText2);

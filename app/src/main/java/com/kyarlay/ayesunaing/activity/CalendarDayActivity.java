@@ -28,7 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
@@ -36,7 +36,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
 
@@ -95,7 +95,7 @@ public class CalendarDayActivity extends AppCompatActivity implements Constant, 
         prefs = new MyPreference(CalendarDayActivity.this);
         Context context = LocaleHelper.setLocale(CalendarDayActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(CalendarDayActivity.this);
+       // new MyFlurry(CalendarDayActivity.this);
 
         Log.e(TAG, "onCreate: " );
 
@@ -185,7 +185,7 @@ public class CalendarDayActivity extends AppCompatActivity implements Constant, 
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("type", "day_calendar");
-            FlurryAgent.logEvent("View Day Calendar", mix);
+            //FlurryAgent.logEvent("View Day Calendar", mix);
         } catch (Exception e) {
         }
 

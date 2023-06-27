@@ -26,7 +26,7 @@ import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Brand;
 import com.kyarlay.ayesunaing.object.Product;
@@ -73,7 +73,7 @@ public class RecommandentBrandDetailActivity extends AppCompatActivity implement
 
         manager = new LinearLayoutManager(getApplicationContext());
 
-        new MyFlurry(RecommandentBrandDetailActivity.this);
+       // new MyFlurry(RecommandentBrandDetailActivity.this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();

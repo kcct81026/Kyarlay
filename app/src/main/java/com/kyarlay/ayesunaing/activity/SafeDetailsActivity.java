@@ -22,24 +22,20 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.SafeMainObj;
 import com.kyarlay.ayesunaing.object.UniversalPost;
-import com.kyarlay.ayesunaing.operation.UniversalAdapter;
+import com.kyarlay.ayesunaing.operation.MediaAdapter;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SafeDetailsActivity extends AppCompatActivity implements Constant, ConstantVariable {
 
@@ -51,7 +47,7 @@ public class SafeDetailsActivity extends AppCompatActivity implements Constant, 
     private ProgressBar progressBar;
     private ImageView img;
 
-    private UniversalAdapter adapter;
+    private MediaAdapter adapter;
     private ArrayList<UniversalPost> universalPosts = new ArrayList<>();
     private AppCompatActivity activity;
     private MyPreference prefs;
@@ -69,20 +65,20 @@ public class SafeDetailsActivity extends AppCompatActivity implements Constant, 
         Log.e(TAG, "onCreate: " );
 
 
-        new MyFlurry(SafeDetailsActivity.this);
+        //new MyFlurry(SafeDetailsActivity.this);
 
         safeID = getIntent().getIntExtra("safe_id" , 0);
 
 
-        try {
+       /* try {
 
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("sub_id", String.valueOf(safeID));
-            FlurryAgent.logEvent("IsItSafe Sub Category Page", mix);
+            //FlurryAgent.logEvent("IsItSafe Sub Category Page", mix);
         } catch (Exception e) {
         }
-
+*/
 
 
         activity = SafeDetailsActivity.this;
@@ -107,7 +103,7 @@ public class SafeDetailsActivity extends AppCompatActivity implements Constant, 
         img.setVisibility(View.GONE);
         like_layot.setVisibility(View.GONE);
 
-        adapter = new UniversalAdapter(activity, universalPosts);
+        adapter = new MediaAdapter(activity, universalPosts);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

@@ -22,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,7 +31,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
 import com.kyarlay.ayesunaing.object.NameObject;
@@ -91,7 +91,7 @@ public class ShowAllNamesActivity extends AppCompatActivity implements Constant,
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
         display = getWindowManager().getDefaultDisplay();
-        new MyFlurry(ShowAllNamesActivity.this);
+       // new MyFlurry(ShowAllNamesActivity.this);
 
         prefs.saveIntPerferences(SP_PAGE_REDING_NUM,  SP_DEFAULT);
 
@@ -105,7 +105,7 @@ public class ShowAllNamesActivity extends AppCompatActivity implements Constant,
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "view name list page");
-            FlurryAgent.logEvent("View Search Name List Page", mix);
+            //FlurryAgent.logEvent("View Search Name List Page", mix);
         } catch (Exception e) {
         }
 
@@ -133,7 +133,7 @@ public class ShowAllNamesActivity extends AppCompatActivity implements Constant,
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_list");
-                        FlurryAgent.logEvent("Click Names Wishlist Icon", mix);
+                        //FlurryAgent.logEvent("Click Names Wishlist Icon", mix);
                     } catch (Exception e) {
                     }
                     Intent intent = new Intent(ShowAllNamesActivity.this, NameWishListActivity.class);

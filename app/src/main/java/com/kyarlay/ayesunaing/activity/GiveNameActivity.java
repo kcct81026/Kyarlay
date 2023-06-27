@@ -28,7 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
@@ -37,7 +37,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
@@ -88,7 +88,7 @@ public class GiveNameActivity extends AppCompatActivity implements ConstantVaria
         resources = context.getResources();
         display = getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(GiveNameActivity.this);
+       // new MyFlurry(GiveNameActivity.this);
 
         Log.e(TAG, "onCreate: " );
 
@@ -140,7 +140,7 @@ public class GiveNameActivity extends AppCompatActivity implements ConstantVaria
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "view name page");
-            FlurryAgent.logEvent("View Give Name Page", mix);
+            //FlurryAgent.logEvent("View Give Name Page", mix);
         } catch (Exception e) {
         }
 
@@ -261,7 +261,7 @@ public class GiveNameActivity extends AppCompatActivity implements ConstantVaria
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_list");
-                        FlurryAgent.logEvent("Click Names Wishlist Icon", mix);
+                        //FlurryAgent.logEvent("Click Names Wishlist Icon", mix);
                     } catch (Exception e) {
                     }
                     Intent intent = new Intent(GiveNameActivity.this, NameWishListActivity.class);
@@ -290,7 +290,7 @@ public class GiveNameActivity extends AppCompatActivity implements ConstantVaria
                     else if (rdBoy.isChecked())
                         mix.put("gender", "male");
 
-                    FlurryAgent.logEvent("Click Name Search", mix);
+                    //FlurryAgent.logEvent("Click Name Search", mix);
 
                 } catch (Exception e) {
                 }

@@ -29,7 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
@@ -38,7 +38,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.ChildGrowthObj;
@@ -106,7 +106,7 @@ public class DueDateActivity extends AppCompatActivity implements ConstantVariab
         setContentView(R.layout.layout_due_date);
 
         Log.e(TAG, "onCreate: " );
-        new MyFlurry(DueDateActivity.this);
+       // new MyFlurry(DueDateActivity.this);
 
         if( getIntent().getExtras() != null)
         {
@@ -193,7 +193,7 @@ public class DueDateActivity extends AppCompatActivity implements ConstantVariab
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "post_list");
                     mix.put("post_id", String.valueOf(childReading.getId()));
-                    FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
+                    //FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
                 } catch (Exception e) {
                 }
 
@@ -218,7 +218,7 @@ public class DueDateActivity extends AppCompatActivity implements ConstantVariab
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "post_list");
                     mix.put("post_id", String.valueOf(childReading.getId()));
-                    FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
+                    //FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
                 } catch (Exception e) {
                 }
 
@@ -369,7 +369,7 @@ public class DueDateActivity extends AppCompatActivity implements ConstantVariab
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "Due Date Detail");
-                    FlurryAgent.logEvent("Calculate Due Date", mix);
+                    //FlurryAgent.logEvent("Calculate Due Date", mix);
 
                 } catch (Exception e) {
                 }

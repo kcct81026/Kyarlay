@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +30,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.MainItem;
 import com.kyarlay.ayesunaing.object.MainObject;
@@ -72,14 +72,14 @@ public class SafeQuesMainActivity extends AppCompatActivity implements ConstantV
 
         Log.e(TAG, "onCreate: " );
 
-        new MyFlurry(SafeQuesMainActivity.this);
+       // new MyFlurry(SafeQuesMainActivity.this);
 
 
         try {
 
             Map<String, String> mix = new HashMap<String, String>();
             mix.put("source", "view isItSafe page");
-            FlurryAgent.logEvent("View isItSafe Activity Page", mix);
+            //FlurryAgent.logEvent("View isItSafe Activity Page", mix);
         } catch (Exception e) {
         }
 

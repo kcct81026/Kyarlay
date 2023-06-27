@@ -29,7 +29,7 @@ public class OrderNowHolder extends RecyclerView.ViewHolder {
    // public RadioButton radioNineAm, radiotwelveAm, radioThreePm, radioSixPm;
 
     public LinearLayout layoutNormal, time_layout;
-    public CustomTextView txtFullDelivery,txtRightNow;
+    public CustomTextView txtFullDelivery,txtRightNow,textDeliveryRemark;
     public CustomTextView nine_am_title,twelve_am_title,three_pm_title, six_pm_title;
 
 
@@ -53,6 +53,7 @@ public class OrderNowHolder extends RecyclerView.ViewHolder {
         commission_price_text = itemView.findViewById(R.id.commission_price_text);
         commission_price = itemView.findViewById(R.id.commission_price);
         edRemark = itemView.findViewById(R.id.edRemark);
+        textDeliveryRemark = itemView.findViewById(R.id.textDeliveryRemark);
 
 
         layoutNormal = itemView.findViewById(R.id.layoutNormal);

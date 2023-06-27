@@ -21,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,7 +31,7 @@ import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.UniversalPost;
@@ -99,7 +99,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
 
         databaseAdapter = new DatabaseAdapter(ActivityAdsList.this);
 
-        new MyFlurry(ActivityAdsList.this);
+       // new MyFlurry(ActivityAdsList.this);
 
         no_list  = (CustomTextView) findViewById(R.id.no_list);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -126,7 +126,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
 
                     Map<String, String> userParams = new HashMap<String, String>();
                     userParams.put("source", "discount_page");
-                    FlurryAgent.logEvent("Click Product Wishlist Icon", userParams);
+                    //FlurryAgent.logEvent("Click Product Wishlist Icon", userParams);
                 } catch (Exception e) {
                 }
                 Intent intent = new Intent(ActivityAdsList.this, WishListActivity.class);
@@ -142,7 +142,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
 
                     Map<String, String> userParams = new HashMap<String, String>();
                     userParams.put("source", "discount_list");
-                    FlurryAgent.logEvent("Click Shopping Cart", userParams);
+                    //FlurryAgent.logEvent("Click Shopping Cart", userParams);
 
                     Intent intent = new Intent(ActivityAdsList.this, ShoppingCartActivity.class);
                     startActivity(intent);
@@ -163,7 +163,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
 
                         Map<String, String> userParams = new HashMap<String, String>();
                         userParams.put("source", "Product_list");
-                        FlurryAgent.logEvent("Incoming Pushnotification Click", userParams);
+                        //FlurryAgent.logEvent("Incoming Pushnotification Click", userParams);
 
                     } catch (Exception e) {}
 
@@ -309,7 +309,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
 
                 Map<String, String> userParams = new HashMap<String, String>();
                 userParams.put("source", "Product_list");
-                FlurryAgent.logEvent("Incoming Pushnotification Click", userParams);
+                //FlurryAgent.logEvent("Incoming Pushnotification Click", userParams);
 
             } catch (Exception e) {}
             Intent adsIntent = new Intent(ActivityAdsList.this, MainActivity.class);
@@ -328,7 +328,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
@@ -357,7 +357,7 @@ public class ActivityAdsList extends AppCompatActivity implements ConstantVariab
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {

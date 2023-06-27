@@ -33,7 +33,7 @@ import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.holder.FooterHoloder;
 import com.kyarlay.ayesunaing.holder.NoItemHolder;
@@ -76,7 +76,7 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         prefs               = new MyPreference(activity);
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
 

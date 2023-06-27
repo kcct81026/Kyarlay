@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -41,7 +41,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.OrderDetailsObj;
@@ -107,7 +107,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_brand_click);
 
-        new MyFlurry(TestActivity.this);
+       // new MyFlurry(TestActivity.this);
         databaseAdapter = new DatabaseAdapter(TestActivity.this);
 
         prefs = new MyPreference(TestActivity.this);
@@ -139,8 +139,8 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
         imgList =  findViewById(R.id.imgList);
         txtFilterTitle =  findViewById(R.id.txtFilterTitle);
 
-        String titleText = "title"; // 81026
-        url = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE); // 81026
+        String titleText = "title";
+        url = constantProductTopList +   "language=" + prefs.getStringPreferences(SP_LANGUAGE);
         txtFilterTitle.setText(titleText);
 
 
@@ -181,7 +181,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "brand_page");
-                        FlurryAgent.logEvent("Click Shopping Cart", mix);
+                        //FlurryAgent.logEvent("Click Shopping Cart", mix);
                     } catch (Exception e) {
                     }
 
@@ -203,7 +203,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "main");
-                    FlurryAgent.logEvent("Click Search", mix);
+                    //FlurryAgent.logEvent("Click Search", mix);
                 } catch (Exception e) {
                     Log.e(TAG, "onClick: "  + e.getMessage() );
                 }
@@ -222,7 +222,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "brand_page");
-                    FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                    //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
                 } catch (Exception e) {
                 }
                 Intent intent = new Intent(TestActivity.this, WishListActivity.class);
@@ -600,7 +600,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {
@@ -620,7 +620,7 @@ public class TestActivity extends AppCompatActivity implements ConstantVariable 
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);

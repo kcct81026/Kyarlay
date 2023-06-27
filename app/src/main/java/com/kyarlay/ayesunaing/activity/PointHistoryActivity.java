@@ -22,7 +22,7 @@ import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.fragment.FragmentReceived;
 import com.kyarlay.ayesunaing.fragment.FragmentUsed;
@@ -142,7 +142,7 @@ public class PointHistoryActivity  extends AppCompatActivity implements Constant
             super(fm);
 
             this.activity = activity;
-            new MyFlurry(activity);
+            //new MyFlurry(activity);
 
             this.mNumOfTabs = NumOfTabs;
 

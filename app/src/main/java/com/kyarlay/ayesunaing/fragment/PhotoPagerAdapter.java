@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 
 public class PhotoPagerAdapter extends FragmentStatePagerAdapter implements ConstantVariable {
@@ -31,7 +31,7 @@ public class PhotoPagerAdapter extends FragmentStatePagerAdapter implements Cons
         super(fm);
 
         this.activity = activity;
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
         this.mNumOfTabs = NumOfTabs;
 
@@ -53,7 +53,7 @@ public class PhotoPagerAdapter extends FragmentStatePagerAdapter implements Cons
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "latest all news list ");
-                    FlurryAgent.logEvent("Latest Tab Change", mix);
+                    //FlurryAgent.logEvent("Latest Tab Change", mix);
 
                 } catch (Exception e) {
                 }*//*

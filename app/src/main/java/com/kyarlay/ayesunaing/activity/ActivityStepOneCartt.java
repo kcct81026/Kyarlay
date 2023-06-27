@@ -379,7 +379,7 @@ public class ActivityStepOneCartt extends AppCompatActivity implements ConstantV
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e(TAG, "onResponse: AAAAA 81026 "  + response.toString() );
+
                         try{
                             if (response.getInt("same_day") == 1){
                                 prefs.saveBooleanPreference(TEMP_CHOOSE_TIMING, true);

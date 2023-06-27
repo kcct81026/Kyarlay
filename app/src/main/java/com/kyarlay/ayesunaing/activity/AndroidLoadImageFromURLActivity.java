@@ -18,13 +18,13 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.TouchImageView;
 import com.kyarlay.ayesunaing.object.Images;
@@ -73,7 +73,7 @@ public class AndroidLoadImageFromURLActivity extends AppCompatActivity implement
         Context context = LocaleHelper.setLocale(AndroidLoadImageFromURLActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
 
-        new MyFlurry(AndroidLoadImageFromURLActivity.this);
+       // new MyFlurry(AndroidLoadImageFromURLActivity.this);
         display = this.getWindowManager().getDefaultDisplay();
 
         image   = (TouchImageView) findViewById(R.id.image);
@@ -103,7 +103,7 @@ public class AndroidLoadImageFromURLActivity extends AppCompatActivity implement
 
                         Map<String, String> userParams = new HashMap<String, String>();
                         userParams.put("source","Image Detail");
-                        FlurryAgent.logEvent("Click Shopping Cart", userParams);
+                        //FlurryAgent.logEvent("Click Shopping Cart", userParams);
                     } catch (Exception e)  {
                     }
 
@@ -132,7 +132,7 @@ public class AndroidLoadImageFromURLActivity extends AppCompatActivity implement
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
@@ -153,6 +153,9 @@ public class AndroidLoadImageFromURLActivity extends AppCompatActivity implement
         image_url = intent.getStringExtra("url");
 
         imageList = intent.getParcelableArrayListExtra("list_image");
+
+        Log.e(TAG, "onCreate: ------------------------------ 81026  0 "  + image_url );
+        Log.e(TAG, "onCreate: ------------------------------ 81026  imageList "  + imageList.size() );
 
         try{
             Bitmap bitmap = getImageBitmap(image_url);

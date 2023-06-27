@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -22,16 +21,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.kyarlay.ayesunaing.R;
-import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Brand;
 import com.kyarlay.ayesunaing.object.Product;
@@ -69,17 +67,15 @@ public class BrandPartnerAllActivity extends AppCompatActivity implements Consta
     Resources resources;
     CustomTextView title;
     LinearLayout title_layout, back_layout;
-    RelativeLayout cart_layout, layout_like;
-    CircularTextView  cart_text, wishlist;
-    ImageView cart;
+    RelativeLayout search_layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_product);
+        setContentView(R.layout.layout_brand_partner);
         display = getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(BrandPartnerAllActivity.this);
+       // new MyFlurry(BrandPartnerAllActivity.this);
         prefs = new MyPreference(BrandPartnerAllActivity.this);
         databaseAdapter = new DatabaseAdapter(BrandPartnerAllActivity.this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -91,7 +87,7 @@ public class BrandPartnerAllActivity extends AppCompatActivity implements Consta
         try {
 
             Map<String, String> mix = new HashMap<String, String>();
-            FlurryAgent.logEvent("Click Brand All Page", mix);
+            //FlurryAgent.logEvent("Click Brand All Page", mix);
         } catch (Exception e) {
         }
         Context context = LocaleHelper.setLocale(BrandPartnerAllActivity.this, prefs.getStringPreferences(LANGUAGE));
@@ -101,60 +97,18 @@ public class BrandPartnerAllActivity extends AppCompatActivity implements Consta
         title            = (CustomTextView) findViewById(R.id.title);
         title_layout     = (LinearLayout) findViewById(R.id.title_layout);
         back_layout      = (LinearLayout) findViewById(R.id.back_layout);
-        cart_layout      = (RelativeLayout) findViewById(R.id.cart_layout);
-        cart_text        = (CircularTextView) findViewById(R.id.menu_cart_idenfier);
-        wishlist         = (CircularTextView) findViewById(R.id.wishlist);
+        search_layout      =  findViewById(R.id.search_layout);
+
 
         prefs.saveIntPerferences(SP_PAGE_REDING_NUM,SP_DEFAULT);
 
 
 
-        layout_like     = (RelativeLayout) findViewById(R.id.like_layot);
-        layout_like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                    try {
-
-                        Map<String, String> mix = new HashMap<String, String>();
-                        mix.put("source", "brand_all");
-                        FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
-                    } catch (Exception e) {
-                    }
-                    Intent intent = new Intent(BrandPartnerAllActivity.this, WishListActivity.class);
-                    startActivity(intent);
 
 
-
-            }
-        });
-
-        cart_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(prefs.getIntPreferences(ConstantVariable.SP_MEMBER_ID) != 0){
-                    try {
-
-                        Map<String, String> mix = new HashMap<String, String>();
-                        mix.put("source", "brand_all");
-                        FlurryAgent.logEvent("Click  Shopping Cart", mix);
-                    } catch (Exception e) {
-                    }
-
-                    Intent intent = new Intent(BrandPartnerAllActivity.this, ShoppingCartActivity.class);
-                    startActivity(intent);
-                }else {
-                    Intent intent = new Intent(BrandPartnerAllActivity.this, ActivityLogin.class);
-                    startActivity(intent);
-                }
-
-            }
-        });
-
-        layout_like.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
+        search_layout.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
         back_layout.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
-        title_layout.getLayoutParams().width    = ( display.getWidth() * 11) / 20;
-        cart_layout.getLayoutParams().width     = ( display.getWidth() * 3) / 20;
+        title_layout.getLayoutParams().width    = ( display.getWidth() * 14) / 20;
 
         back_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +191,15 @@ public class BrandPartnerAllActivity extends AppCompatActivity implements Consta
             }
         });
 
+        search_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BrandPartnerAllActivity.this, SearchPatnerShopActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -244,29 +207,7 @@ public class BrandPartnerAllActivity extends AppCompatActivity implements Consta
     protected void onResume() {
         super.onResume();
 
-        cart_text.setStrokeWidth(1);
-        cart_text.setStrokeColor("#000000");
-        cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
 
-        if (count == 0) {
-            cart_text.setVisibility(View.GONE);
-        } else {
-            cart_text.setVisibility(View.VISIBLE);
-            cart_text.setText(count + "");
-        }
-
-        wishlist.setStrokeWidth(1);
-        wishlist.setStrokeColor("#000000");
-        wishlist.setSolidColor("#ffffff");
-
-        int count_wish  = prefs.getIntPreferences(SP_PRODUCT_LIKED_COUNT);
-        if(count_wish == 0){
-            wishlist.setVisibility(View.GONE);
-        }else{
-            wishlist.setVisibility(View.VISIBLE);
-            wishlist.setText(count_wish + "");
-        }
     }
 
     public void getBrandPatner(){

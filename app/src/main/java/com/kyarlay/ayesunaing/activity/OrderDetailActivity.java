@@ -15,16 +15,17 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kbzbank.payment.sdk.callback.CallbackResultActivity;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Order;
 import com.kyarlay.ayesunaing.object.OrderDetailsObj;
@@ -65,7 +66,7 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
         Log.e(TAG, "onCreate: " );
 
 
-        new MyFlurry(OrderDetailActivity.this);
+       // new MyFlurry(OrderDetailActivity.this);
         display = getWindowManager().getDefaultDisplay();
 
 
@@ -94,6 +95,7 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
 
 
         prefs.saveIntPerferences(OLD_ORDER_DIFFER , 0);
+        prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
 
         orderDetailList(order.getOrder_id());
 
@@ -217,7 +219,7 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
 
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("product_id",String.valueOf(product.getId()));
-                                        FlurryAgent.logEvent("Click Product", mix);
+                                        //FlurryAgent.logEvent("Click Product", mix);
 
                                     } catch (Exception e) {
                                     }
@@ -259,5 +261,17 @@ public class OrderDetailActivity extends AppCompatActivity implements ConstantVa
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(prefs.getBooleanPreference(PAYMENTHISTORYDONE)){
+            Log.e(TAG, "onResume: ------------------------------------------------------- "   );
+            prefs.saveBooleanPreference(PAYMENTDONE, false);
+            prefs.saveBooleanPreference(PAYMENTAGAIN, true);
+            prefs.saveBooleanPreference(PAYMENTHISTORYDONE, false);
 
+            Intent intent = new Intent(OrderDetailActivity.this, CallbackResultActivity.class);
+            startActivity(intent);
+        }
+    }
 }

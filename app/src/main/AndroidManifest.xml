@@ -21,16 +21,17 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <queries>
-        <intent>
-            <action android:name="com.google.android.youtube.api.service.START"/>
-        </intent>
-    </queries>
+    <!--  <queries>
+          <intent>
+              <action android:name="com.google.android.youtube.api.service.START"/>
+          </intent>
+      </queries>-->
 
 
     <application
         android:name=".data.AppController"
         android:allowBackup="false"
+        android:fullBackupContent="false"
         tools:replace="android:allowBackup"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
@@ -53,10 +54,11 @@
             android:label="@string/app_name" />
 
         <meta-data android:name="firebase_performance_collection_enabled" android:value="true" />
-    <!--    <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>-->
+        <!--    <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="@string/admob_app_id"/>-->
         <activity
+            android:exported="true"
             android:name=".activity.Splashscreen"
             android:screenOrientation="portrait"
             android:label="@string/app_name">
@@ -66,6 +68,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat"/>
 
@@ -76,6 +79,20 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name="com.kbzbank.payment.sdk.callback.CallbackResultActivity"
+            android:exported="true"
+            />
+
+<!--
+        <activity
+            android:name=".activity.KpayIntegrateActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>-->
 
         <activity
             android:name=".activity.PointHistoryActivity"
@@ -125,6 +142,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
+
         <activity
             android:name=".activity.PointDashboardActivity"
             android:screenOrientation="portrait"
@@ -166,7 +184,6 @@
         <activity
             android:name=".activity.ActivityLogin"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -509,12 +526,6 @@
             android:theme="@style/NoActionBar"/>
 
 
-
-        <activity android:name=".activity.VideoProgramDetailActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"/>
-
         <activity android:name=".activity.PostLikedActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
@@ -540,14 +551,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"/>
 
-        <activity android:name=".activity.Youtube"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".activity.YouTubeDialog"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/NoActionBar"/>
 
         <activity android:name=".activity.RecommandBrandActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
@@ -616,6 +619,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/NoActionBar"/>
+        <activity android:name=".activity.SearchPatnerShopActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/NoActionBar"/>
         <activity android:name=".activity.BrandAllActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
@@ -665,6 +672,7 @@
             android:theme="@style/NoActionBar"/>
 
         <activity android:name=".fcm.PendingActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             >
 
@@ -690,34 +698,37 @@
 
         <!-- [START firebase_service] -->
         <service
-            android:name=".fcm.MyFirebaseMessagingService">
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
         <!-- [START firebase_iid_service] -->
-      <!--  <service
-            android:name=".fcm.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>-->
+        <!--  <service
+              android:name=".fcm.MyFirebaseInstanceIDService">
+              <intent-filter>
+                  <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+              </intent-filter>
+          </service>-->
         <!-- [END firebase_iid_service] -->
 
         <provider android:authorities="com.facebook.app.FacebookContentProvider184815485301878"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.kyarlay.ayesunaing.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/freshchat_file_provider_paths" />
-        </provider>
+
+                <provider
+                    android:name="androidx.core.content.FileProvider"
+                    android:authorities="com.kyarlay.ayesunaing.provider"
+                    android:exported="false"
+                    android:grantUriPermissions="true">
+                    <meta-data
+                        android:name="android.support.FILE_PROVIDER_PATHS"
+                        android:resource="@xml/freshchat_file_provider_paths" />
+                </provider>
 
         <provider
             android:authorities="com.kyarlay.ayesunaing.provider"
@@ -725,11 +736,11 @@
             android:exported="false" />
 
 
-        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
+        <!--  <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
+              <intent-filter>
+                  <action android:name="com.android.vending.INSTALL_REFERRER" />
+              </intent-filter>
+          </receiver>-->
 
     </application>
 

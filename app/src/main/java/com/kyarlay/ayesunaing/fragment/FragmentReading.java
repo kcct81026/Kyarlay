@@ -25,7 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -43,7 +42,6 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.KyarlayAds;
@@ -110,7 +108,7 @@ public class FragmentReading extends Fragment implements Constant,ConstantVariab
 
 
 
-        new MyFlurry(getActivity());
+        //new MyFlurry(getActivity());
 
 
         display         = activity.getWindowManager().getDefaultDisplay();
@@ -146,7 +144,7 @@ public class FragmentReading extends Fragment implements Constant,ConstantVariab
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "post_list");
-                        FlurryAgent.logEvent("Click Liked Posts Icon", mix);
+                        ////FlurryAgent.logEvent("Click Liked Posts Icon", mix);
                     } catch (Exception e) {
                     }
 
@@ -290,7 +288,7 @@ public class FragmentReading extends Fragment implements Constant,ConstantVariab
                         prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
                     try {
 
-                        FlurryAgent.logEvent("Click Notification");
+                        ////FlurryAgent.logEvent("Click Notification");
                     } catch (Exception e) {
                     }
 

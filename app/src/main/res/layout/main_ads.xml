@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:gravity="center"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -8,12 +9,32 @@
     android:background="@color/white"
     android:id="@+id/relative_slider"
     android:layout_marginTop="@dimen/layout_margin_reading_post"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    app:ignore="NamespaceTypo">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.daimajia.slider.library.SliderLayout
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/sliderImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="1" />
+
+<!--        <com.daimajia.slider.library.SliderLayout
             android:layout_alignParentTop="true"
             android:id="@+id/slider"
             android:layout_width="match_parent"
@@ -42,7 +63,7 @@
             custom:selected_height="8dp"
             custom:unselected_width="4dp"
             custom:unselected_height="4dp"
-            />
+            />-->
     </LinearLayout>
     <ProgressBar
         android:visibility="gone"

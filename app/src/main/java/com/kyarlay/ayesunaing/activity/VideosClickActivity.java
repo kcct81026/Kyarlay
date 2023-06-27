@@ -27,7 +27,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Images;
@@ -91,7 +91,7 @@ public class VideosClickActivity extends AppCompatActivity implements ConstantVa
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources       = context.getResources();
 
-        new MyFlurry(VideosClickActivity.this);
+       // new MyFlurry(VideosClickActivity.this);
         databaseAdapter = new DatabaseAdapter(activity);
         mediaAdapter = new MediaAdapter((AppCompatActivity) activity, mainCatDetails);
 

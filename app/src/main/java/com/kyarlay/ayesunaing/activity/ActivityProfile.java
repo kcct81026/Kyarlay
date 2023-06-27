@@ -19,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -28,7 +27,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Product;
@@ -79,13 +78,13 @@ public class ActivityProfile extends AppCompatActivity implements Constant, Cons
         resources = context.getResources();
         databaseAdapter = new DatabaseAdapter(activity);
         display = activity.getWindowManager().getDefaultDisplay();
-        new MyFlurry(activity);
+        //new MyFlurry(activity);
 
-        try {
+       /* try {
 
-            FlurryAgent.logEvent("View Profile Page");
+            //FlurryAgent.logEvent("View Profile Page");
         } catch (Exception e) {
-        }
+        }*/
 
         Log.e(TAG, "onCreateView: "  );
 
@@ -159,14 +158,14 @@ public class ActivityProfile extends AppCompatActivity implements Constant, Cons
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                try {
+               /* try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "product_list" );
                     mix.put("status", "error" );
 
-                    FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                    //FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                 } catch (Exception e) {
-                }
+                }*/
 
 
             }

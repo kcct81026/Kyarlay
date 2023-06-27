@@ -20,7 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
 import com.kyarlay.ayesunaing.custom_widget.CustomEditText;
@@ -29,7 +29,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -88,7 +88,7 @@ public class LoginFillActivity extends AppCompatActivity implements ConstantVari
         resources = context.getResources();
 
 
-        new MyFlurry(LoginFillActivity.this);
+       // new MyFlurry(LoginFillActivity.this);
 
 
         back_layout = findViewById(R.id.back_layout);
@@ -219,7 +219,7 @@ public class LoginFillActivity extends AppCompatActivity implements ConstantVari
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("user_phone", prefs.getStringPreferences(SP_USER_PHONE));
                                     mix.put("name", prefs.getStringPreferences(SP_USER_NAME));
-                                    FlurryAgent.logEvent("Signup", mix);
+                                    //FlurryAgent.logEvent("Signup", mix);
                                 } catch (Exception e) {
                                 }
 

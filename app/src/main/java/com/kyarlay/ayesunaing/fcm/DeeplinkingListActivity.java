@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
 import com.kyarlay.ayesunaing.activity.MainActivity;
@@ -24,7 +24,7 @@ import com.kyarlay.ayesunaing.activity.ShoppingCartActivity;
 import com.kyarlay.ayesunaing.activity.WishListActivity;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
@@ -85,7 +85,7 @@ public class DeeplinkingListActivity extends AppCompatActivity implements Consta
         recyclerView.setAdapter(universalAdapter);
         display = getWindowManager().getDefaultDisplay();
 
-        new MyFlurry(DeeplinkingListActivity.this);
+       // new MyFlurry(DeeplinkingListActivity.this);
         title_layout     = (LinearLayout) findViewById(R.id.title_layout);
         back_layout      = (LinearLayout) findViewById(R.id.back_layout);
         cart_layout      = (RelativeLayout) findViewById(R.id.cart_layout);
@@ -102,7 +102,7 @@ public class DeeplinkingListActivity extends AppCompatActivity implements Consta
                     try {
                        Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_list");
-                        FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                        //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
                     } catch (Exception e) {
                     }
                     Intent intent = new Intent(DeeplinkingListActivity.this, WishListActivity.class);
@@ -126,7 +126,7 @@ public class DeeplinkingListActivity extends AppCompatActivity implements Consta
                     try {
                        Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_list");
-                        FlurryAgent.logEvent("Click Shopping Cart", mix);
+                        //FlurryAgent.logEvent("Click Shopping Cart", mix);
                     } catch (Exception e) {
                     }
 
@@ -166,7 +166,7 @@ public class DeeplinkingListActivity extends AppCompatActivity implements Consta
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
@@ -195,7 +195,7 @@ public class DeeplinkingListActivity extends AppCompatActivity implements Consta
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {

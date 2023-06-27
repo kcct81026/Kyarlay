@@ -28,7 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -39,7 +39,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.MainTownShip;
@@ -143,7 +143,7 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
         Context contextmyanmar = LocaleHelper.setLocale( Splashscreen.this, prefs.getStringPreferences(LANGUAGE));
         resources = contextmyanmar.getResources();
 
-        new MyFlurry(Splashscreen.this);
+       // new MyFlurry(Splashscreen.this);
 
         if (!isTaskRoot()
                 && getIntent().getAction() != null
@@ -157,7 +157,7 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
         try {
 
 
-            FlurryAgent.logEvent("Start Kyarlay");
+            //FlurryAgent.logEvent("Start Kyarlay");
 
         } catch (Exception e) {
         }
@@ -179,7 +179,7 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
 
                     getCustomerInfo();
                 }else {
-
+                    prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
                     checkingVersion();
                 }
 
@@ -253,7 +253,7 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "campain");
                                         mix.put("call_id", phoneString);
-                                        FlurryAgent.logEvent("Call Call Center", mix);
+                                        //FlurryAgent.logEvent("Call Call Center", mix);
                                     } catch (Exception e) {
                                     }
                                     Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneString));
@@ -289,14 +289,14 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
         }
 
 
-        Log.e(TAG, "onCreate: **************************** "  );
+
 
         if(prefs.isNetworkAvailable()){
             if(!prefs.getStringPreferences(SP_USER_TOKEN).equals("")) {
 
                 getCustomerInfo();
             }else {
-
+                prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT , 0);
                 checkingVersion();
             }
         }else {
@@ -373,7 +373,10 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                     prefs.saveIntPerferences(SP_POINT_PERCENTAGE, response.getInt("point_percentage"));
                     prefs.saveIntPerferences(SP_FEEDBACK_POINT, response.getInt("shopping_feedback_point"));
 
+
+
                     if(min_version > currentVersion){
+                        Log.e(TAG, "onResponse: -----------------------  this is min_version > currentVersion  "  + min_version + ">" + currentVersion);
                         final Dialog dialog = new Dialog(Splashscreen.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_version_outofdate);
@@ -390,6 +393,14 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                         title.setText(resources.getString(R.string.new_version));
                         des.setText(version_des);
                         LinearLayout ok = (LinearLayout) dialog.findViewById(R.id.dialog_product_yes);
+                        LinearLayout cancel = (LinearLayout) dialog.findViewById(R.id.dialog_product_no);
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastHelper.showToast(Splashscreen.this, resources.getString(R.string.update_needed));
+                                dialog.dismiss();
+                            }
+                        });
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -403,7 +414,9 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                         dialog.show();
 
                     }else if(version > currentVersion){
-                        final Dialog dialog = new Dialog(Splashscreen.this);
+                        Log.e(TAG, "onResponse: -----------------------  this is version > currentVersion  "  + version + ">" + currentVersion);
+
+                       /* final Dialog dialog = new Dialog(Splashscreen.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.dialog_version_update);
                         dialog.setCancelable(false);
@@ -435,6 +448,42 @@ public class Splashscreen extends AppCompatActivity implements Constant, Constan
                                 startActivity(intent);
                             }
                         });
+                        dialog.show();*/
+
+                        final Dialog dialog = new Dialog(Splashscreen.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.dialog_version_outofdate);
+                        dialog.setCancelable(false);
+
+                        Window window = dialog.getWindow();
+                        WindowManager.LayoutParams wlp = window.getAttributes();
+                        wlp.gravity = Gravity.CENTER;
+                        wlp.width   = getWindowManager().getDefaultDisplay().getWidth();
+                        window.setAttributes(wlp);
+
+                        CustomTextView des = (CustomTextView) dialog.findViewById(R.id.dialog_save_cart_product);
+                        CustomTextView title= (CustomTextView) dialog.findViewById(R.id.title);
+                        title.setText(resources.getString(R.string.new_version));
+                        des.setText(version_des);
+                        LinearLayout ok = (LinearLayout) dialog.findViewById(R.id.dialog_product_yes);
+                        LinearLayout cancel = (LinearLayout) dialog.findViewById(R.id.dialog_product_no);
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastHelper.showToast(Splashscreen.this, resources.getString(R.string.update_needed));
+                                dialog.dismiss();
+                            }
+                        });
+                        ok.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.kyarlay.ayesunaing"));
+                                startActivity(intent);
+                            }
+                        });
+
                         dialog.show();
                     }else{
                         Intent intent = new Intent(Splashscreen.this, MainActivity.class);

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_level_low">သင့် KBZPay ဗားရှင်းမှာ နိမ့်နေ၍ အဆင့်မြှင့်တင်ပါ</string>
+    <string name="app_not_find">KBZPay ကိုဒေါင်းလုပ်လုပ်၍ ငွေပေးချေခြင်းကို ပြုလုပ်ပါ။</string>
+</resources>

@@ -18,7 +18,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
@@ -28,7 +27,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 
@@ -70,15 +69,17 @@ public class OtpActivity extends AppCompatActivity implements ConstantVariable, 
         Context context = LocaleHelper.setLocale(OtpActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
 
-        new MyFlurry(OtpActivity.this);
+       // new MyFlurry(OtpActivity.this);
         firebaseAnalytics   = FirebaseAnalytics.getInstance(OtpActivity.this);
 
+/*
 
         try {
 
-            FlurryAgent.logEvent("View Otp Page");
+            //FlurryAgent.logEvent("View Otp Page");
         } catch (Exception e) {
         }
+*/
 
         phone = getIntent().getStringExtra("phone" );
 
@@ -213,14 +214,14 @@ public class OtpActivity extends AppCompatActivity implements ConstantVariable, 
                                 firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle);
 
 
-                                 try {
+                               /*  try {
 
                                         Map<String, String> mix = new HashMap<String, String>();
-                                        FlurryAgent.logEvent("Login", mix);
+                                        //FlurryAgent.logEvent("Login", mix);
 
                                     } catch (Exception e) {
                                     }
-
+*/
 
                                 if (prefs.getIntPreferences(SP_CHANGE) == 1){
                                     Log.e(TAG, "onResponse: ----------------------"  + "change" );
@@ -249,15 +250,15 @@ public class OtpActivity extends AppCompatActivity implements ConstantVariable, 
                             else{
                                 prefs.saveIntPerferences(ConstantVariable.COUNT_DOWN, 0);
 
-                                try {
+                              /*  try {
 
 
                                     Map<String, String> mix = new HashMap<String, String>();
-                                    FlurryAgent.logEvent("View Profile Signup Page", mix);
+                                    //FlurryAgent.logEvent("View Profile Signup Page", mix);
 
                                 } catch (Exception e) {
                                 }
-
+*/
                               /*  try{
                                     Map<String, Object> eventValue = new HashMap<String, Object>();
                                     eventValue.put(AFInAppEventParameterName.CONTENT_TYPE,"Sign_Up");

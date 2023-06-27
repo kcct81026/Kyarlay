@@ -26,7 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +37,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Product;
 import com.kyarlay.ayesunaing.object.UniversalPost;
@@ -90,13 +90,13 @@ public class WishListActivity extends AppCompatActivity implements ConstantVaria
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_wish_list);
 
-        new MyFlurry(WishListActivity.this);
+       // new MyFlurry(WishListActivity.this);
 
         Log.e(TAG, "onCreate:  "   );
 
         try {
 
-            FlurryAgent.logEvent("View Product Wishlist");
+            //FlurryAgent.logEvent("View Product Wishlist");
 
         } catch (Exception e) {}
 
@@ -126,7 +126,7 @@ public class WishListActivity extends AppCompatActivity implements ConstantVaria
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "wishlist");
-                    FlurryAgent.logEvent("Click Shopping Cart", mix);
+                    //FlurryAgent.logEvent("Click Shopping Cart", mix);
 
                 } catch (Exception e) {
                 }
@@ -161,7 +161,7 @@ public class WishListActivity extends AppCompatActivity implements ConstantVaria
             cart_text.setStrokeWidth(1);
             cart_text.setStrokeColor("#000000");
             cart_text.setSolidColor("#ffffff");
-            int count = databaseAdapter.getOrderCount();
+            int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
             if (count == 0) {
                 cart_text.setVisibility(View.GONE);
@@ -187,11 +187,12 @@ public class WishListActivity extends AppCompatActivity implements ConstantVaria
 
 
     public void bounceCount (){
+
         bounce = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {

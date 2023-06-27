@@ -19,7 +19,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +29,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Order;
 import com.kyarlay.ayesunaing.object.Product;
@@ -71,7 +71,7 @@ public class OlderedActivity extends AppCompatActivity implements Constant, Cons
         setContentView(R.layout.reading_wishlist);
 
 
-        new MyFlurry(OlderedActivity.this);
+       // new MyFlurry(OlderedActivity.this);
 
         prefs   = new MyPreference(OlderedActivity.this);
         prefs.saveIntPerferences(SP_PAGE_NUM_CARTDETAIL, SP_DEFAULT);
@@ -91,7 +91,7 @@ public class OlderedActivity extends AppCompatActivity implements Constant, Cons
         String titleText = intent.getStringExtra("title");
         title.setText(titleText);
 
-        FlurryAgent.logEvent("View Old Orders Activity ");
+        //FlurryAgent.logEvent("View Old Orders Activity ");
 
 
         Log.e(TAG, "onCreate: " );

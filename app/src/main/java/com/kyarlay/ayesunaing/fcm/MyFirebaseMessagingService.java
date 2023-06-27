@@ -26,8 +26,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-
-import com.flurry.android.FlurryAgent;
 import com.freshchat.consumer.sdk.Freshchat;
 import com.freshchat.consumer.sdk.FreshchatCallbackStatus;
 import com.freshchat.consumer.sdk.FreshchatConfig;
@@ -39,6 +37,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyarlay.ayesunaing.BuildConfig;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.activity.ActivityAdsList;
 import com.kyarlay.ayesunaing.activity.AskProdcutAcitivity;
@@ -48,7 +47,6 @@ import com.kyarlay.ayesunaing.activity.MainActivity;
 import com.kyarlay.ayesunaing.activity.NotificationAcitivity;
 import com.kyarlay.ayesunaing.activity.ProductActivity;
 import com.kyarlay.ayesunaing.activity.ReadingCommentDetailsActivity;
-import com.kyarlay.ayesunaing.activity.VideoProgramDetailActivity;
 import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
@@ -72,6 +70,8 @@ import java.util.Map;
 
 import me.myatminsoe.mdetect.MDetect;
 import me.myatminsoe.mdetect.Rabbit;
+
+//import com.flurry.android.FlurryAgent;
 
 
 /**
@@ -101,12 +101,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         super.onMessageReceived(remoteMessage);
         context = getApplicationContext();
 
-        new FlurryAgent.Builder()
+       /* new FlurryAgent.Builder()
                 .withLogEnabled(true)
                 .withCaptureUncaughtExceptions(true)
                 .withContinueSessionMillis(10000)
                 .withLogLevel(Log.VERBOSE)
-                .build(getApplicationContext(), FLURRY_API_KEY);
+                .build(getApplicationContext(), BuildConfig.FLURRY_API_KEY);*/
 
         NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         manager.cancel(0);
@@ -114,14 +114,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         prefs = getApplicationContext().getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         Context context1 = LocaleHelper.setLocale(context, prefs.getString(LANGUAGE, LANGUAGE_MYANMAR));
         resources = context1.getResources();
-        //{image_url=http://res.cloudinary.com/tech-myanmar/image/upload/q_auto/idebpilqlqoh2cb9il8o.jpg,
-        // url=http://www.kyarlay.com/api/products/4225,
-        // body=L,
-        // type=product,
-        // title=Plume Small Baby Pants L-46pcs}
+        try {
+            Map<String, String> mix = new HashMap<String, String>();
+            mix.put("type", type);
+            //FlurryAgent.logEvent("Incoming Pushnotification", mix);
+        } catch (Exception e) {
+        }
 
-        Log.e(TAG, "onMessageReceived: "   );
-
+        Log.e(TAG, "onMessageReceived: ------ "  + remoteMessage.toString() );
         if (Freshchat.isFreshchatNotification(remoteMessage)) {
 
             Log.e(TAG, "onMessageReceived: isFreshChatNotification "   );
@@ -134,7 +134,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
                     PendingIntent.FLAG_UPDATE_CURRENT);
             try {
                 Map<String, String> mix = new HashMap<String, String>();
-                FlurryAgent.logEvent("Incoming Pushnotification Chatting", mix);
+                //FlurryAgent.logEvent("Incoming Pushnotification Chatting", mix);
             } catch (Exception e) {
             }
 
@@ -155,7 +155,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
             try {
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("type", type);
-                FlurryAgent.logEvent("Incoming Pushnotification", mix);
+                //FlurryAgent.logEvent("Incoming Pushnotification", mix);
             } catch (Exception e) {
             }
 
@@ -226,7 +226,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         FirebaseMessaging.getInstance().subscribeToTopic("regular");
         refreshedToken      = FirebaseInstanceId.getInstance().getToken();
 
-        FreshchatConfig freshchatConfig=new FreshchatConfig(SP_FRESH_CAHT_ID,SP_FRESH_CHAT_KEY);
+        FreshchatConfig freshchatConfig=new FreshchatConfig(BuildConfig.FRESH_CAHT_ID,BuildConfig.FRESH_CHAT_KEY);
         Freshchat.getInstance(getApplicationContext()).init(freshchatConfig);
 
         if (refreshedToken != null && !refreshedToken.equals("")) {
@@ -641,7 +641,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
 
             }
 
-            else if (type.equals("video_program")) {
+          /*  else if (type.equals("video_program")) {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1");
 
@@ -704,7 +704,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
                 notificationManager.notify(3, builder.build());
 
 
-            } else if (type.equals("video")) {
+            }*/ /*else if (type.equals("video")) {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1");
 
@@ -768,7 +768,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
                 notificationManager.notify(3, builder.build());
 
 
-            }else {
+            }*/
+            else {
 
                /* JsonArrayRequest jsonArrayRequest = productList(url  + "&"+LANG+"="+prefs.getString(SP_LANGUAGE , ""));
                 AppController.getInstance().addToRequestQueue(jsonArrayRequest);*/
@@ -1070,7 +1071,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
             }
 
 
-        }else if (type.equals("video_program")) {
+        }/*else if (type.equals("video_program")) {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1");
 
@@ -1183,7 +1184,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
             notificationManager.notify(3, builder.build());
 
 
-        } else {
+        } */else {
 
             /*JsonArrayRequest jsonArrayRequest = productList(url);
             AppController.getInstance().addToRequestQueue(jsonArrayRequest);*/
@@ -1195,6 +1196,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
 
     }
 
+    @SuppressLint("WrongConstant")
     private void sendNotificationUrl(String url){
 
 

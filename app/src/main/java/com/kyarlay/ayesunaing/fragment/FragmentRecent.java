@@ -36,7 +36,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.Product;
@@ -97,7 +97,7 @@ public class FragmentRecent extends Fragment implements Constant,ConstantVariabl
 
 
 
-        new MyFlurry(getActivity());
+       // new MyFlurry(getActivity());
 
         display         = activity.getWindowManager().getDefaultDisplay();
         databaseAdapter     = new DatabaseAdapter(activity);

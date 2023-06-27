@@ -30,7 +30,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.GiftObject;
 import com.kyarlay.ayesunaing.object.Product;
@@ -78,7 +78,7 @@ public class GiftExchangeActivity extends AppCompatActivity implements Constant,
         Log.e(TAG, "onCreate: " );
 
 
-        new MyFlurry(GiftExchangeActivity.this);
+       // new MyFlurry(GiftExchangeActivity.this);
 
         prefs  = new MyPreference(GiftExchangeActivity.this);
         Context context1 = LocaleHelper.setLocale(GiftExchangeActivity.this, prefs.getStringPreferences(LANGUAGE));

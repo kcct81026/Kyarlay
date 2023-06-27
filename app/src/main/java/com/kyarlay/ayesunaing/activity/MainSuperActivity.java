@@ -21,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,7 +31,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.object.CategoryMain;
@@ -99,7 +99,7 @@ public class MainSuperActivity extends AppCompatActivity implements Constant, Co
         activity  = MainSuperActivity.this;
         databaseAdapter = new DatabaseAdapter(MainSuperActivity.this);
 
-        new MyFlurry(MainSuperActivity.this);
+       // new MyFlurry(MainSuperActivity.this);
         prefs = new MyPreference(MainSuperActivity.this);
         Context context = LocaleHelper.setLocale(MainSuperActivity.this, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
@@ -154,7 +154,7 @@ public class MainSuperActivity extends AppCompatActivity implements Constant, Co
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("type", "main");
-                    FlurryAgent.logEvent("Click Search", mix);
+                    //FlurryAgent.logEvent("Click Search", mix);
                 } catch (Exception e) {
                     Log.e(TAG, "onClick: "  + e.getMessage() );
                 }

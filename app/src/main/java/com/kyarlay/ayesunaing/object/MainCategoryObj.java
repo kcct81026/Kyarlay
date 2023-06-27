@@ -13,6 +13,11 @@ public class MainCategoryObj extends UniversalPost {
     int priId;
     @SerializedName("id")
     int id;
+
+    @SerializedName("mm")
+    String mm;
+
+
     @SerializedName("name")
     String title;
     @SerializedName("tag")
@@ -56,7 +61,16 @@ public class MainCategoryObj extends UniversalPost {
 
     int showTitle = 0;
 
+
     public MainCategoryObj() {
+    }
+
+    public String getMm() {
+        return mm;
+    }
+
+    public void setMm(String mm) {
+        this.mm = mm;
     }
 
     public int getPriId() {
@@ -205,6 +219,7 @@ public class MainCategoryObj extends UniversalPost {
     }
     private void readFromParcel(Parcel in) {
         id        = in.readInt();
+        mm        = in.readString();
         title     = in.readString();
         tag       = in.readString();
         image     = in.readString();
@@ -226,6 +241,7 @@ public class MainCategoryObj extends UniversalPost {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeString(mm);
         dest.writeString(title);
         dest.writeString(tag);
         dest.writeString(image);

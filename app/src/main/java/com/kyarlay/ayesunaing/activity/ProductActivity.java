@@ -34,7 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
@@ -52,7 +52,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
+//import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.object.Category;
 import com.kyarlay.ayesunaing.object.Discount;
@@ -65,6 +65,7 @@ import com.kyarlay.ayesunaing.operation.DatabaseAdapter;
 import com.kyarlay.ayesunaing.operation.UniversalAdapter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
@@ -143,9 +144,8 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
         fromClass   = bundle.getString("fromClass");
 
-        new MyFlurry(ProductActivity.this);
+       // new MyFlurry(ProductActivity.this);
 
-        Log.e(TAG, "onCreate: "  + product.getId());
 
         linearOrder      = findViewById(R.id.linearOrder);
         linearOrder.setVisibility(View.GONE);
@@ -181,7 +181,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
             mix.put("product_id",String.valueOf(product.getId()));
             mix.put("category_id",String.valueOf(product.getCategoryId()));
             mix.put("status", fromClass);
-            FlurryAgent.logEvent("View Product", mix);
+            //FlurryAgent.logEvent("View Product", mix);
         } catch (Exception e) {
         }
 
@@ -230,7 +230,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "product_detail");
-                    FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
+                    //FlurryAgent.logEvent("Click Product Wishlist Icon", mix);
                 } catch (Exception e) {}
                 Intent intent = new Intent(ProductActivity.this, WishListActivity.class);
                 startActivity(intent);
@@ -257,7 +257,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "Product");
-                        FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
+                        //FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
 
                     } catch (Exception e) {}
 
@@ -280,7 +280,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_detail");
-                        FlurryAgent.logEvent("Click Shopping Cart", mix);
+                        //FlurryAgent.logEvent("Click Shopping Cart", mix);
 
 
                     } catch (Exception e) {
@@ -535,7 +535,8 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                         mBottomSheetDialog.dismiss();
 
-                        dialogOrder((original_price - finalTotal_discount) );
+                       // dialogOrder((original_price - finalTotal_discount) );
+                        addToCard();
 
 
 
@@ -638,8 +639,151 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
     }
 
+    private void addToCard(){
+        bounceCount();
+        if(prefs.getIntPreferences(SP_MEMBER_ID) != 0){
+            prefs.saveBooleanPreference(LOGIN_SAVECART, false);
+            try {
 
-    private void dialogOrder( int total){
+
+                Map<String, String> mix = new HashMap<String, String>();
+                mix.put("product_id",String.valueOf(product.getId()));
+                //FlurryAgent.logEvent("Add To Cart", mix);
+            } catch (Exception e) {}
+
+            Bundle fbundle = new Bundle();
+            fbundle.putString("item_id",product.getId()+"");
+            fbundle.putString("item_name",product.getTitle()+"");
+            fbundle.putString("item_category",product.getCategory_name()+"");
+            fbundle.putString("price",product.getPrice()+"");
+            fbundle.putString("quantity",qtyProduct+"");
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, fbundle);
+
+            sendAddToCartToServer();
+
+        }
+        else{
+            prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+            Intent intent   = new Intent(activity, ActivityLogin.class);
+            startActivity(intent);
+        }
+
+    }
+
+    private void sendAddToCartToServer(){
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", qtyProduct);
+            uploadMessage.put("option", optionTitle);
+            uploadMessage.put("product_id", product.getId());
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try{
+                               if (response.getInt("status") == 1) {
+                                   final Dialog dialog = new Dialog(activity);
+                                   dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                   dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                   dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                   dialog.setCanceledOnTouchOutside(true);
+                                   Window window = dialog.getWindow();
+                                   WindowManager.LayoutParams wlp = window.getAttributes();
+                                   wlp.gravity = Gravity.CENTER;
+                                   wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                   window.setAttributes(wlp);
+
+                                   CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                   CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                   // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                   CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                   //title.setText(resources.getString(R.string.added_to_cart_title));
+                                   text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                   cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                   confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+                                   int countBefore = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT) + qtyProduct;
+                                   prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT) + qtyProduct);
+                                   CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                   circularTextView.setText(String.valueOf(countBefore));
+
+                                   confirm.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+
+                                           try {
+
+                                               Map<String, String> mix = new HashMap<String, String>();
+                                               mix.put("source", "product_detail_dialog");
+                                               //FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                           } catch (Exception e) {
+                                           }
+
+                                           dialog.dismiss();
+                                           Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                           activity.startActivity(intent);
+                                       }
+
+                                   });
+
+                                   cancel.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           dialog.dismiss();
+                                       }
+                                   });
+                                   dialog.show();
+                               }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse:  "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+    }
+
+
+  /*  private void dialogOrder( int total){
         databaseAdapter.insertOrder(product, qtyProduct, total, optionTitle);
 
         bounceCount();
@@ -652,7 +796,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("product_id",String.valueOf(product.getId()));
-                FlurryAgent.logEvent("Add To Cart", mix);
+                //FlurryAgent.logEvent("Add To Cart", mix);
             } catch (Exception e) {}
 
             Bundle fbundle = new Bundle();
@@ -698,7 +842,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                         Map<String, String> mix = new HashMap<String, String>();
                         mix.put("source", "product_detail_dialog");
-                        FlurryAgent.logEvent("Click Shopping Cart", mix);
+                        //FlurryAgent.logEvent("Click Shopping Cart", mix);
 
                     } catch (Exception e) {
                     }
@@ -725,15 +869,18 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
         }
 
     }
-
+*/
 
 
     public void bounceCount (){
+
+        Log.e(TAG, "bounceCount: ---------------- 8102 "   + prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT));
+
         bounce = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.bounce_animation);
         animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext()
                 , R.animator.flip_animation);
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT) + qtyProduct;
         if (count == 0) {
             cart_text.setVisibility(View.GONE);
         } else {
@@ -787,7 +934,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
 
                 Map<String, String> mix = new HashMap<String, String>();
                 mix.put("source", "Product");
-                FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
+                //FlurryAgent.logEvent("Incoming Pushnotification Click", mix);
             } catch (Exception e) {}
             Intent proIntent = new Intent(ProductActivity.this, MainActivity.class);
             startActivity(proIntent);
@@ -805,7 +952,7 @@ public class ProductActivity extends AppCompatActivity implements Constant, Cons
         cart_text.setStrokeWidth(1);
         cart_text.setStrokeColor("#000000");
         cart_text.setSolidColor("#ffffff");
-        int count = databaseAdapter.getOrderCount();
+        int count = prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT);
 
         if (count == 0) {
             cart_text.setVisibility(View.GONE);

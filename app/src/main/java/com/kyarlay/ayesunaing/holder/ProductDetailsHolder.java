@@ -11,36 +11,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderLayout;
 import com.kyarlay.ayesunaing.R;
 import com.kyarlay.ayesunaing.custom_widget.CustomTextView;
+import com.smarteist.autoimageslider.SliderView;
 
 public class ProductDetailsHolder extends RecyclerView.ViewHolder {
 
-    public RelativeLayout relative, relative_slider;
+    public RelativeLayout relative;
     public LinearLayout linearImage,linearFlashSale,linearLayout1,discount_layout;
-    public SliderLayout slider;
+   // public SliderLayout slider;
     public CustomTextView txtDiscount,txtAllMark,title,txtCategory,txtPreOrderMark,price,price_strike,txtAvailable,promotion_title,txtFirstTime;
     public TextView txtImgCount,txtDay,txtDayONe,txtHour,txtHourONe,txtMinute,txtMinuteONe,txtSecond,txtSecondONe;
     public ImageView imgShare,imgWishList,imgChat,img_car;
     public FrameLayout frameLayout;
     public NetworkImageView imgYouTube;
-    public PagerIndicator custom_indicator;
+    //public PagerIndicator custom_indicator;
 
     public CustomTextView txtProductWarning;
     public LinearLayout linearProductWarning,layout_first_time;
+    public SliderView sliderImageView;
 
     public ProductDetailsHolder(@NonNull View itemView) {
         super(itemView);
 
         relative = itemView.findViewById(R.id.relative);
-        relative_slider = itemView.findViewById(R.id.relative_slider);
-        slider = itemView.findViewById(R.id.slider);
+        //relative_slider = itemView.findViewById(R.id.relative_slider);
+      /*  slider = itemView.findViewById(R.id.slider);
         slider.setId(0);
-        slider.startAutoCycle(10000,10000,true);
-        custom_indicator = itemView.findViewById(R.id.custom_indicator);
-        custom_indicator.setVisibility(View.GONE);
+        slider.startAutoCycle(10000,10000,true);*/
+        //custom_indicator = itemView.findViewById(R.id.custom_indicator);
+        //custom_indicator.setVisibility(View.GONE);
         //slider.setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
 
         txtDiscount = itemView.findViewById(R.id.txtDiscount);
@@ -76,5 +76,7 @@ public class ProductDetailsHolder extends RecyclerView.ViewHolder {
         txtProductWarning = itemView.findViewById(R.id.txtProductWarning);
         txtFirstTime = itemView.findViewById(R.id.txtFirstTime);
         img_car = itemView.findViewById(R.id.img_car);
+        sliderImageView = itemView.findViewById(R.id.sliderImage);
+
     }
 }

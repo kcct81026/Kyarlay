@@ -51,8 +51,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.flurry.android.FlurryAgent;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -64,7 +62,6 @@ import com.kyarlay.ayesunaing.activity.ActivityAdsList;
 import com.kyarlay.ayesunaing.activity.ActivityLogin;
 import com.kyarlay.ayesunaing.activity.ActivityStepOneCart;
 import com.kyarlay.ayesunaing.activity.ActivityStepTwoCart;
-import com.kyarlay.ayesunaing.activity.ActivityWebView;
 import com.kyarlay.ayesunaing.activity.AndroidLoadImageFromAdsUrl;
 import com.kyarlay.ayesunaing.activity.AskProdcutAcitivity;
 import com.kyarlay.ayesunaing.activity.BrandActivity;
@@ -103,10 +100,7 @@ import com.kyarlay.ayesunaing.activity.ShowAllNamesActivity;
 import com.kyarlay.ayesunaing.activity.ToolsClickActivity;
 import com.kyarlay.ayesunaing.activity.UserPostUploadActivity;
 import com.kyarlay.ayesunaing.activity.VideoListActivity;
-import com.kyarlay.ayesunaing.activity.VideoProgramDetailActivity;
 import com.kyarlay.ayesunaing.activity.WishListActivity;
-import com.kyarlay.ayesunaing.activity.YouTubeDialog;
-import com.kyarlay.ayesunaing.activity.Youtube;
 import com.kyarlay.ayesunaing.custom_widget.CircularNetworkImageView;
 import com.kyarlay.ayesunaing.custom_widget.CircularTextView;
 import com.kyarlay.ayesunaing.custom_widget.CustomButton;
@@ -118,9 +112,7 @@ import com.kyarlay.ayesunaing.data.AppController;
 import com.kyarlay.ayesunaing.data.Constant;
 import com.kyarlay.ayesunaing.data.ConstantVariable;
 import com.kyarlay.ayesunaing.data.ConstantsDB;
-import com.kyarlay.ayesunaing.data.CustomTextSliderView;
 import com.kyarlay.ayesunaing.data.LocaleHelper;
-import com.kyarlay.ayesunaing.data.MyFlurry;
 import com.kyarlay.ayesunaing.data.MyPreference;
 import com.kyarlay.ayesunaing.data.ToastHelper;
 import com.kyarlay.ayesunaing.fcm.DeeplinkingListActivity;
@@ -183,11 +175,13 @@ import com.kyarlay.ayesunaing.object.Reading;
 import com.kyarlay.ayesunaing.object.Reading_Post;
 import com.kyarlay.ayesunaing.object.SafeItem;
 import com.kyarlay.ayesunaing.object.SafeMainObj;
+import com.kyarlay.ayesunaing.object.SliderData;
 import com.kyarlay.ayesunaing.object.ToolChildObject;
 import com.kyarlay.ayesunaing.object.ToolGrid;
 import com.kyarlay.ayesunaing.object.ToolObject;
 import com.kyarlay.ayesunaing.object.UniversalPost;
 import com.kyarlay.ayesunaing.object.Videos;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -247,7 +241,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         fragmentMedia = fragment;
 
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
         android_id = android.provider.Settings.Secure.getString(activity.getContentResolver(),
@@ -271,7 +265,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         readingFragment = fragment;
 
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
         android_id = android.provider.Settings.Secure.getString(activity.getContentResolver(),
@@ -294,7 +288,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         prefs               = new MyPreference(activity);
         Context context = LocaleHelper.setLocale(activity, prefs.getStringPreferences(LANGUAGE));
         resources = context.getResources();
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
         android_id = android.provider.Settings.Secure.getString(activity.getContentResolver(),
                 android.provider.Settings.Secure.ANDROID_ID);
@@ -314,7 +308,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         fragmentLatest = fragment;
 
-        new MyFlurry(activity);
+        ////new MyFlurry(activity);
 
         firebaseAnalytics   = FirebaseAnalytics.getInstance(activity);
         android_id = android.provider.Settings.Secure.getString(activity.getContentResolver(),
@@ -461,6 +455,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         else if (universalList.get(position).getPostType().equals(SLIDER)) {
             return VIEW_TYPE_MAIN_ADS;
         }
+        else if (universalList.get(position).getPostType().equals(SAFE_SUB_MAIN) ){
+            return VIEW_TYPE_SAFE_SUB_MAIN;
+        }
         else if (universalList.get(position).getPostType().equals(PACKAGE_ITEM)) {
             return VIEW_TYPE_PACKAGE_ITEM;
         }
@@ -498,6 +495,11 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             View viewItem = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_ads, parent, false);
             viewHolder = new AdsHolder(viewItem);
+        }
+        else if (viewType == VIEW_TYPE_SAFE_SUB_MAIN) {
+            View viewItem = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.main_discount_grid_layout, parent, false);
+            viewHolder = new MainDiscountGridHolder(viewItem);
         }
         else if(viewType == VIEW_TYPE_SAFE_SUB_ITEM) {
             View viewItem = LayoutInflater.from(parent.getContext())
@@ -729,6 +731,54 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         int type = getItemViewType(position);
         switch (type){
+             case VIEW_TYPE_SAFE_SUB_MAIN:{
+                MainDiscountGridHolder safeSubMainHolder = (MainDiscountGridHolder) parentHolder;
+
+                ArrayList<UniversalPost> mainGrids196 = new ArrayList<>();
+                SafeMainObj objSafeMain = (SafeMainObj) universalList.get(position);
+                safeSubMainHolder.title.setText(objSafeMain.getTitle());
+                List<SafeItem> items196 = new ArrayList<>();
+                items196 = objSafeMain.getSafeItemList();
+                gridAdapter = new MediaAdapter(activity, mainGrids196);
+                layoutManager = new GridLayoutManager(activity, 1, GridLayoutManager.VERTICAL, false);
+
+                if (safeSubMainHolder.recyclerView != null) {
+                    safeSubMainHolder.recyclerView.setLayoutManager(layoutManager);
+                    safeSubMainHolder.recyclerView.setAdapter(gridAdapter);
+                }
+
+
+                for(int i = 0 ; i < items196.size() ; i++){
+                    SafeItem uni = items196.get(i);
+                    uni.setPostType(SAFE_SUB_ITEM);
+                    mainGrids196.add(uni);
+                }
+
+                safeSubMainHolder.recyclerView.getItemAnimator().setChangeDuration(0);
+                safeSubMainHolder.recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+                    @Override
+                    public void onChildViewAttachedToWindow(View view) {
+                        NetworkImageView image = (NetworkImageView) view.findViewById(R.id.gridItemImageView);
+                        if(image != null) {
+                            image.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onChildViewDetachedFromWindow(View view) {
+                        NetworkImageView image = (NetworkImageView) view.findViewById(R.id.gridItemImageView);
+                        if(image != null) {
+                            image.setVisibility(View.GONE);
+                        }
+
+
+                    }
+                });
+
+                safeSubMainHolder.more.setVisibility(View.GONE);
+
+                break;
+            }
             case VIEW_TYPE_SAFE_SUB_ITEM :{
                 final SafeItem safeItem = (SafeItem) universalList.get(position);
                 final  SafeSubHolder safeSubHolder = (SafeSubHolder) parentHolder;
@@ -847,11 +897,11 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram.getId()));
-                            FlurryAgent.logEvent("Videos Program Click Item", mix);
+                            ////FlurryAgent.logEvent("Videos Program Click Item", mix);
                         } catch (Exception e) {
                         }
 
-                        Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
+                      /*  Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("comment", "read");
                         bundle.putInt("id", videoProgram.getId());
@@ -861,7 +911,8 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         bundle.putInt("comment_count", videoProgram.getComment_coount());
 
                         intent.putExtras(bundle);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
+                       // activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + videoProgram.getId())));
                     }
                 });
 
@@ -872,11 +923,11 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram.getId()));
-                            FlurryAgent.logEvent("Videos Program Click Item", mix);
+                            ////FlurryAgent.logEvent("Videos Program Click Item", mix);
                         } catch (Exception e) {
                         }
 
-                        Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
+                      /*  Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("comment", "read");
                         bundle.putInt("id", videoProgram.getId());
@@ -886,7 +937,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         bundle.putInt("comment_count", videoProgram.getComment_coount());
 
                         intent.putExtras(bundle);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -897,7 +948,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram.getId()));
-                            FlurryAgent.logEvent("Click Video Program Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Video Program Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -921,7 +972,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram.getId()));
-                            FlurryAgent.logEvent("Click Video Program Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Video Program Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -962,7 +1013,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram.getId()));
-                            FlurryAgent.logEvent("Click Video Program Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Video Program Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -1015,7 +1066,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "video_program_"+videoProgram.getId());
-                                        FlurryAgent.logEvent("SubscribeVideoProgram", mix);
+                                        ////FlurryAgent.logEvent("SubscribeVideoProgram", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.insertPostSubscribe(videoProgram.getId());
@@ -1025,7 +1076,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+videoProgram.getId());
-                                        FlurryAgent.logEvent("UnsubscribeVideoProgram", mix);
+                                        ////FlurryAgent.logEvent("UnsubscribeVideoProgram", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.deleteSubscribe(videoProgram.getId());
@@ -1086,7 +1137,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(readLikeComment.getId()));
-                            FlurryAgent.logEvent("Click Post Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Post Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -1115,7 +1166,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 mix.put("type", "unlike");
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(readLikeComment.getId()));
-                                FlurryAgent.logEvent("Click Like Icon", mix);
+                                ////FlurryAgent.logEvent("Click Like Icon", mix);
                             } catch (Exception e) {
                             }
                             url_end = "/unlike";
@@ -1127,7 +1178,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 mix.put("type", "like");
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(readLikeComment.getId()));
-                                FlurryAgent.logEvent("Click Like Icon", mix);
+                                ////FlurryAgent.logEvent("Click Like Icon", mix);
                             } catch (Exception e) {
                             }
                         }
@@ -1223,7 +1274,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("sub_safe_id", String.valueOf(safeMainObj.getId()));
                             mix.put("source", "safe_list");
-                            FlurryAgent.logEvent("Click Safe Subcategory", mix);
+                            ////FlurryAgent.logEvent("Click Safe Subcategory", mix);
                         } catch (Exception e) {
                         }
 
@@ -1279,7 +1330,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 mix.put("type", "unlike");
                                 mix.put("source", "name_list");
                                 mix.put("name_id", String.valueOf(nameObject.getId()));
-                                FlurryAgent.logEvent("Click Name Icon", mix);
+                                ////FlurryAgent.logEvent("Click Name Icon", mix);
 
                             } catch (Exception e) {
                             }
@@ -1294,7 +1345,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 mix.put("type", "like");
                                 mix.put("source", "name_list");
                                 mix.put("name_id",  String.valueOf(nameObject.getId()));
-                                FlurryAgent.logEvent("Click Name Icon", mix);
+                                ////FlurryAgent.logEvent("Click Name Icon", mix);
                             } catch (Exception e) {
                             }
                         }
@@ -1586,133 +1637,25 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case VIEW_TYPE_MAIN_ADS :{
 
                 MainAdsHolder adsHolder = (MainAdsHolder) parentHolder;
-                if(adsHolder.mDemoSlider.getId() != 1){
-                    adsHolder.mDemoSlider.setId(1);
-                    MainObject slider = (MainObject) universalList.get(position);
-                    List<MainItem> sliderAds = new ArrayList<>();
-                    sliderAds = slider.getItems();
-                    for(int i=0; i< sliderAds.size(); i++){
-
-                        final MainItem ads = sliderAds.get(i);
-                        CustomTextSliderView textSliderView = new CustomTextSliderView(activity);
+                MainObject slider = (MainObject) universalList.get(position);
+                List<MainItem> sliderAds = new ArrayList<>();
+                sliderAds = slider.getItems();
 
 
-                        // set post dimension
-                        int dimen = ads.getDimen();
-                        int width = display.getWidth();  // deprecated
-                        int height = (dimen * width) / 100;
-                        adsHolder.mDemoSlider.getLayoutParams().height = height;
-
-                        //adsHolder.mDemoSlider.getLayoutParams().width = width;
-
-                        // initialize a SliderLayout
-                        textSliderView
-                                .description(ads.getTitle())
-                                .image(ads.getPreview_url())
-                                .setScaleType(BaseSliderView.ScaleType.Fit);
-
-                        textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
-                            @Override
-                            public void onSliderClick(BaseSliderView slider) {
-                                try {
-                                    Map<String, String> mix = new HashMap<String, String>();
-                                    mix.put("ads_id", String.valueOf(ads.getId()));
-                                    FlurryAgent.logEvent("Click Ads Banner", mix);
-                                } catch (Exception e) {
-                                }
-
-                                if(ads.getPost_type().equals("link")){
-
-                                    if(ads.getOpen_target() != null){
-                                        if(ads.getOpen_target() != null && ads.getOpen_target().equals("outside_app")){
 
 
-                                            try {
-                                                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ads.getUrl()));
-                                                activity.startActivity(myIntent);
-                                            }catch(ActivityNotFoundException e){
-                                                Log.e(TAG, "onSliderClick: "  + e.getMessage() );
+                ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+                for(int i=0; i< sliderAds.size(); i++){
+                    sliderDataArrayList.add(new SliderData(sliderAds.get(i).getPreview_url()));
 
-                                            }
-                                        }else{
-
-                                            Intent intent = new Intent(activity, ActivityWebView.class );
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("url",ads.getUrl());
-                                            bundle.putString("title", "");
-                                            intent.putExtras(bundle);
-                                            activity.startActivity(intent);
-                                        }
-                                    }
-
-                                }else if(ads.getPost_type().equals("api")){
-                                    try {
-
-                                        final Dialog dialog = new Dialog(activity);
-                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                        dialog.setContentView(R.layout.dialog_progress);
-                                        dialog.setCancelable(true);
-
-                                        Window window = dialog.getWindow();
-                                        WindowManager.LayoutParams wlp = window.getAttributes();
-                                        wlp.gravity = Gravity.CENTER;
-                                        wlp.width   = activity.getWindowManager().getDefaultDisplay().getWidth();
-                                        window.setAttributes(wlp);
-                                        dialog.setCanceledOnTouchOutside(false);
-
-                                        CustomTextView title  = (CustomTextView) dialog.findViewById(R.id.title);
-                                        CustomTextView text  = (CustomTextView) dialog.findViewById(R.id.text);
-
-                                        title.setText(resources.getString(R.string.progress_dialog_title));
-                                        text.setText(resources.getString(R.string.progerss_dialog_text));
-
-                                        dialog.show();
-
-
-                                        JsonArrayRequest jsonArrayRequest = adsApi(ads.getUrl(), dialog);
-                                        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-
-                                    }
-                                }else if(ads.getPost_type().equals("image")){
-                                    try {
-
-                                        Intent intent = new Intent(activity, AndroidLoadImageFromAdsUrl.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("url", ads.getPreview_url().toString());
-                                        intent.putExtras(bundle);
-                                        activity.startActivity(intent);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-
-                                    }
-                                }else if(ads.getPost_type().equals("brand_page")){
-                                    try {
-
-                                        Intent intent = new Intent(activity, BrandActivity.class);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putInt("id",Integer.parseInt(ads.getUrl()));
-                                        intent.putExtras(bundle);
-                                        activity.startActivity(intent);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "onSliderClick: "  + e.getMessage() );
-                                    }
-                                }else{
-                                    // ringProgressDialog.dismiss();
-                                }
-
-                            }
-                        });
-
-                        //add your extra information
-                        textSliderView.bundle(new Bundle());
-                        textSliderView.getBundle()
-                                .putString("extra", ads.getTitle());
-                        adsHolder.mDemoSlider.addSlider(textSliderView);
-
-                    }
                 }
+                SliderAdsAdapter adapter = new SliderAdsAdapter(activity, sliderDataArrayList, sliderAds);
+                adsHolder.sliderImageView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                adsHolder.sliderImageView.setSliderAdapter(adapter);
+                adsHolder.sliderImageView.setScrollTimeInSec(3);
+                adsHolder.sliderImageView.setAutoCycle(true);
+                adsHolder.sliderImageView.startAutoCycle();
+
 
                 break;
             }
@@ -1758,7 +1701,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", prefs.getStringPreferences(SP_DIRECTORY_CLICK));
                             mix.put("post_id", String.valueOf(clicnicLogo.getId()));
-                            FlurryAgent.logEvent("Logo Click Item", mix);
+                            ////FlurryAgent.logEvent("Logo Click Item", mix);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(activity, ClinicDetailsActivity.class);
@@ -1823,8 +1766,8 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", prefs.getStringPreferences(SP_DIRECTORY_CLICK));
                             mix.put("post_id", String.valueOf(clicnic.getId()));
-                            FlurryAgent.logEvent(prefs.getStringPreferences(SP_DIRECTORY_CLICK) +
-                                    " Click Item", mix);
+                            ////FlurryAgent.logEvent(prefs.getStringPreferences(SP_DIRECTORY_CLICK) +
+                                   // " Click Item", mix);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(activity, ClinicDetailsActivity.class);
@@ -1840,8 +1783,8 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", prefs.getStringPreferences(SP_DIRECTORY_CLICK));
                             mix.put("post_id", String.valueOf(clicnic.getId()));
-                            FlurryAgent.logEvent(prefs.getStringPreferences(SP_DIRECTORY_CLICK) +
-                                    " Click Item", mix);
+                            ////FlurryAgent.logEvent(prefs.getStringPreferences(SP_DIRECTORY_CLICK) +
+                                  //  " Click Item", mix);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(activity, ClinicDetailsActivity.class);
@@ -1978,7 +1921,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", postCategory.getTitle());
-                            FlurryAgent.logEvent("Click Reading Post Category", mix);
+                            ////FlurryAgent.logEvent("Click Reading Post Category", mix);
                         } catch (Exception e) {
                         }
 
@@ -2092,12 +2035,12 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     @Override
                     public void onClick(View v) {
                         if(toolObject.getTag().equals("all")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("tag", toolObject.getTag());
-                                FlurryAgent.logEvent("Click Tools Category", mix);
+                                ////FlurryAgent.logEvent("Click Tools Category", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, ToolsClickActivity.class);
                             intent.putExtra("tag", toolObject.getTag());
                             activity.startActivity(intent);
@@ -2105,23 +2048,23 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         }
 
                         else if(toolObject.getTag().equals("is_it_safe")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "IsitSafe onClick");
-                                FlurryAgent.logEvent("IsitSafe onClick", mix);
+                                ////FlurryAgent.logEvent("IsitSafe onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, SafeQuesMainActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if(toolObject.getTag().equals("news")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "News onClick");
-                                FlurryAgent.logEvent("News onClick", mix);
+                                ////FlurryAgent.logEvent("News onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             Intent intent = new Intent(activity, NewsActivity.class);
                             activity.startActivity(intent);
@@ -2130,22 +2073,22 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         }
 
                         else if(toolObject.getTag().equals("video")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Video onClick");
-                                FlurryAgent.logEvent("Video onClick", mix);
+                                ////FlurryAgent.logEvent("Video onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, VideoListActivity.class);
                             activity.startActivity(intent);
                         }
                         else if(toolObject.getTag().equals("maharbote")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Maharbote onClick");
-                                FlurryAgent.logEvent("Maharbote onClick", mix);
+                                ////FlurryAgent.logEvent("Maharbote onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, MaharboteActivity.class);
                             intent.putExtra("url",toolObject.getImage());
                             intent.putExtra("title", toolObject.getName());
@@ -2154,12 +2097,12 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
                         else if(toolObject.getTag().equals("momolay")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Momolay onClick");
-                                FlurryAgent.logEvent("Momolay onClick", mix);
+                                ////FlurryAgent.logEvent("Momolay onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, NewsClickActivity.class);
                             intent.putExtra("tag", toolObject.getTag());
                             intent.putExtra("name", toolObject.getName());
@@ -2167,46 +2110,46 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         }
 
                         else if(toolObject.getTag().equals("baby_names")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Baby Name onClick");
-                                FlurryAgent.logEvent("Baby Name onClick", mix);
+                                ////FlurryAgent.logEvent("Baby Name onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, GiveNameActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if (toolObject.getTag().equals("birthday_calendar")){
-                            try {
+                            /*try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Horoscope onClick");
-                                FlurryAgent.logEvent("Horoscope onClick", mix);
+                                ////FlurryAgent.logEvent("Horoscope onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
 
                             Intent intent = new Intent(activity, CustomCalendarActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if (toolObject.getTag().equals("ovulation_calculator")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Pregnant onClick");
-                                FlurryAgent.logEvent("Pregnant onClick", mix);
+                                ////FlurryAgent.logEvent("Pregnant onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, Get_PregnantActivity.class);
                             activity.startActivity(intent);
                         }
 
                         else if (toolObject.getTag().equals("due_date")){
-                            try {
+                           /* try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Due Date onClick");
-                                FlurryAgent.logEvent("Due Date onClick", mix);
+                                ////FlurryAgent.logEvent("Due Date onClick", mix);
                             } catch (Exception e) {
-                            }
+                            }*/
                             Intent intent = new Intent(activity, DueDateActivity.class);
                             activity.startActivity(intent);
                         }
@@ -2214,7 +2157,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Clinic Diectory onClick");
-                                FlurryAgent.logEvent("Clinic Diectory onClick", mix);
+                                ////FlurryAgent.logEvent("Clinic Diectory onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, ClinicActivity.class);
@@ -2227,7 +2170,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "School Diectory onClick");
-                                FlurryAgent.logEvent("School Diectory onClick", mix);
+                                ////FlurryAgent.logEvent("School Diectory onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, ClinicActivity.class);
@@ -2291,7 +2234,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("tag", toolPost.getYoutube_id());
-                                    FlurryAgent.logEvent("Click Tools Category", mix);
+                                    ////FlurryAgent.logEvent("Click Tools Category", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, ToolsClickActivity.class);
@@ -2304,7 +2247,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "IsitSafe onClick");
-                                    FlurryAgent.logEvent("IsitSafe onClick", mix);
+                                    ////FlurryAgent.logEvent("IsitSafe onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, SafeQuesMainActivity.class);
@@ -2316,7 +2259,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "News onClick");
-                                    FlurryAgent.logEvent("News onClick", mix);
+                                    ////FlurryAgent.logEvent("News onClick", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -2330,7 +2273,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Video onClick");
-                                    FlurryAgent.logEvent("Video onClick", mix);
+                                    ////FlurryAgent.logEvent("Video onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, VideoListActivity.class);
@@ -2340,7 +2283,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Maharbote onClick");
-                                    FlurryAgent.logEvent("Maharbote onClick", mix);
+                                    ////FlurryAgent.logEvent("Maharbote onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, MaharboteActivity.class);
@@ -2354,7 +2297,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Momolay onClick");
-                                    FlurryAgent.logEvent("Momolay onClick", mix);
+                                    ////FlurryAgent.logEvent("Momolay onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, NewsClickActivity.class);
@@ -2367,7 +2310,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Baby Name onClick");
-                                    FlurryAgent.logEvent("Baby Name onClick", mix);
+                                    ////FlurryAgent.logEvent("Baby Name onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, GiveNameActivity.class);
@@ -2378,7 +2321,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Horoscope onClick");
-                                    FlurryAgent.logEvent("Horoscope onClick", mix);
+                                    ////FlurryAgent.logEvent("Horoscope onClick", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -2390,7 +2333,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Pregnant onClick");
-                                    FlurryAgent.logEvent("Pregnant onClick", mix);
+                                    ////FlurryAgent.logEvent("Pregnant onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, Get_PregnantActivity.class);
@@ -2401,7 +2344,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Due Date onClick");
-                                    FlurryAgent.logEvent("Due Date onClick", mix);
+                                    ////FlurryAgent.logEvent("Due Date onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, DueDateActivity.class);
@@ -2411,7 +2354,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "Clinic Diectory onClick");
-                                    FlurryAgent.logEvent("Clinic Diectory onClick", mix);
+                                    ////FlurryAgent.logEvent("Clinic Diectory onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, ClinicActivity.class);
@@ -2424,7 +2367,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 try {
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("type", "School Diectory onClick");
-                                    FlurryAgent.logEvent("School Diectory onClick", mix);
+                                    ////FlurryAgent.logEvent("School Diectory onClick", mix);
                                 } catch (Exception e) {
                                 }
                                 Intent intent = new Intent(activity, ClinicActivity.class);
@@ -2456,11 +2399,11 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "video_program");
                                 mix.put("post_id", String.valueOf(toolPost.getYoutube_id()));
-                                FlurryAgent.logEvent("Videos Program Click Item", mix);
+                                ////FlurryAgent.logEvent("Videos Program Click Item", mix);
                             } catch (Exception e) {
                             }
 
-                            Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
+                         /*   Intent intent = new Intent(activity, VideoProgramDetailActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("comment", "read");
                             bundle.putInt("id", Integer.parseInt(toolPost.getYoutube_id()));
@@ -2470,7 +2413,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
                             intent.putExtras(bundle);
-                            activity.startActivity(intent);
+                            activity.startActivity(intent);*/
 
                         }
                     }
@@ -2507,7 +2450,6 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             commentHolder.linearLayoutPhoto.setVisibility(View.GONE);
                         }else{
                             commentHolder.linearLayoutPhoto.setVisibility(View.VISIBLE);
-                            Log.e(TAG, "onBindViewHolder: ************* "  + comment.getComment_dimen() + " " + comment.getCommentor() );
 
 
                             if(comment.getComment_dimen() != 0){
@@ -2606,7 +2548,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("comment_id", String.valueOf(comment.getId()));
                                     mix.put("type", "image" );
-                                    FlurryAgent.logEvent("Click Comment Image", mix);
+                                    ////FlurryAgent.logEvent("Click Comment Image", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -2629,7 +2571,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("comment_id", String.valueOf(comment.getId()));
                                     mix.put("type", "image" );
-                                    FlurryAgent.logEvent("Click Comment Image", mix);
+                                    ////FlurryAgent.logEvent("Click Comment Image", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -2674,7 +2616,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         commentHolder.txtType.setText( comment.getCommentor_type());
                         commentHolder.babyage.setVisibility(View.GONE);
                         commentHolder.txtType.setVisibility(View.VISIBLE);
-                        commentHolder.txtType.setTypeface( commentHolder.title.getTypeface(), Typeface.BOLD);
+                        commentHolder.txtType.setTypeface( commentHolder.txtType.getTypeface(), Typeface.BOLD);
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         {
@@ -2688,8 +2630,19 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
 
 
+                    try{
 
-                    commentHolder.title.setText(comment.getCommentor());
+                        if (comment.getCommentor().equals("") || comment.getCommentor().equals("null") || comment.getCommentor() == null) {
+                            commentHolder.title.setText("Kyarlay Member");
+                        }
+                        else{
+                            commentHolder.title.setText(comment.getCommentor());
+                        }
+                    }catch (Exception e){
+                            commentHolder.title.setText("Kyarlay Member");
+
+                    }
+
                     commentHolder.title.setTypeface( commentHolder.title.getTypeface(), Typeface.BOLD);
 
                     commentHolder.time.setText(comment.getCreated_at());
@@ -3464,7 +3417,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(detailProduct.getId()));
-                            FlurryAgent.logEvent("Click Info Tag", mix);
+                            ////FlurryAgent.logEvent("Click Info Tag", mix);
                         } catch (Exception e) {
                         }
 
@@ -3655,7 +3608,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("comment_id", String.valueOf(detailPost1.getId()));
                                 mix.put("type", "image" );
-                                FlurryAgent.logEvent("Click User Post Image", mix);
+                                ////FlurryAgent.logEvent("Click User Post Image", mix);
                             } catch (Exception e) {
                             }
 
@@ -3814,7 +3767,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("Click Post", mix);
+                            ////FlurryAgent.logEvent("Click Post", mix);
                         } catch (Exception e) {
                         }
 
@@ -3839,7 +3792,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("Click Post", mix);
+                            ////FlurryAgent.logEvent("Click Post", mix);
                         } catch (Exception e) {
                         }
 
@@ -3863,7 +3816,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -3888,7 +3841,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -3938,7 +3891,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(reading.getId()));
-                            FlurryAgent.logEvent("Click Post Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Post Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -3992,7 +3945,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+reading.getId());
-                                        FlurryAgent.logEvent("SubscribePost", mix);
+                                        ////FlurryAgent.logEvent("SubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.insertPostSubscribe(reading.getId());
@@ -4002,7 +3955,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+reading.getId());
-                                        FlurryAgent.logEvent("UnsubscribePost", mix);
+                                        ////FlurryAgent.logEvent("UnsubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.deleteSubscribe(reading.getId());
@@ -4055,7 +4008,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "product");
-                            FlurryAgent.logEvent("Article Product", mix);
+                            ////FlurryAgent.logEvent("Article Product", mix);
 
 
                         } catch (Exception e) {
@@ -4080,9 +4033,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 richVideo.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(activity, Youtube.class);
+                       /* Intent intent = new Intent(activity, Youtube.class);
                         intent.putExtra("youtubeID", video.getBody());
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
                 try {
@@ -4154,7 +4107,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(video.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -4178,7 +4131,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(video.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -4213,7 +4166,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(video.getId()));
-                            FlurryAgent.logEvent("Click Post Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Post Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -4265,7 +4218,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+video.getId());
-                                        FlurryAgent.logEvent("SubscribePost", mix);
+                                        ////FlurryAgent.logEvent("SubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.insertPostSubscribe(video.getId());
@@ -4275,7 +4228,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+video.getId());
-                                        FlurryAgent.logEvent("UnsubscribePost", mix);
+                                        ////FlurryAgent.logEvent("UnsubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.deleteSubscribe(video.getId());
@@ -4362,13 +4315,13 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "video_program");
                             mix.put("post_id", String.valueOf(videoProgram3.getId()));
-                            FlurryAgent.logEvent("Videos Program Click Item", mix);
+                            ////FlurryAgent.logEvent("Videos Program Click Item", mix);
                         } catch (Exception e) {
                         }
                         prefs.saveIntPerferences(FIRST_PLAY, 1);
-                        Intent intent = new Intent(activity, YouTubeDialog.class);
+                       /* Intent intent = new Intent(activity, YouTubeDialog.class);
                         intent.putExtra("youtube_object", videoProgram3);
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -4399,9 +4352,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     youtubeholder.layout_image.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(activity, Youtube.class);
+                           /* Intent intent = new Intent(activity, Youtube.class);
                             intent.putExtra("youtubeID", youtubePost.getYoutube_id());
-                            activity.startActivity(intent);
+                            activity.startActivity(intent);*/
                         }
                     });
                 }
@@ -4413,9 +4366,9 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 youtubeholder.layout_watch.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(activity, Youtube.class);
+                       /* Intent intent = new Intent(activity, Youtube.class);
                         intent.putExtra("youtubeID", youtubePost.getYoutube_id());
-                        activity.startActivity(intent);
+                        activity.startActivity(intent);*/
                     }
                 });
 
@@ -4486,7 +4439,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "api");
-                            FlurryAgent.logEvent("Article Product", mix);
+                            ////FlurryAgent.logEvent("Article Product", mix);
                         } catch (Exception e) {
                         }
                         JsonArrayRequest jsonArrayRequest = productList(readingAPI.getYoutube_id());
@@ -4614,7 +4567,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("promotion", String.valueOf(bbitem.getId()));
-                            FlurryAgent.logEvent(" Click Promotion Banner", mix);
+                            ////FlurryAgent.logEvent(" Click Promotion Banner", mix);
                         } catch (Exception e) {
                         }
 
@@ -4662,7 +4615,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
 
-                                FlurryAgent.logEvent("Click All Brands Button", mix);
+                                ////FlurryAgent.logEvent("Click All Brands Button", mix);
                             } catch (Exception e) {
                             }
 
@@ -4795,7 +4748,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(userPost.getId()));
-                                FlurryAgent.logEvent("Click User Post", mix);
+                                ////FlurryAgent.logEvent("Click User Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -4832,7 +4785,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     Map<String, String> mix = new HashMap<String, String>();
                                     mix.put("source", "post_list");
                                     mix.put("post_id", String.valueOf(userPost.getId()));
-                                    FlurryAgent.logEvent("Click User Post", mix);
+                                    ////FlurryAgent.logEvent("Click User Post", mix);
                                 } catch (Exception e) {
                                 }
 
@@ -4928,7 +4881,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(userPost.getId()));
-                                FlurryAgent.logEvent("Click User Post", mix);
+                                ////FlurryAgent.logEvent("Click User Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -4958,7 +4911,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(userPost.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -4982,7 +4935,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(userPost.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5005,7 +4958,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("product_id", String.valueOf(userPost.getId()));
-                            FlurryAgent.logEvent("Click Group Chat Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Group Chat Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5103,7 +5056,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+userPost.getId());
-                                        FlurryAgent.logEvent("SubscribePost", mix);
+                                        ////FlurryAgent.logEvent("SubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.insertPostSubscribe(userPost.getId());
@@ -5113,7 +5066,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+userPost.getId());
-                                        FlurryAgent.logEvent("UnsubscribePost", mix);
+                                        ////FlurryAgent.logEvent("UnsubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.deleteSubscribe(userPost.getId());
@@ -5234,7 +5187,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("tag", chooseObject.getTag());
-                                FlurryAgent.logEvent("Click Tools Category", mix);
+                                ////FlurryAgent.logEvent("Click Tools Category", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, ToolsClickActivity.class);
@@ -5247,7 +5200,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "IsitSafe onClick");
-                                FlurryAgent.logEvent("IsitSafe onClick", mix);
+                                ////FlurryAgent.logEvent("IsitSafe onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, SafeQuesMainActivity.class);
@@ -5258,7 +5211,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "News onClick");
-                                FlurryAgent.logEvent("News onClick", mix);
+                                ////FlurryAgent.logEvent("News onClick", mix);
                             } catch (Exception e) {
                             }
 
@@ -5272,7 +5225,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Video onClick");
-                                FlurryAgent.logEvent("Video onClick", mix);
+                                ////FlurryAgent.logEvent("Video onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, VideoListActivity.class);
@@ -5282,7 +5235,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Maharbote onClick");
-                                FlurryAgent.logEvent("Maharbote onClick", mix);
+                                ////FlurryAgent.logEvent("Maharbote onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, MaharboteActivity.class);
@@ -5296,7 +5249,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Momolay onClick");
-                                FlurryAgent.logEvent("Momolay onClick", mix);
+                                ////FlurryAgent.logEvent("Momolay onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, NewsClickActivity.class);
@@ -5309,7 +5262,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Baby Name onClick");
-                                FlurryAgent.logEvent("Baby Name onClick", mix);
+                                ////FlurryAgent.logEvent("Baby Name onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, GiveNameActivity.class);
@@ -5320,7 +5273,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Horoscope onClick");
-                                FlurryAgent.logEvent("Horoscope onClick", mix);
+                                ////FlurryAgent.logEvent("Horoscope onClick", mix);
                             } catch (Exception e) {
                             }
 
@@ -5332,7 +5285,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Pregnant onClick");
-                                FlurryAgent.logEvent("Pregnant onClick", mix);
+                                ////FlurryAgent.logEvent("Pregnant onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, Get_PregnantActivity.class);
@@ -5343,7 +5296,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Due Date onClick");
-                                FlurryAgent.logEvent("Due Date onClick", mix);
+                                ////FlurryAgent.logEvent("Due Date onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, DueDateActivity.class);
@@ -5353,7 +5306,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "Clinic Diectory onClick");
-                                FlurryAgent.logEvent("Clinic Diectory onClick", mix);
+                                ////FlurryAgent.logEvent("Clinic Diectory onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, ClinicActivity.class);
@@ -5366,7 +5319,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             try {
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "School Diectory onClick");
-                                FlurryAgent.logEvent("School Diectory onClick", mix);
+                                ////FlurryAgent.logEvent("School Diectory onClick", mix);
                             } catch (Exception e) {
                             }
                             Intent intent = new Intent(activity, ClinicActivity.class);
@@ -5511,7 +5464,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id",String.valueOf( readingObj.getId()));
-                                FlurryAgent.logEvent("Click Momolay Post", mix);
+                                ////FlurryAgent.logEvent("Click Momolay Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -5526,7 +5479,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(readingObj.getId()));
-                                FlurryAgent.logEvent("Click Post", mix);
+                                ////FlurryAgent.logEvent("Click Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -5557,7 +5510,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(readingObj.getId()));
-                                FlurryAgent.logEvent("Click Momolay Post", mix);
+                                ////FlurryAgent.logEvent("Click Momolay Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -5572,7 +5525,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
                                 mix.put("post_id", String.valueOf(readingObj.getId()));
-                                FlurryAgent.logEvent("Click Post", mix);
+                                ////FlurryAgent.logEvent("Click Post", mix);
                             } catch (Exception e) {
                             }
 
@@ -5598,7 +5551,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(readingObj.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5624,7 +5577,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(readingObj.getId()));
-                            FlurryAgent.logEvent("Click Comment Icon", mix);
+                            ////FlurryAgent.logEvent("Click Comment Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5674,7 +5627,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(readingObj.getId()));
-                            FlurryAgent.logEvent("Click Post Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Post Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5698,7 +5651,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(readingObj.getId()));
-                            FlurryAgent.logEvent("Click Momolay Share Icon", mix);
+                            ////FlurryAgent.logEvent("Click Momolay Share Icon", mix);
                         } catch (Exception e) {
                         }
 
@@ -5754,7 +5707,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+readingObj.getId());
-                                        FlurryAgent.logEvent("SubscribePost", mix);
+                                        ////FlurryAgent.logEvent("SubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.insertPostSubscribe(readingObj.getId());
@@ -5764,7 +5717,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("source", "post_"+readingObj.getId());
-                                        FlurryAgent.logEvent("UnsubscribePost", mix);
+                                        ////FlurryAgent.logEvent("UnsubscribePost", mix);
                                     } catch (Exception e) {
                                     }
                                     databaseAdapter.deleteSubscribe(readingObj.getId());
@@ -5928,7 +5881,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(grwothReading.getId()));
-                            FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
+                            ////FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
                         } catch (Exception e) {
                         }
 
@@ -5953,7 +5906,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("source", "post_list");
                             mix.put("post_id", String.valueOf(grwothReading.getId()));
-                            FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
+                            ////FlurryAgent.logEvent("Weekly_Highligh_Post", mix);
                         } catch (Exception e) {
                         }
 
@@ -6164,7 +6117,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("user_type", prefs.getStringPreferences(SP_FILLUP_STATUS) );
                                 mix.put("week", String.valueOf(prefs.getIntPreferences(SP_KID_CHANGE_WEEK)));
-                                FlurryAgent.logEvent("Next Click Event", mix);
+                                ////FlurryAgent.logEvent("Next Click Event", mix);
                             } catch (Exception e) {
                             }
 
@@ -6183,7 +6136,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("user_type", prefs.getStringPreferences(SP_FILLUP_STATUS) );
                                 mix.put("week", String.valueOf(prefs.getIntPreferences(SP_KID_CHANGE_WEEK)));
-                                FlurryAgent.logEvent("Previous Click Event", mix);
+                                ////FlurryAgent.logEvent("Previous Click Event", mix);
                             } catch (Exception e) {
                             }
 
@@ -6226,7 +6179,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "Pregnant onClick");
-                            FlurryAgent.logEvent("Pregnant onClick", mix);
+                            ////FlurryAgent.logEvent("Pregnant onClick", mix);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(activity, Get_PregnantActivity.class);
@@ -6260,7 +6213,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("source", "post_list");
-                                FlurryAgent.logEvent("Click Liked Posts Icon", mix);
+                                ////FlurryAgent.logEvent("Click Liked Posts Icon", mix);
                             } catch (Exception e) {
                             }
 
@@ -6280,7 +6233,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 prefs.getStringPreferences(SP_USER_TOKEN).trim().length() > 0) {
                             try {
 
-                                FlurryAgent.logEvent("Click Notification");
+                                ////FlurryAgent.logEvent("Click Notification");
                             } catch (Exception e) {
                             }
 
@@ -6470,7 +6423,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         try {
                             Map<String, String> mix = new HashMap<String, String>();
                             mix.put("type", "Pregnant onClick");
-                            FlurryAgent.logEvent("Pregnant onClick", mix);
+                            ////FlurryAgent.logEvent("Pregnant onClick", mix);
                         } catch (Exception e) {
                         }
                         Intent intent = new Intent(activity, Get_PregnantActivity.class);
@@ -6510,7 +6463,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             mix.put("type", "product_list" );
                             mix.put("status", "success" );
 
-                            FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                            ////FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                         } catch (Exception e) {
                         }
                         if(response.length() > 0) {
@@ -6547,7 +6500,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     mix.put("type", "product_list" );
                     mix.put("status", "error" );
 
-                    FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                    ////FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                 } catch (Exception e) {
                 }
 
@@ -6578,7 +6531,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                     try {
                                         Map<String, String> mix = new HashMap<String, String>();
                                         mix.put("product_id", String.valueOf(product.getId()));
-                                        FlurryAgent.logEvent("Click Product", mix);
+                                        ////FlurryAgent.logEvent("Click Product", mix);
                                     } catch (Exception e) {
                                     }
 
@@ -6636,14 +6589,14 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
-                    FlurryAgent.logEvent("Click Flash Product", mix);
+                    ////FlurryAgent.logEvent("Click Flash Product", mix);
                 } catch (Exception e) {
                 }
             }else{
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
-                    FlurryAgent.logEvent("Click Product", mix);
+                    ////FlurryAgent.logEvent("Click Product", mix);
                 } catch (Exception e) {
                 }
             }
@@ -6695,7 +6648,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("product_id", String.valueOf(product.getId()));
 
-                    FlurryAgent.logEvent("Add To Cart", mix);
+                    ////FlurryAgent.logEvent("Add To Cart", mix);
                 } catch (Exception e) {}
 
                 if(product.getOptions() != null && product.getOptions().trim().length() > 0){
@@ -6785,8 +6738,8 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }else{
 
 
-                databaseAdapter.insertOrder(product, count, final_item_price, option);
-                prefs.saveBooleanPreference(LOGIN_SAVECART, true);
+                //databaseAdapter.insertOrder(product, count, final_item_price, option);
+                prefs.saveBooleanPreference(LOGIN_SAVECART, false);
                 Intent intent   = new Intent(activity, ActivityLogin.class);
                 activity.startActivity(intent);
 
@@ -6796,6 +6749,164 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
     public void addToCartProduct(Product product, final Activity activity, int count, int final_item_price, String option){
         prefs.saveBooleanPreference(LOGIN_SAVECART, false);
+
+        JSONObject uploadMessage = new JSONObject();
+        try {
+            uploadMessage.put("quantity", count);
+            uploadMessage.put("option", option);
+            uploadMessage.put("product_id", product.getId());
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST,constantAddProductToServerCart, uploadMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            if (response.getInt("status") == 1) {
+                                prefs.saveIntPerferences(SP_CUSTOMER_PRODUCT_COUNT,prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT ) + count);
+                                if(activity.getLocalClassName().contains("MainActivity")) {
+
+                                    MainActivity pro = (MainActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("CategoryActivity")) {
+
+                                    CategoryActivity pro = (CategoryActivity) activity;
+                                    pro.bounceCount();
+                                }
+                                else if(activity.getLocalClassName().contains("ProductActivity")) {
+
+                                    ProductActivity pro = (ProductActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                else if(activity.getLocalClassName().contains("CampainDetailActivity")) {
+
+                                    CampainDetailActivity pro = (CampainDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("ActivityAdsList")) {
+
+                                    ActivityAdsList pro = (ActivityAdsList) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandedDetailActivity")) {
+
+                                    BrandedDetailActivity pro = (BrandedDetailActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("WishListActivity")) {
+
+                                    WishListActivity pro = (WishListActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("BrandActivity")) {
+
+                                    BrandActivity pro = (BrandActivity) activity;
+                                    pro.bounceCount();
+                                }else if(activity.getLocalClassName().contains("SearchResultActivity")) {
+
+                                    SearchResultActivity pro = (SearchResultActivity) activity;
+                                    pro.bounceCount();
+
+                                }
+                                else if(activity.getLocalClassName().contains("DeeplinkingListActivity")) {
+
+                                    DeeplinkingListActivity pro = (DeeplinkingListActivity) activity;
+                                    pro.bounceCount();
+                                }
+
+                                final Dialog dialog = new Dialog(activity);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                                dialog.setContentView(R.layout.dialog_add_to_cart);
+
+                                dialog.setCanceledOnTouchOutside(true);
+                                Window window = dialog.getWindow();
+                                WindowManager.LayoutParams wlp = window.getAttributes();
+                                wlp.gravity = Gravity.CENTER;
+                                wlp.width = activity.getWindowManager().getDefaultDisplay().getWidth();
+                                window.setAttributes(wlp);
+
+                                CustomButton cancel = (CustomButton) dialog.findViewById(R.id.dialog_delete_cancel);
+                                CustomButton confirm = (CustomButton) dialog.findViewById(R.id.dialog_delete_confirm);
+                                // CustomTextView title = (CustomTextView) dialog.findViewById(R.id.title);
+                                CustomTextView text = (CustomTextView) dialog.findViewById(R.id.text);
+
+                                //title.setText(resources.getString(R.string.added_to_cart_title));
+                                text.setText(product.getTitle() + "\t " + resources.getString(R.string.save_to_cart_error));
+                                cancel.setText(resources.getString(R.string.added_to_cart_cancel));
+                                confirm.setText(resources.getString(R.string.added_to_cart_confirm));
+
+
+                                CircularTextView circularTextView = (CircularTextView) dialog.findViewById(R.id.menu_cart_idenfier);
+                                circularTextView.setText(String.valueOf(prefs.getIntPreferences(SP_CUSTOMER_PRODUCT_COUNT)));
+
+                                confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+
+                                            Map<String, String> mix = new HashMap<String, String>();
+                                            mix.put("source", "product_detail_dialog");
+                                            ////FlurryAgent.logEvent("Click Shopping Cart", mix);
+
+                                        } catch (Exception e) {
+                                        }
+
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(activity, ShoppingCartActivity.class);
+                                        activity.startActivity(intent);
+                                    }
+
+                                });
+
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            }
+
+                        }catch (Exception e){
+                            Log.e(TAG, "onResponse:  "  + e.getMessage() );
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+
+                Log.e(TAG, "onErrorResponse:   "   + error.getLocalizedMessage() );
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("X-Customer-Phone", prefs.getStringPreferences(SP_USER_PHONE));
+                headers.put("X-Customer-Token", prefs.getStringPreferences(SP_USER_TOKEN));
+                return headers;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq,"sign_in");
+
+
+     /*   prefs.saveBooleanPreference(LOGIN_SAVECART, false);
         databaseAdapter.insertOrder(product, count, final_item_price, option);
         if(activity.getLocalClassName().contains("MainActivity")) {
 
@@ -6884,7 +6995,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 try {
                     Map<String, String> mix = new HashMap<String, String>();
                     mix.put("source", "product_detail_dialog");
-                    FlurryAgent.logEvent("Click Shopping Cart", mix);
+                    ////FlurryAgent.logEvent("Click Shopping Cart", mix);
                 } catch (Exception e) {
                 }
 
@@ -6902,7 +7013,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        dialog.show();*/
 
     }
 
@@ -6916,7 +7027,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "unlike");
                 mix.put("source", "video_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Video Program Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Video Program Like Icon", mix);
             } catch (Exception e) {
             }
 
@@ -6930,7 +7041,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "like");
                 mix.put("source", "video_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Video Program Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Video Program Like Icon", mix);
             } catch (Exception e) {
             }
             holder.like_image.setImageResource(R.drawable.wishlist_clicked);
@@ -7127,7 +7238,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 Map<String, String> mix = new HashMap<String, String>();
                                 mix.put("type", "product" );
                                 mix.put("product_id", String.valueOf(arrayList.get(0).getId()));
-                                FlurryAgent.logEvent("Incoming from Article Product Api", mix);
+                                ////FlurryAgent.logEvent("Incoming from Article Product Api", mix);
                             } catch (Exception e) {
                             }
 
@@ -7152,7 +7263,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     mix.put("type", "product" );
                     mix.put("product_id", "-1" );
 
-                    FlurryAgent.logEvent("Incoming from Deep Linking", mix);
+                    ////FlurryAgent.logEvent("Incoming from Deep Linking", mix);
                 } catch (Exception e) {
                 }
 
@@ -7327,7 +7438,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "unlike");
                 mix.put("source", "post_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Like Icon", mix);
             } catch (Exception e) {
             }
             url_end = "/unlike";
@@ -7339,7 +7450,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "like");
                 mix.put("source", "post_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Like Icon", mix);
             } catch (Exception e) {
             }
 
@@ -7529,7 +7640,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "unlike");
                 mix.put("source", "post_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Like Icon", mix);
             } catch (Exception e) {
             }
             url_end = "/unlike";
@@ -7541,7 +7652,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 mix.put("type", "like");
                 mix.put("source", "post_list");
                 mix.put("post_id", String.valueOf(id));
-                FlurryAgent.logEvent("Click Like Icon", mix);
+                ////FlurryAgent.logEvent("Click Like Icon", mix);
             } catch (Exception e) {
             }
         }

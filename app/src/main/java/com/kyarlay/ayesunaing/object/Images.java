@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by ayesunaing on 8/23/16.
  */
-public class Images extends UniversalPost{
+public class Images extends UniversalPost implements Parcelable{
 
     int id, productId;
     @SerializedName("dimen")
